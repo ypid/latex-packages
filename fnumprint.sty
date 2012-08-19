@@ -1,0 +1,47 @@
+%%
+%% This is file `fnumprint.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% fnumprint.dtx  (with options: `package')
+%% 
+%% Copyright (C) 2012 by Robin Schneider <ypid23@aol.de>
+%% 
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2005/12/01 or later.
+%% 
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{fnumprint}[2012/08/19 v1.0 Printing fancy (German) numbers]
+\RequirePackage{xifthen}
+\RequirePackage{zahl2string,numprint}
+\DeclareRobustCommand{\fnumprint}[1]{%
+  \ifthenelse{#1 < 13}{%
+    \ifthenelse{#1 < 0}{%
+      \numprint{#1}%
+    }{%
+      \numstr{#1}%
+    }%
+  }{%
+    \numprint{#1}%
+  }%
+}
+\DeclareRobustCommand{\fnumprintc}[1]{%
+  \ifthenelse{\value{#1} < 13}{%
+    \ifthenelse{\value{#1} < 0}{%
+      \cntprint{#1}%
+    }{%
+      \numstring{#1}%
+    }%
+  }{%
+    \cntprint{#1}%
+  }%
+}
+\endinput
+%%
+%% End of file `fnumprint.sty'.

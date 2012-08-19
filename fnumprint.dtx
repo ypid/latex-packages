@@ -1,0 +1,186 @@
+% \iffalse The license starting four lines down applies to this file
+%<*batchfile>
+\begingroup\input docstrip.tex \declarepreamble\mypreamble
+
+Copyright (C) 2012 by Robin Schneider <ypid23@aol.de>
+
+This work may be distributed and/or modified under the
+conditions of the LaTeX Project Public License, either version 1.3
+of this license or (at your option) any later version.
+The latest version of this license is in
+  http://www.latex-project.org/lppl.txt
+and version 1.3 or later is part of all distributions of LaTeX
+version 2005/12/01 or later.
+
+\endpreamble
+
+\keepsilent
+\usedir{tex/latex/\jobname}
+\usepreamble\mypreamble
+\askforoverwritefalse
+\generate{\file{\jobname.sty}{\from{\jobname.dtx}{package}}}
+\endgroup
+
+\documentclass[english]{ltxdoc}
+\newcommand{\PackageURL}{https://github.com/ypid/latex-packages}
+\newcommand{\PrintPackage}[1]{\textsf{#1}}
+\newcommand{\PackageAuthor}{Robin Schneider}
+\newcommand{\PackageAuthorEmail}{ypid23@aol.de}
+\typeout{}
+\typeout{* If the two package names look the same you can ignore this LaTeX Warning *}
+\usepackage{\jobname} %% ^^A This produces a warning even when there is no problem.
+%% ^^A I think there is an error in the comparison (expand \jobname ...)
+\usepackage{
+  babel,
+  xcolor,
+  url,
+  hyperref
+}
+\GetFileInfo{\jobname.sty}
+\hypersetup{
+  pdftitle={A manual for \jobname},
+  pdfauthor={\PackageAuthor <\PackageAuthorEmail>},
+  pdfsubject={\fileinfo},
+  baseurl={\PackageURL},
+  pdfkeywords={This document corresponds to \textsf{\jobname}~\fileversion, dated \filedate}
+}
+
+\DoNotIndex{\newcommand}
+
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+\title{The \PrintPackage{\jobname} package\thanks{This document
+corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
+\author{\PackageAuthor\\\texttt{\href{mailto:\PackageAuthorEmail}{\PackageAuthorEmail}}}
+
+\begin{document}
+\maketitle
+
+\phantomsection
+\addcontentsline{toc}{section}{\abstractname}
+\begin{abstract}
+The \PrintPackage{\jobname} package provides a macros to decide to typeset a numbers either as
+number
+or as word name (only in German yet). \\
+Fork me on GitHub: \url{\PackageURL}
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction}
+The \PrintPackage{\jobname} package defineds two macros to decide to typeset a numbers either as
+number
+or as word name for the number. If the number is between zero and twelve (including zero and twelve)
+then the word name will be used.
+In any other cases the number will be typesetted with the |numprint| package.
+This package uses the |zahl2string| package to convert a number in the word name in German.
+So the conversion of a number (0--12) to a english word number is also implemented
+by \PrintPackage{\jobname} (not yet).
+
+
+\section{Usage}
+Just load the package placing
+\begin{quote}
+  |\usepackage{\jobname}|
+\end{quote}
+in the preamble of your \LaTeXe{} source file.
+
+\DescribeMacro{\fnumprintc}
+The macro |\fnumprintc| {\marg{\LaTeX{} counter name}} takes a name of a LaTeX counter as its only
+not optional parameter and typesets it.
+
+\DescribeMacro{\fnumprint}
+The macro |\fnumprint| {\marg{number}} is like the |\fnumprintc| marco but it takes a number
+or a marco that expands to a number. A \TeX{} counter can also used with this marco.
+
+\section{Examples}
+\begin{tabular}{ll}
+  \textbf{marco}          & \textbf{expanded marco} \\
+  |\fnumprint{-1}|        & \fnumprint{-1} \\
+  |\fnumprint{0}|         & \fnumprint{0} \\
+  |\fnumprint{10}|        & \fnumprint{10} \\
+  |\fnumprint{12}|        & \fnumprint{12} \\
+  |\fnumprint{13}|        & \fnumprint{13} \\
+  |\fnumprint{\the\year}| & \fnumprint{\the\year} \\
+  |\fnumprintc{page}| & \fnumprintc{page} \\
+\end{tabular}
+
+\StopEventually{
+        \typeout{**************************************************}
+        \typeout{*}
+        \typeout{* To finish the installation, you have to move the}
+        \typeout{* following file into a directory searched by TeX:}
+        \typeout{*}
+        \typeout{* \space\space \jobname.sty}
+        \typeout{*}
+        \typeout{* Documentation is in \jobname.\ifpdf pdf\else dvi\fi.}
+        \typeout{*}
+        \typeout{* Happy TeXing!}
+        \typeout{**************************************************}
+        \end{document}
+}
+\clearpage
+\DocInput{\jobname.dtx}
+\clearpage
+\phantomsection
+\addcontentsline{toc}{section}{Change History}
+\PrintChanges
+\phantomsection
+\addcontentsline{toc}{section}{Index}
+\PrintIndex
+\Finale
+%</batchfile>
+% \fi
+%
+% \section{Implementation}
+% \subsection{The Usual}
+% First the usual things.
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{fnumprint}[2012/08/19 v1.0 Printing fancy (German) numbers]
+%    \end{macrocode}
+% The following definitions are based on these packages
+%    \begin{macrocode}
+\RequirePackage{xifthen}
+\RequirePackage{zahl2string,numprint}
+%    \end{macrocode}
+% \subsection{Marco definition}
+% \begin{macro}{\fnumprint}
+% Here is the |\fnumprint| marco defined.
+% It takes one not optional parameter.
+% The parameter must be a number or a marco which expands to a number.
+%    \begin{macrocode}
+\DeclareRobustCommand{\fnumprint}[1]{%
+  \ifthenelse{#1 < 13}{%
+    \ifthenelse{#1 < 0}{%
+      \numprint{#1}%
+    }{%
+      \numstr{#1}%
+    }%
+  }{%
+    \numprint{#1}%
+  }%
+}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\fnumprintc}
+% Here is the |\fnumprintc| marco defined.
+% It takes one not optional parameter.
+% The parameter must be the name of a counter.
+%    \begin{macrocode}
+\DeclareRobustCommand{\fnumprintc}[1]{%
+  \ifthenelse{\value{#1} < 13}{%
+    \ifthenelse{\value{#1} < 0}{%
+      \cntprint{#1}%
+    }{%
+      \numstring{#1}%
+    }%
+  }{%
+    \cntprint{#1}%
+  }%
+}
+\endinput
+%    \end{macrocode}
+% \end{macro}
+% \endinput
