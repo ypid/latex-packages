@@ -45,7 +45,7 @@ version 2005/12/01 or later.
   pdfkeywords={This document corresponds to \textsf{\jobname}~\fileversion, dated \filedate}
 }
 
-\DoNotIndex{\newcommand}
+\DoNotIndex{\NeedsTeXFormat, \ProvidesPackage}
 
 \EnableCrossrefs
 \CodelineIndex
@@ -76,7 +76,7 @@ then the word name will be used.
 In any other cases the number will be typesetted with the |numprint| package.
 This package uses the |zahl2string| package to convert a number in the word name in German.
 So the conversion of a number (0--12) to a english word number is also implemented
-by \PrintPackage{\jobname} (not yet).
+by \PrintPackage{\jobname} (not finish).
 
 
 \section{Usage}
@@ -144,6 +144,21 @@ or a marco that expands to a number. A \TeX{} counter can also used with this ma
 %    \begin{macrocode}
 \RequirePackage{xifthen}
 \RequirePackage{zahl2string,numprint}
+
+\renewcommand{\@numstring}[1]{%                                                   
+\ns@numstr{#1}{\ns@neunzehn}{zero}{}%                                           
+%% \ns@numstr{#1}\ns@neunzehns{zero}{}%                                            
+}
+\renewcommand{\ns@neunzehn}[1]{%
+\ifcase#1\@empty\or one\or two\or three\or four\or five\or six\or%
+seven\or eight\or nine\or ten\or eleven\or twelve\or thirteen\or%
+fourteen\or fifteen\or sixteen\or seventeen\or%
+eighteen\or nineteen\fi%
+}
+\renewcommand{\ns@neunzehns}[1]{%
+\ifcase#1\@empty\else\ns@neunzehn{#1}\fi%
+}
+
 %    \end{macrocode}
 % \subsection{Marco definition}
 % \begin{macro}{\fnumprint}
