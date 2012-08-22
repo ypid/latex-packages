@@ -18,30 +18,48 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{fnumprint}
-    [2012/08/19 v1.0 Printing fancy (German) numbers]
+    [2012/08/22 v1.0 Printing fancy numbers]
 \RequirePackage{xifthen}
 \RequirePackage{zahl2string,numprint}
-
-\renewcommand{\ns@neunzehn}[1]{%
-\ifcase#1\@empty\or one\or two\or three\or four\or five\or six\or%
-seven\or eight\or nine\or ten\or eleven\or twelve\or thirteen\or%
-fourteen\or fifteen\or sixteen\or seventeen\or%
-eighteen\or nineteen\fi%
+\newcounter{fnumprint@language}
+\setcounter{fnumprint@language}{0}
+\DeclareOption{german}{\setcounter{fnumprint@language}{1}}
+\DeclareOption{ngerman}{\setcounter{fnumprint@language}{1}}
+\DeclareOption{english}{\setcounter{fnumprint@language}{2}}
+\DeclareOption{USenglish}{\setcounter{fnumprint@language}{2}}
+\DeclareOption{american}{\setcounter{fnumprint@language}{2}}
+\DeclareOption{UKenglish}{\setcounter{fnumprint@language}{2}}
+\DeclareOption{british}{\setcounter{fnumprint@language}{2}}
+\DeclareOption{canadian}{\setcounter{fnumprint@language}{2}}
+\DeclareOption{australian}{\setcounter{fnumprint@language}{2}}
+\DeclareOption{newzealand}{\setcounter{fnumprint@language}{2}}
+\ProcessOptions\relax
+\ifthenelse{\value{fnumprint@language} = 0}{%
+  \PackageWarning{\@currname}{No supported language selected
+    \MessageBreak
+    This package supports only english and german
+    \MessageBreak
+    There will be no word names printed}%
+}{%
+  \newcommand{\ns@en@neunzehn}[1]{%
+    \ifcase#1 zero\or one\or two\or three\or four\or five\or six\or%
+    seven\or eight\or nine\or ten\or eleven\or twelve\or thirteen\or%
+    fourteen\or fifteen\or sixteen\or seventeen\or%
+    eighteen\or nineteen\fi%
+  }%
 }
-\renewcommand{\ns@neunzehns}[1]{%
-\ifcase#1\@empty\else\ns@neunzehn{#1}\fi%
-}
-\renewcommand{\@numstring}[1]{%
-\ns@numstr{#1}\ns@neunzehns{zero}{}%
-}
-\let\numstr\@numstring%
-
 \DeclareRobustCommand{\fnumprint}[1]{%
   \ifthenelse{#1 < 13}{%
     \ifthenelse{#1 < 0}{%
       \numprint{#1}%
     }{%
-      \numstr{#1}%
+      \ifthenelse{\value{fnumprint@language} = 1}{\numstr{#1}}{%
+        \ifthenelse{\value{fnumprint@language} = 2}{%
+          \ns@en@neunzehn{#1}%
+        }{%
+          \numprint{#1}%
+        }%
+      }%
     }%
   }{%
     \numprint{#1}%
@@ -52,7 +70,13 @@ eighteen\or nineteen\fi%
     \ifthenelse{\value{#1} < 0}{%
       \cntprint{#1}%
     }{%
-      \numstring{#1}%
+      \ifthenelse{\value{fnumprint@language} = 1}{\numstring{#1}}{%
+        \ifthenelse{\value{fnumprint@language} = 2}{%
+          \ns@en@neunzehn{\value{#1}}%
+        }{%
+          \cntprint{#1}%
+        }%
+      }%
     }%
   }{%
     \cntprint{#1}%
