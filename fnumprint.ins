@@ -1,0 +1,35 @@
+% \iffalse The license starting three lines down applies to this file
+\input docstrip.tex \declarepreamble\mypreamble
+
+Copyright (C) 2012 by Robin Schneider <ypid23@aol.de>
+
+This work may be distributed and/or modified under the
+conditions of the LaTeX Project Public License, either version 1.3
+of this license or (at your option) any later version.
+The latest version of this license is in
+  http://www.latex-project.org/lppl.txt
+and version 1.3 or later is part of all distributions of LaTeX
+version 2005/12/01 or later.
+
+\endpreamble
+
+\keepsilent
+\usedir{tex/latex/\jobname}
+\usepreamble\mypreamble
+\askforoverwritefalse
+\generate{\file{\jobname.sty}{\from{\jobname.dtx}{package}}}
+
+\Msg{***********************************************************}
+\Msg{*}
+\Msg{* To finish the installation you have to move the following}
+\Msg{* file into a directory searched by TeX:}
+\Msg{*}
+\Msg{* \space\space \jobname.sty}
+\Msg{*}
+\Msg{* To produce the documentation run the files}
+\Msg{* `\jobname.dtx' through LaTeX.}
+\Msg{*}
+\Msg{* Happy TeXing}
+\Msg{***********************************************************}
+
+\endbatchfile

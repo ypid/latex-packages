@@ -1,31 +1,33 @@
-% \iffalse The license starting four lines down applies to this file
-%<*batchfile>
-\begingroup\input docstrip.tex \declarepreamble\mypreamble
-
-Copyright (C) 2012 by Robin Schneider <ypid23@aol.de>
-
-This work may be distributed and/or modified under the
-conditions of the LaTeX Project Public License, either version 1.3
-of this license or (at your option) any later version.
-The latest version of this license is in
-  http://www.latex-project.org/lppl.txt
-and version 1.3 or later is part of all distributions of LaTeX
-version 2005/12/01 or later.
-
-\endpreamble
-
-\keepsilent
-\usedir{tex/latex/\jobname}
-\usepreamble\mypreamble
-\askforoverwritefalse
-\generate{\file{\jobname.sty}{\from{\jobname.dtx}{package}}}
-\endgroup
-
+% \iffalse meta-comment
+%
+% Copyright (C) 2012 by Robin Schneider <ypid23@aol.de>
+% 
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% \fi
+%
+% \iffalse
+%<*driver>
+\ProvidesFile{\jobname.dtx}
+%</driver>
+%<package>\NeedsTeXFormat{LaTeX2e}
+%<package>\ProvidesPackage{fnumprint}
+%<*package>
+    [2012/08/19 v1.0 Printing fancy (German) numbers]
+%</package>
+%
+%<*driver>
 \documentclass[english]{ltxdoc}
 \newcommand{\PackageURL}{https://github.com/ypid/latex-packages}
-\newcommand{\PrintPackage}[1]{\textsf{#1}}
 \newcommand{\PackageAuthor}{Robin Schneider}
 \newcommand{\PackageAuthorEmail}{ypid23@aol.de}
+\newcommand{\PrintPackage}[1]{\textsf{#1}}
 \typeout{}
 \typeout{* If the two package names look the same you can ignore this LaTeX Warning *}
 \usepackage{\jobname} %% ^^A This produces a warning even when there is no problem.
@@ -39,113 +41,114 @@ version 2005/12/01 or later.
 \GetFileInfo{\jobname.sty}
 \hypersetup{
   pdftitle={A manual for \jobname},
-  pdfauthor={\PackageAuthor <\PackageAuthorEmail>},
+  pdfauthor={\PackageAuthor{} <\PackageAuthorEmail>},
   pdfsubject={\fileinfo},
   baseurl={\PackageURL},
-  pdfkeywords={This document corresponds to \textsf{\jobname}~\fileversion, dated \filedate}
+  pdfkeywords={This document corresponds to \textsf{\jobname}~\fileversion,
+    dated \filedate}
 }
 
 \title{The \PrintPackage{\jobname} package\thanks{This document
 corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
-\author{\PackageAuthor\\\texttt{\href{mailto:\PackageAuthorEmail}{\PackageAuthorEmail}}}
+\author{\PackageAuthor \\
+  \texttt{\href{mailto:\PackageAuthorEmail}{\PackageAuthorEmail}}}
 
 \EnableCrossrefs
 \CodelineIndex
 \RecordChanges
-
 \begin{document}
-\maketitle
-
-\phantomsection
-\addcontentsline{toc}{section}{\abstractname}
-\begin{abstract}
-The \PrintPackage{\jobname} package provides a macros to decide to typeset a numbers either as
-number
-or as word name (only in German yet). \\
-Fork me on GitHub: \url{\PackageURL}
-\end{abstract}
-
-\tableofcontents
-
-\section{Introduction}
-The \PrintPackage{\jobname} package defineds two macros to decide to typeset a numbers either as
-number
-or as word name for the number. If the number is between zero and twelve (including zero and twelve)
-then the word name will be used.
-In any other cases the number will be typesetted with the |numprint| package.
-This package uses the |zahl2string| package to convert a number in the word name in German.
-So the conversion of a number (0--12) to a english word number is also implemented
-by \PrintPackage{\jobname} (not finish).
-
-
-\section{Usage}
-Just load the package placing
-\begin{quote}
-  |\usepackage{\jobname}|
-\end{quote}
-in the preamble of your \LaTeXe{} source file.
-
-\DescribeMacro{\fnumprintc}
-The macro |\fnumprintc| {\marg{\LaTeX{} counter name}} takes a name of a LaTeX counter as its only
-not optional parameter and typesets it.
-
-\DescribeMacro{\fnumprint}
-The macro |\fnumprint| {\marg{number}} is like the |\fnumprintc| marco but it takes a number
-or a marco that expands to a number. A \TeX{} counter can also used with this marco.
-
-\section{Examples}
-\begin{tabular}{ll}
-  \textbf{marco}          & \textbf{expanded marco} \\
-  |\fnumprint{-1}|        & \fnumprint{-1} \\
-  |\fnumprint{0}|         & \fnumprint{0} \\
-  |\fnumprint{10}|        & \fnumprint{10} \\
-  |\fnumprint{12}|        & \fnumprint{12} \\
-  |\fnumprint{13}|        & \fnumprint{13} \\
-  |\fnumprint{\the\year}| & \fnumprint{\the\year} \\
-  |\fnumprintc{page}| & \fnumprintc{page} \\
-\end{tabular}
-
-\StopEventually{
-        \typeout{**************************************************}
-        \typeout{*}
-        \typeout{* To finish the installation, you have to move the}
-        \typeout{* following file into a directory searched by TeX:}
-        \typeout{*}
-        \typeout{* \space\space \jobname.sty}
-        \typeout{*}
-        \typeout{* Documentation is in \jobname.\ifpdf pdf\else dvi\fi.}
-        \typeout{*}
-        \typeout{* Happy TeXing!}
-        \typeout{**************************************************}
-        \end{document}
-}
-\clearpage
-\DocInput{\jobname.dtx}
-\clearpage
-\phantomsection
-\addcontentsline{toc}{section}{Change History}
-\PrintChanges
-\PrintIndex
-\Finale
-%</batchfile>
+  \DocInput{\jobname.dtx}
+  \PrintChanges
+  \PrintIndex
+\end{document}
+%</driver>
 % \fi
 %
+% \CheckSum{0}
+%
+% \CharacterTable
+%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%   Digits        \0\1\2\3\4\5\6\7\8\9
+%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%   Dollar        \$     Percent       \%     Ampersand     \&
+%   Acute accent  \'     Left paren    \(     Right paren   \)
+%   Asterisk      \*     Plus          \+     Comma         \,
+%   Minus         \-     Point         \.     Solidus       \/
+%   Colon         \:     Semicolon     \;     Less than     \<
+%   Equals        \=     Greater than  \>     Question mark \?
+%   Commercial at \@     Left bracket  \[     Backslash     \\
+%   Right bracket \]     Circumflex    \^     Underscore    \_
+%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%   Right brace   \}     Tilde         \~}
+%
+%
+% \changes{v1.0}{2004/11/05}{Initial version}
+%
+% \DoNotIndex{\RequirePackage}
+% \DoNotIndex{\DeclareRobustCommand, \newcommand, \renewcommand, \newenvironment}
+% \DoNotIndex{\if, \else, \fi, \ifcase, \or, \ifthenelse, \value}
+% \DoNotIndex{\endinput}
+%
+% \maketitle
+%
+% \phantomsection
+% \addcontentsline{toc}{section}{\abstractname}
+% \begin{abstract}
+% The \PrintPackage{fnumprint} package provides a macros to decide to typeset a
+% numbers either as number or as word name (only in German yet). \\
+% Fork me on GitHub: \url{\PackageURL} \end{abstract}
+% 
+% \tableofcontents
+% 
+% \section{Introduction}
+% The \PrintPackage{\jobname} package defineds two macros to decide to typeset a numbers either as
+% number
+% or as word name for the number. If the number is between zero and twelve (including zero and twelve)
+% then the word name will be used.
+% In any other cases the number will be typesetted with the |numprint| package.
+% This package uses the |zahl2string| package to convert a number in the word name in German.
+% So the conversion of a number (0--12) to a english word number is also implemented
+% by \PrintPackage{\jobname} (not finish).
+% 
+% 
+% \section{Usage}
+% Just load the package placing
+% \begin{quote}
+%   |\usepackage{\jobname}|
+% \end{quote}
+% in the preamble of your \LaTeXe{} source file.
+% 
+% \DescribeMacro{\fnumprintc}
+% The macro |\fnumprintc| {\marg{\LaTeX{} counter name}} takes a name of a LaTeX counter as its only
+% not optional parameter and typesets it.
+% 
+% \DescribeMacro{\fnumprint}
+% The macro |\fnumprint| {\marg{number}} is like the |\fnumprintc| marco but it takes a number
+% or a marco that expands to a number. A \TeX{} counter can also used with this marco.
+% 
+% \section{Examples}
+% \begin{tabular}{ll}
+%   \textbf{marco}          & \textbf{expanded marco} \\
+%   |\fnumprint{-1}|        & \fnumprint{-1} \\
+%   |\fnumprint{0}|         & \fnumprint{0} \\
+%   |\fnumprint{10}|        & \fnumprint{10} \\
+%   |\fnumprint{12}|        & \fnumprint{12} \\
+%   |\fnumprint{13}|        & \fnumprint{13} \\
+%   |\fnumprint{\the\year}| & \fnumprint{\the\year} \\
+%   |\fnumprintc{page}| & \fnumprintc{page} \\
+% \end{tabular}
+%
+% \StopEventually{}
+%
 % \section{Implementation}
-% \subsection{The Usual}
-% First the usual things.
-%    \begin{macrocode}
-\NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{fnumprint}[2012/08/19 v1.0 Printing fancy (German) numbers]
-%    \end{macrocode}
+%
 % The following definitions are based on these packages
 %    \begin{macrocode}
 \RequirePackage{xifthen}
 \RequirePackage{zahl2string,numprint}
 
-\renewcommand{\@numstring}[1]{%                                                   
-\ns@numstr{#1}{\ns@neunzehn}{zero}{}%                                           
-%% \ns@numstr{#1}\ns@neunzehns{zero}{}%                                            
-}
+
 \renewcommand{\ns@neunzehn}[1]{%
 \ifcase#1\@empty\or one\or two\or three\or four\or five\or six\or%
 seven\or eight\or nine\or ten\or eleven\or twelve\or thirteen\or%
@@ -155,6 +158,10 @@ eighteen\or nineteen\fi%
 \renewcommand{\ns@neunzehns}[1]{%
 \ifcase#1\@empty\else\ns@neunzehn{#1}\fi%
 }
+\renewcommand{\@numstring}[1]{%
+\ns@numstr{#1}\ns@neunzehns{zero}{}%
+}
+\let\numstr\@numstring%
 
 %    \end{macrocode}
 % \subsection{Marco definition}
@@ -196,3 +203,4 @@ eighteen\or nineteen\fi%
 %    \end{macrocode}
 % \end{macro}
 % \endinput
+

@@ -17,14 +17,11 @@
 %% version 2005/12/01 or later.
 %% 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{fnumprint}[2012/08/19 v1.0 Printing fancy (German) numbers]
+\ProvidesPackage{fnumprint}
+    [2012/08/19 v1.0 Printing fancy (German) numbers]
 \RequirePackage{xifthen}
 \RequirePackage{zahl2string,numprint}
 
-\renewcommand{\@numstring}[1]{%
-\ns@numstr{#1}{\ns@neunzehn}{zero}{}%
-%% \ns@numstr{#1}\ns@neunzehns{zero}{}%
-}
 \renewcommand{\ns@neunzehn}[1]{%
 \ifcase#1\@empty\or one\or two\or three\or four\or five\or six\or%
 seven\or eight\or nine\or ten\or eleven\or twelve\or thirteen\or%
@@ -34,6 +31,10 @@ eighteen\or nineteen\fi%
 \renewcommand{\ns@neunzehns}[1]{%
 \ifcase#1\@empty\else\ns@neunzehn{#1}\fi%
 }
+\renewcommand{\@numstring}[1]{%
+\ns@numstr{#1}\ns@neunzehns{zero}{}%
+}
+\let\numstr\@numstring%
 
 \DeclareRobustCommand{\fnumprint}[1]{%
   \ifthenelse{#1 < 13}{%
