@@ -34,7 +34,7 @@ version 2005/12/01 or later.
   babel,
   xcolor,
   url,
-  hyperref
+  hypdoc,
 }
 \GetFileInfo{\jobname.sty}
 \hypersetup{
@@ -45,14 +45,13 @@ version 2005/12/01 or later.
   pdfkeywords={This document corresponds to \textsf{\jobname}~\fileversion, dated \filedate}
 }
 
-\DoNotIndex{\NeedsTeXFormat, \ProvidesPackage}
+\title{The \PrintPackage{\jobname} package\thanks{This document
+corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
+\author{\PackageAuthor\\\texttt{\href{mailto:\PackageAuthorEmail}{\PackageAuthorEmail}}}
 
 \EnableCrossrefs
 \CodelineIndex
 \RecordChanges
-\title{The \PrintPackage{\jobname} package\thanks{This document
-corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
-\author{\PackageAuthor\\\texttt{\href{mailto:\PackageAuthorEmail}{\PackageAuthorEmail}}}
 
 \begin{document}
 \maketitle
@@ -126,8 +125,6 @@ or a marco that expands to a number. A \TeX{} counter can also used with this ma
 \phantomsection
 \addcontentsline{toc}{section}{Change History}
 \PrintChanges
-\phantomsection
-\addcontentsline{toc}{section}{Index}
 \PrintIndex
 \Finale
 %</batchfile>
