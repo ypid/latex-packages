@@ -1,4 +1,5 @@
 # My LaTeX packages
 
-* fnumprint: Provides macros to decide to typeset a numbers either as number or
-  as word name
+* ./make [jobname] for example ./make fnumprint
+
+* fnumprint: Can decide to typeset a number either as number or as word name
