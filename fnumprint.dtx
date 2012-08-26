@@ -10,12 +10,18 @@
 % and version 1.3 or later is part of all distributions of LaTeX
 % version 2005/12/01 or later.
 %
+% The Current Maintainer of this work is Robin Schneider.
+%
+% This work consists of the files fnumprint.dtx and fnumprint.ins
+% and the derived filebase fnumprint.sty.
+%
 % \fi
 %
 % \iffalse
 %<*driver>
 \ProvidesFile{\jobname.dtx}
 %</driver>
+%<package>%% See file 'fnumprint.dtx' for copyright and licence.
 %<package>\NeedsTeXFormat{LaTeX2e}[1998/12/01]
 %<package>\ProvidesPackage{fnumprint}
 %<*package>
@@ -39,7 +45,7 @@ LaTeX Warning *}
   url,
   hypdoc,
 }
-\GetFileInfo{\jobname.sty}
+\GetFileInfo{\jobname.dtx}
 \hypersetup{
   pdftitle={A manual for \jobname},
   pdfauthor={\PackageAuthor{} <\PackageAuthorEmail>},
@@ -68,7 +74,7 @@ corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
 %</driver>
 % \fi
 %
-% \CheckSum{0}
+% \CheckSum{88}
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -159,6 +165,9 @@ corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
 % \StopEventually{}
 %
 % \section{Implementation}
+% \iffalse
+%<*package>
+% \fi
 % This package depends on these packages.
 %    \begin{macrocode}
 \RequirePackage{xifthen}
@@ -252,4 +261,10 @@ corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
 \endinput
 %    \end{macrocode}
 % \end{macro}
-% \endinput
+%
+% \iffalse
+%</package>
+% \fi
+%
+% \Finale
+\endinput
