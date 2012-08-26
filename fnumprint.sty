@@ -18,7 +18,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1998/12/01]
 \ProvidesPackage{fnumprint}
-    [2012/08/23 v1.0a Printing fancy numbers]
+    [2012/08/26 v1.0b Printing fancy numbers]
 \RequirePackage{xifthen}
 \RequirePackage{numprint}
 \newcounter{fnumprint@language}
@@ -42,12 +42,14 @@
     There will be no word names printed}
 }{
   \ifthenelse{\value{fnumprint@language} = 1}{\RequirePackage{zahl2string}}{}
-  \newcommand{\ns@en@neunzehn}[1]{%
-    \ifcase#1 zero\or one\or two\or three\or four\or five\or six\or%
-    seven\or eight\or nine\or ten\or eleven\or twelve\or thirteen\or%
-    fourteen\or fifteen\or sixteen\or seventeen\or%
-    eighteen\or nineteen\fi%
-  }
+  \ifthenelse{\value{fnumprint@language} = 2}{
+    \newcommand{\ns@en@neunzehn}[1]{%
+      \ifcase#1 zero\or one\or two\or three\or four\or five\or six\or%
+      seven\or eight\or nine\or ten\or eleven\or twelve\or thirteen\or%
+      fourteen\or fifteen\or sixteen\or seventeen\or%
+      eighteen\or nineteen\fi%
+    }
+  }{}
 }
 \DeclareRobustCommand{\fnumprint}[1]{%
   \ifthenelse{-1 < #1 \AND #1 < 13}{%

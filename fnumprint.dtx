@@ -19,7 +19,7 @@
 %<package>\NeedsTeXFormat{LaTeX2e}[1998/12/01]
 %<package>\ProvidesPackage{fnumprint}
 %<*package>
-    [2012/08/23 v1.0a Printing fancy numbers]
+    [2012/08/26 v1.0b Printing fancy numbers]
 %</package>
 %
 %<*driver>
@@ -28,9 +28,10 @@
 \newcommand{\PackageAuthor}{Robin Schneider}
 \newcommand{\PackageAuthorEmail}{ypid23@aol.de}
 \newcommand{\PrintPackage}[1]{\textsf{#1}}
-\typeout{}
-\typeout{* If the two package names look the same you can ignore this LaTeX Warning *}
-\usepackage{\jobname} %% ^^A This produces a warning even when there is no problem.
+\typeout{}\typeout{* If the two package names look the same you can ignore this
+LaTeX Warning *}
+\usepackage{\jobname}
+%% ^^A This produces a warning even when there is no problem.
 %% ^^A I think there is an error in the comparison (expand \jobname ...)
 \usepackage{
   babel,
@@ -51,7 +52,10 @@
 \title{The \PrintPackage{\jobname} package\thanks{This document
 corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
 \author{\PackageAuthor \\
-  \texttt{\href{mailto:\PackageAuthorEmail?subject=LaTeX package \jobname}{\PackageAuthorEmail}}}
+  \texttt{\href{mailto:\PackageAuthorEmail?subject=LaTeX package \jobname}%
+    {\PackageAuthorEmail}%
+  }%
+}
 
 \EnableCrossrefs
 \CodelineIndex
@@ -81,8 +85,10 @@ corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
 %   Grave accent  \`     Left brace    \{     Vertical bar  \|
 %   Right brace   \}     Tilde         \~}
 %
+% \changes{v1.0b}{2012/08/26}{Optimized}
 % \changes{v1.0a}{2012/08/23}{Optimized}
-% \changes{v1.0}{2012/08/22}{Wrote this documentation and the \LaTeX{}-package and added support for English}
+% \changes{v1.0}{2012/08/22}{Wrote this documentation and the \LaTeX{}-package
+% and added support for English}
 % \changes{v0.1}{2011/06/12}{Initial version} %% ^^A date guessed
 %
 % \DoNotIndex{\RequirePackage, \DeclareOption, \ProcessOptions}
@@ -111,8 +117,8 @@ corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
 % word name will be used. This package uses the |zahl2string| package to
 % convert a number in the word name in German. The conversion of a number
 % (0--12) to the English word name is implemented by this package. If the
-% number is outside of the range then it will be typesetted with the
-% |numprint| package.
+% number is outside of the range then it will be typesetted with the |numprint|
+% package.
 % 
 % \section{Usage}
 % Just load the package placing
@@ -128,12 +134,13 @@ corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
 % \end{quote}
 % 
 % \DescribeMacro{\fnumprintc}
-% The macro |\fnumprintc| {\marg{\LaTeX{} counter name}} takes a name of a LaTeX counter as its only
-% not optional parameter and typesets it.
+% The macro |\fnumprintc| {\marg{\LaTeX{} counter name}} takes a name of a
+% LaTeX counter as its only not optional parameter and typesets it's value.
 % 
 % \DescribeMacro{\fnumprint}
-% The macro |\fnumprint| {\marg{number}} is like the |\fnumprintc| macro but it takes a number
-% or a macro that expands to a number. A \TeX{} counter can also used with this macro.
+% The macro |\fnumprint| {\marg{number}} is like the |\fnumprintc| macro but it
+% takes a number or a macro that expands to a number. A \TeX{} counter can also
+% be used with this macro.
 % 
 % \section{Examples}
 % \begin{tabular}{ll}
@@ -199,14 +206,16 @@ corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
 % \subsection{Macro definition}
 % \begin{macro}{\ns@en@neunzehn}
 % This internal marco expands to the English word name for a number.
-% It only goes from 0 to 19.
+% It only goes from 0 to 19. It will only be defined if it is necessary.
 %    \begin{macrocode}
-  \newcommand{\ns@en@neunzehn}[1]{%
-    \ifcase#1 zero\or one\or two\or three\or four\or five\or six\or%
-    seven\or eight\or nine\or ten\or eleven\or twelve\or thirteen\or%
-    fourteen\or fifteen\or sixteen\or seventeen\or%
-    eighteen\or nineteen\fi%
-  }
+  \ifthenelse{\value{fnumprint@language} = 2}{
+    \newcommand{\ns@en@neunzehn}[1]{%
+      \ifcase#1 zero\or one\or two\or three\or four\or five\or six\or%
+      seven\or eight\or nine\or ten\or eleven\or twelve\or thirteen\or%
+      fourteen\or fifteen\or sixteen\or seventeen\or%
+      eighteen\or nineteen\fi%
+    }
+  }{}
 }
 %    \end{macrocode}
 % \end{macro}
