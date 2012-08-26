@@ -1,0 +1,65 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{calcage}
+          [2012/02/19 v0.7 calcage by Robin Schneider]
+
+\RequirePackage{datenumber}
+\RequirePackage{zahl2string,numprint}
+\RequirePackage{fp}
+\RequirePackage{xkeyval}
+\RequirePackage{xifthen}
+%% You also need the command \fancynumprintstr{}
+
+%BUGS
+% don't use comma-precision=1,number2string=true
+% set number2string=false if comma-precision >= 1
+% set print-year-suffix=true if comma-precision >= 1
+
+\newboolean{calcage@numbertostring}
+\newcommand{\CalcAgePrintnumbertostring}[1]{\fancynumprintstr{#1}}
+% \define@boolkey{Fbox}{frame}[true]{} %% Hat nicht funktioniert
+\define@choicekey{CalcAgeOutput}{print-year-suffix}[\val\al]{true,false}{%
+\ifcase\al\relax%
+	\def\CalcAgePrintYearSuffix{n}%
+\or%
+	\def\CalcAgePrintYearSuffix{}%
+\fi}
+\define@choicekey{CalcAgeOutput}{number2string}[\val\al]{true,false}{%
+\ifcase\al\relax%
+	\renewcommand{\CalcAgePrintnumbertostring}[1]{\fancynumprintstr{##1}}%
+	\setboolean{calcage@numbertostring}{true}%
+\or%
+	\renewcommand{\CalcAgePrintnumbertostring}[1]{\numprint{##1}}%
+	\setboolean{calcage@numbertostring}{false}%
+\fi}
+\define@choicekey{CalcAgeOutput}{print-year}[\val\al]{true,false}{%
+\ifcase\al\relax%
+	\def\CalcAgePrintYear{\ifthenelse{\boolean{calcage@numbertostring}}{ }{~}%
+		\ifthenelse{\equal{\myage}{1}}{Jahr}{Jahre\CalcAgePrintYearSuffix}}%
+\or%
+	\def\CalcAgePrintYear{}%
+\fi}
+\define@key{CalcAgeOutput}{comma-precision}{%
+%\ifthenelse{\equal{0}{#1}}{
+%}{\nprounddigits{#1}}
+\ifthenelse{\boolean{calcage@numbertostring}}{\PackageWarning{calcage}%
+	{if you set comma-precision you have to turn number2string off}}{%
+\FPtrunc\myage{\myage}{#1}}%
+}
+\presetkeys{CalcAgeOutput}{comma-precision=0, print-year=true, print-year-suffix=false,
+	number2string=true}{}
+
+%% \CalcAge[comma-precision=2]{2000}{08}{08}
+\newcommand{\CalcAge}[4][]{%
+	\daydiffCValuetodayU{#2}{#3}{#4}%
+	\addtocounter{datetwo}{1}%
+	%% Sorgt dafür das am Geburtstag das Alter um eins erhöht wird
+	%% und nicht erst einen Tag danach
+	\FPdiv\myage{\thedatetwo}{365.2425}%
+	\setkeys{CalcAgeOutput}{#1}%
+	\CalcAgePrintnumbertostring{\myage}\CalcAgePrintYear\xspace
+%	\npnoround
+}
+%% \nprounddigits{#1} kann auch zum Runden verwendet werden ...
+%% sorgt aber dafür das 18,9999 zu 19 aufgerundet wird.
+
+\endinput
