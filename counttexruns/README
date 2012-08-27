@@ -12,10 +12,9 @@ version 2005/12/01 or later.
 
 Code repository: https://github.com/ypid/latex-packages/counttexruns
 
-The counttexruns package counts how often a LaTeX document is
-compiled.
+The counttexruns package counts how often a LaTeX document is compiled.
 
-From a statistical perspective you maybe want to know how often you compiled
-a document. This is exactly the task I wrote this package for. For a few
-years I used a bash script and -shell-escape but now I decided to write this
+From a statistical perspective you maybe want to know how often you compiled a
+document. This is exactly the task I wrote this package for. For a few years I
+used a bash script and -shell-escape to do this but I decided to write this
 small package to do the trick a little nicer.

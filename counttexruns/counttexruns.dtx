@@ -32,7 +32,7 @@
 %
 %<*driver>
 \documentclass[english]{ltxdoc}
-\newcommand{\PackageURL}{https://github.com/ypid/latex-packages/counttexruns}
+\newcommand{\PackageURL}{https://github.com/ypid/latex-packages/tree/master/counttexruns}
 \newcommand{\PackageAuthor}{Robin Schneider}
 \newcommand{\PackageAuthorEmail}{ypid23@aol.de}
 \newcommand{\PrintPackage}[1]{\textsf{#1}}
@@ -100,6 +100,7 @@ corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
 %
 % \DoNotIndex{\RequirePackage, \DeclareOption, \ProcessOptions}
 % \DoNotIndex{\PackageWarning, \MessageBreak}
+% \DoNotIndex{\DeclareStringOption, \ProcessLocalKeyvalOptions}
 % \DoNotIndex{\DeclareRobustCommand, \newcommand, \renewcommand}
 % \DoNotIndex{\newenvironment}
 % \DoNotIndex{\if, \else, \fi, \ifcase, \or, \ifthenelse, \AND, \value, \relax}
@@ -122,8 +123,8 @@ corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
 % \section{Introduction}
 % From a statistical perspective you maybe want to know how often you compiled
 % a document. This is exactly the task I wrote this package for. For a few
-% years I used a bash script and -shell-escape but now I decided to write this
-% small package to do the trick a little nicer.
+% years I used a bash script and -shell-escape to do this but I decided to
+% write this small package to do the trick a little nicer.
 %
 % \section{Usage}
 % Just load the package placing
@@ -141,14 +142,15 @@ corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
 %
 % \DescribeMacro{\thecounttexruns}
 % To print the count you can use the macro |\thecounttexruns|. You can also use
-% and even change the \LaTeX{} counter \jobname. This will not disturb
+% and even change the \LaTeX{} counter \enquote{\jobname}. This will not disturb
 % \PrintPackage{\jobname}.
 %
 % By the way this documentation was \thecounttexruns{}
-% time\ifthenelse{\equal{\value{counttexruns}}{1}}{}{s} compiled.
+% time\ifthenelse{\equal{\value{counttexruns}}{1}}{}{s} compiled during
+% development.
 %
 % You can use the package \PrintPackage{ifthen} for checking if a counter is
-% one like this: |time\ifthenelse{\equal{\value{counttexruns}}{1}}{}{s}|
+% one: \\ |time\ifthenelse{\equal{\value{counttexruns}}{1}}{}{s}|
 %
 %
 % \StopEventually{}
