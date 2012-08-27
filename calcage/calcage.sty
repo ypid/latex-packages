@@ -3,19 +3,20 @@
           [2012/02/19 v0.7 calcage by Robin Schneider]
 
 \RequirePackage{datenumber}
-\RequirePackage{zahl2string,numprint}
+\RequirePackage{fnumprint}
 \RequirePackage{fp}
 \RequirePackage{xkeyval}
 \RequirePackage{xifthen}
-%% You also need the command \fancynumprintstr{}
 
 %BUGS
 % don't use comma-precision=1,number2string=true
 % set number2string=false if comma-precision >= 1
 % set print-year-suffix=true if comma-precision >= 1
 
+\newcounter{dateone}\newcounter{datetwo}
+
 \newboolean{calcage@numbertostring}
-\newcommand{\CalcAgePrintnumbertostring}[1]{\fancynumprintstr{#1}}
+\newcommand{\CalcAgePrintnumbertostring}[1]{\fnumprint{#1}}
 % \define@boolkey{Fbox}{frame}[true]{} %% Hat nicht funktioniert
 \define@choicekey{CalcAgeOutput}{print-year-suffix}[\val\al]{true,false}{%
 \ifcase\al\relax%
@@ -25,7 +26,7 @@
 \fi}
 \define@choicekey{CalcAgeOutput}{number2string}[\val\al]{true,false}{%
 \ifcase\al\relax%
-	\renewcommand{\CalcAgePrintnumbertostring}[1]{\fancynumprintstr{##1}}%
+	\renewcommand{\CalcAgePrintnumbertostring}[1]{\fnumprint{##1}}%
 	\setboolean{calcage@numbertostring}{true}%
 \or%
 	\renewcommand{\CalcAgePrintnumbertostring}[1]{\numprint{##1}}%
@@ -50,7 +51,8 @@
 
 %% \CalcAge[comma-precision=2]{2000}{08}{08}
 \newcommand{\CalcAge}[4][]{%
-	\daydiffCValuetodayU{#2}{#3}{#4}%
+	\setmydatenumber{dateone}{\the\year}{\the\month}{\the\day}\setmydatenumber{datetwo}{#2}{#3}{#4}%
+	\addtocounter{datetwo}{-\value{dateone}}
 	\addtocounter{datetwo}{1}%
 	%% Sorgt dafür das am Geburtstag das Alter um eins erhöht wird
 	%% und nicht erst einen Tag danach

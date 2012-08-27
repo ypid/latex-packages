@@ -1,0 +1,210 @@
+% \iffalse meta-comment
+%
+% Copyright (C) 2012 by Robin Schneider <ypid23@aol.de>
+% 
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status `maintained'.
+%
+% The Current Maintainer of this work is Robin Schneider.
+%
+% This work consists of the files counttexruns.dtx and counttexruns.ins
+% and the derived filebase counttexruns.sty.
+%
+% \fi
+%
+% \iffalse
+%<*driver>
+\ProvidesFile{\jobname.dtx}
+%</driver>
+%<package>%% See file 'counttexruns.dtx' for copyright and licence.
+%<package>\NeedsTeXFormat{LaTeX2e}[1998/12/01]
+%<package>\ProvidesPackage{counttexruns}
+%<*package>
+    [2012/08/27 v1.00 Counts the TeX runs]
+%</package>
+%
+%<*driver>
+\documentclass[english]{ltxdoc}
+\newcommand{\PackageURL}{https://github.com/ypid/latex-packages/counttexruns}
+\newcommand{\PackageAuthor}{Robin Schneider}
+\newcommand{\PackageAuthorEmail}{ypid23@aol.de}
+\newcommand{\PrintPackage}[1]{\textsf{#1}}
+\typeout{}\typeout{* If the two package names look the same you can ignore this
+LaTeX Warning *}
+\usepackage{\jobname}
+%% ^^A This produces a warning even when there is no problem.
+%% ^^A I think there is an error in the comparison (expand \jobname ...)
+\usepackage{
+  babel,
+  csquotes,
+  xcolor,
+  url,
+  hypdoc,
+  ifthen,
+}
+\GetFileInfo{\jobname.dtx}
+\hypersetup{
+  pdftitle={A manual for \jobname},
+  pdfauthor={\PackageAuthor{} <\PackageAuthorEmail>},
+  pdfsubject={\fileinfo},
+  baseurl={\PackageURL},
+  pdfkeywords={This document corresponds to \textsf{\jobname}~\fileversion,
+    dated \filedate}
+}
+
+\title{The \PrintPackage{\jobname} package\thanks{This document
+corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
+\author{\PackageAuthor \\
+  \texttt{\href{mailto:\PackageAuthorEmail?subject=LaTeX package \jobname}%
+    {\PackageAuthorEmail}%
+  }%
+}
+
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+\begin{document}
+  \DocInput{\jobname.dtx}
+  \PrintChanges
+  \PrintIndex
+\end{document}
+%</driver>
+% \fi
+%
+% \CheckSum{53}
+%
+% \CharacterTable
+%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%   Digits        \0\1\2\3\4\5\6\7\8\9
+%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%   Dollar        \$     Percent       \%     Ampersand     \&
+%   Acute accent  \'     Left paren    \(     Right paren   \)
+%   Asterisk      \*     Plus          \+     Comma         \,
+%   Minus         \-     Point         \.     Solidus       \/
+%   Colon         \:     Semicolon     \;     Less than     \<
+%   Equals        \=     Greater than  \>     Question mark \?
+%   Commercial at \@     Left bracket  \[     Backslash     \\
+%   Right bracket \]     Circumflex    \^     Underscore    \_
+%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%   Right brace   \}     Tilde         \~}
+%
+% \changes{1.00}{2012/08/27}{Initial version}
+%
+% \DoNotIndex{\RequirePackage, \DeclareOption, \ProcessOptions}
+% \DoNotIndex{\PackageWarning, \MessageBreak}
+% \DoNotIndex{\DeclareRobustCommand, \newcommand, \renewcommand}
+% \DoNotIndex{\newenvironment}
+% \DoNotIndex{\if, \else, \fi, \ifcase, \or, \ifthenelse, \AND, \value, \relax}
+% \DoNotIndex{\%, \IfFileExists, \immediate, \arabic, \@counttexrunsfile}
+%% ^^A \% is ignored ... 
+% \DoNotIndex{\@currname, \newcounter, \setcounter}
+% \DoNotIndex{\endinput}
+%
+% \maketitle
+%
+% \phantomsection
+% \addcontentsline{toc}{section}{\abstractname}
+% \begin{abstract}
+% The \PrintPackage{\jobname} package counts how often a \LaTeX{} document is
+% compiled.\\
+% Fork me on GitHub: \url{\PackageURL} \end{abstract}
+% 
+% \tableofcontents
+% 
+% \section{Introduction}
+% From a statistical perspective you maybe want to know how often you compiled
+% a document. This is exactly the task I wrote this package for. For a few
+% years I used a bash script and -shell-escape but now I decided to write this
+% small package to do the trick a little nicer.
+%
+% \section{Usage}
+% Just load the package placing
+% \begin{quote}
+%   |\usepackage{counttexruns}|
+% \end{quote}
+% in the preamble of your \LaTeXe{} source file.
+%
+% The counter will be stored in a file with the same prefix as your document
+% (|\jobname|) but with the file extension \enquote{.ctr}. You can change the
+% default extension by setting it as package option like this:
+% \begin{quote}
+%   |\usepackage[extension=ctr]{counttexruns}|
+% \end{quote}
+%
+% \DescribeMacro{\thecounttexruns}
+% To print the count you can use the macro |\thecounttexruns|. You can also use
+% and even change the \LaTeX{} counter \jobname. This will not disturb
+% \PrintPackage{\jobname}.
+%
+% By the way this documentation was \thecounttexruns{}
+% time\ifthenelse{\equal{\value{counttexruns}}{1}}{}{s} compiled.
+%
+% You can use the package \PrintPackage{ifthen} for checking if a counter is
+% one like this: |time\ifthenelse{\equal{\value{counttexruns}}{1}}{}{s}|
+%
+%
+% \StopEventually{}
+%
+% \section{Implementation}
+% \iffalse
+%<*package>
+% \fi
+% \begin{macro}{\thecounttexruns}
+% First a new counter and file handle is declared.
+% The |\newcounter| will also declare the macro |\thecounttexruns|.
+%    \begin{macrocode}
+\newcounter{counttexruns}
+\newwrite\@counttexrunsfile
+%    \end{macrocode}
+% Then the package options are processed.
+%    \begin{macrocode}
+\RequirePackage{kvoptions}
+\DeclareStringOption[ctr]{extension}
+\ProcessLocalKeyvalOptions*
+%    \end{macrocode}
+% \end{macro}
+% Here it is checked if the file already exists and if that is the case the
+% number of compile events will be stored in the \LaTeX{} counter
+% \enquote{\jobname}.
+%    \begin{macrocode}
+\IfFileExists{\jobname.\counttexruns@extension}{
+\immediate\openin\@counttexrunsfile=\jobname.\counttexruns@extension
+\immediate\read\@counttexrunsfile to \counttexruns
+\immediate\read\@counttexrunsfile to \counttexruns
+\immediate\closeout\@counttexrunsfile
+\setcounter{counttexruns}{\counttexruns}
+}{} %% \value{counttexruns} is still zero
+%    \end{macrocode}
+% Here the counter \jobname is increment by one.
+%    \begin{macrocode}
+\stepcounter{counttexruns}
+%    \end{macrocode}
+% At this point the new count is written back to the file.
+%    \begin{macrocode}
+\immediate\openout\@counttexrunsfile=\jobname.\counttexruns@extension
+\catcode`\%=11\relax
+\immediate\write\@counttexrunsfile{%% This file
+  '\jobname.\counttexruns@extension' was generated by the package counttexruns}
+\catcode`\%=14\relax
+\immediate\write\@counttexrunsfile{\arabic{counttexruns}}
+\immediate\closeout\@counttexrunsfile
+%    \end{macrocode}
+% Well, thats is~\dots
+%    \begin{macrocode}
+\endinput
+%    \end{macrocode}
+%
+% \iffalse
+%</package>
+% \fi
+%
+% \Finale
+\endinput
