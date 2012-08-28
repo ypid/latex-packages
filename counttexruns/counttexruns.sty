@@ -14,7 +14,7 @@
 \immediate\read\@counttexrunsfile to \counttexruns
 \immediate\closeout\@counttexrunsfile
 \setcounter{counttexruns}{\counttexruns}
-}{} %% \value{counttexruns} is still zero
+}{}
 \stepcounter{counttexruns}
 \immediate\openout\@counttexrunsfile=\jobname.\counttexruns@extension
 \catcode`\%=11\relax

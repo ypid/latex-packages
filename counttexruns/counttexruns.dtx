@@ -78,7 +78,7 @@ corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
 %</driver>
 % \fi
 %
-% \CheckSum{53}
+% \CheckSum{52}
 %
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -102,7 +102,7 @@ corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
 % \DoNotIndex{\PackageWarning, \MessageBreak}
 % \DoNotIndex{\DeclareStringOption, \ProcessLocalKeyvalOptions}
 % \DoNotIndex{\DeclareRobustCommand, \newcommand, \renewcommand}
-% \DoNotIndex{\newenvironment}
+% \DoNotIndex{\newenvironment, \jobname}
 % \DoNotIndex{\if, \else, \fi, \ifcase, \or, \ifthenelse, \AND, \value, \relax}
 % \DoNotIndex{\%, \IfFileExists, \immediate, \arabic, \@counttexrunsfile}
 %% ^^A \% is ignored ... 
@@ -183,9 +183,9 @@ corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
 \immediate\read\@counttexrunsfile to \counttexruns
 \immediate\closeout\@counttexrunsfile
 \setcounter{counttexruns}{\counttexruns}
-}{} %% \value{counttexruns} is still zero
+}{}
 %    \end{macrocode}
-% Here the counter \jobname is increment by one.
+% Here the counter \enquote{\jobname} is increment by one.
 %    \begin{macrocode}
 \stepcounter{counttexruns}
 %    \end{macrocode}
