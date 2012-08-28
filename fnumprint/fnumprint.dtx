@@ -252,7 +252,7 @@ corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
 \DeclareRobustCommand{\fnumprint}[2][]{%
   \ifthenelse{-1 < #2 \AND #2 < 13}{%
     \ifthenelse{\value{fnumprint@language} = 1}{%
-      \ifthenelse{\equal{#1}{ein}}{\ns@neunzehn{#2}}{\numstr{#2}}%
+      \ifthenelse{\equal{#1}{ein} \AND #2 = 1}{ein}{\numstr{#2}}%
     }{%
       \ifthenelse{\value{fnumprint@language} = 2}{%
         \ns@en@neunzehn{#2}%
@@ -272,7 +272,7 @@ corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
 \DeclareRobustCommand{\fnumprintc}[2][]{%
   \ifthenelse{-1 < \value{#2} \AND \value{#2} < 13}{%
     \ifthenelse{\value{fnumprint@language} = 1}{%
-    \ifthenelse{\equal{#1}{ein}}{\ns@neunzehn{\value{#2}}}{\numstring{#2}}}{%
+    \ifthenelse{\equal{#1}{ein} \AND \value{#2} = 1}{ein}{\numstring{#2}}}{%
       \ifthenelse{\value{fnumprint@language} = 2}{%
         \ns@en@neunzehn{\value{#2}}%
       }{\cntprint{#2}}%

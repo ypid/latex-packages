@@ -1,0 +1,26 @@
+%% <Hallo_Welt.tex> Vorlageversion 1.0.1 <Robin Schneider>
+%%% Präambel
+%\RequirePackage{snapshot}		%% \jobname.dep
+%\listfiles	%% listfiles in die Logdatei
+\documentclass[12pt,a4paper,ngerman]{scrartcl}
+
+\usepackage[utf8]{inputenc}	%% Schriftkodierung
+\usepackage[T1]{fontenc}
+\usepackage{babel} 		%% Sprachunterstützung
+\usepackage{fnumprint}
+\usepackage{pgffor}
+
+%%% Dokumentkörper
+\begin{document}
+\jobname
+
+\newcounter{test}
+ \foreach \x in {-1, 0, ..., 21}{
+ \setcounter{test}{\x}
+ \x --\fnumprint[ein]{\x}--\fnumprintc[ein]{test}--
+ 
+ 
+ 
+ }
+
+\end{document}
