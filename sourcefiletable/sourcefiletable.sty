@@ -1,0 +1,47 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{sourcefiletable}
+	[2012/08/24 v1.01 sourcefiletable packages by Robin Schneider]
+
+\RequirePackage[datecolor=black,separator=,align=right,notime=true]{getfiledateRS}
+\RequirePackage{
+  attachfile,
+  longtable,
+}
+
+
+%% \url{http://en.wikipedia.org/wiki/Portable_Document_Format#File_attachments}
+%% pdftk Dokument.pdf unpack_files output
+\newenvironment{sourcefiletable}[1]{%
+	\resetplusplus%
+	\newcommand{\sourcefile}[2]{\hline \plusplus & ##1 & \numprint{\pdffilesize{##2}}
+		& \getfiledate{##2} & \textdiscount \\}%
+	\newcommand{\Isourcefile}[2]{\hline \plusplus & ##1 & \numprint{\pdffilesize{##2}}
+		& \getfiledate{##2} & \attachfile[description={##1}]{##2}\\}%
+	\renewcommand{\longtableheader}{\hline \multicolumn{1}{|c}{\textbf{Nr.}}%
+		& \multicolumn{1}{l}{\textbf{Dateibeschreibung}}%
+		& \multicolumn{1}{c}{\textbf{Bytes}}%
+		& \multicolumn{1}{c}{\textbf{Änderungsdatum}}%
+		& \multicolumn{1}{c|}{\textbf{Eingebunden}} \\ \hline}%
+
+	\oneIF{#1}{%
+	\ifthenelse{\isundefined\chapter}%
+	{\subsection*{Informationen zu den Quelldateien}%
+		\pdfbookmark[2]{Quelldateien}{sourcefilestats}}
+	{\section*{Informationen zu den Quelldateien}%
+		\pdfbookmark[1]{Quelldateien}{sourcefilestats}}%
+	}{}%% Wird oft auf einer anderen Seite gesetzt als die Tabelle
+	\begin{longtable}{|rp{0.4\linewidth}rrc|}
+	\longtableheader
+	\endfirsthead
+
+	\longtableheader
+	\endhead
+
+	\multicolumn{5}{|r|}{{Siehe nächste Seite}} \\ \hline
+	\endfoot
+
+	\hline% \hline
+	\endlastfoot
+}{\end{longtable}}
+
+\endinput
