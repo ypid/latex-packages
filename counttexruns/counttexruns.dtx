@@ -1,7 +1,7 @@
 % \iffalse meta-comment
 %
 % Copyright (C) 2012 by Robin Schneider <ypid23@aol.de>
-% 
+%
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either version 1.3
 % of this license or (at your option) any later version.
@@ -21,26 +21,24 @@
 %
 % \iffalse
 %<*driver>
-\ProvidesFile{\jobname.dtx}
+\ProvidesFile{counttexruns.dtx}
 %</driver>
 %<package>%% See file 'counttexruns.dtx' for copyright and licence.
 %<package>\NeedsTeXFormat{LaTeX2e}[1998/12/01]
 %<package>\ProvidesPackage{counttexruns}
 %<*package>
-    [2012/08/27 v1.00 Counts the TeX runs]
+    [2012/08/31 v1.00a Count compilations of a document]
 %</package>
 %
 %<*driver>
 \documentclass[english]{ltxdoc}
 \newcommand{\PackageURL}{https://github.com/ypid/latex-packages/tree/master/counttexruns}
+\newcommand{\PackageCTANURL}{http://www.ctan.org/pkg/counttexruns}
 \newcommand{\PackageAuthor}{Robin Schneider}
 \newcommand{\PackageAuthorEmail}{ypid23@aol.de}
+\newcommand{\PackageName}{\PrintPackage{count\TeX runs}}
 \newcommand{\PrintPackage}[1]{\textsf{#1}}
-\typeout{}\typeout{* If the two package names look the same you can ignore this
-LaTeX Warning *}
-\usepackage{\jobname}
-%% ^^A This produces a warning even when there is no problem.
-%% ^^A I think there is an error in the comparison (expand \jobname ...)
+\usepackage{counttexruns}
 \usepackage{
   babel,
   csquotes,
@@ -49,20 +47,20 @@ LaTeX Warning *}
   hypdoc,
   ifthen,
 }
-\GetFileInfo{\jobname.dtx}
+\GetFileInfo{counttexruns.dtx}
 \hypersetup{
-  pdftitle={A manual for \jobname},
+  pdftitle={A manual for \PackageName},
   pdfauthor={\PackageAuthor{} <\PackageAuthorEmail>},
   pdfsubject={\fileinfo},
   baseurl={\PackageURL},
-  pdfkeywords={This document corresponds to \textsf{\jobname}~\fileversion,
+  pdfkeywords={This document corresponds to \PackageName~\fileversion,
     dated \filedate}
 }
 
-\title{The \PrintPackage{\jobname} package\thanks{This document
-corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
+\title{The \PackageName{} package\thanks{This document
+corresponds to \PackageName~\fileversion, dated \filedate.}}
 \author{\PackageAuthor \\
-  \texttt{\href{mailto:\PackageAuthorEmail?subject=LaTeX package \jobname}%
+  \texttt{\href{mailto:\PackageAuthorEmail?subject=LaTeX package counttexruns}%
     {\PackageAuthorEmail}%
   }%
 }
@@ -71,7 +69,7 @@ corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
 \CodelineIndex
 \RecordChanges
 \begin{document}
-  \DocInput{\jobname.dtx}
+  \DocInput{counttexruns.dtx}
   \PrintChanges
   \PrintIndex
 \end{document}
@@ -97,15 +95,16 @@ corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
 %   Right brace   \}     Tilde         \~}
 %
 % \changes{1.00}{2012/08/27}{Initial version}
+% \changes{1.00a}{2012/08/31}{Minor details fixed}
 %
 % \DoNotIndex{\RequirePackage, \DeclareOption, \ProcessOptions}
 % \DoNotIndex{\PackageWarning, \MessageBreak}
 % \DoNotIndex{\DeclareStringOption, \ProcessLocalKeyvalOptions}
 % \DoNotIndex{\DeclareRobustCommand, \newcommand, \renewcommand}
-% \DoNotIndex{\newenvironment, \jobname}
+% \DoNotIndex{\newenvironment}
 % \DoNotIndex{\if, \else, \fi, \ifcase, \or, \ifthenelse, \AND, \value, \relax}
-% \DoNotIndex{\%, \IfFileExists, \immediate, \arabic, \@counttexrunsfile}
-%% ^^A \% is ignored ... 
+% \DoNotIndex{\%, \IfFileExists, \immediate, \arabic}
+%% ^^A \% is ignored ...
 % \DoNotIndex{\@currname, \newcounter, \setcounter}
 % \DoNotIndex{\endinput}
 %
@@ -114,12 +113,13 @@ corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
 % \phantomsection
 % \addcontentsline{toc}{section}{\abstractname}
 % \begin{abstract}
-% The \PrintPackage{\jobname} package counts how often a \LaTeX{} document is
+% The \PackageName{} package counts how often a \LaTeX{} document is
 % compiled.\\
+% Location on CTAN: \url{\PackageCTANURL} \\
 % Fork me on GitHub: \url{\PackageURL} \end{abstract}
-% 
+%
 % \tableofcontents
-% 
+%
 % \section{Introduction}
 % From a statistical perspective you maybe want to know how often you compiled
 % a document. This is exactly the task I wrote this package for. For a few
@@ -142,8 +142,8 @@ corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
 %
 % \DescribeMacro{\thecounttexruns}
 % To print the count you can use the macro |\thecounttexruns|. You can also use
-% and even change the \LaTeX{} counter \enquote{\jobname}. This will not disturb
-% \PrintPackage{\jobname}.
+% and even change the \LaTeX{} counter \enquote{counttexruns}. This will not disturb
+% \PackageName.
 %
 % By the way this documentation was \thecounttexruns{}
 % time\ifthenelse{\equal{\value{counttexruns}}{1}}{}{s} compiled during
@@ -175,17 +175,17 @@ corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
 % \end{macro}
 % Here it is checked if the file already exists and if that is the case the
 % number of compile events will be stored in the \LaTeX{} counter
-% \enquote{\jobname}.
+% \enquote{counttexruns}.
 %    \begin{macrocode}
 \IfFileExists{\jobname.\counttexruns@extension}{
-\immediate\openin\@counttexrunsfile=\jobname.\counttexruns@extension
-\immediate\read\@counttexrunsfile to \counttexruns
-\immediate\read\@counttexrunsfile to \counttexruns
-\immediate\closeout\@counttexrunsfile
-\setcounter{counttexruns}{\counttexruns}
+  \immediate\openin\@counttexrunsfile=\jobname.\counttexruns@extension
+  \immediate\read\@counttexrunsfile to \@counttexruns
+  \immediate\read\@counttexrunsfile to \@counttexruns
+  \immediate\closein\@counttexrunsfile
+  \setcounter{counttexruns}{\@counttexruns}
 }{}
 %    \end{macrocode}
-% Here the counter \enquote{\jobname} is increment by one.
+% Here the counter \enquote{counttexruns} is increment by one.
 %    \begin{macrocode}
 \stepcounter{counttexruns}
 %    \end{macrocode}

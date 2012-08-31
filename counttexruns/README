@@ -1,5 +1,5 @@
 LaTeX package 'counttexruns'
-~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Copyright (C) 2012 by Robin Schneider <ypid23@aol.de>
 
 This work may be distributed and/or modified under the
@@ -10,8 +10,11 @@ The latest version of this license is in
 and version 1.3 or later is part of all distributions of LaTeX
 version 2005/12/01 or later.
 
+CTAN: http://www.ctan.org/pkg/counttexruns
 Code repository: https://github.com/ypid/latex-packages/counttexruns
 
+
+	DESCRIPTION
 The counttexruns package counts how often a LaTeX document is compiled.
 
 From a statistical perspective you maybe want to know how often you compiled a
@@ -20,3 +23,15 @@ used a bash script and -shell-escape to do this but I decided to write this
 small package to do the trick a little nicer.
 
 To print the count you can use the macro \thecounttexruns.
+
+
+	GENERATING THE FILES
+You can generate the counttexruns.sty file with: pdflatex counttexruns.ins
+
+The documentation can be generated with:
+pdflatex counttexruns.dtx
+makeindex -s gglo.ist -o counttexruns.gls counttexruns.glo
+makeindex -s gind counttexruns
+pdflatex counttexruns.dtx
+thumbpdf counttexruns
+pdflatex counttexruns.dtx
