@@ -1,12 +1,12 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{calcage}
-          [2012/02/19 v0.7 calcage by Robin Schneider]
+          [2012/09/08 v0.8 calcage by Robin Schneider]
 
-%% BUGS: package options are overwriten be the macro parameters
 \RequirePackage{fnumprint}[2012/08/27]
 \RequirePackage{
   datenumber,
   fp,
+  calc,
   xkeyval,
   kvoptions,
   xifthen,
@@ -15,39 +15,58 @@
 \DeclareStringOption[0]{precision}[3]
 \DeclareBoolOption[true]{printyear}
 \DeclareBoolOption{yearsuffix}
-\ProcessLocalKeyvalOptions*
+\ProcessLocalKeyvalOptions*		%% To test for correct
+\edef\calcage@options{\@ptionlist{\@currname.\@currext}}
+%\renewcommand{\calcage@options}{precision=4,printyear=false}
+%% Package xkeyval Error: `precision=4' undefined in families `calcage'.
 
-\ifthenelse{\value{fnumprint@language} = 1}{
-    \newcommand{\calcage@year}{Jahr}
-    \newcommand{\calcage@yearPluralSuffix}{e}
-    \newcommand{\calcage@yearSuffix}{n}
-}{
-	\ifthenelse{\value{fnumprint@language} = 2}{
-	    \newcommand{\calcage@year}{year}
-	    \newcommand{\calcage@yearPluralSuffix}{s}
-    	\newcommand{\calcage@yearSuffix}{}
-	}{}
-}
+\ifcase\value{fnumprint@language}\or%% if one
+  \newcommand{\calcage@year}{Jahr}
+  \newcommand{\calcage@yearPluralSuffix}{e}
+  \newcommand{\calcage@yearSuffix}{n}
+\or%% if two
+  \newcommand{\calcage@year}{year}
+  \newcommand{\calcage@yearPluralSuffix}{s}
+  \newcommand{\calcage@yearSuffix}{}
+\fi
 
-\newcounter{calcage@tmpdate}\newcounter{calcage@ageindays}
+\newcounter{calcage@today}\newcounter{calcage@ageindays}
+\newcounter{calcage@myyear}\newcounter{calcage@leapyears}
+\setmydatenumber{calcage@today}{\the\year}{\the\month}{\the\day}
 
 \newcommand{\CalcAge}[4][]{%
-	\setmydatenumber{calcage@ageindays}{\the\year}{\the\month}{\the\day}%
-	\setmydatenumber{calcage@tmpdate}{#2}{#3}{#4}%
-	\addtocounter{calcage@ageindays}{-\value{calcage@tmpdate}}%
-	\addtocounter{calcage@ageindays}{1}%
-	%% Sorgt dafür das am Geburtstag das Alter um eins erhöht wird
-	%% und nicht erst einen Tag danach
-	\FPdiv\myage{\thecalcage@ageindays}{365.2425}%
+	\setkeys{calcage}{precision=0,printyear=true,yearsuffix=false,\calcage@options}%
+	\setcounter{calcage@myyear}{#2}%
+	\setcounter{calcage@leapyears}{0}%
+	\ifthenelse{\equal{#2}{\the\year}}{}{%
+	\ifthenelse{\value{calcage@myyear}<\the\year}{%
+		\loop%
+			\stepcounter{calcage@myyear}%
+			\ifleapyear{\thecalcage@myyear}\stepcounter{calcage@leapyears}\fi%
+			\ifnum\value{calcage@myyear}<\the\year%
+		\repeat%
+	}{%
+		\loop%
+			\ifleapyear{\thecalcage@myyear}\addtocounter{calcage@leapyears}{-1}\fi%
+			\addtocounter{calcage@myyear}{-1}%
+			\ifnum\value{calcage@myyear}>\the\year%
+		\repeat%
+	}}%
+	\setmydatenumber{calcage@ageindays}{#2}{#3}{#4}%
+	\setcounter{calcage@ageindays}{\value{calcage@today} - \value{calcage@ageindays}}%
+	\addtocounter{calcage@ageindays}{-\value{calcage@leapyears}}%
+	\FPdiv\calcage@age{\thecalcage@ageindays}{365}%
 	\setkeys{calcage}{#1}%
-	\FPtrunc\myage{\myage}{\calcage@precision}%
-	\ifthenelse{\equal{\calcage@precision}{0}}{\fnumprint[ein]{\myage}}{\numprint{\myage}}%
+	\FPtrunc\calcage@age{\calcage@age}{\calcage@precision}%
+	\ifthenelse{\equal{\calcage@precision}{0}}%
+	{\fnumprint[ein]{\calcage@age}}{\numprint{\calcage@age}}%
 	\ifthenelse{\boolean{calcage@printyear}}{%
-		~\ifthenelse{\equal{\myage}{1}}{\calcage@year}{%
+		~\ifthenelse{\equal{\calcage@age}{1}}{\calcage@year}{%
 			\calcage@year\calcage@yearPluralSuffix%
 			\ifthenelse{\boolean{calcage@yearsuffix}}{\calcage@yearSuffix}{}%
 		}%
 	}{}%
 }
+
 
 \endinput
