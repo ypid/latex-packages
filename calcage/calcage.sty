@@ -12,16 +12,19 @@
   xifthen,
 }
 
-\DeclareStringOption[0]{precision}[3]
-\DeclareBoolOption[true]{printyear}
+\DeclareStringOption{precision}[3]
+\DeclareStringOption{year}
+\DeclareStringOption{month}
+\DeclareStringOption{day}
+\DeclareBoolOption{printyear}
 \DeclareBoolOption{yearsuffix}
-\ProcessLocalKeyvalOptions*		%% To test for correct
+\ProcessLocalKeyvalOptions*    %% To test for correct
 \edef\calcage@options{\@ptionlist{\@currname.\@currext}}
 %\renewcommand{\calcage@options}{precision=4,printyear=false}
 %% Package xkeyval Error: `precision=4' undefined in families `calcage'.
 
 \ifcase\value{fnumprint@language}\or%% if one
-  \newcommand{\calcage@year}{Jahr}
+  \newcommand{\calcage@yearWord}{Jahr}
   \newcommand{\calcage@yearPluralSuffix}{e}
   \newcommand{\calcage@yearSuffix}{n}
 \or%% if two
@@ -32,41 +35,40 @@
 
 \newcounter{calcage@today}\newcounter{calcage@ageindays}
 \newcounter{calcage@myyear}\newcounter{calcage@leapyears}
-\setmydatenumber{calcage@today}{\the\year}{\the\month}{\the\day}
 
-\newcommand{\CalcAge}[4][]{%
-	\setkeys{calcage}{precision=0,printyear=true,yearsuffix=false,\calcage@options}%
-	\setcounter{calcage@myyear}{#2}%
-	\setcounter{calcage@leapyears}{0}%
-	\ifthenelse{\equal{#2}{\the\year}}{}{%
-	\ifthenelse{\value{calcage@myyear}<\the\year}{%
-		\loop%
-			\stepcounter{calcage@myyear}%
-			\ifleapyear{\thecalcage@myyear}\stepcounter{calcage@leapyears}\fi%
-			\ifnum\value{calcage@myyear}<\the\year%
-		\repeat%
-	}{%
-		\loop%
-			\ifleapyear{\thecalcage@myyear}\addtocounter{calcage@leapyears}{-1}\fi%
-			\addtocounter{calcage@myyear}{-1}%
-			\ifnum\value{calcage@myyear}>\the\year%
-		\repeat%
-	}}%
-	\setmydatenumber{calcage@ageindays}{#2}{#3}{#4}%
-	\setcounter{calcage@ageindays}{\value{calcage@today} - \value{calcage@ageindays}}%
-	\addtocounter{calcage@ageindays}{-\value{calcage@leapyears}}%
-	\FPdiv\calcage@age{\thecalcage@ageindays}{365}%
-	\setkeys{calcage}{#1}%
-	\FPtrunc\calcage@age{\calcage@age}{\calcage@precision}%
-	\ifthenelse{\equal{\calcage@precision}{0}}%
-	{\fnumprint[ein]{\calcage@age}}{\numprint{\calcage@age}}%
-	\ifthenelse{\boolean{calcage@printyear}}{%
-		~\ifthenelse{\equal{\calcage@age}{1}}{\calcage@year}{%
-			\calcage@year\calcage@yearPluralSuffix%
-			\ifthenelse{\boolean{calcage@yearsuffix}}{\calcage@yearSuffix}{}%
-		}%
-	}{}%
+\newcommand{\calcage}[4][]{%
+  \setkeys{calcage}{precision=0,printyear=true,yearsuffix=false,
+    year=\the\year,month=\the\month,day=\the\day,\calcage@options,#1}%
+  \setmydatenumber{calcage@today}{\calcage@year}{\calcage@month}{\calcage@day}
+  \setcounter{calcage@myyear}{#2}%
+  \setcounter{calcage@leapyears}{0}%
+  \ifthenelse{\equal{#2}{\calcage@year}}{}{%
+  \ifthenelse{\value{calcage@myyear}<\calcage@year}{%
+    \loop%
+      \stepcounter{calcage@myyear}%
+      \ifleapyear{\thecalcage@myyear}\stepcounter{calcage@leapyears}\fi%
+      \ifnum\value{calcage@myyear}<\calcage@year%
+    \repeat%
+  }{%
+    \loop%
+      \ifleapyear{\thecalcage@myyear}\addtocounter{calcage@leapyears}{-1}\fi%
+      \addtocounter{calcage@myyear}{-1}%
+      \ifnum\value{calcage@myyear}>\calcage@year%
+    \repeat%
+  }}%
+  \setmydatenumber{calcage@ageindays}{#2}{#3}{#4}%
+  \setcounter{calcage@ageindays}{\value{calcage@today} - \value{calcage@ageindays}}%
+  \addtocounter{calcage@ageindays}{-\value{calcage@leapyears}}%
+  \FPdiv\calcage@age{\thecalcage@ageindays}{365}%
+  \FPtrunc\calcage@age{\calcage@age}{\calcage@precision}%
+  \ifthenelse{\equal{\calcage@precision}{0}}%
+  {\fnumprint[ein]{\calcage@age}}{\numprint{\calcage@age}}%
+  \ifthenelse{\boolean{calcage@printyear}}{%
+    ~\ifthenelse{\equal{\calcage@age}{1}}{\calcage@yearWord}{%
+      \calcage@yearWord\calcage@yearPluralSuffix%
+      \ifthenelse{\boolean{calcage@yearsuffix}}{\calcage@yearSuffix}{}%
+    }%
+  }{}%
 }
-
 
 \endinput

@@ -12,8 +12,11 @@
 %%% Dokumentkörper
 \begin{document}
 
+\calcage[precision=6]{1993}{09}{08}
+
+
 \makeatletter
-\foreach \x in {1992,...,2030} {\CalcAge[precision=6]{\x}{09}{08} (\arabic{calcage@ageindays})
+\foreach \x in {1992,...,2030} {\calcage[precision=6]{\x}{09}{08} (\arabic{calcage@ageindays})
 
 }
 
