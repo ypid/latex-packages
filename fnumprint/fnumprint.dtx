@@ -31,14 +31,11 @@
 %<*driver>
 \documentclass[english]{ltxdoc}
 \newcommand{\PackageURL}{https://github.com/ypid/latex-packages/tree/master/fnumprint}
+\newcommand{\PackageCTANURL}{http://www.ctan.org/pkg/fnumprint}
 \newcommand{\PackageAuthor}{Robin Schneider}
 \newcommand{\PackageAuthorEmail}{ypid23@aol.de}
 \newcommand{\PrintPackage}[1]{\textsf{#1}}
-\typeout{}\typeout{* If the two package names look the same you can ignore this
-LaTeX Warning *}
-\usepackage{\jobname}
-%% ^^A This produces a warning even when there is no problem.
-%% ^^A I think there is an error in the comparison (expand \jobname ...)
+\usepackage{fnumprint}
 \usepackage{
   babel,
   csquotes,
@@ -114,6 +111,7 @@ corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
 % \begin{abstract}
 % The \PrintPackage{fnumprint} package can decide to typeset a
 % number either as number or as word name (only in English or German). \\
+% Location on CTAN: \url{\PackageCTANURL} \\
 % Fork me on GitHub: \url{\PackageURL} \end{abstract}
 % 
 % \tableofcontents
@@ -185,7 +183,7 @@ corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
 % This package depends on these packages.
 %    \begin{macrocode}
 \RequirePackage{xifthen}
-\RequirePackage{numprint}
+\RequirePackage[autolanguage]{numprint}
 %    \end{macrocode}
 % \subsection{Language checking}
 % I used a counter |fnumprint@language| to save the (last) selected language.
