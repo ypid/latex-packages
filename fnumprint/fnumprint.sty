@@ -3,7 +3,7 @@
 \ProvidesPackage{fnumprint}
     [2012/08/27 v1.1 Printing fancy numbers]
 \RequirePackage{xifthen}
-\RequirePackage{numprint}
+\RequirePackage[autolanguage]{numprint}
 \newcounter{fnumprint@language}
 \setcounter{fnumprint@language}{0}
 \DeclareOption{german}{\setcounter{fnumprint@language}{1}}
@@ -17,25 +17,25 @@
 \DeclareOption{australian}{\setcounter{fnumprint@language}{2}}
 \DeclareOption{newzealand}{\setcounter{fnumprint@language}{2}}
 \ProcessOptions\relax
-\ifthenelse{\value{fnumprint@language} = 0}{
+\ifcase\value{fnumprint@language}
   \PackageWarning{\@currname}{No supported language selected
     \MessageBreak
     This package supports only English and German
     \MessageBreak
     There will be no word names printed}
-}{
-  \ifthenelse{\value{fnumprint@language} = 1}{\RequirePackage{zahl2string}}{}
-  \ifthenelse{\value{fnumprint@language} = 2}{
-    \newcommand{\ns@en@neunzehn}[1]{%
-      \ifcase#1 zero\or one\or two\or three\or four\or five\or six\or%
-      seven\or eight\or nine\or ten\or eleven\or twelve\or thirteen\or%
-      fourteen\or fifteen\or sixteen\or seventeen\or%
-      eighteen\or nineteen\fi%
-    }
-  }{}
-}
+\or
+  \RequirePackage{zahl2string}
+\or
+  \newcommand{\ns@en@neunzehn}[1]{%
+    \ifcase#1 zero\or one\or two\or three\or four\or five\or six\or%
+    seven\or eight\or nine\or ten\or eleven\or twelve\or thirteen\or%
+    fourteen\or fifteen\or sixteen\or seventeen\or%
+    eighteen\or nineteen\fi%
+  }
+\fi
 \DeclareRobustCommand{\fnumprint}[2][]{%
-  \ifthenelse{-1 < #2 \AND #2 < 13}{%
+  \ifthenelse{\NOT \(\isin{,}{#2} \OR \isin{.}{#2} \)
+  \AND -1 < #2 \AND #2 < 13}{%
     \ifthenelse{\value{fnumprint@language} = 1}{%
       \ifthenelse{\equal{#1}{ein} \AND #2 = 1}{ein}{\numstr{#2}}%
     }{%

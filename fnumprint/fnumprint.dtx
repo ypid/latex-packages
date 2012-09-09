@@ -72,7 +72,7 @@ corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
 %</driver>
 % \fi
 %
-% \CheckSum{95}
+% \CheckSum{101}
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -95,13 +95,14 @@ corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
 % \changes{v1.0a}{2012/08/23}{Optimized}
 % \changes{v1.0b}{2012/08/26}{Optimized}
 % \changes{v1.1}{2012/08/27}{Added optional parameter \enquote{ein}}
+% \changes{v1.1a}{2012/08/27}{Added support for real numbers}
 %
 % \DoNotIndex{\RequirePackage, \DeclareOption, \ProcessOptions}
 % \DoNotIndex{\PackageWarning, \MessageBreak}
 % \DoNotIndex{\DeclareRobustCommand, \newcommand, \renewcommand}
 % \DoNotIndex{\newenvironment}
 % \DoNotIndex{\if, \else, \fi, \ifcase, \or, \ifthenelse, \AND, \value, \relax}
-% \DoNotIndex{\equal, \@currname, \newcounter, \setcounter}
+% \DoNotIndex{\equal, \@currname, \newcounter, \setcounter, \(, \), \NOT, \OR}
 % \DoNotIndex{\endinput}
 %
 % \maketitle
@@ -158,6 +159,7 @@ corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
 %   |\fnumprint{-1}|         & \fnumprint{-1} \\
 %   |\fnumprint{0}|          & \fnumprint{0} \\
 %   |\fnumprint{1}|          & \fnumprint{1} \\
+%   |\fnumprint{3.14}|       & \fnumprint{3.14} \\
 %   |\fnumprint{10}|         & \fnumprint{10} \\
 %   |\fnumprint{12}|         & \fnumprint{12} \\
 %   |\fnumprint{13}|         & \fnumprint{13} \\
@@ -212,32 +214,31 @@ corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
 %    \end{macrocode}
 % If none of the supported languages was selected a package warning will appear.
 %    \begin{macrocode}
-\ifthenelse{\value{fnumprint@language} = 0}{
+\ifcase\value{fnumprint@language}
   \PackageWarning{\@currname}{No supported language selected
     \MessageBreak
     This package supports only English and German
     \MessageBreak
     There will be no word names printed}
-}{
 %    \end{macrocode}
 % The zahl2string package will only be loaded if it is necessary.
 %    \begin{macrocode}
-  \ifthenelse{\value{fnumprint@language} = 1}{\RequirePackage{zahl2string}}{}
+\or
+  \RequirePackage{zahl2string}
 %    \end{macrocode}
 % \subsection{Macro definition}
 % \begin{macro}{\ns@en@neunzehn}
 % This internal marco expands to the English word name for a number.
 % It only goes from 0 to 19. It will only be defined if it is necessary.
 %    \begin{macrocode}
-  \ifthenelse{\value{fnumprint@language} = 2}{
-    \newcommand{\ns@en@neunzehn}[1]{%
-      \ifcase#1 zero\or one\or two\or three\or four\or five\or six\or%
-      seven\or eight\or nine\or ten\or eleven\or twelve\or thirteen\or%
-      fourteen\or fifteen\or sixteen\or seventeen\or%
-      eighteen\or nineteen\fi%
-    }
-  }{}
-}
+\or
+  \newcommand{\ns@en@neunzehn}[1]{%
+    \ifcase#1 zero\or one\or two\or three\or four\or five\or six\or%
+    seven\or eight\or nine\or ten\or eleven\or twelve\or thirteen\or%
+    fourteen\or fifteen\or sixteen\or seventeen\or%
+    eighteen\or nineteen\fi%
+  }
+\fi
 %    \end{macrocode}
 % \end{macro}
 % \begin{macro}{\fnumprint}
@@ -248,7 +249,8 @@ corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
 % \enquote{eins} with \enquote{ein}.
 %    \begin{macrocode}
 \DeclareRobustCommand{\fnumprint}[2][]{%
-  \ifthenelse{-1 < #2 \AND #2 < 13}{%
+  \ifthenelse{\NOT \(\isin{,}{#2} \OR \isin{.}{#2} \)
+  \AND -1 < #2 \AND #2 < 13}{%
     \ifthenelse{\value{fnumprint@language} = 1}{%
       \ifthenelse{\equal{#1}{ein} \AND #2 = 1}{ein}{\numstr{#2}}%
     }{%
