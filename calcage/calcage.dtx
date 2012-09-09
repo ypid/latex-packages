@@ -1,0 +1,405 @@
+% \iffalse meta-comment
+%
+% Copyright (C) 2012 by Robin Schneider <ypid23@aol.de>
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status `maintained'.
+%
+% The Current Maintainer of this work is Robin Schneider.
+%
+% This work consists of the files calcage.dtx and calcage.ins
+% and the derived filebase calcage.sty.
+%
+% \fi
+%
+% \iffalse
+%<*driver>
+\ProvidesFile{calcage.dtx}
+%</driver>
+%<package>%% See file 'calcage.dtx' for copyright and licence.
+%<package>\NeedsTeXFormat{LaTeX2e}[1998/12/01]
+%<package>\ProvidesPackage{calcage}
+%<*package>
+    [2012/09/09 v0.90 Calculate the age in years]
+%</package>
+%
+%<*driver>
+\documentclass[english]{ltxdoc}
+\newcommand{\PackageURL}{https://github.com/ypid/latex-packages/tree/master/calcage}
+\newcommand{\PackageCTANURL}{http://www.ctan.org/pkg/calcage}
+\newcommand{\PackageAuthor}{Robin Schneider}
+\newcommand{\PackageAuthorEmail}{ypid23@aol.de}
+\newcommand{\PackageName}{\PrintPackage{calcage}}
+\newcommand{\PrintPackage}[1]{\textsf{#1}}
+\newcommand{\PrintOptionF}[1]{\emph{#1}} %% ^^A This macro is used for
+%% ^^A explaining any parameter when they first come up in the documentation.
+\newcommand{\DescribePara}[1]{\marginpar{\raggedleft\strut\MacroFont\string #1}}
+\usepackage{calcage}
+\usepackage{
+  babel,
+  csquotes,
+  xcolor,
+  url,
+  hypdoc,
+  nameref,
+}
+\GetFileInfo{calcage.dtx}
+\hypersetup{
+  pdftitle={A manual for \PackageName},
+  pdfauthor={\PackageAuthor{} <\PackageAuthorEmail>},
+  pdfsubject={\fileinfo},
+  baseurl={\PackageURL},
+  pdfkeywords={This document corresponds to \PackageName~\fileversion,
+    dated \filedate}
+}
+
+\title{The \PackageName{} package\thanks{This document
+corresponds to \PackageName~\fileversion, dated \filedate.}}
+\author{\PackageAuthor \\
+  \texttt{\href{mailto:\PackageAuthorEmail?subject=LaTeX package calcage}%
+    {\PackageAuthorEmail}%
+  }%
+}
+
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+\begin{document}
+  \DocInput{calcage.dtx}
+  \PrintChanges
+  \PrintIndex
+\end{document}
+%</driver>
+% \fi
+%
+% \CheckSum{119}
+%
+% \CharacterTable
+%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%   Digits        \0\1\2\3\4\5\6\7\8\9
+%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%   Dollar        \$     Percent       \%     Ampersand     \&
+%   Acute accent  \'     Left paren    \(     Right paren   \)
+%   Asterisk      \*     Plus          \+     Comma         \,
+%   Minus         \-     Point         \.     Solidus       \/
+%   Colon         \:     Semicolon     \;     Less than     \<
+%   Equals        \=     Greater than  \>     Question mark \?
+%   Commercial at \@     Left bracket  \[     Backslash     \\
+%   Right bracket \]     Circumflex    \^     Underscore    \_
+%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%   Right brace   \}     Tilde         \~}
+%
+% \changes{0.90}{2012/09/09}{Initial version}
+%
+% \DoNotIndex{\RequirePackage, \DeclareOption, \ProcessOptions}
+% \DoNotIndex{\PackageWarning, \MessageBreak}
+% \DoNotIndex{\DeclareRobustCommand, \newcommand, \renewcommand, \def, \edef}
+% \DoNotIndex{\DeclareStringOption, \ProcessLocalKeyvalOptions}
+% \DoNotIndex{\ProcessKeyvalOptions, \SetupKeyvalOptions, \DeclareBoolOption}
+% \DoNotIndex{\newenvironment}
+% \DoNotIndex{\if, \else, \fi, \ifcase, \or, \ifthenelse, \AND, \value, \relax}
+% \DoNotIndex{\loop, \repeat, \the, \ifnum}
+% \DoNotIndex{\equal, \boolean, \@currname, \newcounter, \setcounter}
+% \DoNotIndex{\stepcounter, \addtocounter}
+% \DoNotIndex{\endinput}
+%
+% \maketitle
+%
+% \phantomsection
+% \addcontentsline{toc}{section}{\abstractname}
+% \begin{abstract}
+% The \PackageName{} package can calculate the age in years. \\
+% Location on CTAN: \url{\PackageCTANURL} \\
+% Fork me on GitHub: \url{\PackageURL} \end{abstract}
+%
+% \tableofcontents
+%
+% \section{Introduction}
+% The \PrintPackage{calcage} package can calculate the age of someone or
+% something in years. Internally it uses the \PrintPackage{datenumber} package
+% to calculate the age in days. The conversion from days to years is
+% implemented by this package. It is also taken care about leap years and such
+% odd things. So if you enter your birthday you get your exact age in years.
+% You can even get the age as number with up to 18 places after the decimal
+% separator but I heard that this is a bit uncommon by the age of a person~\dots
+%
+% \section{Usage}
+% Just load the package placing
+% \begin{quote}
+%   |\usepackage{calcage}|
+% \end{quote}
+% in the preamble of your \LaTeXe{} source file.
+%
+% You can also give optional package options to change the default behavior.
+% But you can not give values (see \nameref{sec:bugs}). So 
+% \begin{quote}
+%   |\usepackage[presision]{calcage}|
+% \end{quote}
+% works and sets presision to 3. But \enquote{presision=3} is going to
+% fail~\dots
+% \bigskip
+%
+% \DescribeMacro{\calcage}
+% The macro |\calcage| \oarg{key values} \marg{year} \marg{month} \marg{day}
+% takes a date and typesets the difference to the current date in years.
+% \bigskip
+%
+% \DescribePara{year, month, day}
+% There are some optional parameters. For example you can adjust the current
+% date for \PrintPackage{calcage} with the keys \enquote{\PrintOptionF{year}},
+% \enquote{\PrintOptionF{month}} and \enquote{\PrintOptionF{day}}. You don't
+% have to specifier all of them. A subset is also possible.
+%
+% \DescribePara{precision}
+% Another useful parameter is \enquote{\PrintOptionF{precision}}. With this
+% switch you can specify how many places after the decimal separator you would
+% like to see. The default precision is 0 which means that |\calcage| will
+% typeset the age in years as integer. If you omit a value for
+% \enquote{precision} then the precision will be 3.
+%
+% \DescribePara{positive}
+% The macro |\calcage| can also take a date which is in the future. The default
+% behavior in this case is a negative number but you can make the number
+% positive with the \enquote{\PrintOptionF{positive}} boolean switch.
+%
+% \DescribePara{printyear}
+% The next parameter I would like to show you is the
+% \enquote{\PrintOptionF{printyear}} boolean switch. With this switch you can
+% specify if |\calcage| should add \enquote{year} or rather \enquote{years}
+% after the year. This is the default setting.
+%
+% \DescribePara{yearsuffix}
+% For the previous parameter you may need the possibility (at least in the
+% German language) to add a single character to the plural word. For example
+% \begin{quote}
+%   |Albert Einstein wurde vor \calcage[yearsuffix]{1879}{03}{14}| \\
+%   |geboren.| \\
+%   Albert Einstein wurde vor \calcage[printyear=false]{1879}{03}{14} Jahren geboren.
+% ^^A Ups you got my. I didn't implement a switch language feautre (yet). 
+% \end{quote}
+% To do this you can use the boolean switch
+% \enquote{\PrintOptionF{yearsuffix}}. By default this switch is false.
+%
+% \DescribePara{numberstring}
+% And last but not least there is the boolean switch \enquote{numberstring}
+% which is true by default. This means that the typesetting process of an
+% integer is done by the package \PrintPackage{fnumprint} which will typeset
+% the word of a number instead of the Arabic number if the value of the number
+% is between 0 and 12. If you don't like this behavior you can set the boolean
+% to false with \enquote{numberstring=false}.
+%
+% \section{Bugs}\label{sec:bugs}
+% I tried to implement the possibility to change the default behavior as
+% package option in a nice way but with the current implementation there is a
+% problem with the values. If you give a key with value than the |\setkeys|
+% macro which gets these parameters as macro fails. I already tried
+% |\expandafter| so if anyone knows where the problem is or has a solution feel
+% free to contact me.
+% \bigskip
+%
+% I think there is a little inaccuracy in the conversion from day to years
+% because my implementation just removes the leap years before dividing but in
+% my tests this seems to be more theoretically.
+%
+% \section{Examples}
+% \begin{verbatim}
+%   \calcage{2010}{09}{10} \\
+%   \calcage{2009}{11}{09}
+% \end{verbatim}\vspace{-1.5em}
+%   \calcage{2010}{09}{10} \\
+%   \calcage{2009}{11}{09}
+%
+% \begin{verbatim}
+%   Donald Knuth is \calcage{1938}{01}{10} old. \\
+%   Donald Knuth will be 100 years old in
+%     \calcage[positive, precision]{2038}{01}{10}. \\
+%   Albert Einstein died at the age of
+%     \calcage[year=1955, month=04, day=18]{1879}{03}{14}. \\
+%   Age of Linus Torvalds in years: \calcage[printyear=false]{1969}{12}{28} \\
+%   Linus Torvalds is \calcageDays old.
+% \end{verbatim}\vspace{-1.5em}
+%% ^^A \makeatletter\newcommand{\calcageDays}{\cntprint{calcage@ageindays}%
+%% ^^A day\ifthenelse{\equal{\value{calcage@ageindays}}{1} \OR
+%% ^^A \equal{\value{calcage@ageindays}}{-1}}{}{s}}\makeatother
+%% ^^A To use this macro the ifthen package is required but because the calcage
+%% ^^A package also requires it we can make the assumption that it is loaded.
+% Donald Knuth is \calcage{1938}{01}{10} old. \\
+% Donald Knuth will be 100 years old in
+%   \calcage[positive, precision]{2038}{01}{10}. \\
+% Albert Einstein died at the age of
+%   \calcage[year=1955, month=04, day=18]{1879}{03}{14}. \\
+% Age of Linus Torvalds in years: \calcage[printyear=false]{1969}{12}{28} \\
+%% ^^A Linus Torvalds is \calcageDays{} old.
+%
+%% ^^A In the last example I use the macro which I defined at the top of this source
+%% ^^A code part. The |\thecalcage@ageindays| is set by the last |\calcage|.
+%
+% \StopEventually{}
+%
+% \section{Implementation}
+% \iffalse
+%<*package>
+% \fi
+% This package depends on these packages.
+%    \begin{macrocode}
+\RequirePackage{fnumprint}[2012/08/27]
+\RequirePackage{
+  datenumber,
+  fp,
+  calc,
+  xkeyval,
+  kvoptions,
+  xifthen,
+}
+%    \end{macrocode}
+% \subsection{Declaring the options}
+%    \begin{macrocode}
+\DeclareStringOption{year}
+\DeclareStringOption{month}
+\DeclareStringOption{day}
+\DeclareStringOption{precision}[3]
+\DeclareBoolOption{positive}
+\DeclareBoolOption{printyear}
+\DeclareBoolOption{yearsuffix}
+\DeclareBoolOption{numberstring}
+%    \end{macrocode}
+% To test if all parameters are valid the marco |\ProcessLocalKeyvalOptions*|
+% is expanded to ensure this before leaving the preamble. This is the only
+% purpose for the |\ProcessLocalKeyvalOptions*| in this case.
+%    \begin{macrocode}
+\ProcessLocalKeyvalOptions*
+%    \end{macrocode}
+% The next source code line creates a new macro which captures the parameters
+% to use them as default options for the macro |\calcage|.
+% If this macro is set to \enquote{precision=4} for example the |\setkeys| will
+% fail.
+%    \begin{macrocode}
+\edef\calcage@options{\@ptionlist{\@currname.\@currext}}
+%% ^^A \renewcommand{\calcage@options}{precision=4,printyear=false}
+%% ^^A Package xkeyval Error: `precision=4' undefined in families `calcage'.
+%    \end{macrocode}
+% \subsection{Language selection}
+% Here comes the language selection part. The counter is all ready set by the
+% \PrintPackage{fnumprint} so I use it's value also in this package because I
+% can rely on this counter.\footnote{I am also the maintainer of the
+% \PrintPackage{fnumprint} package~\dots}
+% If you prefer another language than English or German you can redefine these
+% macros.
+%    \begin{macrocode}
+\ifcase\value{fnumprint@language}\or
+%    \end{macrocode}
+% If fnumprint@language is equal 1
+%    \begin{macrocode}
+  \newcommand{\calcage@yearWord}{Jahr}
+  \newcommand{\calcage@yearPluralSuffix}{e}
+  \newcommand{\calcage@yearSuffix}{n}
+\or
+%    \end{macrocode}
+% If fnumprint@language is equal 2
+%    \begin{macrocode}
+  \newcommand{\calcage@yearWord}{year}
+  \newcommand{\calcage@yearPluralSuffix}{s}
+  \newcommand{\calcage@yearSuffix}{}
+\fi
+%    \end{macrocode}
+% \subsection{Macro definition}
+% Some necessary \LaTeX{} counters are declared here before creating the
+% |\calcage| macro.
+%    \begin{macrocode}
+\newcounter{calcage@today}\newcounter{calcage@ageindays}
+\newcounter{calcage@myyear}\newcounter{calcage@leapyears}
+%    \end{macrocode}
+% \begin{macro}{\calcage}
+% And now comes the important part -- the definition of |\calcage|.
+% First the |\setkeys| macro is expanded. It sets the default options then the
+% package options get the opportunity to overwrite these settings and finally
+% the macro options get the same possibility.
+%    \begin{macrocode}
+\newcommand{\calcage}[4][]{%
+  \setkeys{calcage}{precision=0, positive=true, printyear=true,
+    yearsuffix=false, numberstring=true,
+    year=\the\year, month=\the\month, day=\the\day, \calcage@options, #1}%
+  \setmydatenumber{calcage@today}{\calcage@year}{\calcage@month}{\calcage@day}%
+  \setmydatenumber{calcage@ageindays}{#2}{#3}{#4}%
+%    \end{macrocode}
+% Now comes the tricky part which are the leap years~\dots \\
+% My first implementation worked with dividing by $365.2425$ but this was not
+% perfect. So the current implementation counts how many leap years are between
+% the birth year and the current year and subtracts (or adds\footnote{If the
+% birth year is in the future.}) this number.
+%    \begin{macrocode}
+  \setcounter{calcage@myyear}{#2}%
+  \setcounter{calcage@leapyears}{0}%
+  \ifthenelse{\equal{#2}{\calcage@year}}{}{%
+    \ifthenelse{\value{calcage@myyear}<\calcage@year}{%
+%    \end{macrocode}
+% If the birth year is in the past.
+%    \begin{macrocode}
+      \loop%
+        \stepcounter{calcage@myyear}%
+        \ifleapyear{\thecalcage@myyear}\stepcounter{calcage@leapyears}\fi%
+        \ifnum\value{calcage@myyear}<\calcage@year%
+      \repeat%
+    }{%
+%    \end{macrocode}
+% If the birth year is in the future.
+%    \begin{macrocode}
+      \loop%
+        \ifleapyear{\thecalcage@myyear}\addtocounter{calcage@leapyears}{-1}\fi%
+        \addtocounter{calcage@myyear}{-1}%
+        \ifnum\value{calcage@myyear}>\calcage@year%
+      \repeat%
+    }%
+  }%
+  \setcounter{calcage@ageindays}{\value{calcage@today}
+    - \value{calcage@ageindays} - \value{calcage@leapyears}}%
+  \ifthenelse{\boolean{calcage@positive} \AND \value{calcage@ageindays} < 0}{%
+    \setcounter{calcage@ageindays}{\value{calcage@ageindays} * -1}%
+  }{}%
+%    \end{macrocode}
+% Because we know that every year has now exactly 365 day we can divide by
+% that.
+%    \begin{macrocode}
+  \FPdiv\calcage@age{\thecalcage@ageindays}{365}%
+%    \end{macrocode}
+% The next step is to truncated the age. There is no rounding. I implemented it
+% this way because if the age would be rounded then there would be a wrong
+% result in cases like $x.999$ which would become $x+1$ if
+% \enquote{precision=0} and that is probably not what you want~\dots
+%    \begin{macrocode}
+  \FPtrunc\calcage@age{\calcage@age}{\calcage@precision}%
+%    \end{macrocode}
+% The last thing to do is to typeset the age which is implemented by the next
+% few lines of code.
+%    \begin{macrocode}
+  \ifthenelse{\equal{\calcage@precision}{0} \AND \boolean{calcage@numberstring}}%
+    {\fnumprint[ein]{\calcage@age}}{\numprint{\calcage@age}}%
+  \ifthenelse{\boolean{calcage@printyear}}{%
+    ~\calcage@yearWord%
+    \ifthenelse{\equal{\calcage@age}{1}}{}{%
+      \calcage@yearPluralSuffix%
+      \ifthenelse{\boolean{calcage@yearsuffix}}{\calcage@yearSuffix}{}%
+    }%
+  }{}%
+}
+%    \end{macrocode}
+% \end{macro}
+% That's it.
+%    \begin{macrocode}
+\endinput
+%    \end{macrocode}
+%
+% \iffalse
+%</package>
+% \fi
+%
+% \Finale
+\endinput
