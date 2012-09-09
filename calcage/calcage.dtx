@@ -226,21 +226,12 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 %   Age of Linus Torvalds in years: \calcage[printyear=false]{1969}{12}{28} \\
 %   Linus Torvalds is \calcageDays old.
 % \end{verbatim}\vspace{-1.5em}
-%% ^^A \makeatletter\newcommand{\calcageDays}{\cntprint{calcage@ageindays}%
-%% ^^A day\ifthenelse{\equal{\value{calcage@ageindays}}{1} \OR
-%% ^^A \equal{\value{calcage@ageindays}}{-1}}{}{s}}\makeatother
-%% ^^A To use this macro the ifthen package is required but because the calcage
-%% ^^A package also requires it we can make the assumption that it is loaded.
 % Donald Knuth is \calcage{1938}{01}{10} old. \\
 % Donald Knuth will be 100 years old in
 %   \calcage[positive, precision]{2038}{01}{10}. \\
 % Albert Einstein died at the age of
 %   \calcage[year=1955, month=04, day=18]{1879}{03}{14}. \\
 % Age of Linus Torvalds in years: \calcage[printyear=false]{1969}{12}{28} \\
-%% ^^A Linus Torvalds is \calcageDays{} old.
-%
-%% ^^A In the last example I use the macro which I defined at the top of this source
-%% ^^A code part. The |\thecalcage@ageindays| is set by the last |\calcage|.
 %
 % \StopEventually{}
 %
