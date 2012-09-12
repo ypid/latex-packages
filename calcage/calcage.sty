@@ -64,11 +64,12 @@
   }{}%
   \FPdiv\calcage@age{\thecalcage@ageindays}{365}%
   \FPtrunc\calcage@age{\calcage@age}{\calcage@precision}%
-  \ifthenelse{\equal{\calcage@precision}{0} \AND \boolean{calcage@numberstring}}%
+  \ifthenelse{\boolean{calcage@numberstring}
+    \AND \equal{\calcage@precision}{0}}%
     {\fnumprint[ein]{\calcage@age}}{\numprint{\calcage@age}}%
   \ifthenelse{\boolean{calcage@printyear}}{%
     ~\calcage@yearWord%
-    \ifthenelse{\equal{\calcage@age}{1}}{}{%
+    \ifthenelse{\equal{\calcage@age}{1} \OR \equal{\calcage@age}{-1}}{}{%
       \calcage@yearPluralSuffix%
       \ifthenelse{\boolean{calcage@yearsuffix}}{\calcage@yearSuffix}{}%
     }%

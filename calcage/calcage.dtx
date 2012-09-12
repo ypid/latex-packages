@@ -79,7 +79,7 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 %</driver>
 % \fi
 %
-% \CheckSum{119}
+% \CheckSum{122}
 %
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -105,7 +105,7 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % \DoNotIndex{\DeclareStringOption, \ProcessLocalKeyvalOptions}
 % \DoNotIndex{\ProcessKeyvalOptions, \SetupKeyvalOptions, \DeclareBoolOption}
 % \DoNotIndex{\newenvironment}
-% \DoNotIndex{\if, \else, \fi, \ifcase, \or, \ifthenelse, \AND, \value, \relax}
+% \DoNotIndex{\if, \else, \fi, \ifcase, \or, \ifthenelse, \AND, \OR, \value, \relax}
 % \DoNotIndex{\loop, \repeat, \the, \ifnum}
 % \DoNotIndex{\equal, \boolean, \@currname, \newcounter, \setcounter}
 % \DoNotIndex{\stepcounter, \addtocounter}
@@ -129,7 +129,7 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % implemented by this package. It is also taken care about leap years and such
 % odd things. So if you enter your birthday you get your exact age in years.
 % You can even get the age as number with up to 18 places after the decimal
-% separator but I heard that this is a bit uncommon by the age of a person~\dots
+% separator but I heard that this is a bit uncommon for the age of a person~\dots
 %
 % \section{Usage}
 % Just load the package placing
@@ -139,11 +139,11 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % in the preamble of your \LaTeXe{} source file.
 %
 % You can also give optional package options to change the default behavior.
-% But you can not give values (see \nameref{sec:bugs}). So 
+% But you can not give values (see \nameref{sec:bugs}). So
 % \begin{quote}
 %   |\usepackage[presision]{calcage}|
 % \end{quote}
-% works and sets presision to 3. But \enquote{presision=3} is going to
+% works and sets the presision to 3. But \enquote{presision=3} is going to
 % fail~\dots
 % \bigskip
 %
@@ -152,68 +152,80 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % takes a date and typesets the difference to the current date in years.
 % \bigskip
 %
-% \DescribePara{year, month, day}
-% There are some optional parameters. For example you can adjust the current
-% date for \PrintPackage{calcage} with the keys \enquote{\PrintOptionF{year}},
-% \enquote{\PrintOptionF{month}} and \enquote{\PrintOptionF{day}}. You don't
-% have to specifier all of them. A subset is also possible.
+% There are some optional parameters. \DescribePara{year, month, day} For
+% example you can adjust the current date for \PrintPackage{calcage} with the
+% keys \enquote{\PrintOptionF{year}}, \enquote{\PrintOptionF{month}} and
+% \enquote{\PrintOptionF{day}}. You don't have to specifier all of them. A
+% subset is also possible.
 %
-% \DescribePara{precision}
-% Another useful parameter is \enquote{\PrintOptionF{precision}}. With this
-% switch you can specify how many places after the decimal separator you would
-% like to see. The default precision is 0 which means that |\calcage| will
-% typeset the age in years as integer. If you omit a value for
-% \enquote{precision} then the precision will be 3.
+% Another useful parameter is \enquote{\PrintOptionF{precision}}.
+% \DescribePara{precision} With this switch you can specify how many places
+% after the decimal separator you would like to get. The default precision is 0
+% which means that |\calcage| will typeset the age in years as integer. If you
+% omit a value for \enquote{precision} then the precision will be 3.
 %
-% \DescribePara{positive}
-% The macro |\calcage| can also take a date which is in the future. The default
-% behavior in this case is a negative number but you can make the number
-% positive with the \enquote{\PrintOptionF{positive}} boolean switch.
+% The macro |\calcage| can also take a date which is in the future.
+% \DescribePara{positive} The default behavior in this case is a negative
+% number but you can make the number positive with the
+% \enquote{\PrintOptionF{positive}} boolean switch.
 %
-% \DescribePara{printyear}
-% The next parameter I would like to show you is the
+% The next parameter I would like to show you is the \DescribePara{printyear}
 % \enquote{\PrintOptionF{printyear}} boolean switch. With this switch you can
 % specify if |\calcage| should add \enquote{year} or rather \enquote{years}
-% after the year. This is the default setting.
+% after the age. This is the default setting.
 %
-% \DescribePara{yearsuffix}
-% For the previous parameter you may need the possibility (at least in the
-% German language) to add a single character to the plural word. For example
+%
+% For the previous parameter you may need the possibility
+% \DescribePara{yearsuffix} (at least in the German language) to add a single
+% character to the plural word. For example
 % \begin{quote}
 %   |Albert Einstein wurde vor \calcage[yearsuffix]{1879}{03}{14}| \\
 %   |geboren.| \\
 %   Albert Einstein wurde vor \calcage[printyear=false]{1879}{03}{14} Jahren geboren.
-% ^^A Ups you got my. I didn't implement a switch language feautre (yet). 
+% ^^A Ups you got my. I didn't implement a switch language feautre (yet).
 % \end{quote}
 % To do this you can use the boolean switch
 % \enquote{\PrintOptionF{yearsuffix}}. By default this switch is false.
+% If this boolean is true and the German language was selected then a
+% \enquote{n} will be added after \enquote{Jahre}. If the English language was
+% selected then this switch will not change the output.
 %
-% \DescribePara{numberstring}
 % And last but not least there is the boolean switch \enquote{numberstring}
-% which is true by default. This means that the typesetting process of an
-% integer is done by the package \PrintPackage{fnumprint} which will typeset
-% the word of a number instead of the Arabic number if the value of the number
-% is between 0 and 12. If you don't like this behavior you can set the boolean
-% to false with \enquote{numberstring=false}.
+% \DescribePara{numberstring} which is true by default. This means that the
+% typesetting process of an integer is done by the package
+% \PrintPackage{fnumprint} which will typeset the word of a number instead of
+% the Arabic number if the value of the number is between 0 and 12. If you
+% don't like this behavior you can set the boolean to false with
+% \enquote{numberstring=false}.
 %
 % \section{Bugs}\label{sec:bugs}
 % I tried to implement the possibility to change the default behavior as
 % package option in a nice way but with the current implementation there is a
-% problem with the values. If you give a key with value than the |\setkeys|
+% problem with the values. If you give a key with value then the |\setkeys|
 % macro which gets these parameters as macro fails. I already tried
 % |\expandafter| so if anyone knows where the problem is or has a solution feel
 % free to contact me.
 % \bigskip
 %
-% I think there is a little inaccuracy in the conversion from day to years
-% because my implementation just removes the leap years before dividing but in
+% I think there is a little inaccuracy in the conversion from days to years
+% because my implementation just removes the leap years before dividing. But in
 % my tests this seems to be more theoretically.
+%
+% The problem only has an effect if leap years are involved because if a leap
+% year is calculated then the additional day is subtracted. This means that one
+% day is not longer $\frac{1}{366}$ year but $\frac{1}{365}$ year~\dots
 %
 % \section{Examples}
 % \begin{verbatim}
+%   \TeX{} Live realeases: \\
+%   \calcage{2012}{07}{08} \\
+%   \calcage{2011}{07}{20} \\
 %   \calcage{2010}{09}{10} \\
 %   \calcage{2009}{11}{09}
 % \end{verbatim}\vspace{-1.5em}
+%   \TeX{} Live realeases: \\
+%   \calcage{2012}{07}{08} \\
+%   \calcage{2011}{07}{20} \\
 %   \calcage{2010}{09}{10} \\
 %   \calcage{2009}{11}{09}
 %
@@ -224,7 +236,6 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 %   Albert Einstein died at the age of
 %     \calcage[year=1955, month=04, day=18]{1879}{03}{14}. \\
 %   Age of Linus Torvalds in years: \calcage[printyear=false]{1969}{12}{28} \\
-%   Linus Torvalds is \calcageDays old.
 % \end{verbatim}\vspace{-1.5em}
 % Donald Knuth is \calcage{1938}{01}{10} old. \\
 % Donald Knuth will be 100 years old in
@@ -270,8 +281,8 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 %    \end{macrocode}
 % The next source code line creates a new macro which captures the parameters
 % to use them as default options for the macro |\calcage|.
-% If this macro is set to \enquote{precision=4} for example the |\setkeys| will
-% fail.
+% If this macro is set to \enquote{precision=4} for example the |\setkeys| is
+% going to fail.
 %    \begin{macrocode}
 \edef\calcage@options{\@ptionlist{\@currname.\@currext}}
 %% ^^A \renewcommand{\calcage@options}{precision=4,printyear=false}
@@ -282,8 +293,8 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % \PrintPackage{fnumprint} so I use it's value also in this package because I
 % can rely on this counter.\footnote{I am also the maintainer of the
 % \PrintPackage{fnumprint} package~\dots}
-% If you prefer another language than English or German you can redefine these
-% macros.
+% If you prefer another language than English or German you can redefine the
+% following macro definitions.
 %    \begin{macrocode}
 \ifcase\value{fnumprint@language}\or
 %    \end{macrocode}
@@ -325,7 +336,8 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % My first implementation worked with dividing by $365.2425$ but this was not
 % perfect. So the current implementation counts how many leap years are between
 % the birth year and the current year and subtracts (or adds\footnote{If the
-% birth year is in the future.}) this number.
+% birth year is in the future because in this case the calcage@ageindays
+% counter will be negative.}) this number.
 %    \begin{macrocode}
   \setcounter{calcage@myyear}{#2}%
   \setcounter{calcage@leapyears}{0}%
@@ -356,14 +368,14 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
     \setcounter{calcage@ageindays}{\value{calcage@ageindays} * -1}%
   }{}%
 %    \end{macrocode}
-% Because we know that every year has now exactly 365 day we can divide by
+% Because we know that every year has now exactly 365 days we can divide by
 % that.
 %    \begin{macrocode}
   \FPdiv\calcage@age{\thecalcage@ageindays}{365}%
 %    \end{macrocode}
-% The next step is to truncated the age. There is no rounding. I implemented it
-% this way because if the age would be rounded then there would be a wrong
-% result in cases like $x.999$ which would become $x+1$ if
+% The next step is to truncated the age. There is no rounding used for this. I
+% implemented it this way because if the age would be rounded then there would
+% be a wrong result in cases like $x.999$ which would become $x+1$ if
 % \enquote{precision=0} and that is probably not what you want~\dots
 %    \begin{macrocode}
   \FPtrunc\calcage@age{\calcage@age}{\calcage@precision}%
@@ -371,11 +383,12 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % The last thing to do is to typeset the age which is implemented by the next
 % few lines of code.
 %    \begin{macrocode}
-  \ifthenelse{\equal{\calcage@precision}{0} \AND \boolean{calcage@numberstring}}%
+  \ifthenelse{\boolean{calcage@numberstring}
+    \AND \equal{\calcage@precision}{0}}%
     {\fnumprint[ein]{\calcage@age}}{\numprint{\calcage@age}}%
   \ifthenelse{\boolean{calcage@printyear}}{%
     ~\calcage@yearWord%
-    \ifthenelse{\equal{\calcage@age}{1}}{}{%
+    \ifthenelse{\equal{\calcage@age}{1} \OR \equal{\calcage@age}{-1}}{}{%
       \calcage@yearPluralSuffix%
       \ifthenelse{\boolean{calcage@yearsuffix}}{\calcage@yearSuffix}{}%
     }%
