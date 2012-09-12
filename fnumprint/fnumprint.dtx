@@ -92,8 +92,6 @@ corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
 % \changes{v0.1}{2011/06/12}{Initial version} %% ^^A date guessed
 % \changes{v1.0}{2012/08/22}{Wrote this documentation and the \LaTeX{}-package
 % and added support for English}
-% \changes{v1.0a}{2012/08/23}{Optimized}
-% \changes{v1.0b}{2012/08/26}{Optimized}
 % \changes{v1.1}{2012/08/27}{Added optional parameter \enquote{ein}}
 % \changes{v1.1a}{2012/08/27}{Added support for real numbers}
 %
@@ -226,7 +224,6 @@ corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
 \or
   \RequirePackage{zahl2string}
 %    \end{macrocode}
-% \subsection{Macro definition}
 % \begin{macro}{\ns@en@neunzehn}
 % This internal marco expands to the English word name for a number.
 % It only goes from 0 to 19. It will only be defined if it is necessary.
@@ -241,6 +238,7 @@ corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
 \fi
 %    \end{macrocode}
 % \end{macro}
+% \subsection{Macro definition}
 % \begin{macro}{\fnumprint}
 % Here is the |\fnumprint| macro definition.
 % It takes one not optional parameter.
