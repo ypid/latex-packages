@@ -148,8 +148,9 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % \bigskip
 %
 % \DescribeMacro{\calcage}
-% The macro |\calcage| \oarg{key values} \marg{year} \marg{month} \marg{day}
-% takes a date and typesets the difference to the current date in years.
+% The macro |\calcage| \oarg{optional parameters} \marg{year} \marg{month}
+% \marg{day} takes a date and typesets the difference to the current date in
+% years.
 % \bigskip
 %
 % There are some optional parameters. \DescribePara{year, month, day} For
@@ -159,7 +160,7 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % subset is also possible.
 %
 % Another useful parameter is \enquote{\PrintOptionF{precision}}.
-% \DescribePara{precision} With this switch you can specify how many places
+% \DescribePara{precision} With this parameter you can specify how many places
 % after the decimal separator you would like to get. The default precision is 0
 % which means that |\calcage| will typeset the age in years as integer. If you
 % omit a value for \enquote{precision} then the precision will be 3.
@@ -246,6 +247,7 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 %
 % \StopEventually{}
 %
+% \newpage
 % \section{Implementation}
 % \iffalse
 %<*package>
@@ -273,9 +275,9 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 \DeclareBoolOption{yearsuffix}
 \DeclareBoolOption{numberstring}
 %    \end{macrocode}
-% To test if all parameters are valid the marco |\ProcessLocalKeyvalOptions*|
+% To test if all parameters are valid the macro |\ProcessLocalKeyvalOptions*|
 % is expanded to ensure this before leaving the preamble. This is the only
-% purpose for the |\ProcessLocalKeyvalOptions*| in this case.
+% purpose for the |\ProcessLocalKeyvalOptions*| macro in this case.
 %    \begin{macrocode}
 \ProcessLocalKeyvalOptions*
 %    \end{macrocode}
@@ -289,7 +291,7 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 %% ^^A Package xkeyval Error: `precision=4' undefined in families `calcage'.
 %    \end{macrocode}
 % \subsection{Language selection}
-% Here comes the language selection part. The counter is all ready set by the
+% Here comes the language selection part. The counter is already set by the
 % \PrintPackage{fnumprint} so I use it's value also in this package because I
 % can rely on this counter.\footnote{I am also the maintainer of the
 % \PrintPackage{fnumprint} package~\dots}
@@ -321,9 +323,10 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 %    \end{macrocode}
 % \begin{macro}{\calcage}
 % And now comes the important part -- the definition of |\calcage|.
-% First the |\setkeys| macro is expanded. It sets the default options then the
-% package options get the opportunity to overwrite these settings and finally
-% the macro options get the same possibility.
+% The first thing that has to be done is expanding the |\setkeys| macro. It
+% sets the default options then the package options get the opportunity to
+% overwrite these settings and finally the macro options get the same
+% possibility.
 %    \begin{macrocode}
 \newcommand{\calcage}[4][]{%
   \setkeys{calcage}{precision=0, positive=true, printyear=true,
