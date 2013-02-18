@@ -1,6 +1,6 @@
 % \iffalse meta-comment
 %
-% Copyright (C) 2012 by Robin Schneider <ypid23@aol.de>
+% Copyright (C) 2012-2013 by Robin Schneider <ypid23@aol.de>
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either version 1.3
@@ -19,13 +19,13 @@
 %
 % \iffalse
 %<*driver>
-\ProvidesFile{\jobname.dtx}
+\ProvidesFile{fnumprint.dtx}
 %</driver>
 %<package>%% See file 'fnumprint.dtx' for copyright and licence.
 %<package>\NeedsTeXFormat{LaTeX2e}[1998/12/01]
 %<package>\ProvidesPackage{fnumprint}
 %<*package>
-    [2012/08/27 v1.1 Printing fancy numbers]
+    [2012/08/27 v1.1a Printing fancy numbers]
 %</package>
 %
 %<*driver>
@@ -34,6 +34,7 @@
 \newcommand{\PackageCTANURL}{http://www.ctan.org/pkg/fnumprint}
 \newcommand{\PackageAuthor}{Robin Schneider}
 \newcommand{\PackageAuthorEmail}{ypid23@aol.de}
+\newcommand{\PackageName}{\PrintPackage{fnumprint}}
 \newcommand{\PrintPackage}[1]{\textsf{#1}}
 \usepackage{fnumprint}
 \usepackage{
@@ -43,18 +44,18 @@
   url,
   hypdoc,
 }
-\GetFileInfo{\jobname.dtx}
+\GetFileInfo{fnumprint.dtx}
 \hypersetup{
-  pdftitle={A manual for \jobname},
+  pdftitle={A manual for \PackageName},
   pdfauthor={\PackageAuthor{} <\PackageAuthorEmail>},
   pdfsubject={\fileinfo},
   baseurl={\PackageURL},
-  pdfkeywords={This document corresponds to \textsf{\jobname}~\fileversion,
+  pdfkeywords={This document corresponds to \PackageName~\fileversion,
     dated \filedate}
 }
 
-\title{The \PrintPackage{\jobname} package\thanks{This document
-corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
+\title{The \PackageName{} package\thanks{This document
+corresponds to \PackageName~\fileversion, dated \filedate.}}
 \author{\PackageAuthor \\
   \texttt{\href{mailto:\PackageAuthorEmail?subject=LaTeX package fnumprint%
     \&body=Dear Robin Schneider,}%
@@ -66,7 +67,7 @@ corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
 \CodelineIndex
 \RecordChanges
 \begin{document}
-  \DocInput{\jobname.dtx}
+  \DocInput{fnumprint.dtx}
   \PrintChanges
   \PrintIndex
 \end{document}
@@ -117,7 +118,7 @@ corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
 % \tableofcontents
 %
 % \section{Introduction}
-% The \PrintPackage{\jobname} package defines two macros which decide to
+% The \PackageName{} package defines two macros which decide to
 % typeset a number either as Arabic number or as word name for the number. If
 % the number is between zero and twelve (including zero and twelve) then the
 % word name will be used. This package uses the \PrintPackage{zahl2string}
@@ -132,7 +133,7 @@ corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}
 %   |\usepackage{fnumprint}|
 % \end{quote}
 % in the preamble of your \LaTeXe{} source file. In this case the last by
-% \PrintPackage{fnumprint} supported language given as class option will be
+% \PackageName{} supported language given as class option will be
 % used. You can overwrite this with a package option like
 % this:
 % \begin{quote}

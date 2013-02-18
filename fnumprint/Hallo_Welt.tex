@@ -17,10 +17,7 @@
 \newcounter{test}
  \foreach \x in {-1, 0, ..., 21}{
  \setcounter{test}{\x}
- \x --\fnumprint[ein]{\x}--\fnumprintc[ein]{test}--
- 
- 
- 
- }
-
+ \x --\fnumprint{\x}--\fnumprintc[ein]{test}--
+}
+\fnumprint{2,3} 
 \end{document}
