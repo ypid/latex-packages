@@ -153,6 +153,13 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % You can use the package \PrintPackage{ifthen} for checking if a counter is
 % one: \\ |time\ifthenelse{\equal{\value{counttexruns}}{1}}{}{s}|
 %
+% \subsection{latexmk}
+% If you are using latexmk then you have to add this
+% \begin{quote}
+%   |$hash_calc_ignore_pattern{'ctr'} = '^\d+$';|
+% \end{quote}
+% to your latexmkrc file to let latexmk know that the changing counter in this
+% file should not trigger a recompile.
 %
 % \StopEventually{}
 %
