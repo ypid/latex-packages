@@ -1,47 +1,101 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{sourcefiletable}
-	[2012/08/24 v1.01 sourcefiletable packages by Robin Schneider]
+  [2013/06/29 v1.01 Typeset table of manually source files]
 
 \RequirePackage[datecolor=black,separator=,align=right,notime=true]{getfiledateRS}
 \RequirePackage{
   attachfile,
   longtable,
+  etoolbox,
+  varioref,
+  mfirstuc,
 }
 
+\newcounter{sourcefiletable@index}
+\newcounter{sourcefiletable@itr}
+\newcounter{sourcefiletable@cnt}
+\newcommand*{\AddSourceFile}[3][]{%
+  \stepcounter{sourcefiletable@index}%
+  \csdef{sourcefiletable@\thesourcefiletable@index @opt}{#1}%
+  \csdef{sourcefiletable@\thesourcefiletable@index @name}{#2}%
+  \csdef{sourcefiletable@\thesourcefiletable@index @file}{#3}%
+}
+
+% The first parameter is the index.
+% The second one is the field. It can be one of those there fields: opt, name, file
+\newcommand*{\@GetSourceFile}[1]{%
+  \csuse{sourcefiletable@\thesourcefiletable@itr @#1}%
+}
+
+\newcommand*{\PrintSourceFile}{%
+  \setcounter{sourcefiletable@itr}{0}%
+  \whileboolexpr%
+    { test {\ifnumcomp{\value{sourcefiletable@itr}}{<}{\value{sourcefiletable@index}}} }%
+    {%
+      \stepcounter{sourcefiletable@itr}%
+      \sourcefile[\@GetSourceFile{opt}]{\@GetSourceFile{name}}{\@GetSourceFile{file}}%
+    }%
+}
 
 %% \url{http://en.wikipedia.org/wiki/Portable_Document_Format#File_attachments}
 %% pdftk Dokument.pdf unpack_files output
 \newenvironment{sourcefiletable}[1]{%
-	\resetplusplus%
-	\newcommand{\sourcefile}[2]{\hline \plusplus & ##1 & \numprint{\pdffilesize{##2}}
-		& \getfiledate{##2} & \textdiscount \\}%
-	\newcommand{\Isourcefile}[2]{\hline \plusplus & ##1 & \numprint{\pdffilesize{##2}}
-		& \getfiledate{##2} & \attachfile[description={##1}]{##2}\\}%
-	\renewcommand{\longtableheader}{\hline \multicolumn{1}{|c}{\textbf{Nr.}}%
-		& \multicolumn{1}{l}{\textbf{Dateibeschreibung}}%
-		& \multicolumn{1}{c}{\textbf{Bytes}}%
-		& \multicolumn{1}{c}{\textbf{Änderungsdatum}}%
-		& \multicolumn{1}{c|}{\textbf{Eingebunden}} \\ \hline}%
+  \setcounter{sourcefiletable@cnt}{0}
+  \newcommand{\sourcefile}[3][]{%
+    \stepcounter{sourcefiletable@cnt}%
+    \arabic{sourcefiletable@cnt} & ##2 & \numprint{\pdffilesize{##3}} & \getfiledate{##3} &%
+    \ifthenelse{\equal{##1}{include}}{%
+      \attachfile[description={##2}]{##3}%
+    }{%
+      \textdiscount%
+    }%
+    \\ \hline%
+  }%
+  \renewcommand{\longtableheader}{\hline \multicolumn{1}{|c}{\textbf{Nr.}}%
+    & \multicolumn{1}{l}{\textbf{Dateibeschreibung}}%
+    & \multicolumn{1}{c}{\textbf{Bytes}}%
+    & \multicolumn{1}{c}{\textbf{Änderungsdatum}}%
+    & \multicolumn{1}{c|}{\textbf{Eingebunden}} \\ \hline}%
 
-	\oneIF{#1}{%
-	\ifthenelse{\isundefined\chapter}%
-	{\subsection*{Informationen zu den Quelldateien}%
-		\pdfbookmark[2]{Quelldateien}{sourcefilestats}}
-	{\section*{Informationen zu den Quelldateien}%
-		\pdfbookmark[1]{Quelldateien}{sourcefilestats}}%
-	}{}%% Wird oft auf einer anderen Seite gesetzt als die Tabelle
-	\begin{longtable}{|rp{0.4\linewidth}rrc|}
-	\longtableheader
-	\endfirsthead
 
-	\longtableheader
-	\endhead
+  \oneIF{#1}{%
+    \ifthenelse{\isnamedefined{chapter}}%
+    {%
+      \subsection*{Informationen zu den Quelldateien}%
+      \pdfbookmark[2]{Quelldateien}{sourcefilestats}%
+    }{%
+      \section*{Informationen zu den Quelldateien}%
+      \pdfbookmark[1]{Quelldateien}{sourcefilestats}%
+    }%
+  }{}%% Wird oft auf einer anderen Seite gesetzt als die Tabelle
+  \begin{longtable}{|rp{0.4\linewidth}rrc|}%
+  \longtableheader%
+  \endfirsthead%
 
-	\multicolumn{5}{|r|}{{Siehe nächste Seite}} \\ \hline
-	\endfoot
+  \longtableheader%
+  \endhead%
 
-	\hline% \hline
-	\endlastfoot
-}{\end{longtable}}
+  \multicolumn{5}{|r|}{%
+    \ifthenelse{\isnamedefined{longtableendfoot}}{%
+      \longtableendfoot%
+    }{%
+      \emph{\xmakefirstuc{\seename} \reftextfaceafter}%
+    }%
+  }
+  \\ \hline
+  \endfoot%
+  \endlastfoot%
+
+  \hline% \hline
+}{%
+  \end{longtable}%
+}
+
+
+%\let\includeRaw\include\relax
+%\renewcommand{\include}[3][][]{%
+%  \AddSourceFile[#1]{#2}{#3}%
+%  \includeRaw{#3}
+%}
 
 \endinput
