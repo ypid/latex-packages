@@ -1,0 +1,107 @@
+\NeedsTeXFormat{LaTeX2e}[1998/12/01]
+\ProvidesPackage{doclicense}
+    [2015/02/05 v0.5a Set and print the license of a document]
+
+\RequirePackage{kvoptions}
+\RequirePackage{xifthen}
+\RequirePackage{etoolbox}
+\RequirePackage{xspace}
+\RequirePackage{csquotes}
+\RequirePackage{ccicons}
+
+%% Package parameters {{{
+\DeclareStringOption[CC]{type}
+\DeclareStringOption[by-sa]{modifier}
+\DeclareStringOption[3.0]{version}
+\DeclareStringOption[de]{lang}
+\DeclareStringOption{textlang}
+\DeclareStringOption[10em]{imagewidth}
+\ProcessLocalKeyvalOptions*
+%% }}}
+
+%% language support {{{
+\ifthenelse{\equal{\doclicense@textlang}{}}{\renewcommand{\doclicense@textlang}{\languagename}}{}
+\ifthenelse{\equal{\doclicense@textlang}{german}}{\input{doclicense-german.ldf}}{}
+\ifthenelse{\equal{\doclicense@textlang}{ngerman}}{\input{doclicense-german.ldf}}{}
+\ifthenelse{\equal{\doclicense@textlang}{english}}{\input{doclicense-english.ldf}}{}
+%% }}}
+
+\newcommand{\doclicense@baseUrlCC}{https://creativecommons.org/licenses}
+\newboolean{doclicense@licenseKnown}
+\newlength{\doclicense@hsize}
+
+%% User macros {{{
+\newcommand{\doclicenseType}{\doclicense@type}
+\newcommand{\doclicenseModifier}{\MakeUppercase{\doclicense@modifier}}
+\newcommand{\doclicenseVersion}{\doclicense@version}
+\newcommand{\doclicenseName}{\doclicense@type~\doclicense@modifier~\doclicense@version}
+\newcommand{\doclicense@longName}{\csname doclicense@lang@lic@\doclicense@type @\doclicense@modifier @\doclicense@version\endcsname}
+\newcommand{\doclicenseLongName}{\doclicenseLongType\space\doclicense@longName}
+\newcommand{\doclicenseText}{%
+  \doclicense@lang@thisDoc\space
+  \href{\doclicenseURL}{\enquote{\doclicenseName}} \doclicense@lang@word@license.\xspace
+}
+\newcommand{\doclicenseLongText}{%
+  \doclicense@lang@thisDoc\space
+  \href{\doclicenseURL}{\doclicenseLongType\space\enquote{\doclicense@longName}} \doclicense@lang@word@license.\xspace
+}
+\newcommand{\doclicenseIcon}{\doclicense@icon\xspace}
+\newcommand{\doclicenseImage}[1][]{%
+  \setkeys{doclicense}{#1}
+  \includegraphics[width=\doclicense@imagewidth]{doclicense-\doclicense@type-\doclicense@modifier.pdf}
+}
+
+\newcommand{\doclicenseLicense}{
+\iflandscape{%
+  \setlength{\doclicense@hsize}{20cm}   %% landscape
+}{%
+  \setlength{\doclicense@hsize}{10.5cm} %% no landscape
+}
+\begin{center}
+\begin{minipage}{\doclicense@hsize}
+  \doclicenseLongText%
+\end{minipage}
+\hfill
+\begin{minipage}{\doclicense@imagewidth}
+  \doclicenseImage%
+\end{minipage}
+\end{center}
+}
+%% }}}
+
+%% Set license {{{
+\newcommand{\doclicense@icon}{%
+  \PackageError{doclicense}{Icon not defined}{Please check the documentation of doclicense to see what you can do about it.}%
+}
+\newcommand{\doclicense@set}[1][]{%
+  %% CC {{{
+  \ifthenelse{\equal{\doclicense@type}{CC}}{%
+    \newcommand{\doclicenseLongType}{Creative Commons}
+
+    \ifthenelse{\equal{\doclicense@lang}{}}{%
+      \edef\doclicense@UrlLangPart{}
+    }{%
+      \edef\doclicense@UrlLangPart{/\doclicense@lang}
+    }
+    \edef\doclicenseURL{\doclicense@baseUrlCC/\doclicense@modifier/\doclicense@version\doclicense@UrlLangPart}
+    \ifthenelse{\equal{\doclicense@modifier}{by-sa}}{\renewcommand{\doclicense@icon}{\ccbysa}}{}
+    \ifthenelse{\equal{\doclicense@modifier}{by-nd}}{\renewcommand{\doclicense@icon}{\ccbynd}}{}
+    \ifthenelse{\equal{\doclicense@modifier}{by-nc}}{\renewcommand{\doclicense@icon}{\ccbync}}{}
+    \ifthenelse{\equal{\doclicense@modifier}{by-nc-sa}}{\renewcommand{\doclicense@icon}{\ccbync}}{}
+    \ifthenelse{\equal{\doclicense@modifier}{by-nc-nd}}{\renewcommand{\doclicense@icon}{\ccbync}}{}
+    \ifthenelse{\equal{\doclicense@modifier}{zero}}{\renewcommand{\doclicense@icon}{\cczero}}{}
+    \ifthenelse{\equal{\doclicense@modifier}{pd}}{\renewcommand{\doclicense@icon}{\ccpd}}{}
+
+    \ifcsdef{doclicense@lang@lic@\doclicense@type @\doclicense@modifier @\doclicense@version}{}{%
+      \PackageError{doclicense}{License long name not defined}{Please check the documentation of doclicense to see what you can do about it.}%
+    }
+
+    \setboolean{doclicense@licenseKnown}{true}
+  }{}%% }}}
+  \ifthenelse{\not\boolean{doclicense@licenseKnown}}{%
+    \PackageError{doclicense}{License unknown}{Please check the documentation of doclicense to see what you can do about it.}%
+  }{}%
+}
+\doclicense@set%
+
+\endinput
