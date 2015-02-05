@@ -1,15 +1,38 @@
 \NeedsTeXFormat{LaTeX2e}[1998/12/01]
 \ProvidesPackage{doclicence}
-    [2015/02/05 v0.2 Set and print the licence of a document]
+    [2015/02/05 v0.3 Set and print the licence of a document]
 \RequirePackage{kvoptions}
 \RequirePackage{xifthen}
+\RequirePackage{etoolbox}
 \RequirePackage{xspace}
 \RequirePackage{ccicons}
-\DeclareStringOption[CC]{name}
-\DeclareStringOption[BY-SA]{modifier}
-\DeclareStringOption[4.0]{version}
-\DeclareStringOption[]{lang}
+\DeclareStringOption[CC]{type}
+\DeclareStringOption[by-sa]{modifier}
+\DeclareStringOption[3.0]{version}
+\DeclareStringOption[de]{lang}
+\DeclareStringOption[german]{textlang}
 \ProcessLocalKeyvalOptions*
+
+\ifthenelse{\equal{\doclicence@textlang}{german}}{\input{doclicence-german.ldf}}{}
+
+%% User macros {{{
+\newcommand{\doclicenceType}{\doclicence@type}
+\newcommand{\doclicenceModifier}{\MakeUppercase{\doclicence@modifier}}
+\newcommand{\doclicenceVersion}{\doclicence@version}
+\newcommand{\doclicenceURLRef}{}
+\newcommand{\doclicenceIcon}{\doclicence@icon\xspace}
+\newcommand{\doclicenceName}{\doclicence@type~\doclicence@modifier~\doclicence@version}
+\newcommand{\doclicenceLongName}{\doclicenceLongType\space\csname doclicence@lang@lic@\doclicence@type @\doclicence@modifier @\doclicence@version\endcsname}
+\newcommand{\doclicenceText}{%
+  \doclicence@lang@thisDoc\space
+  \href{\doclicenceURL}{\doclicenceName}\xspace
+}
+\newcommand{\doclicenceLongText}{%
+  \doclicence@lang@thisDoc\space
+  \href{\doclicenceURL}{\doclicenceLongName}\xspace
+}
+%% }}}
+
 
 \newcommand{\doclicence@baseUrlCC}{https://creativecommons.org/licenses}
 \newboolean{doclicence@licenceKnown}
@@ -17,30 +40,28 @@
 \newcommand{\doclicence@icon}{%
   \PackageError{doclicence}{Icon not defined}{Please check the documentation of doclicence to see what you can do about it.}%
 }
-
-%% User macros {{{
-\newcommand{\doclicenceURL}{}
-\newcommand{\doclicenceURLRef}{}
-\newcommand{\doclicenceIcon}{\doclicence@icon\xspace}
-\newcommand{\doclicenceName}{\doclicence@name~\doclicence@modifier~\doclicence@version}
-\newcommand{\doclicenceNameRef}{%
-  \href{\doclicenceURL}{\doclicenceName}\xspace
-}
-%% }}}
-
 \newcommand{\doclicence@set}[1][]{%
   %% CC {{{
-  \ifthenelse{\equal{\doclicence@name}{CC}}{%
-    \renewcommand{\doclicenceURL}{\doclicence@baseUrlCC/\doclicence@modifier/\doclicence@version%
-      \ifthenelse{\equal{\doclicence@lang}{}}{}{/\doclicence@lang}%
+  \ifthenelse{\equal{\doclicence@type}{CC}}{%
+    \newcommand{\doclicenceLongType}{Creative Commons}
+
+    \ifthenelse{\equal{\doclicence@lang}{}}{%
+      \edef\doclicence@UrlLangPart{}
+    }{%
+      \edef\doclicence@UrlLangPart{/\doclicence@lang}
     }
-    \ifthenelse{\equal{\doclicence@modifier}{BY-SA}}{\renewcommand{\doclicence@icon}{\ccbysa}}{}
-    \ifthenelse{\equal{\doclicence@modifier}{BY-ND}}{\renewcommand{\doclicence@icon}{\ccbynd}}{}
-    \ifthenelse{\equal{\doclicence@modifier}{BY-NC}}{\renewcommand{\doclicence@icon}{\ccbync}}{}
-    \ifthenelse{\equal{\doclicence@modifier}{BY-NC-SA}}{\renewcommand{\doclicence@icon}{\ccbync}}{}
-    \ifthenelse{\equal{\doclicence@modifier}{BY-NC-ND}}{\renewcommand{\doclicence@icon}{\ccbync}}{}
-    \ifthenelse{\equal{\doclicence@modifier}{ZERO}}{\renewcommand{\doclicence@icon}{\cczero}}{}
-    \ifthenelse{\equal{\doclicence@modifier}{PD}}{\renewcommand{\doclicence@icon}{\ccpd}}{}
+    \edef\doclicenceURL{\doclicence@baseUrlCC/\doclicence@modifier/\doclicence@version\doclicence@UrlLangPart}
+    \ifthenelse{\equal{\doclicence@modifier}{by-sa}}{\renewcommand{\doclicence@icon}{\ccbysa}}{}
+    \ifthenelse{\equal{\doclicence@modifier}{by-nd}}{\renewcommand{\doclicence@icon}{\ccbynd}}{}
+    \ifthenelse{\equal{\doclicence@modifier}{by-nc}}{\renewcommand{\doclicence@icon}{\ccbync}}{}
+    \ifthenelse{\equal{\doclicence@modifier}{by-nc-sa}}{\renewcommand{\doclicence@icon}{\ccbync}}{}
+    \ifthenelse{\equal{\doclicence@modifier}{by-nc-nd}}{\renewcommand{\doclicence@icon}{\ccbync}}{}
+    \ifthenelse{\equal{\doclicence@modifier}{zero}}{\renewcommand{\doclicence@icon}{\cczero}}{}
+    \ifthenelse{\equal{\doclicence@modifier}{pd}}{\renewcommand{\doclicence@icon}{\ccpd}}{}
+
+    \ifcsdef{doclicence@lang@lic@\doclicence@type @\doclicence@modifier @\doclicence@version}{}{%
+      \PackageError{doclicence}{Licence long name not defined}{Please check the documentation of doclicence to see what you can do about it.}%
+    }
 
     \setboolean{doclicence@licenceKnown}{true}
   }{}%% }}}

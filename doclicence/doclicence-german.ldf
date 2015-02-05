@@ -1,0 +1,5 @@
+\ProvidesFile{doclicence-german.ldf}
+
+\edef\doclicence@lang@thisDoc{Dieses Dokument unterliegt einer}%
+
+\expandafter\edef\csname doclicence@lang@lic@CC@by-sa@3.0\endcsname{Namensnennung - Weitergabe unter gleichen Bedingungen 3.0 Deutschland}%

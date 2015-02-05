@@ -1,0 +1,5 @@
+\ProvidesFile{doclicence-english.ldf}
+
+\edef\doclicence@lang@thisDoc{This document is licensed under a}%
+
+\expandafter\edef\csname doclicence@lang@lic@CC@by-sa@3.0\endcsname{Attribution-ShareAlike 3.0 Unported}%
