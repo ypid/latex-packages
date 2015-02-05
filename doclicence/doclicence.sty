@@ -1,29 +1,39 @@
 \NeedsTeXFormat{LaTeX2e}[1998/12/01]
 \ProvidesPackage{doclicence}
-    [2015/02/05 v0.4 Set and print the licence of a document]
+    [2015/02/05 v0.5 Set and print the licence of a document]
+
 \RequirePackage{kvoptions}
 \RequirePackage{xifthen}
 \RequirePackage{etoolbox}
 \RequirePackage{xspace}
 \RequirePackage{csquotes}
 \RequirePackage{ccicons}
+
+%% Package parameters {{{
 \DeclareStringOption[CC]{type}
 \DeclareStringOption[by-sa]{modifier}
 \DeclareStringOption[3.0]{version}
 \DeclareStringOption[de]{lang}
 \DeclareStringOption{textlang}
+\DeclareStringOption[10em]{imagewidth}
 \ProcessLocalKeyvalOptions*
+%% }}}
 
+%% language support {{{
 \ifthenelse{\equal{\doclicence@textlang}{}}{\renewcommand{\doclicence@textlang}{\languagename}}{}
 \ifthenelse{\equal{\doclicence@textlang}{german}}{\input{doclicence-german.ldf}}{}
 \ifthenelse{\equal{\doclicence@textlang}{ngerman}}{\input{doclicence-german.ldf}}{}
 \ifthenelse{\equal{\doclicence@textlang}{english}}{\input{doclicence-english.ldf}}{}
+%% }}}
+
+\newcommand{\doclicence@baseUrlCC}{https://creativecommons.org/licenses}
+\newboolean{doclicence@licenceKnown}
+\newlength{\doclicence@hsize}
 
 %% User macros {{{
 \newcommand{\doclicenceType}{\doclicence@type}
 \newcommand{\doclicenceModifier}{\MakeUppercase{\doclicence@modifier}}
 \newcommand{\doclicenceVersion}{\doclicence@version}
-\newcommand{\doclicenceIcon}{\doclicence@icon\xspace}
 \newcommand{\doclicenceName}{\doclicence@type~\doclicence@modifier~\doclicence@version}
 \newcommand{\doclicence@longName}{\csname doclicence@lang@lic@\doclicence@type @\doclicence@modifier @\doclicence@version\endcsname}
 \newcommand{\doclicenceLongName}{\doclicenceLongType\space\doclicence@longName}
@@ -35,12 +45,31 @@
   \doclicence@lang@thisDoc\space
   \href{\doclicenceURL}{\doclicenceLongType\space\enquote{\doclicence@longName}} \doclicence@lang@word@licence.\xspace
 }
+\newcommand{\doclicenceIcon}{\doclicence@icon\xspace}
+\newcommand{\doclicenceImage}[1][]{%
+  \setkeys{doclicence}{#1}
+  \includegraphics[width=\doclicence@imagewidth]{doclicence-\doclicence@type-\doclicence@modifier.pdf}
+}
+
+\newcommand{\doclicenceLicence}{
+\iflandscape{%
+  \setlength{\doclicence@hsize}{20cm}   %% landscape
+}{%
+  \setlength{\doclicence@hsize}{10.5cm} %% no landscape
+}
+\begin{center}
+\begin{minipage}{\doclicence@hsize}
+  \doclicenceLongText%
+\end{minipage}
+\hfill
+\begin{minipage}{\doclicence@imagewidth}
+  \doclicenceImage%
+\end{minipage}
+\end{center}
+}
 %% }}}
 
-
-\newcommand{\doclicence@baseUrlCC}{https://creativecommons.org/licenses}
-\newboolean{doclicence@licenceKnown}
-
+%% Set license {{{
 \newcommand{\doclicence@icon}{%
   \PackageError{doclicence}{Icon not defined}{Please check the documentation of doclicence to see what you can do about it.}%
 }
@@ -75,8 +104,4 @@
 }
 \doclicence@set%
 
-\newcommand{\printlicense}{%
-  \ifthenelse{\equal{\doclicence@licence}{}}{}%
-    {\input{/home/rsadmin/Dokumente/LaTeX/input-document/license/\doclicence@licence}}%
-}
 \endinput
