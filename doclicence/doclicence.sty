@@ -1,35 +1,39 @@
 \NeedsTeXFormat{LaTeX2e}[1998/12/01]
 \ProvidesPackage{doclicence}
-    [2015/02/05 v0.3 Set and print the licence of a document]
+    [2015/02/05 v0.4 Set and print the licence of a document]
 \RequirePackage{kvoptions}
 \RequirePackage{xifthen}
 \RequirePackage{etoolbox}
 \RequirePackage{xspace}
+\RequirePackage{csquotes}
 \RequirePackage{ccicons}
 \DeclareStringOption[CC]{type}
 \DeclareStringOption[by-sa]{modifier}
 \DeclareStringOption[3.0]{version}
 \DeclareStringOption[de]{lang}
-\DeclareStringOption[german]{textlang}
+\DeclareStringOption{textlang}
 \ProcessLocalKeyvalOptions*
 
+\ifthenelse{\equal{\doclicence@textlang}{}}{\renewcommand{\doclicence@textlang}{\languagename}}{}
 \ifthenelse{\equal{\doclicence@textlang}{german}}{\input{doclicence-german.ldf}}{}
+\ifthenelse{\equal{\doclicence@textlang}{ngerman}}{\input{doclicence-german.ldf}}{}
+\ifthenelse{\equal{\doclicence@textlang}{english}}{\input{doclicence-english.ldf}}{}
 
 %% User macros {{{
 \newcommand{\doclicenceType}{\doclicence@type}
 \newcommand{\doclicenceModifier}{\MakeUppercase{\doclicence@modifier}}
 \newcommand{\doclicenceVersion}{\doclicence@version}
-\newcommand{\doclicenceURLRef}{}
 \newcommand{\doclicenceIcon}{\doclicence@icon\xspace}
 \newcommand{\doclicenceName}{\doclicence@type~\doclicence@modifier~\doclicence@version}
-\newcommand{\doclicenceLongName}{\doclicenceLongType\space\csname doclicence@lang@lic@\doclicence@type @\doclicence@modifier @\doclicence@version\endcsname}
+\newcommand{\doclicence@longName}{\csname doclicence@lang@lic@\doclicence@type @\doclicence@modifier @\doclicence@version\endcsname}
+\newcommand{\doclicenceLongName}{\doclicenceLongType\space\doclicence@longName}
 \newcommand{\doclicenceText}{%
   \doclicence@lang@thisDoc\space
-  \href{\doclicenceURL}{\doclicenceName}\xspace
+  \href{\doclicenceURL}{\enquote{\doclicenceName}} \doclicence@lang@word@licence.\xspace
 }
 \newcommand{\doclicenceLongText}{%
   \doclicence@lang@thisDoc\space
-  \href{\doclicenceURL}{\doclicenceLongName}\xspace
+  \href{\doclicenceURL}{\doclicenceLongType\space\enquote{\doclicence@longName}} \doclicence@lang@word@licence.\xspace
 }
 %% }}}
 
