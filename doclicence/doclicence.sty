@@ -1,0 +1,57 @@
+\NeedsTeXFormat{LaTeX2e}[1998/12/01]
+\ProvidesPackage{doclicence}
+    [2015/02/05 v0.2 Set and print the licence of a document]
+\RequirePackage{kvoptions}
+\RequirePackage{xifthen}
+\RequirePackage{xspace}
+\RequirePackage{ccicons}
+\DeclareStringOption[CC]{name}
+\DeclareStringOption[BY-SA]{modifier}
+\DeclareStringOption[4.0]{version}
+\DeclareStringOption[]{lang}
+\ProcessLocalKeyvalOptions*
+
+\newcommand{\doclicence@baseUrlCC}{https://creativecommons.org/licenses}
+\newboolean{doclicence@licenceKnown}
+
+\newcommand{\doclicence@icon}{%
+  \PackageError{doclicence}{Icon not defined}{Please check the documentation of doclicence to see what you can do about it.}%
+}
+
+%% User macros {{{
+\newcommand{\doclicenceURL}{}
+\newcommand{\doclicenceURLRef}{}
+\newcommand{\doclicenceIcon}{\doclicence@icon\xspace}
+\newcommand{\doclicenceName}{\doclicence@name~\doclicence@modifier~\doclicence@version}
+\newcommand{\doclicenceNameRef}{%
+  \href{\doclicenceURL}{\doclicenceName}\xspace
+}
+%% }}}
+
+\newcommand{\doclicence@set}[1][]{%
+  %% CC {{{
+  \ifthenelse{\equal{\doclicence@name}{CC}}{%
+    \renewcommand{\doclicenceURL}{\doclicence@baseUrlCC/\doclicence@modifier/\doclicence@version%
+      \ifthenelse{\equal{\doclicence@lang}{}}{}{/\doclicence@lang}%
+    }
+    \ifthenelse{\equal{\doclicence@modifier}{BY-SA}}{\renewcommand{\doclicence@icon}{\ccbysa}}{}
+    \ifthenelse{\equal{\doclicence@modifier}{BY-ND}}{\renewcommand{\doclicence@icon}{\ccbynd}}{}
+    \ifthenelse{\equal{\doclicence@modifier}{BY-NC}}{\renewcommand{\doclicence@icon}{\ccbync}}{}
+    \ifthenelse{\equal{\doclicence@modifier}{BY-NC-SA}}{\renewcommand{\doclicence@icon}{\ccbync}}{}
+    \ifthenelse{\equal{\doclicence@modifier}{BY-NC-ND}}{\renewcommand{\doclicence@icon}{\ccbync}}{}
+    \ifthenelse{\equal{\doclicence@modifier}{ZERO}}{\renewcommand{\doclicence@icon}{\cczero}}{}
+    \ifthenelse{\equal{\doclicence@modifier}{PD}}{\renewcommand{\doclicence@icon}{\ccpd}}{}
+
+    \setboolean{doclicence@licenceKnown}{true}
+  }{}%% }}}
+  \ifthenelse{\not\boolean{doclicence@licenceKnown}}{%
+    \PackageError{doclicence}{Licence unknown}{Please check the documentation of doclicence to see what you can do about it.}%
+  }{}%
+}
+\doclicence@set%
+
+\newcommand{\printlicense}{%
+  \ifthenelse{\equal{\doclicence@licence}{}}{}%
+    {\input{/home/rsadmin/Dokumente/LaTeX/input-document/license/\doclicence@licence}}%
+}
+\endinput
