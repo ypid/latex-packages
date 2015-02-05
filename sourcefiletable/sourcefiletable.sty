@@ -1,9 +1,9 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{sourcefiletable}
-  [2013/06/29 v1.01 Typeset table of manually source files]
+  [2013/06/29 v1.1 Typeset table of manually source files]
 
 \RequirePackage[datecolor=black,separator=,align=right,notime=true]{getfiledateRS}
-\RequirePackage{
+\RequirePackage{%
   attachfile,
   longtable,
   etoolbox,
@@ -42,14 +42,19 @@
 \newenvironment{sourcefiletable}[1]{%
   \setcounter{sourcefiletable@cnt}{0}
   \newcommand{\sourcefile}[3][]{%
-    \stepcounter{sourcefiletable@cnt}%
-    \arabic{sourcefiletable@cnt} & ##2 & \numprint{\pdffilesize{##3}} & \getfiledate{##3} &%
-    \ifthenelse{\equal{##1}{include}}{%
-      \attachfile[description={##2}]{##3}%
-    }{%
-      \textdiscount%
-    }%
-    \\ \hline%
+    \IfFileExists{##3}{
+      \stepcounter{sourcefiletable@cnt}%
+      \arabic{sourcefiletable@cnt} & ##2 & \numprint{\pdffilesize{##3}} & \getfiledate{##3} &%
+      \ifthenelse{\equal{##1}{include}}{%
+        \attachfile[description={##2}]{##3}%
+      }{%
+        \textdiscount%
+      }%
+      \\ \hline%
+    }{
+      \PackageWarning{sourcefiletable}%
+        {File not found ##3}
+    }
   }%
   \renewcommand{\longtableheader}{\hline \multicolumn{1}{|c}{\textbf{Nr.}}%
     & \multicolumn{1}{l}{\textbf{Dateibeschreibung}}%
