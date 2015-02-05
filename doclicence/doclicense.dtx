@@ -1,6 +1,6 @@
 % \iffalse meta-comment
 %
-% Copyright (C) 2012 by Robin Schneider <ypid23@aol.de>
+% Copyright (C) 2015 by Robin Schneider <ypid23@aol.de>
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either version 1.3
@@ -27,20 +27,20 @@
 %<package>\NeedsTeXFormat{LaTeX2e}[1998/12/01]
 %<package>\ProvidesPackage{doclicense}
 %<*package>
-    [2012/09/09 v0.90 Calculate the age in years]
+    [2015/02/05 v0.7 Set and print the license of a document]
 %</package>
 %
 %<*driver>
 \documentclass[english]{ltxdoc}
 \newcommand{\PackageURL}{https://github.com/ypid/latex-packages/tree/master/doclicense}
-\newcommand{\PackageCTANURL}{http://www.ctan.org/pkg/doclicense}
+\newcommand{\PackageCTANURL}{https://www.ctan.org/pkg/doclicense}
 \newcommand{\PackageAuthor}{Robin Schneider}
-\newcommand{\PackageAuthorEmail}{ypid23@aol.de}
+\newcommand{\PackageAuthorEmail}{ypid@riseup.net}
 \newcommand{\PackageName}{\PrintPackage{doclicense}}
 \newcommand{\PrintPackage}[1]{\textsf{#1}}
 \newcommand{\PrintOptionF}[1]{\emph{#1}} %% ^^A This macro is used for
 %% ^^A explaining any parameter when they first come up in the documentation.
-\newcommand{\DescribePara}[1]{\marginpar{\raggedleft\strut\MacroFont\string #1}}
+\newcommand{\DescribePara}[1]{\marginpar{\raggedleft\strut\MacroFont\string#1}}
 \usepackage{doclicense}
 \usepackage{
   babel,
@@ -62,25 +62,26 @@
 
 \title{The \PackageName{} package\thanks{This document
 corresponds to \PackageName~\fileversion, dated \filedate.}}
-\author{\PackageAuthor \\
+\author{\PackageAuthor\\
   \texttt{\href{mailto:\PackageAuthorEmail?subject=LaTeX package doclicense%
     \&body=Dear Robin Schneider,}%
     {\PackageAuthorEmail}%
   }%
 }
 
-\EnableCrossrefs
-\CodelineIndex
-\RecordChanges
+\EnableCrossrefs%
+\CodelineIndex%
+\RecordChanges%
 \begin{document}
   \DocInput{doclicense.dtx}
-  \PrintChanges
-  \PrintIndex
+  \PrintChanges%
+  \PrintIndex%
 \end{document}
 %</driver>
 % \fi
 %
-% \CheckSum{122}
+% ^^A \%CheckSum{0}
+% ^^A I use version control and so on which has much better checksums :)
 %
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -98,7 +99,7 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 %   Grave accent  \`     Left brace    \{     Vertical bar  \|
 %   Right brace   \}     Tilde         \~}
 %
-% \changes{0.90}{2012/09/09}{Initial version}
+% \changes{0.70}{2015/02/05}{Initial version}
 %
 % \DoNotIndex{\RequirePackage, \DeclareOption, \ProcessOptions}
 % \DoNotIndex{\PackageWarning, \MessageBreak}
@@ -110,7 +111,8 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % \DoNotIndex{\loop, \repeat, \the, \ifnum}
 % \DoNotIndex{\equal, \boolean, \@currname, \newcounter, \setcounter}
 % \DoNotIndex{\stepcounter, \addtocounter}
-% \DoNotIndex{\endinput}
+% \DoNotIndex{\endinput, \begin, \end}
+% \DoNotIndex{\not}
 %
 % \maketitle
 %
@@ -124,127 +126,101 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % \tableofcontents
 %
 % \section{Introduction}
-% The \PrintPackage{doclicense} package can calculate the age of someone or
-% something in years. Internally it uses the \PrintPackage{datenumber} package
-% to calculate the age in days. The conversion from days to years is
-% implemented by this package. It is also taken care about leap years and such
-% odd things. So if you enter your birthday you get your exact age in years.
-% You can even get the age as number with up to 18 places after the decimal
-% separator but I heard that this is a bit uncommon for the age of a person~\dots
+% Make it easy to set your documents under a certain license.
+%
+% The \PrintPackage{doclicense} package allows you to put your document under a
+% license and include a link to read about the license or include an icon or
+% image of the license.  Currently, only \doclicenseLongType is supported but this
+% package is designed to handle all kinds of licenses.
 %
 % \section{Usage}
 % Just load the package placing
 % \begin{quote}
 %   |\usepackage{doclicense}|
 % \end{quote}
-% in the preamble of your \LaTeXe{} source file.
+% in the preamble of your \LaTeXe{} source file. This will select the default
+% license which is \doclicenseNameRef, currently. Please always set your
+% license explicitly as package options like so:
 %
-% You can also give optional package options to change the default behavior.
-% But you can not give values (see \nameref{sec:bugs}). So
 % \begin{quote}
-%   |\usepackage[presision]{doclicense}|
+%   |\usepackage[| \\
+%   |  type={CC},| \\
+%   |  modifier={by-sa},| \\
+%   |  version={3.0},| \\
+%   |]{doclicense}|
 % \end{quote}
-% works and sets the presision to 3. But \enquote{presision=3} is going to
-% fail~\dots
+%
+% This will explicitly set the license to \doclicenseNameRef.
 % \bigskip
 %
-% \DescribeMacro{\doclicense}
-% The macro |\doclicense| \oarg{optional parameters} \marg{year} \marg{month}
-% \marg{day} takes a date and typesets the difference to the current date in
-% years.
-% \bigskip
+% The first parameter is \enquote{\PrintOptionF{type}}. \DescribePara{type}
+% This sets the license type. Like in this example, the type can be
+% \enquote{CC} to cover all the \doclicenseLongType licenses.
 %
-% There are some optional parameters. \DescribePara{year, month, day} For
-% example you can adjust the current date for \PrintPackage{doclicense} with the
-% keys \enquote{\PrintOptionF{year}}, \enquote{\PrintOptionF{month}} and
-% \enquote{\PrintOptionF{day}}. You don't have to specifier all of them. A
-% subset is also possible.
+% The next parameter is \enquote{\PrintOptionF{modifier}} which allows to
+% select different subclasses of a license. \DescribePara{modifier} In this
+% example it is \enquote{by-sa}.
 %
-% Another useful parameter is \enquote{\PrintOptionF{precision}}.
-% \DescribePara{precision} With this parameter you can specify how many places
-% after the decimal separator you would like to get. The default precision is 0
-% which means that |\doclicense| will typeset the age in years as integer. If you
-% omit a value for \enquote{precision} then the precision will be 3.
+% As there can be more than one version a license, the version can also be set.
+% \DescribePara{version}
 %
-% The macro |\doclicense| can also take a date which is in the future.
-% \DescribePara{positive} The default behavior in this case is a negative
-% number but you can make the number positive with the
-% \enquote{\PrintOptionF{positive}} boolean switch.
+% This package can output some short texts like the long license name.
+% \DescribePara{lang}
+% Because of this, there needs to be a way to specify the language to use.
+% If this parameter is omitted, then this package will default to
+% \cmd{\languagename} which is normally set by packages like
+% \PrintPackage{babel} or \PrintPackage{polyglossia}.
+% Currently only English and German are supported.
 %
-% The next parameter I would like to show you is the \DescribePara{printyear}
-% \enquote{\PrintOptionF{printyear}} boolean switch. With this switch you can
-% specify if |\doclicense| should add \enquote{year} or rather \enquote{years}
-% after the age. This is the default setting.
+% Default image with for the license image.
+% \DescribePara{imagewidth}
 %
+% \section{Macros}
+% \DescribeMacro{\doclicenseType}
+% Expands to the type as set in the package options. For this document this macro expands to: \enquote{\doclicenseType{}}
 %
-% For the previous parameter you may need the possibility
-% \DescribePara{yearsuffix} (at least in the German language) to add a single
-% character to the plural word. For example
-% \begin{quote}
-%   |Albert Einstein wurde vor \doclicense[yearsuffix]{1879}{03}{14}| \\
-%   |geboren.| \\
-%   Albert Einstein wurde vor \doclicense[printyear=false]{1879}{03}{14} Jahren geboren.
-% ^^A Ups you got my. I didn't implement a switch language feautre (yet).
-% \end{quote}
-% To do this you can use the boolean switch
-% \enquote{\PrintOptionF{yearsuffix}}. By default this switch is false.
-% If this boolean is true and the German language was selected then a
-% \enquote{n} will be added after \enquote{Jahre}. If the English language was
-% selected then this switch will not change the output.
+% \DescribeMacro{\doclicenseModifier}
+% Expands to the modifier as set in the package options. For this document this macro expands to: \enquote{\doclicenseModifier{}}
 %
-% And last but not least there is the boolean switch \enquote{numberstring}
-% \DescribePara{numberstring} which is true by default. This means that the
-% typesetting process of an integer is done by the package
-% \PrintPackage{fnumprint} which will typeset the word of a number instead of
-% the Arabic number if the value of the number is between 0 and 12. If you
-% don't like this behavior you can set the boolean to false with
-% \enquote{numberstring=false}.
+% \DescribeMacro{\doclicenseVersion}
+% Expands to the version as set in the package options. For this document this macro expands to: \enquote{\doclicenseVersion{}}
 %
-% \section{Bugs}\label{sec:bugs}
-% I tried to implement the possibility to change the default behavior as
-% package option in a nice way but with the current implementation there is a
-% problem with the values. If you give a key with value then the |\setkeys|
-% macro which gets these parameters as macro fails. I already tried
-% |\expandafter| so if anyone knows where the problem is or has a solution feel
-% free to contact me.
-% \bigskip
+% \DescribeMacro{\doclicenseName}
+% Expands to the short name of the license. For this document this macro expands to: \enquote{\doclicenseName{}}
 %
-% I think there is a little inaccuracy in the conversion from days to years
-% because my implementation just removes the leap years before dividing. But in
-% my tests this seems to be more theoretically.
+% \DescribeMacro{\doclicenseNameRef}
+% Same as \cmd{\doclicenseName} expect that it links to the URL of the license. For this document, it looks like this: \enquote{\doclicenseNameRef{}}
 %
-% The problem only has an effect if leap years are involved because if a leap
-% year is calculated then the additional day is subtracted. This means that one
-% day is not longer $\frac{1}{366}$ year but $\frac{1}{365}$ year~\dots
+% \DescribeMacro{\doclicenseLongName}
+% Expands to the long localized name of the license. For this document this macro expands to: \enquote{\doclicenseLongName{}}
 %
-% \section{Examples}
-% \begin{verbatim}
-%   \TeX{} Live releases: \\
-%   \doclicense{2012}{07}{08} \\
-%   \doclicense{2011}{07}{20} \\
-%   \doclicense{2010}{09}{10} \\
-%   \doclicense{2009}{11}{09}
-% \end{verbatim}\vspace{-1.5em}
-%   \TeX{} Live releases: \\
-%   \doclicense{2012}{07}{08} \\
-%   \doclicense{2011}{07}{20} \\
-%   \doclicense{2010}{09}{10} \\
-%   \doclicense{2009}{11}{09}
+% \DescribeMacro{\doclicenseLongNameRef}
+% Same as \cmd{\doclicenseLongName} expect that it links to the URL of the license. For this document, it looks like this: \enquote{\doclicenseLongNameRef{}}
 %
-% \begin{verbatim}
-%   Donald Knuth is \doclicense{1938}{01}{10} old. \\
-%   Donald Knuth will be 100 years old in
-%     \doclicense[positive, precision]{2038}{01}{10}. \\
-%   Albert Einstein died at the age of
-%     \doclicense[year=1955, month=04, day=18]{1879}{03}{14}. \\
-%   Age of Linus Torvalds in years: \doclicense[printyear=false]{1969}{12}{28} \\
-% \end{verbatim}\vspace{-1.5em}
-% Donald Knuth is \doclicense{1938}{01}{10} old. \\
-% Donald Knuth will be 100 years old in
-%   \doclicense[positive, precision]{2038}{01}{10}. \\
-% Albert Einstein died at the age of
-%   \doclicense[year=1955, month=04, day=18]{1879}{03}{14}. \\
-% Age of Linus Torvalds in years: \doclicense[printyear=false]{1969}{12}{28} \\
+% \DescribeMacro{\doclicenseText}
+% Expands to a localized text which sets the document unter this license. For this document this macro expands to: \enquote{\doclicenseText{}}
+%
+% \DescribeMacro{\doclicenseIcon}
+% Expands to a icon of the license. For this document this macro expands to: \enquote{\doclicenseIcon{}}
+%
+% \DescribeMacro{\doclicenseImage}
+% This is kind of similar with \cmd{\doclicenseIcon} but it will typeset an
+% bigger pictogram of the license. For this document this macro expands to:
+% \enquote{\doclicenseImage}
+%
+% Note that you can change the image size with the \oarg{imagewidth} parameter
+% like this:
+% \enquote{\doclicenseImage[imagewidth=2em]}
+%
+% \DescribeMacro{\doclicenseLicense}
+% And last but not least there is the \cmd{\doclicenseLicense} macro which will
+% typeset the \cmd{\doclicenseText} next to the \cmd{\doclicenseImage} in a
+% \enquote{minipage} environment. This will look like the following.
+%
+% \doclicenseLicense
+%
+% \section{Contributing}
+% This package is being developed on GitHub: \url{\PackageURL}.
 %
 % \StopEventually{}
 %
@@ -255,41 +231,33 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % \fi
 % This package depends on these packages.
 %    \begin{macrocode}
-\RequirePackage{fnumprint}[2012/08/27]
-\RequirePackage{
-  datenumber,
-  fp,
-  calc,
-  xkeyval,
-  kvoptions,
-  xifthen,
-}
+
+%% Dependencies {{{
+\RequirePackage{kvoptions}
+\RequirePackage{xifthen}
+\RequirePackage{etoolbox} %% \ifcsdef
+\RequirePackage{xspace}
+\RequirePackage{csquotes}
+\RequirePackage{ccicons}  %% For \doclicenseIcon
+\RequirePackage{graphicx} %% For \doclicenseImage
+%% }}}
+
 %    \end{macrocode}
 % \subsection{Declaring the options}
 %    \begin{macrocode}
-\DeclareStringOption{year}
-\DeclareStringOption{month}
-\DeclareStringOption{day}
-\DeclareStringOption{precision}[3]
-\DeclareBoolOption{positive}
-\DeclareBoolOption{printyear}
-\DeclareBoolOption{yearsuffix}
-\DeclareBoolOption{numberstring}
+%% Parameters {{{
+\DeclareStringOption[CC]{type}
+\DeclareStringOption[by-sa]{modifier}
+\DeclareStringOption[3.0]{version}
+\DeclareStringOption{lang}
+\DeclareStringOption[10em]{imagewidth}
+%% }}}
 %    \end{macrocode}
 % To test if all parameters are valid the macro |\ProcessLocalKeyvalOptions*|
 % is expanded to ensure this before leaving the preamble. This is the only
 % purpose for the |\ProcessLocalKeyvalOptions*| macro in this case.
 %    \begin{macrocode}
 \ProcessLocalKeyvalOptions*
-%    \end{macrocode}
-% The next source code line creates a new macro which captures the parameters
-% to use them as default options for the macro |\doclicense|.
-% If this macro is set to \enquote{precision=4} for example the |\setkeys| is
-% going to fail.
-%    \begin{macrocode}
-\edef\doclicense@options{\@ptionlist{\@currname.\@currext}}
-%% ^^A \renewcommand{\doclicense@options}{precision=4,printyear=false}
-%% ^^A Package xkeyval Error: `precision=4' undefined in families `doclicense'.
 %    \end{macrocode}
 % \subsection{Language selection}
 % Here comes the language selection part. The counter is already set by the
@@ -299,107 +267,125 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % If you prefer another language than English or German you can redefine the
 % following macro definitions.
 %    \begin{macrocode}
-\ifcase\value{fnumprint@language}\or
-%    \end{macrocode}
-% If fnumprint@language is equal 1
-%    \begin{macrocode}
-  \newcommand{\doclicense@yearWord}{Jahr}
-  \newcommand{\doclicense@yearPluralSuffix}{e}
-  \newcommand{\doclicense@yearSuffix}{n}
-\or
-%    \end{macrocode}
-% If fnumprint@language is equal 2
-%    \begin{macrocode}
-  \newcommand{\doclicense@yearWord}{year}
-  \newcommand{\doclicense@yearPluralSuffix}{s}
-  \newcommand{\doclicense@yearSuffix}{}
-\fi
+%% language support {{{
+\ifthenelse{\equal{\doclicense@lang}{}}{%
+  \renewcommand{\doclicense@lang}{\languagename}}{}
+\ifthenelse{\equal{\doclicense@lang}{german}}{\input{doclicense-german.ldf}}{}
+\ifthenelse{\equal{\doclicense@lang}{ngerman}}{\input{doclicense-german.ldf}}{}
+\ifthenelse{\equal{\doclicense@lang}{english}}{\input{doclicense-english.ldf}}{}
+\ifthenelse{\equal{\doclicense@lang}{USenglish}}{\input{doclicense-english.ldf}}{}
+\ifthenelse{\equal{\doclicense@lang}{american}}{\input{doclicense-english.ldf}}{}
+\ifthenelse{\equal{\doclicense@lang}{UKenglish}}{\input{doclicense-english.ldf}}{}
+\ifthenelse{\equal{\doclicense@lang}{british}}{\input{doclicense-english.ldf}}{}
+\ifthenelse{\equal{\doclicense@lang}{canadian}}{\input{doclicense-english.ldf}}{}
+\ifthenelse{\equal{\doclicense@lang}{australian}}{\input{doclicense-english.ldf}}{}
+\ifthenelse{\equal{\doclicense@lang}{newzealand}}{\input{doclicense-english.ldf}}{}
+%% }}}
+
 %    \end{macrocode}
 % \subsection{Macro definition}
 % Some necessary \LaTeX{} counters are declared here before creating the
 % |\doclicense| macro.
 %    \begin{macrocode}
-\newcounter{doclicense@today}\newcounter{doclicense@ageindays}
-\newcounter{doclicense@myyear}\newcounter{doclicense@leapyears}
-%    \end{macrocode}
-% \begin{macro}{\doclicense}
-% And now comes the important part -- the definition of |\doclicense|.
-% The first thing that has to be done is expanding the |\setkeys| macro. It
-% sets the default options then the package options get the opportunity to
-% overwrite these settings and finally the macro options get the same
-% possibility.
-%    \begin{macrocode}
-\newcommand{\doclicense}[4][]{%
-  \setkeys{doclicense}{precision=0, positive=true, printyear=true,
-    yearsuffix=false, numberstring=true,
-    year=\the\year, month=\the\month, day=\the\day, \doclicense@options, #1}%
-  \setmydatenumber{doclicense@today}{\doclicense@year}{\doclicense@month}{\doclicense@day}%
-  \setmydatenumber{doclicense@ageindays}{#2}{#3}{#4}%
-%    \end{macrocode}
-% Now comes the tricky part which are the leap years~\dots \\
-% My first implementation worked with dividing by $365.2425$ but this was not
-% perfect. So the current implementation counts how many leap years are between
-% the birth year and the current year and subtracts (or adds\footnote{If the
-% birth year is in the future because in this case the doclicense@ageindays
-% counter will be negative.}) this number.
-%    \begin{macrocode}
-  \setcounter{doclicense@myyear}{#2}%
-  \setcounter{doclicense@leapyears}{0}%
-  \ifthenelse{\equal{#2}{\doclicense@year}}{}{%
-    \ifthenelse{\value{doclicense@myyear}<\doclicense@year}{%
-%    \end{macrocode}
-% If the birth year is in the past.
-%    \begin{macrocode}
-      \loop%
-        \stepcounter{doclicense@myyear}%
-        \ifleapyear{\thedoclicense@myyear}\stepcounter{doclicense@leapyears}\fi%
-        \ifnum\value{doclicense@myyear}<\doclicense@year%
-      \repeat%
+\newcommand{\doclicense@baseUrlCC}{https://creativecommons.org/licenses}
+\newboolean{doclicense@licenseKnown}
+\newlength{\doclicense@hsize}
+
+%% User macros {{{
+\newcommand{\doclicenseType}{\doclicense@type\xspace}
+\newcommand{\doclicenseModifier}{\MakeUppercase{\doclicense@modifier}\xspace}
+\newcommand{\doclicenseVersion}{\doclicense@version\xspace}
+\newcommand{\doclicenseName}{\doclicense@type~\doclicense@modifier~\doclicense@version\xspace}
+\newcommand{\doclicenseNameRef}{\href{\doclicenseURL}{\doclicenseName}\xspace}
+\newcommand{\doclicense@longName}{%
+  \csname doclicense@lang@lic@\doclicense@type @\doclicense@modifier @\doclicense@version\endcsname}
+\newcommand{\doclicenseLongName}{\doclicenseLongType\space\doclicense@longName\xspace}
+\newcommand{\doclicenseLongNameRef}{\href{\doclicenseURL}{\doclicenseLongName}}
+\newcommand{\doclicenseText}{%
+  \doclicense@lang@thisDoc\space
+  \href{\doclicenseURL}{\enquote{\doclicenseName}} \doclicense@lang@word@license.\xspace
+}
+\newcommand{\doclicenseLongText}{%
+  \doclicense@lang@thisDoc\space
+  \href{\doclicenseURL}{\doclicenseLongType\space\enquote{\doclicense@longName}}
+  \doclicense@lang@word@license.\xspace
+}
+\newcommand{\doclicenseIcon}{\doclicense@icon\xspace}
+\newcommand{\doclicenseImage}[1][]{%
+  \setkeys{doclicense}{#1}
+  \href{\doclicenseURL}{%
+    \includegraphics[width=\doclicense@imagewidth]%
+      {doclicense-\doclicense@type-\doclicense@modifier.pdf}%
+  }
+}
+
+\newcommand{\doclicenseLicense}{
+\setlength{\doclicense@hsize}{\textwidth - \doclicense@imagewidth - 2em}
+\ifthenelse{\lengthtest{\hsize > \vsize}}{%% landscape
+  \setlength{\doclicense@hsize}{\doclicense@hsize - 10em}
+}{}
+\begin{center}
+\begin{minipage}{\doclicense@hsize}
+  \doclicenseLongText%
+\end{minipage}
+\hfill
+\begin{minipage}{\doclicense@imagewidth}
+  \doclicenseImage%
+\end{minipage}
+\end{center}
+}
+%% }}}
+
+%% Set license {{{
+\newcommand{\doclicense@icon}{%
+  \PackageError{doclicense}{Icon not defined}
+    {Please check the documentation of doclicense to see what you can do about it.}%
+}
+\newcommand{\doclicense@set}[1][]{%
+  %% CC {{{
+  \ifthenelse{\equal{\doclicense@type}{CC}}{%
+    \newcommand{\doclicenseLongType}{Creative Commons\xspace}
+
+    \ifthenelse{\equal{\doclicense@lang@lic@CC@code}{}}{%
+      \edef\doclicense@UrlLangPart{}
     }{%
-%    \end{macrocode}
-% If the birth year is in the future.
-%    \begin{macrocode}
-      \loop%
-        \ifleapyear{\thedoclicense@myyear}\addtocounter{doclicense@leapyears}{-1}\fi%
-        \addtocounter{doclicense@myyear}{-1}%
-        \ifnum\value{doclicense@myyear}>\doclicense@year%
-      \repeat%
-    }%
-  }%
-  \setcounter{doclicense@ageindays}{\value{doclicense@today}
-    - \value{doclicense@ageindays} - \value{doclicense@leapyears}}%
-  \ifthenelse{\boolean{doclicense@positive} \AND \value{doclicense@ageindays} < 0}{%
-    \setcounter{doclicense@ageindays}{\value{doclicense@ageindays} * -1}%
-  }{}%
-%    \end{macrocode}
-% Because we know that every year has now exactly 365 days we can divide by
-% that.
-%    \begin{macrocode}
-  \FPdiv\doclicense@age{\thedoclicense@ageindays}{365}%
-%    \end{macrocode}
-% The next step is to truncated the age. There is no rounding used for this. I
-% implemented it this way because if the age would be rounded then there would
-% be a wrong result in cases like $x.999$ which would become $x+1$ if
-% \enquote{precision=0} and that is probably not what you want~\dots
-%    \begin{macrocode}
-  \FPtrunc\doclicense@age{\doclicense@age}{\doclicense@precision}%
-%    \end{macrocode}
-% The last thing to do is to typeset the age which is implemented by the next
-% few lines of code.
-%    \begin{macrocode}
-  \ifthenelse{\boolean{doclicense@numberstring}
-    \AND \equal{\doclicense@precision}{0}}%
-    {\fnumprint[ein]{\doclicense@age}}{\numprint{\doclicense@age}}%
-  \ifthenelse{\boolean{doclicense@printyear}}{%
-    ~\doclicense@yearWord%
-    \ifthenelse{\equal{\doclicense@age}{1} \OR \equal{\doclicense@age}{-1}}{}{%
-      \doclicense@yearPluralSuffix%
-      \ifthenelse{\boolean{doclicense@yearsuffix}}{\doclicense@yearSuffix}{}%
-    }%
+      \edef\doclicense@UrlLangPart{/\doclicense@lang@lic@CC@code}
+    }
+    \edef\doclicenseURL{%
+      \doclicense@baseUrlCC/%
+      \doclicense@modifier/%
+      \doclicense@version\doclicense@UrlLangPart}
+    \ifthenelse{\equal{\doclicense@modifier}{by-sa}}
+      {\renewcommand{\doclicense@icon}{\ccbysa}}{}
+    \ifthenelse{\equal{\doclicense@modifier}{by-nd}}
+      {\renewcommand{\doclicense@icon}{\ccbynd}}{}
+    \ifthenelse{\equal{\doclicense@modifier}{by-nc}}
+      {\renewcommand{\doclicense@icon}{\ccbync}}{}
+    \ifthenelse{\equal{\doclicense@modifier}{by-nc-sa}}
+      {\renewcommand{\doclicense@icon}{\ccbync}}{}
+    \ifthenelse{\equal{\doclicense@modifier}{by-nc-nd}}
+      {\renewcommand{\doclicense@icon}{\ccbync}}{}
+    \ifthenelse{\equal{\doclicense@modifier}{zero}}
+      {\renewcommand{\doclicense@icon}{\cczero}}{}
+    \ifthenelse{\equal{\doclicense@modifier}{pd}}
+      {\renewcommand{\doclicense@icon}{\ccpd}}{}
+
+    \ifcsdef{doclicense@lang@lic@\doclicense@type%
+      @\doclicense@modifier @\doclicense@version}{}{%
+
+      \PackageError{doclicense}{License long name not defined}%
+        {Please check the documentation of doclicense to see what you can do about it.}%
+    }
+
+    \setboolean{doclicense@licenseKnown}{true}
+  }{}%% }}}
+  \ifthenelse{\not\boolean{doclicense@licenseKnown}}{%
+    \PackageError{doclicense}{License unknown}%
+      {Please check the documentation of doclicense to see what you can do about it.}%
   }{}%
 }
+\doclicense@set%
 %    \end{macrocode}
-% \end{macro}
 % That's it.
 %    \begin{macrocode}
 \endinput

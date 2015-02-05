@@ -2,7 +2,9 @@
 
 \edef\doclicense@lang@thisDoc{This work is licensed under a}%
 \edef\doclicense@lang@word@license{license}%
+\edef\doclicense@lang@code{en}%
 
+\edef\doclicense@lang@lic@CC@code{}%
 \expandafter\edef\csname doclicense@lang@lic@CC@by-sa@3.0\endcsname{Attribution-ShareAlike 3.0 Unported}%
 \expandafter\edef\csname doclicense@lang@lic@CC@by-nd@3.0\endcsname{Attribution-NoDerivs 3.0 Unported}%
 \expandafter\edef\csname doclicense@lang@lic@CC@by-nc@3.0\endcsname{Attribution-NonCommercial 3.0 Unported}%
