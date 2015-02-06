@@ -1,28 +1,23 @@
 %% See file 'romanbarpagenumber.dtx' for copyright and license.
 \NeedsTeXFormat{LaTeX2e}[1998/12/01]
 \ProvidesPackage{romanbarpagenumber}
-    [2015/02/06 v0.1 Use romanbar for Roman pagenumbers]
+    [2015/02/06 v1.0 Use romanbar for Roman pagenumbers]
 
 \RequirePackage{kvoptions}
 \RequirePackage{xifthen}
 \RequirePackage{romanbar}
-\AtEndPreamble{%
-  \@ifpackageloaded{hyperref}{}{%
+\AtBeginDocument{%
+  \@ifpackageloaded{hyperref}{%
     \pdfstringdefDisableCommands{\let\Roman@bar\@firstofone}
-  }
+  }{}
 }
-
 \let\romanbarpagenumber@pagenumbering\pagenumbering\relax%
 \renewcommand{\pagenumbering}[1]{%
-  \romanbarpagenumber@pagenumbering{#1}%
+  \romanbarpagenumber@pagenumbering{#1}
   \ifthenelse{\equal{#1}{Roman}}{%
-    %\renewcommand*{\pagemark}{\Roman@bar{\Roman{page}}}% not added by \pageref.
-    \renewcommand*{\thepage}{\Roman@bar{\Roman{page}}}%
-  }{
-    %*{\pagemark}{\thepage}%
-  }
+    \renewcommand*{\thepage}{\Roman@bar{\Roman{page}}}
+  }{}
 }
-
 \endinput
 %%
 %% End of file `romanbarpagenumber.sty'.
