@@ -1,0 +1,3 @@
+\ProvidesFile{doclicense-canadian.ldf}
+
+\input{doclicense-english.ldf}

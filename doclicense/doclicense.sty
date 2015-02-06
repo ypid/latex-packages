@@ -1,53 +1,54 @@
-%% See file 'doclicense.dtx' for copyright and licence.
+%% See file 'doclicense.dtx' for copyright and license.
 \NeedsTeXFormat{LaTeX2e}[1998/12/01]
 \ProvidesPackage{doclicense}
-    [2015/02/05 v0.7 Set and print the license of a document]
+    [2015/02/06 v0.8 Set and print the license of a document]
 
 %% Dependencies {{{
 \RequirePackage{kvoptions}
 \RequirePackage{xifthen}
 \RequirePackage{etoolbox} %% \ifcsdef
 \RequirePackage{xspace}
-\RequirePackage{csquotes}
-\RequirePackage{ccicons}  %% For \doclicenseIcon
-\RequirePackage{graphicx} %% For \doclicenseImage
+\AtEndPreamble{%
+  \@ifpackageloaded{csquotes}{}{\RequirePackage{csquotes}}
+  \@ifpackageloaded{ccicons}{}{\RequirePackage{ccicons}}
+    %% For \doclicenseIcon
+  \@ifpackageloaded{graphicx}{}{\RequirePackage{graphicx}}
+    %% For \doclicenseImage
+  \@ifpackageloaded{hyperref}{}{\RequirePackage{hyperref}}
+}
 %% }}}
 
 %% Parameters {{{
 \DeclareStringOption[CC]{type}
 \DeclareStringOption[by-sa]{modifier}
-\DeclareStringOption[3.0]{version}
+\DeclareStringOption{version}
 \DeclareStringOption{lang}
 \DeclareStringOption[10em]{imagewidth}
 %% }}}
-\ProcessLocalKeyvalOptions*
-%% language support {{{
-\ifthenelse{\equal{\doclicense@lang}{}}{%
-  \renewcommand{\doclicense@lang}{\languagename}}{}
-\ifthenelse{\equal{\doclicense@lang}{german}}{\input{doclicense-german.ldf}}{}
-\ifthenelse{\equal{\doclicense@lang}{ngerman}}{\input{doclicense-german.ldf}}{}
-\ifthenelse{\equal{\doclicense@lang}{english}}{\input{doclicense-english.ldf}}{}
-\ifthenelse{\equal{\doclicense@lang}{USenglish}}{\input{doclicense-english.ldf}}{}
-\ifthenelse{\equal{\doclicense@lang}{american}}{\input{doclicense-english.ldf}}{}
-\ifthenelse{\equal{\doclicense@lang}{UKenglish}}{\input{doclicense-english.ldf}}{}
-\ifthenelse{\equal{\doclicense@lang}{british}}{\input{doclicense-english.ldf}}{}
-\ifthenelse{\equal{\doclicense@lang}{canadian}}{\input{doclicense-english.ldf}}{}
-\ifthenelse{\equal{\doclicense@lang}{australian}}{\input{doclicense-english.ldf}}{}
-\ifthenelse{\equal{\doclicense@lang}{newzealand}}{\input{doclicense-english.ldf}}{}
-%% }}}
 
-\newcommand{\doclicense@baseUrlCC}{https://creativecommons.org/licenses}
+\ProcessLocalKeyvalOptions*
+%% Declare variables {{{
+\newcommand{\doclicense@baseUrlCC}{https://creativecommons.org}
+\newcommand{\doclicense@versionFallback}{}
+\newcommand{\doclicense@versionUsed}{}
 \newboolean{doclicense@licenseKnown}
 \newlength{\doclicense@hsize}
+\newcommand{\doclicense@longName}{%
+  \csname doclicense@lang@lic@\doclicense@type @\doclicense@modifier @\doclicense@versionUsed\endcsname
+}
+\newcommand{\doclicense@icon}{%
+  \PackageError{doclicense}{Icon not defined}
+    {Please check the documentation of doclicense to see what you can do about it.}%
+}
+%% }}}
 
 %% User macros {{{
 \newcommand{\doclicenseType}{\doclicense@type\xspace}
+\newcommand{\doclicenseLongType}{}
 \newcommand{\doclicenseModifier}{\MakeUppercase{\doclicense@modifier}\xspace}
-\newcommand{\doclicenseVersion}{\doclicense@version\xspace}
-\newcommand{\doclicenseName}{\doclicense@type~\doclicense@modifier~\doclicense@version\xspace}
+\newcommand{\doclicenseVersion}{\doclicense@versionUsed\xspace}
+\newcommand{\doclicenseName}{\doclicense@type~\doclicense@modifier~\doclicense@versionUsed\xspace}
 \newcommand{\doclicenseNameRef}{\href{\doclicenseURL}{\doclicenseName}\xspace}
-\newcommand{\doclicense@longName}{%
-  \csname doclicense@lang@lic@\doclicense@type @\doclicense@modifier @\doclicense@version\endcsname}
 \newcommand{\doclicenseLongName}{\doclicenseLongType\space\doclicense@longName\xspace}
 \newcommand{\doclicenseLongNameRef}{\href{\doclicenseURL}{\doclicenseLongName}}
 \newcommand{\doclicenseText}{%
@@ -64,46 +65,67 @@
   \setkeys{doclicense}{#1}
   \href{\doclicenseURL}{%
     \includegraphics[width=\doclicense@imagewidth]%
-      {doclicense-\doclicense@type-\doclicense@modifier.pdf}%
+      {doclicense-\doclicense@type-\doclicense@modifier}%
   }
 }
 
 \newcommand{\doclicenseLicense}{
-\setlength{\doclicense@hsize}{\textwidth - \doclicense@imagewidth - 2em}
-\ifthenelse{\lengthtest{\hsize > \vsize}}{%% landscape
-  \setlength{\doclicense@hsize}{\doclicense@hsize - 10em}
-}{}
-\begin{center}
-\begin{minipage}{\doclicense@hsize}
-  \doclicenseLongText%
-\end{minipage}
-\hfill
-\begin{minipage}{\doclicense@imagewidth}
-  \doclicenseImage%
-\end{minipage}
-\end{center}
+  \setlength{\doclicense@hsize}{\textwidth-\doclicense@imagewidth-2em}
+  \ifthenelse{\lengthtest{\hsize > \vsize}}{%% landscape
+    \setlength{\doclicense@hsize}{\doclicense@hsize-10em}
+  }{}
+  \begin{center}
+    \begin{minipage}{\doclicense@hsize}
+      \doclicenseLongText%
+    \end{minipage}
+    \hfill
+    \begin{minipage}{\doclicense@imagewidth}
+      \doclicenseImage%
+    \end{minipage}
+  \end{center}
 }
 %% }}}
 
-%% Set license {{{
-\newcommand{\doclicense@icon}{%
-  \PackageError{doclicense}{Icon not defined}
-    {Please check the documentation of doclicense to see what you can do about it.}%
+%% Language support {{{
+\ifthenelse{\equal{\doclicense@lang}{}}{%
+  \renewcommand{\doclicense@lang}{\languagename}}{}
+\IfFileExists{doclicense-\doclicense@lang.ldf}{%
+  \input{doclicense-\doclicense@lang.ldf}
+}{%
+  \PackageWarning{doclicense}{No language definition for \doclicense@lang not found. Please add one and submit a patch. Using English as fallback.}
+  \renewcommand{\doclicense@lang}{english}
+  \input{doclicense-\doclicense@lang.ldf}
 }
-\newcommand{\doclicense@set}[1][]{%
+
+%% }}}
+
+%% Set license {{{
+\newcommand{\doclicense@setVersion}[1][]{%
+  \ifthenelse{\equal{#1}{}}{}{%
+    \renewcommand{\doclicense@versionFallback}{#1}
+  }
+  \ifthenelse{\equal{\doclicense@version}{}}{%
+    \renewcommand{\doclicense@versionUsed}{\doclicense@versionFallback}
+  }{%
+    \renewcommand{\doclicense@versionUsed}{\doclicense@version}
+  }
+}
+\newcommand{\doclicense@set}{%
   %% CC {{{
   \ifthenelse{\equal{\doclicense@type}{CC}}{%
-    \newcommand{\doclicenseLongType}{Creative Commons\xspace}
+    \renewcommand{\doclicenseLongType}{Creative Commons\xspace}
 
     \ifthenelse{\equal{\doclicense@lang@lic@CC@code}{}}{%
       \edef\doclicense@UrlLangPart{}
     }{%
       \edef\doclicense@UrlLangPart{/\doclicense@lang@lic@CC@code}
     }
+    \doclicense@setVersion[3.0]
     \edef\doclicenseURL{%
       \doclicense@baseUrlCC/%
+      licenses/%
       \doclicense@modifier/%
-      \doclicense@version\doclicense@UrlLangPart}
+      \doclicense@versionUsed\doclicense@UrlLangPart}
     \ifthenelse{\equal{\doclicense@modifier}{by-sa}}
       {\renewcommand{\doclicense@icon}{\ccbysa}}{}
     \ifthenelse{\equal{\doclicense@modifier}{by-nd}}
@@ -114,13 +136,26 @@
       {\renewcommand{\doclicense@icon}{\ccbync}}{}
     \ifthenelse{\equal{\doclicense@modifier}{by-nc-nd}}
       {\renewcommand{\doclicense@icon}{\ccbync}}{}
-    \ifthenelse{\equal{\doclicense@modifier}{zero}}
-      {\renewcommand{\doclicense@icon}{\cczero}}{}
-    \ifthenelse{\equal{\doclicense@modifier}{pd}}
-      {\renewcommand{\doclicense@icon}{\ccpd}}{}
+    \ifthenelse{\equal{\doclicense@modifier}{zero}}{%
+      \renewcommand{\doclicense@icon}{\cczero}
+      \doclicense@setVersion[1.0]
+      \edef\doclicenseURL{%
+        \doclicense@baseUrlCC/%
+        publicdomain/%
+        \doclicense@modifier/%
+        \doclicense@versionUsed\doclicense@UrlLangPart}
+    }{}
+    \ifthenelse{\equal{\doclicense@modifier}{pd}}{
+      \renewcommand{\doclicense@icon}{\ccpd}
+      \doclicense@setVersion[1.0]
+      \edef\doclicenseURL{%
+        \doclicense@baseUrlCC/%
+        licenses/publicdomain/%
+        \doclicense@versionUsed\doclicense@UrlLangPart}
+    }{}
 
     \ifcsdef{doclicense@lang@lic@\doclicense@type%
-      @\doclicense@modifier @\doclicense@version}{}{%
+      @\doclicense@modifier @\doclicense@versionUsed}{}{%
 
       \PackageError{doclicense}{License long name not defined}%
         {Please check the documentation of doclicense to see what you can do about it.}%
@@ -133,6 +168,8 @@
       {Please check the documentation of doclicense to see what you can do about it.}%
   }{}%
 }
+%% }}}
+
 \doclicense@set%
 \endinput
 %%

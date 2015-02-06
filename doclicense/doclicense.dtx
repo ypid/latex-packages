@@ -23,11 +23,11 @@
 %<*driver>
 \ProvidesFile{doclicense.dtx}
 %</driver>
-%<package>%% See file 'doclicense.dtx' for copyright and licence.
+%<package>%% See file 'doclicense.dtx' for copyright and license.
 %<package>\NeedsTeXFormat{LaTeX2e}[1998/12/01]
 %<package>\ProvidesPackage{doclicense}
 %<*package>
-    [2015/02/05 v0.7 Set and print the license of a document]
+    [2015/02/06 v0.8 Set and print the license of a document]
 %</package>
 %
 %<*driver>
@@ -36,7 +36,7 @@
 \newcommand{\PackageCTANURL}{https://www.ctan.org/pkg/doclicense}
 \newcommand{\PackageAuthor}{Robin Schneider}
 \newcommand{\PackageAuthorEmail}{ypid@riseup.net}
-\newcommand{\PackageName}{\PrintPackage{doclicense}}
+\newcommand{\PackageName}{\PrintPackage{doclicense}\xspace}
 \newcommand{\PrintPackage}[1]{\textsf{#1}}
 \newcommand{\PrintOptionF}[1]{\emph{#1}} %% ^^A This macro is used for
 %% ^^A explaining any parameter when they first come up in the documentation.
@@ -49,6 +49,7 @@
   url,
   hypdoc,
   nameref,
+  xspace,
 }
 \GetFileInfo{doclicense.dtx}
 \hypersetup{
@@ -80,7 +81,7 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 %</driver>
 % \fi
 %
-% ^^A \%CheckSum{0}
+% ^^A \CheckSum{0}
 % ^^A I use version control and so on which has much better checksums :)
 %
 % \CharacterTable
@@ -99,7 +100,8 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 %   Grave accent  \`     Left brace    \{     Vertical bar  \|
 %   Right brace   \}     Tilde         \~}
 %
-% \changes{0.70}{2015/02/05}{Initial version}
+% \changes{0.7}{2015/02/05}{Initial version}
+% \changes{0.8}{2015/02/06}{Added support for CC-zero and CC-pd and small improvements}
 %
 % \DoNotIndex{\RequirePackage, \DeclareOption, \ProcessOptions}
 % \DoNotIndex{\PackageWarning, \MessageBreak}
@@ -121,6 +123,7 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % \begin{abstract}
 % The \PackageName{} package can calculate the age in years. \\
 % Information site on CTAN: \url{\PackageCTANURL} \\
+% Example on Stackexchange: \url{https://tex.stackexchange.com/a/226788/32320} \\
 % Fork me on GitHub: \url{\PackageURL} \end{abstract}
 %
 % \tableofcontents
@@ -131,7 +134,7 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % The \PrintPackage{doclicense} package allows you to put your document under a
 % license and include a link to read about the license or include an icon or
 % image of the license.  Currently, only \doclicenseLongType is supported but this
-% package is designed to handle all kinds of licenses.
+% package is designed to handle all kinds of licenses. See \nameref{sec:contributing}.
 %
 % \section{Usage}
 % Just load the package placing
@@ -157,14 +160,13 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % This sets the license type. Like in this example, the type can be
 % \enquote{CC} to cover all the \doclicenseLongType licenses.
 %
-% The next parameter is \enquote{\PrintOptionF{modifier}} which allows to
-% select different subclasses of a license. \DescribePara{modifier} In this
+% The \DescribePara{modifier} next parameter is \enquote{\PrintOptionF{modifier}} which allows to
+% select different subclasses of a license. In this
 % example it is \enquote{by-sa}.
 %
-% As there can be more than one version a license, the version can also be set.
-% \DescribePara{version}
+% As \DescribePara{version} there can be more than one version of a license, the version can also be set.
 %
-% This package can output some short texts like the long license name.
+% This package can output some texts like the long license name.
 % \DescribePara{lang}
 % Because of this, there needs to be a way to specify the language to use.
 % If this parameter is omitted, then this package will default to
@@ -172,36 +174,59 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % \PrintPackage{babel} or \PrintPackage{polyglossia}.
 % Currently only English and German are supported.
 %
-% Default image with for the license image.
+% Default image width for the license image.
 % \DescribePara{imagewidth}
 %
 % \section{Macros}
 % \DescribeMacro{\doclicenseType}
-% Expands to the type as set in the package options. For this document this macro expands to: \enquote{\doclicenseType{}}
+% Expands to the type as set in the package options. For this document this
+% macro expands to: \enquote{\doclicenseType{}}
+%
+% \DescribeMacro{\doclicenseLongType}
+% Same as \cmd{\doclicenseType} expect that it expands to the long license
+% type. For this document, it looks like this: \enquote{\doclicenseLongType{}}
 %
 % \DescribeMacro{\doclicenseModifier}
-% Expands to the modifier as set in the package options. For this document this macro expands to: \enquote{\doclicenseModifier{}}
+% Expands to the modifier as set in the package options. For this document this
+% macro expands to: \enquote{\doclicenseModifier{}}
 %
 % \DescribeMacro{\doclicenseVersion}
-% Expands to the version as set in the package options. For this document this macro expands to: \enquote{\doclicenseVersion{}}
+% Expands to the version as set in the package options. For this document this
+% macro expands to: \enquote{\doclicenseVersion{}}
 %
 % \DescribeMacro{\doclicenseName}
-% Expands to the short name of the license. For this document this macro expands to: \enquote{\doclicenseName{}}
-%
-% \DescribeMacro{\doclicenseNameRef}
-% Same as \cmd{\doclicenseName} expect that it links to the URL of the license. For this document, it looks like this: \enquote{\doclicenseNameRef{}}
+% Expands to the short name of the license. For this document this macro
+% expands to: \enquote{\doclicenseName{}}
 %
 % \DescribeMacro{\doclicenseLongName}
-% Expands to the long localized name of the license. For this document this macro expands to: \enquote{\doclicenseLongName{}}
+% Expands to the long name of the license. For this document this macro expands
+% to: \enquote{\doclicenseLongName{}}
+%
+% \DescribeMacro{\doclicenseNameRef}
+% Same as \cmd{\doclicenseName} expect that it links to the URL of the license.
+% For this document, it looks like this: \enquote{\doclicenseNameRef{}}
 %
 % \DescribeMacro{\doclicenseLongNameRef}
-% Same as \cmd{\doclicenseLongName} expect that it links to the URL of the license. For this document, it looks like this: \enquote{\doclicenseLongNameRef{}}
+% Same as \cmd{\doclicenseLongName} expect that it links to the URL of the
+% license. For this document, it looks like this:
+% \enquote{\doclicenseLongNameRef{}}
+%
+% \DescribeMacro{\doclicenseURL}
+% Expands to the official URL about the license. Note that it expands to the
+% raw URL string without the use of \cmd{\href} or similar. If you want the
+% link to be clickable then you can use \cmd{\href} or \cmd{\url} from the
+% \PrintPackage{hyperref} package. For this document the macro expands to:
+% \enquote{\doclicenseURL{}}
 %
 % \DescribeMacro{\doclicenseText}
-% Expands to a localized text which sets the document unter this license. For this document this macro expands to: \enquote{\doclicenseText{}}
+% Expands to a localized text which states that this document is licensed under
+% the license. For this document this macro expands to:
+% \enquote{\doclicenseText{}}
 %
 % \DescribeMacro{\doclicenseIcon}
-% Expands to a icon of the license. For this document this macro expands to: \enquote{\doclicenseIcon{}}
+% Expands to a icon of the license. For this document this macro expands to:
+% \enquote{\doclicenseIcon{}}. This macro is based on the
+% \PrintPackage{ccicons} package.
 %
 % \DescribeMacro{\doclicenseImage}
 % This is kind of similar with \cmd{\doclicenseIcon} but it will typeset an
@@ -212,6 +237,8 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % like this:
 % \enquote{\doclicenseImage[imagewidth=2em]}
 %
+% The images are bundled with the \PackageName package.
+%
 % \DescribeMacro{\doclicenseLicense}
 % And last but not least there is the \cmd{\doclicenseLicense} macro which will
 % typeset the \cmd{\doclicenseText} next to the \cmd{\doclicenseImage} in a
@@ -220,7 +247,10 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % \doclicenseLicense
 %
 % \section{Contributing}
-% This package is being developed on GitHub: \url{\PackageURL}.
+% \label{sec:contributing}
+% This package is being developed on GitHub: \url{\PackageURL}. When you want
+% to modify the .sty file, make sure that you make your changes in the .dtx
+% file instead, as the .sty file is automatically generated.
 %
 % \StopEventually{}
 %
@@ -237,9 +267,14 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 \RequirePackage{xifthen}
 \RequirePackage{etoolbox} %% \ifcsdef
 \RequirePackage{xspace}
-\RequirePackage{csquotes}
-\RequirePackage{ccicons}  %% For \doclicenseIcon
-\RequirePackage{graphicx} %% For \doclicenseImage
+\AtEndPreamble{%
+  \@ifpackageloaded{csquotes}{}{\RequirePackage{csquotes}}
+  \@ifpackageloaded{ccicons}{}{\RequirePackage{ccicons}}
+    %% For \doclicenseIcon
+  \@ifpackageloaded{graphicx}{}{\RequirePackage{graphicx}}
+    %% For \doclicenseImage
+  \@ifpackageloaded{hyperref}{}{\RequirePackage{hyperref}}
+}
 %% }}}
 
 %    \end{macrocode}
@@ -248,10 +283,11 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 %% Parameters {{{
 \DeclareStringOption[CC]{type}
 \DeclareStringOption[by-sa]{modifier}
-\DeclareStringOption[3.0]{version}
+\DeclareStringOption{version}
 \DeclareStringOption{lang}
 \DeclareStringOption[10em]{imagewidth}
 %% }}}
+
 %    \end{macrocode}
 % To test if all parameters are valid the macro |\ProcessLocalKeyvalOptions*|
 % is expanded to ensure this before leaving the preamble. This is the only
@@ -259,46 +295,33 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 %    \begin{macrocode}
 \ProcessLocalKeyvalOptions*
 %    \end{macrocode}
-% \subsection{Language selection}
-% Here comes the language selection part. The counter is already set by the
-% \PrintPackage{fnumprint} so I use it's value also in this package because I
-% can rely on this counter.\footnote{I am also the maintainer of the
-% \PrintPackage{fnumprint} package~\dots}
-% If you prefer another language than English or German you can redefine the
-% following macro definitions.
+% \subsection{Declare variables and macros}
 %    \begin{macrocode}
-%% language support {{{
-\ifthenelse{\equal{\doclicense@lang}{}}{%
-  \renewcommand{\doclicense@lang}{\languagename}}{}
-\ifthenelse{\equal{\doclicense@lang}{german}}{\input{doclicense-german.ldf}}{}
-\ifthenelse{\equal{\doclicense@lang}{ngerman}}{\input{doclicense-german.ldf}}{}
-\ifthenelse{\equal{\doclicense@lang}{english}}{\input{doclicense-english.ldf}}{}
-\ifthenelse{\equal{\doclicense@lang}{USenglish}}{\input{doclicense-english.ldf}}{}
-\ifthenelse{\equal{\doclicense@lang}{american}}{\input{doclicense-english.ldf}}{}
-\ifthenelse{\equal{\doclicense@lang}{UKenglish}}{\input{doclicense-english.ldf}}{}
-\ifthenelse{\equal{\doclicense@lang}{british}}{\input{doclicense-english.ldf}}{}
-\ifthenelse{\equal{\doclicense@lang}{canadian}}{\input{doclicense-english.ldf}}{}
-\ifthenelse{\equal{\doclicense@lang}{australian}}{\input{doclicense-english.ldf}}{}
-\ifthenelse{\equal{\doclicense@lang}{newzealand}}{\input{doclicense-english.ldf}}{}
+%% Declare variables {{{
+\newcommand{\doclicense@baseUrlCC}{https://creativecommons.org}
+\newcommand{\doclicense@versionFallback}{}
+\newcommand{\doclicense@versionUsed}{}
+\newboolean{doclicense@licenseKnown}
+\newlength{\doclicense@hsize}
+\newcommand{\doclicense@longName}{%
+  \csname doclicense@lang@lic@\doclicense@type @\doclicense@modifier @\doclicense@versionUsed\endcsname
+}
+\newcommand{\doclicense@icon}{%
+  \PackageError{doclicense}{Icon not defined}
+    {Please check the documentation of doclicense to see what you can do about it.}%
+}
 %% }}}
 
 %    \end{macrocode}
-% \subsection{Macro definition}
-% Some necessary \LaTeX{} counters are declared here before creating the
-% |\doclicense| macro.
+% \subsection{Macro user macros}
 %    \begin{macrocode}
-\newcommand{\doclicense@baseUrlCC}{https://creativecommons.org/licenses}
-\newboolean{doclicense@licenseKnown}
-\newlength{\doclicense@hsize}
-
 %% User macros {{{
 \newcommand{\doclicenseType}{\doclicense@type\xspace}
+\newcommand{\doclicenseLongType}{}
 \newcommand{\doclicenseModifier}{\MakeUppercase{\doclicense@modifier}\xspace}
-\newcommand{\doclicenseVersion}{\doclicense@version\xspace}
-\newcommand{\doclicenseName}{\doclicense@type~\doclicense@modifier~\doclicense@version\xspace}
+\newcommand{\doclicenseVersion}{\doclicense@versionUsed\xspace}
+\newcommand{\doclicenseName}{\doclicense@type~\doclicense@modifier~\doclicense@versionUsed\xspace}
 \newcommand{\doclicenseNameRef}{\href{\doclicenseURL}{\doclicenseName}\xspace}
-\newcommand{\doclicense@longName}{%
-  \csname doclicense@lang@lic@\doclicense@type @\doclicense@modifier @\doclicense@version\endcsname}
 \newcommand{\doclicenseLongName}{\doclicenseLongType\space\doclicense@longName\xspace}
 \newcommand{\doclicenseLongNameRef}{\href{\doclicenseURL}{\doclicenseLongName}}
 \newcommand{\doclicenseText}{%
@@ -315,46 +338,76 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
   \setkeys{doclicense}{#1}
   \href{\doclicenseURL}{%
     \includegraphics[width=\doclicense@imagewidth]%
-      {doclicense-\doclicense@type-\doclicense@modifier.pdf}%
+      {doclicense-\doclicense@type-\doclicense@modifier}%
   }
 }
 
 \newcommand{\doclicenseLicense}{
-\setlength{\doclicense@hsize}{\textwidth - \doclicense@imagewidth - 2em}
-\ifthenelse{\lengthtest{\hsize > \vsize}}{%% landscape
-  \setlength{\doclicense@hsize}{\doclicense@hsize - 10em}
-}{}
-\begin{center}
-\begin{minipage}{\doclicense@hsize}
-  \doclicenseLongText%
-\end{minipage}
-\hfill
-\begin{minipage}{\doclicense@imagewidth}
-  \doclicenseImage%
-\end{minipage}
-\end{center}
+  \setlength{\doclicense@hsize}{\textwidth-\doclicense@imagewidth-2em}
+  \ifthenelse{\lengthtest{\hsize > \vsize}}{%% landscape
+    \setlength{\doclicense@hsize}{\doclicense@hsize-10em}
+  }{}
+  \begin{center}
+    \begin{minipage}{\doclicense@hsize}
+      \doclicenseLongText%
+    \end{minipage}
+    \hfill
+    \begin{minipage}{\doclicense@imagewidth}
+      \doclicenseImage%
+    \end{minipage}
+  \end{center}
 }
 %% }}}
 
-%% Set license {{{
-\newcommand{\doclicense@icon}{%
-  \PackageError{doclicense}{Icon not defined}
-    {Please check the documentation of doclicense to see what you can do about it.}%
+%    \end{macrocode}
+% \subsection{Language selection}
+% The following lines include the ldf files. All language dependent things
+% should be stored there or can be changed there. Note that one could redefine
+% macros like \cmd{\doclicenseLongText} if necessary.
+%    \begin{macrocode}
+%% Language support {{{
+\ifthenelse{\equal{\doclicense@lang}{}}{%
+  \renewcommand{\doclicense@lang}{\languagename}}{}
+\IfFileExists{doclicense-\doclicense@lang.ldf}{%
+  \input{doclicense-\doclicense@lang.ldf}
+}{%
+  \PackageWarning{doclicense}{No language definition for \doclicense@lang not found. Please add one and submit a patch. Using English as fallback.}
+  \renewcommand{\doclicense@lang}{english}
+  \input{doclicense-\doclicense@lang.ldf}
 }
-\newcommand{\doclicense@set}[1][]{%
+
+%% }}}
+
+%    \end{macrocode}
+% \subsection{Internals}
+%    \begin{macrocode}
+%% Set license {{{
+\newcommand{\doclicense@setVersion}[1][]{%
+  \ifthenelse{\equal{#1}{}}{}{%
+    \renewcommand{\doclicense@versionFallback}{#1}
+  }
+  \ifthenelse{\equal{\doclicense@version}{}}{%
+    \renewcommand{\doclicense@versionUsed}{\doclicense@versionFallback}
+  }{%
+    \renewcommand{\doclicense@versionUsed}{\doclicense@version}
+  }
+}
+\newcommand{\doclicense@set}{%
   %% CC {{{
   \ifthenelse{\equal{\doclicense@type}{CC}}{%
-    \newcommand{\doclicenseLongType}{Creative Commons\xspace}
+    \renewcommand{\doclicenseLongType}{Creative Commons\xspace}
 
     \ifthenelse{\equal{\doclicense@lang@lic@CC@code}{}}{%
       \edef\doclicense@UrlLangPart{}
     }{%
       \edef\doclicense@UrlLangPart{/\doclicense@lang@lic@CC@code}
     }
+    \doclicense@setVersion[3.0]
     \edef\doclicenseURL{%
       \doclicense@baseUrlCC/%
+      licenses/%
       \doclicense@modifier/%
-      \doclicense@version\doclicense@UrlLangPart}
+      \doclicense@versionUsed\doclicense@UrlLangPart}
     \ifthenelse{\equal{\doclicense@modifier}{by-sa}}
       {\renewcommand{\doclicense@icon}{\ccbysa}}{}
     \ifthenelse{\equal{\doclicense@modifier}{by-nd}}
@@ -365,13 +418,26 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
       {\renewcommand{\doclicense@icon}{\ccbync}}{}
     \ifthenelse{\equal{\doclicense@modifier}{by-nc-nd}}
       {\renewcommand{\doclicense@icon}{\ccbync}}{}
-    \ifthenelse{\equal{\doclicense@modifier}{zero}}
-      {\renewcommand{\doclicense@icon}{\cczero}}{}
-    \ifthenelse{\equal{\doclicense@modifier}{pd}}
-      {\renewcommand{\doclicense@icon}{\ccpd}}{}
+    \ifthenelse{\equal{\doclicense@modifier}{zero}}{%
+      \renewcommand{\doclicense@icon}{\cczero}
+      \doclicense@setVersion[1.0]
+      \edef\doclicenseURL{%
+        \doclicense@baseUrlCC/%
+        publicdomain/%
+        \doclicense@modifier/%
+        \doclicense@versionUsed\doclicense@UrlLangPart}
+    }{}
+    \ifthenelse{\equal{\doclicense@modifier}{pd}}{
+      \renewcommand{\doclicense@icon}{\ccpd}
+      \doclicense@setVersion[1.0]
+      \edef\doclicenseURL{%
+        \doclicense@baseUrlCC/%
+        licenses/publicdomain/%
+        \doclicense@versionUsed\doclicense@UrlLangPart}
+    }{}
 
     \ifcsdef{doclicense@lang@lic@\doclicense@type%
-      @\doclicense@modifier @\doclicense@version}{}{%
+      @\doclicense@modifier @\doclicense@versionUsed}{}{%
 
       \PackageError{doclicense}{License long name not defined}%
         {Please check the documentation of doclicense to see what you can do about it.}%
@@ -384,6 +450,8 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
       {Please check the documentation of doclicense to see what you can do about it.}%
   }{}%
 }
+%% }}}
+
 \doclicense@set%
 %    \end{macrocode}
 % That's it.

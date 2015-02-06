@@ -1,0 +1,3 @@
+\ProvidesFile{doclicense-american.ldf}
+
+\input{doclicense-english.ldf}
