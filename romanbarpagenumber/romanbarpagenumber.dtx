@@ -122,7 +122,7 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % \phantomsection
 % \addcontentsline{toc}{section}{\abstractname}
 % \begin{abstract}
-% The \PackageName{} package can calculate the age in years. \\
+% Use the package \PrintPackage{romanbar} for roman page numbers. \\
 % Information site on CTAN: \url{\PackageCTANURL} \\
 % Example on Stackexchange: \url{http://tex.stackexchange.com/q/120066/32320} \\
 % Fork me on GitHub: \url{\PackageURL} \end{abstract}
@@ -130,8 +130,6 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % \tableofcontents
 %
 % \section{Introduction}
-% Use the package \PrintPackage{romanbar} for roman page numbers.
-%
 % The package \PrintPackage{romanbar} allows to typeset roman numbers with
 % bars. The \PrintPackage{romanbarpagenumber} package allows you to use the
 % correct roman numbers as page number.
@@ -143,6 +141,13 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % \end{quote}
 % in the preamble of your \LaTeXe{} source file.
 %
+% When you now set your page numbering to Roman, it will use the
+% \PrintPackage{romanbar} package to typeset the roman number.
+% You can set the page numbering to Roman with the following macro.
+%
+% \begin{quote}
+%   |\pagenumbering{Roman}|
+% \end{quote}
 %
 % \section{Contributing}
 % \label{sec:contributing}
