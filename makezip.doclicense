@@ -1,0 +1,7 @@
+#!/bin/bash
+## makes a zip file to upload it to ctan
+
+name="doclicense"
+archiv="${name}.zip"
+rm -f "$archiv"
+zip "$archiv" "${name}/${name}.dtx" "${name}/${name}.ins" "${name}/${name}.pdf" "${name}/README" ${name}/images/*.pdf ${name}/doclicense-*.ldf
