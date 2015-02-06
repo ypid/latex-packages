@@ -20,7 +20,7 @@ Question on Stackexchange: https://tex.stackexchange.com/questions/120066/pagenu
 Use the package romanbar for roman page numbers.
 
 The package romanbar allows to typeset roman numbers with bars. The
-romanbarpagenumber package allows you to use the correct roman numbers as page
+romanbarpagenumber package allows you to use those "correct" roman numbers as page
 number.
 
 	GENERATING THE FILES
