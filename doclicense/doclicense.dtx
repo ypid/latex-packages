@@ -50,6 +50,7 @@
   hypdoc,
   nameref,
   xspace,
+  eqlist,
 }
 \GetFileInfo{doclicense.dtx}
 \hypersetup{
@@ -102,6 +103,7 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 %
 % \changes{0.7}{2015/02/05}{Initial version}
 % \changes{0.8}{2015/02/06}{Added support for CC-zero and CC-pd and small improvements}
+% \changes{0.9}{2015/02/06}{Added list of supported licenses to docu and added option imagemodifier}
 %
 % \DoNotIndex{\RequirePackage, \DeclareOption, \ProcessOptions}
 % \DoNotIndex{\PackageWarning, \MessageBreak}
@@ -177,6 +179,18 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % Default image width for the license image.
 % \DescribePara{imagewidth}
 %
+% This options was added to support variations in the license images.
+% \DescribePara{imagemodifier}
+% For example, Creative Commons provides sometimes more than one image for one version.
+% See the \href{https://creativecommons.org/about/downloads}{donwload page}.
+% You will note that there are by-nc.eu and by-nc which differs in the money unit.
+% By default the by-nc image would be used but you can change this:
+% \begin{quote}
+%   |\usepackage[imagemodifier={-eu}]{romanbarpagenumber}|
+% \end{quote}
+%
+% \enquote{eu} is the default for the German language.
+%
 % \section{Macros}
 % \DescribeMacro{\doclicenseType}
 % Expands to the type as set in the package options. For this document this
@@ -246,6 +260,22 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 %
 % \doclicenseLicense
 %
+% \section{Supported licenses}
+% \subsection{Creative commons}
+%
+% \makeatletter
+% \begin{eqlist}
+%   \item[by@3.0] \csname doclicense@lang@lic@CC@by@3.0\endcsname
+%   \item[by-sa@3.0] \csname doclicense@lang@lic@CC@by-sa@3.0\endcsname
+%   \item[by-nd@3.0] \csname doclicense@lang@lic@CC@by-nd@3.0\endcsname
+%   \item[by-nc@3.0] \csname doclicense@lang@lic@CC@by-nc@3.0\endcsname
+%   \item[by-nc-sa@3.0] \csname doclicense@lang@lic@CC@by-nc-sa@3.0\endcsname
+%   \item[by-nc-nc@3.0] \csname doclicense@lang@lic@CC@by-nc-nd@3.0\endcsname
+%   \item[zero@1.0] \csname doclicense@lang@lic@CC@zero@1.0\endcsname
+%   \item[pd@1.0] \csname doclicense@lang@lic@CC@pd@1.0\endcsname
+% \end{eqlist}
+% \makeatother
+%
 % \section{Contributing}
 % \label{sec:contributing}
 % This package is being developed on GitHub: \url{\PackageURL}. When you want
@@ -285,6 +315,7 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 \DeclareStringOption[by-sa]{modifier}
 \DeclareStringOption{version}
 \DeclareStringOption{lang}
+\DeclareStringOption{imagemodifier}
 \DeclareStringOption[10em]{imagewidth}
 %% }}}
 
@@ -338,7 +369,7 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
   \setkeys{doclicense}{#1}
   \href{\doclicenseURL}{%
     \includegraphics[width=\doclicense@imagewidth]%
-      {doclicense-\doclicense@type-\doclicense@modifier}%
+      {doclicense-\doclicense@type-\doclicense@modifier\doclicense@imagemodifier}%
   }
 }
 
@@ -408,18 +439,25 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
       licenses/%
       \doclicense@modifier/%
       \doclicense@versionUsed\doclicense@UrlLangPart}
-    \ifthenelse{\equal{\doclicense@modifier}{by-sa}}
-      {\renewcommand{\doclicense@icon}{\ccbysa}}{}
-    \ifthenelse{\equal{\doclicense@modifier}{by-nd}}
-      {\renewcommand{\doclicense@icon}{\ccbynd}}{}
-    \ifthenelse{\equal{\doclicense@modifier}{by-nc}}
-      {\renewcommand{\doclicense@icon}{\ccbync}}{}
+    \ifthenelse{\equal{\doclicense@modifier}{by-sa}}{%
+      \renewcommand{\doclicense@icon}{\ccbysa}
+      \renewcommand{\doclicense@imagemodifier}{}
+    }{}
+    \ifthenelse{\equal{\doclicense@modifier}{by-nd}}{%
+      \renewcommand{\doclicense@icon}{\ccbynd}
+      \renewcommand{\doclicense@imagemodifier}{}
+    }{}
+    \ifthenelse{\equal{\doclicense@modifier}{by-nc}}{%
+      \renewcommand{\doclicense@icon}{\ccbync}
+      \renewcommand{\doclicense@imagemodifier}{}
+    }{}
     \ifthenelse{\equal{\doclicense@modifier}{by-nc-sa}}
       {\renewcommand{\doclicense@icon}{\ccbync}}{}
     \ifthenelse{\equal{\doclicense@modifier}{by-nc-nd}}
       {\renewcommand{\doclicense@icon}{\ccbync}}{}
     \ifthenelse{\equal{\doclicense@modifier}{zero}}{%
       \renewcommand{\doclicense@icon}{\cczero}
+      \renewcommand{\doclicense@imagemodifier}{}
       \doclicense@setVersion[1.0]
       \edef\doclicenseURL{%
         \doclicense@baseUrlCC/%
@@ -429,6 +467,7 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
     }{}
     \ifthenelse{\equal{\doclicense@modifier}{pd}}{
       \renewcommand{\doclicense@icon}{\ccpd}
+      \renewcommand{\doclicense@imagemodifier}{}
       \doclicense@setVersion[1.0]
       \edef\doclicenseURL{%
         \doclicense@baseUrlCC/%

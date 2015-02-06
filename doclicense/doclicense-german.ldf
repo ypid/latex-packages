@@ -3,8 +3,12 @@
 \edef\doclicense@lang@thisDoc{Dieses Werk ist lizenziert unter einer}%
 \edef\doclicense@lang@word@license{Lizenz}%
 \edef\doclicense@lang@code{de}%
+\ifthenelse{\equal{\doclicense@imagemodifier}{}}{%
+  \edef\doclicense@imagemodifier{-eu}
+}{}
 
 \edef\doclicense@lang@lic@CC@code{deed.de}%
+\expandafter\edef\csname doclicense@lang@lic@CC@by@3.0\endcsname{Namensnennung 3.0 Deutschland}%
 \expandafter\edef\csname doclicense@lang@lic@CC@by-sa@3.0\endcsname{Namensnennung - Weitergabe unter gleichen Bedingungen 3.0 Deutschland}%
 \expandafter\edef\csname doclicense@lang@lic@CC@by-nd@3.0\endcsname{Namensnennung-Keine Bearbeitung 3.0 Deutschland}%
 \expandafter\edef\csname doclicense@lang@lic@CC@by-nc@3.0\endcsname{Namensnennung-Nicht kommerziell 3.0 Deutschland}%

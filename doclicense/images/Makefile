@@ -2,6 +2,8 @@ WGET_OPTIONS ?= --no-verbose
 
 .PHONY: get-all
 get-all: doclicense-CC-by.pdf doclicense-CC-by-sa.pdf doclicense-CC-by-nd.pdf doclicense-CC-by-nc.pdf doclicense-CC-by-nc.eu.pdf doclicense-CC-by-nc-sa.pdf doclicense-CC-by-nc-sa.eu.pdf doclicense-CC-by-nc-nd.eu.pdf doclicense-CC-pd.pdf doclicense-CC-zero.pdf
+	rename 's#\.eu\.#-eu.#' -v *
+	for file in *-eu.pdf; do oldfile="${file%-eu.pdf}.eu.pdf"; ln -s "$file" "$oldfile"; done
 
 doclicense-CC-pd.pdf: doclicense-CC-publicdomain.pdf
 	mv "$<" "$@"

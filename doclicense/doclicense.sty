@@ -23,6 +23,7 @@
 \DeclareStringOption[by-sa]{modifier}
 \DeclareStringOption{version}
 \DeclareStringOption{lang}
+\DeclareStringOption{imagemodifier}
 \DeclareStringOption[10em]{imagewidth}
 %% }}}
 
@@ -65,7 +66,7 @@
   \setkeys{doclicense}{#1}
   \href{\doclicenseURL}{%
     \includegraphics[width=\doclicense@imagewidth]%
-      {doclicense-\doclicense@type-\doclicense@modifier}%
+      {doclicense-\doclicense@type-\doclicense@modifier\doclicense@imagemodifier}%
   }
 }
 
@@ -126,18 +127,25 @@
       licenses/%
       \doclicense@modifier/%
       \doclicense@versionUsed\doclicense@UrlLangPart}
-    \ifthenelse{\equal{\doclicense@modifier}{by-sa}}
-      {\renewcommand{\doclicense@icon}{\ccbysa}}{}
-    \ifthenelse{\equal{\doclicense@modifier}{by-nd}}
-      {\renewcommand{\doclicense@icon}{\ccbynd}}{}
-    \ifthenelse{\equal{\doclicense@modifier}{by-nc}}
-      {\renewcommand{\doclicense@icon}{\ccbync}}{}
+    \ifthenelse{\equal{\doclicense@modifier}{by-sa}}{%
+      \renewcommand{\doclicense@icon}{\ccbysa}
+      \renewcommand{\doclicense@imagemodifier}{}
+    }{}
+    \ifthenelse{\equal{\doclicense@modifier}{by-nd}}{%
+      \renewcommand{\doclicense@icon}{\ccbynd}
+      \renewcommand{\doclicense@imagemodifier}{}
+    }{}
+    \ifthenelse{\equal{\doclicense@modifier}{by-nc}}{%
+      \renewcommand{\doclicense@icon}{\ccbync}
+      \renewcommand{\doclicense@imagemodifier}{}
+    }{}
     \ifthenelse{\equal{\doclicense@modifier}{by-nc-sa}}
       {\renewcommand{\doclicense@icon}{\ccbync}}{}
     \ifthenelse{\equal{\doclicense@modifier}{by-nc-nd}}
       {\renewcommand{\doclicense@icon}{\ccbync}}{}
     \ifthenelse{\equal{\doclicense@modifier}{zero}}{%
       \renewcommand{\doclicense@icon}{\cczero}
+      \renewcommand{\doclicense@imagemodifier}{}
       \doclicense@setVersion[1.0]
       \edef\doclicenseURL{%
         \doclicense@baseUrlCC/%
@@ -147,6 +155,7 @@
     }{}
     \ifthenelse{\equal{\doclicense@modifier}{pd}}{
       \renewcommand{\doclicense@icon}{\ccpd}
+      \renewcommand{\doclicense@imagemodifier}{}
       \doclicense@setVersion[1.0]
       \edef\doclicenseURL{%
         \doclicense@baseUrlCC/%
