@@ -1,7 +1,7 @@
 %% See file 'doclicense.dtx' for copyright and license.
 \NeedsTeXFormat{LaTeX2e}[1998/12/01]
 \ProvidesPackage{doclicense}
-    [2015/02/06 v0.8 Set and print the license of a document]
+    [2015/02/07 v0.9 Set and print the license of a document]
 
 %% Dependencies {{{
 \RequirePackage{kvoptions}
@@ -35,7 +35,8 @@
 \newboolean{doclicense@licenseKnown}
 \newlength{\doclicense@hsize}
 \newcommand{\doclicense@longName}{%
-  \csname doclicense@lang@lic@\doclicense@type @\doclicense@modifier @\doclicense@versionUsed\endcsname
+  \csname doclicense@lang@lic@\doclicense@type @\doclicense@modifier%
+  @\doclicense@versionUsed\endcsname
 }
 \newcommand{\doclicense@icon}{%
   \PackageError{doclicense}{Icon not defined}
@@ -48,7 +49,8 @@
 \newcommand{\doclicenseLongType}{}
 \newcommand{\doclicenseModifier}{\MakeUppercase{\doclicense@modifier}\xspace}
 \newcommand{\doclicenseVersion}{\doclicense@versionUsed\xspace}
-\newcommand{\doclicenseName}{\doclicense@type~\doclicense@modifier~\doclicense@versionUsed\xspace}
+\newcommand{\doclicenseName}{%
+  \doclicense@type~\doclicense@modifier~\doclicense@versionUsed\xspace}
 \newcommand{\doclicenseNameRef}{\href{\doclicenseURL}{\doclicenseName}\xspace}
 \newcommand{\doclicenseLongName}{\doclicenseLongType\space\doclicense@longName\xspace}
 \newcommand{\doclicenseLongNameRef}{\href{\doclicenseURL}{\doclicenseLongName}}
@@ -70,7 +72,8 @@
   }
 }
 
-\newcommand{\doclicenseLicense}{
+\newcommand{\doclicenseLicense}{\doclicenseThis} %% legacy support
+\newcommand{\doclicenseThis}{
   \setlength{\doclicense@hsize}{\textwidth-\doclicense@imagewidth-2em}
   \ifthenelse{\lengthtest{\hsize > \vsize}}{%% landscape
     \setlength{\doclicense@hsize}{\doclicense@hsize-10em}
@@ -93,7 +96,9 @@
 \IfFileExists{doclicense-\doclicense@lang.ldf}{%
   \input{doclicense-\doclicense@lang.ldf}
 }{%
-  \PackageWarning{doclicense}{No language definition for \doclicense@lang not found. Please add one and submit a patch. Using English as fallback.}
+  \PackageWarning{doclicense}{%
+    No language definition for \doclicense@lang not found.
+    Please add one and submit a patch. Using English as fallback.}
   \renewcommand{\doclicense@lang}{english}
   \input{doclicense-\doclicense@lang.ldf}
 }

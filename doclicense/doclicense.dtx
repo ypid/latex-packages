@@ -27,11 +27,12 @@
 %<package>\NeedsTeXFormat{LaTeX2e}[1998/12/01]
 %<package>\ProvidesPackage{doclicense}
 %<*package>
-    [2015/02/06 v0.8 Set and print the license of a document]
+    [2015/02/07 v0.9 Set and print the license of a document]
 %</package>
 %
 %<*driver>
 \documentclass[english]{ltxdoc}
+\setlength{\parindent}{0pt}
 \newcommand{\PackageURL}{https://github.com/ypid/latex-packages/tree/master/doclicense}
 \newcommand{\PackageCTANURL}{https://www.ctan.org/pkg/doclicense}
 \newcommand{\PackageAuthor}{Robin Schneider}
@@ -103,7 +104,8 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 %
 % \changes{0.7}{2015/02/05}{Initial version}
 % \changes{0.8}{2015/02/06}{Added support for CC-zero and CC-pd and small improvements}
-% \changes{0.9}{2015/02/06}{Added list of supported licenses to docu and added option imagemodifier}
+% \changes{0.9}{2015/02/07}{Added list of supported licenses to docu and added option imagemodifier.
+%   Also renamed macro \cmd{\doclicenseLicense} to \cmd{\doclicenseThis}} %
 %
 % \DoNotIndex{\RequirePackage, \DeclareOption, \ProcessOptions}
 % \DoNotIndex{\PackageWarning, \MessageBreak}
@@ -131,8 +133,6 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % \tableofcontents
 %
 % \section{Introduction}
-% Make it easy to set your documents under a certain license.
-%
 % The \PrintPackage{doclicense} package allows you to put your document under a
 % license and include a link to read about the license or include an icon or
 % image of the license.  Currently, only \doclicenseLongType is supported but this
@@ -161,10 +161,12 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % The first parameter is \enquote{\PrintOptionF{type}}. \DescribePara{type}
 % This sets the license type. Like in this example, the type can be
 % \enquote{CC} to cover all the \doclicenseLongType licenses.
+% Please make sure that the type is all uppercase. See the \nameref{sec:supported-licenses} section for a complete list.
 %
 % The \DescribePara{modifier} next parameter is \enquote{\PrintOptionF{modifier}} which allows to
 % select different subclasses of a license. In this
 % example it is \enquote{by-sa}.
+% Please make sure that the type is all lowercase. See the \nameref{sec:supported-licenses} section for a complete list.
 %
 % As \DescribePara{version} there can be more than one version of a license, the version can also be set.
 %
@@ -183,85 +185,91 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % \DescribePara{imagemodifier}
 % For example, Creative Commons provides sometimes more than one image for one version.
 % See the \href{https://creativecommons.org/about/downloads}{donwload page}.
-% You will note that there are by-nc.eu and by-nc which differs in the money unit.
-% By default the by-nc image would be used but you can change this:
+% You will note that there are by-nc.eu and by-nc which only differ in the money unit.
+% By default the by-nc image would be used but you can change this with:
 % \begin{quote}
 %   |\usepackage[imagemodifier={-eu}]{romanbarpagenumber}|
 % \end{quote}
 %
-% \enquote{eu} is the default for the German language.
+% Note that if German is set as language then \enquote{eu} will be used as
+% default for this option.
 %
 % \section{Macros}
 % \DescribeMacro{\doclicenseType}
-% Expands to the type as set in the package options. For this document this
-% macro expands to: \enquote{\doclicenseType{}}
+% Expands to the type as set in the package options. Example: \enquote{\doclicenseType{}}
 %
 % \DescribeMacro{\doclicenseLongType}
-% Same as \cmd{\doclicenseType} expect that it expands to the long license
-% type. For this document, it looks like this: \enquote{\doclicenseLongType{}}
+% Same as \cmd{\doclicenseType} except that it expands to the long license
+% type. Example: \enquote{\doclicenseLongType{}}
 %
 % \DescribeMacro{\doclicenseModifier}
-% Expands to the modifier as set in the package options. For this document this
-% macro expands to: \enquote{\doclicenseModifier{}}
+% Expands to the modifier as set in the package options. Example: \enquote{\doclicenseModifier{}}
 %
 % \DescribeMacro{\doclicenseVersion}
-% Expands to the version as set in the package options. For this document this
-% macro expands to: \enquote{\doclicenseVersion{}}
-%
-% \DescribeMacro{\doclicenseName}
-% Expands to the short name of the license. For this document this macro
-% expands to: \enquote{\doclicenseName{}}
-%
-% \DescribeMacro{\doclicenseLongName}
-% Expands to the long name of the license. For this document this macro expands
-% to: \enquote{\doclicenseLongName{}}
-%
-% \DescribeMacro{\doclicenseNameRef}
-% Same as \cmd{\doclicenseName} expect that it links to the URL of the license.
-% For this document, it looks like this: \enquote{\doclicenseNameRef{}}
-%
-% \DescribeMacro{\doclicenseLongNameRef}
-% Same as \cmd{\doclicenseLongName} expect that it links to the URL of the
-% license. For this document, it looks like this:
-% \enquote{\doclicenseLongNameRef{}}
+% Expands to the version as set in the package options. Example: \enquote{\doclicenseVersion{}}
 %
 % \DescribeMacro{\doclicenseURL}
 % Expands to the official URL about the license. Note that it expands to the
 % raw URL string without the use of \cmd{\href} or similar. If you want the
 % link to be clickable then you can use \cmd{\href} or \cmd{\url} from the
-% \PrintPackage{hyperref} package. For this document the macro expands to:
+% \PrintPackage{hyperref} package or just read on because the following macros
+% can also do this for your. Example:
 % \enquote{\doclicenseURL{}}
+%
+% \DescribeMacro{\doclicenseName}
+% Expands to the short name of the license. Example: \enquote{\doclicenseName{}}
+%
+% \DescribeMacro{\doclicenseLongName}
+% Expands to the long name of the license. Example: \enquote{\doclicenseLongName{}}
+%
+% \DescribeMacro{\doclicenseNameRef}
+% Same as \cmd{\doclicenseName} except that it links to the URL of the license.
+% Example: \enquote{\doclicenseNameRef{}}
+%
+% \DescribeMacro{\doclicenseLongNameRef}
+% Same as \cmd{\doclicenseLongName} except that it links to the URL of the
+% license. Example:
+% \enquote{\doclicenseLongNameRef{}}
 %
 % \DescribeMacro{\doclicenseText}
 % Expands to a localized text which states that this document is licensed under
-% the license. For this document this macro expands to:
+% the license. Example:
 % \enquote{\doclicenseText{}}
 %
+% \DescribeMacro{\doclicenseLongText}
+% Same as \cmd{\doclicenseText} except that it uses the long name of the license.
+% Example: \enquote{\doclicenseLongText{}}
+%
 % \DescribeMacro{\doclicenseIcon}
-% Expands to a icon of the license. For this document this macro expands to:
+% Expands to a icon of the license. Example:
 % \enquote{\doclicenseIcon{}}. This macro is based on the
 % \PrintPackage{ccicons} package.
 %
 % \DescribeMacro{\doclicenseImage}
 % This is kind of similar with \cmd{\doclicenseIcon} but it will typeset an
-% bigger pictogram of the license. For this document this macro expands to:
+% bigger pictogram of the license. Example:
 % \enquote{\doclicenseImage}
 %
 % Note that you can change the image size with the \oarg{imagewidth} parameter
 % like this:
 % \enquote{\doclicenseImage[imagewidth=2em]}
 %
+% \begin{quote}
+%   |\doclicenseImage[imagewidth=2em]|
+% \end{quote}
+%
 % The images are bundled with the \PackageName package.
 %
-% \DescribeMacro{\doclicenseLicense}
-% And last but not least there is the \cmd{\doclicenseLicense} macro which will
+% \DescribeMacro{\doclicenseThis}
+% And last but not least there is the \cmd{\doclicenseThis} macro which will
 % typeset the \cmd{\doclicenseText} next to the \cmd{\doclicenseImage} in a
-% \enquote{minipage} environment. This will look like the following.
+% \enquote{minipage} environment. This will look like the following:
 %
-% \doclicenseLicense
+% \doclicenseThis
 %
 % \section{Supported licenses}
-% \subsection{Creative commons}
+% \label{sec:supported-licenses}
+% \subsection{CC (Creative commons)}
 %
 % \makeatletter
 % \begin{eqlist}
@@ -335,7 +343,8 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 \newboolean{doclicense@licenseKnown}
 \newlength{\doclicense@hsize}
 \newcommand{\doclicense@longName}{%
-  \csname doclicense@lang@lic@\doclicense@type @\doclicense@modifier @\doclicense@versionUsed\endcsname
+  \csname doclicense@lang@lic@\doclicense@type @\doclicense@modifier%
+  @\doclicense@versionUsed\endcsname
 }
 \newcommand{\doclicense@icon}{%
   \PackageError{doclicense}{Icon not defined}
@@ -351,7 +360,8 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 \newcommand{\doclicenseLongType}{}
 \newcommand{\doclicenseModifier}{\MakeUppercase{\doclicense@modifier}\xspace}
 \newcommand{\doclicenseVersion}{\doclicense@versionUsed\xspace}
-\newcommand{\doclicenseName}{\doclicense@type~\doclicense@modifier~\doclicense@versionUsed\xspace}
+\newcommand{\doclicenseName}{%
+  \doclicense@type~\doclicense@modifier~\doclicense@versionUsed\xspace}
 \newcommand{\doclicenseNameRef}{\href{\doclicenseURL}{\doclicenseName}\xspace}
 \newcommand{\doclicenseLongName}{\doclicenseLongType\space\doclicense@longName\xspace}
 \newcommand{\doclicenseLongNameRef}{\href{\doclicenseURL}{\doclicenseLongName}}
@@ -373,7 +383,8 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
   }
 }
 
-\newcommand{\doclicenseLicense}{
+\newcommand{\doclicenseLicense}{\doclicenseThis} %% legacy support
+\newcommand{\doclicenseThis}{
   \setlength{\doclicense@hsize}{\textwidth-\doclicense@imagewidth-2em}
   \ifthenelse{\lengthtest{\hsize > \vsize}}{%% landscape
     \setlength{\doclicense@hsize}{\doclicense@hsize-10em}
@@ -392,7 +403,7 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 
 %    \end{macrocode}
 % \subsection{Language selection}
-% The following lines include the ldf files. All language dependent things
+% The following lines include the ldf file. All language dependent things
 % should be stored there or can be changed there. Note that one could redefine
 % macros like \cmd{\doclicenseLongText} if necessary.
 %    \begin{macrocode}
@@ -402,7 +413,9 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 \IfFileExists{doclicense-\doclicense@lang.ldf}{%
   \input{doclicense-\doclicense@lang.ldf}
 }{%
-  \PackageWarning{doclicense}{No language definition for \doclicense@lang not found. Please add one and submit a patch. Using English as fallback.}
+  \PackageWarning{doclicense}{%
+    No language definition for \doclicense@lang not found.
+    Please add one and submit a patch. Using English as fallback.}
   \renewcommand{\doclicense@lang}{english}
   \input{doclicense-\doclicense@lang.ldf}
 }
