@@ -27,7 +27,7 @@
 %<package>\NeedsTeXFormat{LaTeX2e}[1998/12/01]
 %<package>\ProvidesPackage{doclicense}
 %<*package>
-    [2015/02/07 v0.9 Set and print the license of a document]
+    [2015/02/13 v0.10 Set and print the license of a document]
 %</package>
 %
 %<*driver>
@@ -48,6 +48,7 @@
   csquotes,
   xcolor,
   url,
+  hyperxmp,
   hypdoc,
   nameref,
   xspace,
@@ -60,7 +61,7 @@
   pdfsubject={\fileinfo},
   baseurl={\PackageURL},
   pdfkeywords={This document corresponds to \PackageName~\fileversion,
-    dated \filedate}
+    dated \filedate},
 }
 
 \title{The \PackageName{} package\thanks{This document
@@ -105,7 +106,8 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % \changes{0.7}{2015/02/05}{Initial version}
 % \changes{0.8}{2015/02/06}{Added support for CC-zero and CC-pd and small improvements}
 % \changes{0.9}{2015/02/07}{Added list of supported licenses to docu and added option imagemodifier.
-%   Also renamed macro \cmd{\doclicenseLicense} to \cmd{\doclicenseThis}} %
+%   Also renamed macro \cmd{\doclicenseLicense} to \cmd{\doclicenseThis}}
+% \changes{0.10}{2015/02/13}{Added support for hyperxmp}
 %
 % \DoNotIndex{\RequirePackage, \DeclareOption, \ProcessOptions}
 % \DoNotIndex{\PackageWarning, \MessageBreak}
@@ -156,6 +158,12 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % \end{quote}
 %
 % This will explicitly set the license to \doclicenseNameRef.
+%
+% If the \PrintPackage{hyperxmp} package is loaded, then the options
+% \PrintOptionF{pdflicenseurl} and \PrintOptionF{pdfcopyright} will be set
+% by \PrintPackage{doclicense} to the corresponding values
+% (\enquote{\url{\doclicenseURL}} and \enquote{\doclicenseLongText{}}).
+%
 % \bigskip
 %
 % The first parameter is \enquote{\PrintOptionF{type}}. \DescribePara{type}
@@ -312,6 +320,12 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
   \@ifpackageloaded{graphicx}{}{\RequirePackage{graphicx}}
     %% For \doclicenseImage
   \@ifpackageloaded{hyperref}{}{\RequirePackage{hyperref}}
+  \@ifpackageloaded{hyperxmp}{%
+    \hypersetup{
+      pdfcopyright  = {\doclicenseLongText},
+      pdflicenseurl = {\doclicenseURL},
+    }
+  }{}
 }
 %% }}}
 

@@ -1,7 +1,7 @@
 %% See file 'doclicense.dtx' for copyright and license.
 \NeedsTeXFormat{LaTeX2e}[1998/12/01]
 \ProvidesPackage{doclicense}
-    [2015/02/07 v0.9 Set and print the license of a document]
+    [2015/02/13 v0.10 Set and print the license of a document]
 
 %% Dependencies {{{
 \RequirePackage{kvoptions}
@@ -15,6 +15,12 @@
   \@ifpackageloaded{graphicx}{}{\RequirePackage{graphicx}}
     %% For \doclicenseImage
   \@ifpackageloaded{hyperref}{}{\RequirePackage{hyperref}}
+  \@ifpackageloaded{hyperxmp}{%
+    \hypersetup{
+      pdfcopyright  = {\doclicenseLongText},
+      pdflicenseurl = {\doclicenseURL},
+    }
+  }{}
 }
 %% }}}
 
