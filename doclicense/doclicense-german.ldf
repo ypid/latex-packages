@@ -1,18 +1,18 @@
 \ProvidesFile{doclicense-german.ldf}
 
-\edef\doclicense@lang@thisDoc{Dieses Werk ist lizenziert unter einer}%
-\edef\doclicense@lang@word@license{Lizenz}%
-\edef\doclicense@lang@code{de}%
+\@namedef{doclicense@lang@thisDoc}{Dieses Werk ist lizenziert unter einer}%
+\@namedef{doclicense@lang@word@license}{Lizenz}%
+\@namedef{doclicense@lang@code}{de}%
 \ifthenelse{\equal{\doclicense@imagemodifier}{}}{%
-  \edef\doclicense@imagemodifier{-eu}
+  \@namedef{doclicense@imagemodifier}{-eu}
 }{}
 
-\edef\doclicense@lang@lic@CC@code{deed.de}%
-\expandafter\edef\csname doclicense@lang@lic@CC@by@3.0\endcsname{Namensnennung 3.0 Deutschland}%
-\expandafter\edef\csname doclicense@lang@lic@CC@by-sa@3.0\endcsname{Namensnennung - Weitergabe unter gleichen Bedingungen 3.0 Deutschland}%
-\expandafter\edef\csname doclicense@lang@lic@CC@by-nd@3.0\endcsname{Namensnennung-Keine Bearbeitung 3.0 Deutschland}%
-\expandafter\edef\csname doclicense@lang@lic@CC@by-nc@3.0\endcsname{Namensnennung-Nicht kommerziell 3.0 Deutschland}%
-\expandafter\edef\csname doclicense@lang@lic@CC@by-nc-sa@3.0\endcsname{Namensnennung - Nicht-kommerziell - Weitergabe unter gleichen Bedingungen 3.0 Deutschland}%
-\expandafter\edef\csname doclicense@lang@lic@CC@by-nc-nd@3.0\endcsname{Namensnennung - Nicht-kommerziell - Keine Bearbeitung 3.0 Deutschland}%
-\expandafter\edef\csname doclicense@lang@lic@CC@zero@1.0\endcsname{CC0 1.0 Universell}%
-% \expandafter\edef\csname doclicense@lang@lic@CC@pd@1.0\endcsname{Copyright-Only Dedication}% Based on US right. Use Zero in no-US countries.
+\@namedef{doclicense@lang@lic@CC@code}{deed.de}%
+\@namedef{doclicense@lang@lic@CC@by@3.0}{Namensnennung 3.0 Deutschland}%
+\@namedef{doclicense@lang@lic@CC@by-sa@3.0}{Namensnennung - Weitergabe unter gleichen Bedingungen 3.0 Deutschland}%
+\@namedef{doclicense@lang@lic@CC@by-nd@3.0}{Namensnennung-Keine Bearbeitung 3.0 Deutschland}%
+\@namedef{doclicense@lang@lic@CC@by-nc@3.0}{Namensnennung-Nicht kommerziell 3.0 Deutschland}%
+\@namedef{doclicense@lang@lic@CC@by-nc-sa@3.0}{Namensnennung - Nicht-kommerziell - Weitergabe unter gleichen Bedingungen 3.0 Deutschland}%
+\@namedef{doclicense@lang@lic@CC@by-nc-nd@3.0}{Namensnennung - Nicht-kommerziell - Keine Bearbeitung 3.0 Deutschland}%
+\@namedef{doclicense@lang@lic@CC@zero@1.0}{CC0 1.0 Universell}%
+% \@namedef{doclicense@lang@lic@CC@pd@1.0}{Copyright-Only Dedication}% Based on US right. Use Zero in no-US countries.

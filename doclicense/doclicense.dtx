@@ -281,14 +281,14 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 %
 % \makeatletter
 % \begin{eqlist}
-%   \item[by@3.0] \csname doclicense@lang@lic@CC@by@3.0\endcsname
-%   \item[by-sa@3.0] \csname doclicense@lang@lic@CC@by-sa@3.0\endcsname
-%   \item[by-nd@3.0] \csname doclicense@lang@lic@CC@by-nd@3.0\endcsname
-%   \item[by-nc@3.0] \csname doclicense@lang@lic@CC@by-nc@3.0\endcsname
-%   \item[by-nc-sa@3.0] \csname doclicense@lang@lic@CC@by-nc-sa@3.0\endcsname
-%   \item[by-nc-nc@3.0] \csname doclicense@lang@lic@CC@by-nc-nd@3.0\endcsname
-%   \item[zero@1.0] \csname doclicense@lang@lic@CC@zero@1.0\endcsname
-%   \item[pd@1.0] \csname doclicense@lang@lic@CC@pd@1.0\endcsname
+%   \item[by@3.0] \@nameuse{doclicense@lang@lic@CC@by@3.0}
+%   \item[by-sa@3.0] \@nameuse{doclicense@lang@lic@CC@by-sa@3.0}
+%   \item[by-nd@3.0] \@nameuse{doclicense@lang@lic@CC@by-nd@3.0}
+%   \item[by-nc@3.0] \@nameuse{doclicense@lang@lic@CC@by-nc@3.0}
+%   \item[by-nc-sa@3.0] \@nameuse{doclicense@lang@lic@CC@by-nc-sa@3.0}
+%   \item[by-nc-nc@3.0] \@nameuse{doclicense@lang@lic@CC@by-nc-nd@3.0}
+%   \item[zero@1.0] \@nameuse{doclicense@lang@lic@CC@zero@1.0}
+%   \item[pd@1.0] \@nameuse{doclicense@lang@lic@CC@pd@1.0}
 % \end{eqlist}
 % \makeatother
 %
@@ -357,8 +357,8 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 \newboolean{doclicense@licenseKnown}
 \newlength{\doclicense@hsize}
 \newcommand{\doclicense@longName}{%
-  \csname doclicense@lang@lic@\doclicense@type @\doclicense@modifier%
-  @\doclicense@versionUsed\endcsname
+  \@nameuse{doclicense@lang@lic@\doclicense@type @\doclicense@modifier%
+    @\doclicense@versionUsed}
 }
 \newcommand{\doclicense@icon}{%
   \PackageError{doclicense}{Icon not defined}

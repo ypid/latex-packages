@@ -1,21 +1,21 @@
 \ProvidesFile{doclicense-english.ldf}
 
-\edef\doclicense@lang@thisDoc{This work is licensed under a}%
-\edef\doclicense@lang@word@license{license}%
-\edef\doclicense@lang@code{en}%
+\@namedef{doclicense@lang@thisDoc}{This work is licensed under a}%
+\@namedef{doclicense@lang@word@license}{license}%
+\@namedef{doclicense@lang@code}{en}%
 
-\edef\doclicense@lang@lic@CC@code{}%
-\expandafter\edef\csname doclicense@lang@lic@CC@by@3.0\endcsname{Attribution 3.0 Unported}%
-\expandafter\edef\csname doclicense@lang@lic@CC@by-sa@3.0\endcsname{Attribution-ShareAlike 3.0 Unported}%
-\expandafter\edef\csname doclicense@lang@lic@CC@by-nd@3.0\endcsname{Attribution-NoDerivs 3.0 Unported}%
-\expandafter\edef\csname doclicense@lang@lic@CC@by-nc@3.0\endcsname{Attribution-NonCommercial 3.0 Unported}%
-\expandafter\edef\csname doclicense@lang@lic@CC@by-nc-sa@3.0\endcsname{Attribution-NonCommercial-ShareAlike 3.0 Unported}%
-\expandafter\edef\csname doclicense@lang@lic@CC@by-nc-nd@3.0\endcsname{Attribution-NonCommercial-NoDerivs 3.0 Unported}%
-\expandafter\edef\csname doclicense@lang@lic@CC@zero@1.0\endcsname{CC0 1.0 Universal}%
-\expandafter\edef\csname doclicense@lang@lic@CC@pd@1.0\endcsname{Copyright-Only Dedication}%
+\@namedef{doclicense@lang@lic@CC@code}{}%
+\@namedef{doclicense@lang@lic@CC@by@3.0}{Attribution 3.0 Unported}%
+\@namedef{doclicense@lang@lic@CC@by-sa@3.0}{Attribution-ShareAlike 3.0 Unported}%
+\@namedef{doclicense@lang@lic@CC@by-nd@3.0}{Attribution-NoDerivs 3.0 Unported}%
+\@namedef{doclicense@lang@lic@CC@by-nc@3.0}{Attribution-NonCommercial 3.0 Unported}%
+\@namedef{doclicense@lang@lic@CC@by-nc-sa@3.0}{Attribution-NonCommercial-ShareAlike 3.0 Unported}%
+\@namedef{doclicense@lang@lic@CC@by-nc-nd@3.0}{Attribution-NonCommercial-NoDerivs 3.0 Unported}%
+\@namedef{doclicense@lang@lic@CC@zero@1.0}{CC0 1.0 Universal}%
+\@namedef{doclicense@lang@lic@CC@pd@1.0}{Copyright-Only Dedication}%
 
-\expandafter\edef\csname doclicense@lang@lic@CC@by-sa@4.0\endcsname{Attribution-ShareAlike 4.0 International}%
-\expandafter\edef\csname doclicense@lang@lic@CC@by-nd@4.0\endcsname{Attribution-NoDerivatives 4.0 International}%
-\expandafter\edef\csname doclicense@lang@lic@CC@by-nc@4.0\endcsname{Attribution-NonCommercial 4.0 International}%
-\expandafter\edef\csname doclicense@lang@lic@CC@by-nc-sa@4.0\endcsname{Attribution-NonCommercial-ShareAlike 4.0 International}%
-\expandafter\edef\csname doclicense@lang@lic@CC@by-nc-nd@4.0\endcsname{Attribution-NonCommercial-NoDerivatives 4.0 International}%
+\@namedef{doclicense@lang@lic@CC@by-sa@4.0}{Attribution-ShareAlike 4.0 International}%
+\@namedef{doclicense@lang@lic@CC@by-nd@4.0}{Attribution-NoDerivatives 4.0 International}%
+\@namedef{doclicense@lang@lic@CC@by-nc@4.0}{Attribution-NonCommercial 4.0 International}%
+\@namedef{doclicense@lang@lic@CC@by-nc-sa@4.0}{Attribution-NonCommercial-ShareAlike 4.0 International}%
+\@namedef{doclicense@lang@lic@CC@by-nc-nd@4.0}{Attribution-NonCommercial-NoDerivatives 4.0 International}%

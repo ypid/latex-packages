@@ -6,7 +6,7 @@
 %% Dependencies {{{
 \RequirePackage{kvoptions}
 \RequirePackage{xifthen}
-\RequirePackage{etoolbox} %% \ifcsdef
+\RequirePackage{etoolbox} %% \ifcsdef, \AtEndPreamble
 \RequirePackage{xspace}
 \AtEndPreamble{%
   \@ifpackageloaded{csquotes}{}{\RequirePackage{csquotes}}
@@ -41,8 +41,8 @@
 \newboolean{doclicense@licenseKnown}
 \newlength{\doclicense@hsize}
 \newcommand{\doclicense@longName}{%
-  \csname doclicense@lang@lic@\doclicense@type @\doclicense@modifier%
-  @\doclicense@versionUsed\endcsname
+  \@nameuse{doclicense@lang@lic@\doclicense@type @\doclicense@modifier%
+  @\doclicense@versionUsed}
 }
 \newcommand{\doclicense@icon}{%
   \PackageError{doclicense}{Icon not defined}
