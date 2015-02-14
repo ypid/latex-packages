@@ -4,4 +4,14 @@
 name="doclicense"
 archiv="${name}.zip"
 rm -f "$archiv"
-zip "$archiv" "${name}/${name}.dtx" "${name}/${name}.ins" "${name}/${name}.pdf" "${name}/README" ${name}/images/*.pdf ${name}/doclicense-*.ldf
+zip "$archiv" "${name}/${name}.dtx" "${name}/${name}.ins" "${name}/${name}.pdf" "${name}/README" ${name}/doclicense-*.ldf \
+    ${name}/images/doclicense-CC-by-nc-eu.pdf \
+    ${name}/images/doclicense-CC-by-nc-nd-eu.pdf \
+    ${name}/images/doclicense-CC-by-nc.pdf \
+    ${name}/images/doclicense-CC-by-nc-sa-eu.pdf \
+    ${name}/images/doclicense-CC-by-nc-sa.pdf \
+    ${name}/images/doclicense-CC-by-nd.pdf \
+    ${name}/images/doclicense-CC-by.pdf \
+    ${name}/images/doclicense-CC-by-sa.pdf \
+    ${name}/images/doclicense-CC-pd.pdf \
+    ${name}/images/doclicense-CC-zero.pdf \
