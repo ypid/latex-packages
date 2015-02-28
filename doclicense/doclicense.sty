@@ -6,7 +6,7 @@
 %% Dependencies {{{
 \RequirePackage{kvoptions}
 \RequirePackage{xifthen}
-\RequirePackage{etoolbox} %% \ifcsdef, \AtEndPreamble
+\RequirePackage{etoolbox} %% \ifcsdef
 \RequirePackage{xspace}
 \AtEndPreamble{%
   \@ifpackageloaded{csquotes}{}{\RequirePackage{csquotes}}
@@ -42,7 +42,7 @@
 \newlength{\doclicense@hsize}
 \newcommand{\doclicense@longName}{%
   \@nameuse{doclicense@lang@lic@\doclicense@type @\doclicense@modifier%
-  @\doclicense@versionUsed}
+    @\doclicense@versionUsed}
 }
 \newcommand{\doclicense@icon}{%
   \PackageError{doclicense}{Icon not defined}
@@ -103,7 +103,7 @@
   \input{doclicense-\doclicense@lang.ldf}
 }{%
   \PackageWarning{doclicense}{%
-    No language definition for \doclicense@lang not found.
+    No language definition for \doclicense@lang found.
     Please add one and submit a patch. Using English as fallback.}
   \renewcommand{\doclicense@lang}{english}
   \input{doclicense-\doclicense@lang.ldf}
