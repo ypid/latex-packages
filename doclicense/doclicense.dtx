@@ -400,8 +400,10 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 \newcommand{\doclicenseLicense}{\doclicenseThis} %% legacy support
 \newcommand{\doclicenseThis}{
   \setlength{\doclicense@hsize}{\textwidth-\doclicense@imagewidth-2em}
-  \ifthenelse{\lengthtest{\hsize > \vsize}}{%% landscape
-    \setlength{\doclicense@hsize}{\doclicense@hsize-10em}
+  \ifthenelse{\isnamedefined{iflandscape}}{
+    \iflandscape{
+      \setlength{\doclicense@hsize}{\doclicense@hsize-10em}
+    }{}
   }{}
   \begin{center}
     \begin{minipage}{\doclicense@hsize}
