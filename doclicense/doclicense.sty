@@ -1,7 +1,7 @@
 %% See file 'doclicense.dtx' for copyright and license.
 \NeedsTeXFormat{LaTeX2e}[1998/12/01]
 \ProvidesPackage{doclicense}
-    [2015/02/13 v0.10 Set and print the license of a document]
+    [2015/03/30 v1.0 Support for putting documents under a license]
 
 %% Dependencies {{{
 \RequirePackage{kvoptions}
@@ -42,7 +42,7 @@
 \newlength{\doclicense@hsize}
 \newcommand{\doclicense@longName}{%
   \@nameuse{doclicense@lang@lic@\doclicense@type @\doclicense@modifier%
-    @\doclicense@versionUsed}
+    @\doclicense@versionUsed}%
 }
 \newcommand{\doclicense@icon}{%
   \PackageError{doclicense}{Icon not defined}
@@ -56,18 +56,19 @@
 \newcommand{\doclicenseModifier}{\MakeUppercase{\doclicense@modifier}\xspace}
 \newcommand{\doclicenseVersion}{\doclicense@versionUsed\xspace}
 \newcommand{\doclicenseName}{%
-  \doclicense@type~\doclicense@modifier~\doclicense@versionUsed\xspace}
+  \doclicense@type~\doclicense@modifier~\doclicense@versionUsed\xspace%
+}
 \newcommand{\doclicenseNameRef}{\href{\doclicenseURL}{\doclicenseName}\xspace}
 \newcommand{\doclicenseLongName}{\doclicenseLongType\space\doclicense@longName\xspace}
 \newcommand{\doclicenseLongNameRef}{\href{\doclicenseURL}{\doclicenseLongName}}
 \newcommand{\doclicenseText}{%
   \doclicense@lang@thisDoc\space
-  \href{\doclicenseURL}{\enquote{\doclicenseName}} \doclicense@lang@word@license.\xspace
+  \href{\doclicenseURL}{\enquote{\doclicenseName{}}} \doclicense@lang@word@license.\xspace%
 }
 \newcommand{\doclicenseLongText}{%
   \doclicense@lang@thisDoc\space
   \href{\doclicenseURL}{\doclicenseLongType\space\enquote{\doclicense@longName}}
-  \doclicense@lang@word@license.\xspace
+  \doclicense@lang@word@license.\xspace%
 }
 \newcommand{\doclicenseIcon}{\doclicense@icon\xspace}
 \newcommand{\doclicenseImage}[1][]{%
