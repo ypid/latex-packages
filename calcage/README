@@ -1,5 +1,5 @@
 LaTeX package 'calcage'
-~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
 Copyright (C) 2012 by Robin Schneider <ypid@riseup.net>
 
 This work may be distributed and/or modified under the
@@ -20,10 +20,10 @@ Calculates the age in years
 The calcage package can calculate the age of someone or something in years.
 Internally it uses the datenumber package to calculate the age in days. The
 conversion from days to years is implemented by this package. It is also taken
-care about leap years and such odd things. 
+care about leap years and such odd things.
 
 	GENERATING THE FILES
-You can generate the calcage.sty file with: pdflatex calcage.ins
+You can generate the calcage.sty file with: tex calcage.ins
 
 The documentation can be generated with:
 pdflatex calcage.dtx

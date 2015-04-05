@@ -1,5 +1,5 @@
 LaTeX package 'romanbarpagenumber'
-~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Copyright (C) 2015 by Robin Schneider <ypid@riseup.net>
 
 This work may be distributed and/or modified under the
@@ -24,7 +24,7 @@ romanbarpagenumber package uses romanbar to typeset "correct" roman numbers as
 page number.
 
 	GENERATING THE FILES
-You can generate the romanbarpagenumber.sty file with: pdflatex romanbarpagenumber.ins
+You can generate the romanbarpagenumber.sty file with: tex romanbarpagenumber.ins
 
 The documentation can be generated with:
 pdflatex romanbarpagenumber.dtx

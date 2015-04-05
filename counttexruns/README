@@ -26,7 +26,7 @@ To print the count you can use the macro \thecounttexruns.
 
 
 	GENERATING THE FILES
-You can generate the counttexruns.sty file with: pdflatex counttexruns.ins
+You can generate the counttexruns.sty file with: tex counttexruns.ins
 
 The documentation can be generated with:
 pdflatex counttexruns.dtx

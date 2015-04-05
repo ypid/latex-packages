@@ -1,5 +1,5 @@
 LaTeX package 'doclicense'
-~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 Copyright (C) 2015 by Robin Schneider <ypid@riseup.net>
 
 This work may be distributed and/or modified under the
@@ -25,7 +25,7 @@ Currently, only Creative Commons is supported but this package is designed to
 handle all kinds of licenses.
 
 	GENERATING THE FILES
-You can generate the doclicense.sty file with: pdflatex doclicense.ins
+You can generate the doclicense.sty file with: tex doclicense.ins
 
 The documentation can be generated with:
 pdflatex doclicense.dtx

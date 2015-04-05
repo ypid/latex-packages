@@ -25,7 +25,7 @@ it will be typesetted with the numprint package.
 
 
 	GENERATING THE FILES
-You can generate the fnumprint.sty file with: pdflatex fnumprint.ins
+You can generate the fnumprint.sty file with: tex fnumprint.ins
 
 The documentation can be generated with:
 pdflatex fnumprint.dtx
