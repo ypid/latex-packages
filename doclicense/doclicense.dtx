@@ -27,7 +27,7 @@
 %<package>\NeedsTeXFormat{LaTeX2e}[1998/12/01]
 %<package>\ProvidesPackage{doclicense}
 %<*package>
-    [2015/03/30 v1.0 Support for putting documents under a license]
+    [2015/04/06 v1.1 Support for putting documents under a license]
 %</package>
 %
 %<*driver>
@@ -42,7 +42,6 @@
 \newcommand{\PrintOptionF}[1]{\emph{#1}} %% ^^A This macro is used for
 %% ^^A explaining any parameter when they first come up in the documentation.
 \newcommand{\DescribePara}[1]{\marginpar{\raggedleft\strut\MacroFont\string#1}}
-\usepackage{doclicense}
 \usepackage[
   hyphens,
   obeyspaces,
@@ -58,6 +57,7 @@
   xspace,
   eqlist,
 }
+\usepackage{doclicense}
 \GetFileInfo{doclicense.dtx}
 \hypersetup{
   pdftitle={A manual for \PackageName},
@@ -113,6 +113,7 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 %   Also renamed macro \cmd{\doclicenseLicense} to \cmd{\doclicenseThis}}
 % \changes{0.10}{2015/02/13}{Added support for hyperxmp}
 % \changes{1.0}{2015/03/30}{Removed space before quotes (Example: \enquote{CC } $\rightarrow$ \enquote{CC})}
+% \changes{1.1}{2015/04/06}{Added support for Creative Commons 4.0 and added \cmd{\doclicenseImageFileName}}
 %
 % \DoNotIndex{\RequirePackage, \DeclareOption, \ProcessOptions}
 % \DoNotIndex{\PackageWarning, \MessageBreak}
@@ -146,15 +147,25 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % package is designed to handle all kinds of licenses. See \nameref{sec:contributing}.
 %
 % \section{Usage}
-% Just load the package placing
+% Just load the package(s) placing
 % \begin{quote}
-%   |\usepackage{doclicense}|
+%   |\usepackage{| \\
+%   |%  babel,| \\
+%   |%  hyperref,| \\
+%   |%  hyperxmp,| \\
+%   |  doclicense,| \\
+%   |}|
 % \end{quote}
 % in the preamble of your \LaTeXe{} source file. This will select the default
 % license which is \doclicenseNameRef, currently. Please always set your
 % license explicitly as package options like so:
 %
 % \begin{quote}
+%   |\usepackage{| \\
+%   |%  babel,| \\
+%   |%  hyperref,| \\
+%   |%  hyperxmp,| \\
+%   |}| \\
 %   |\usepackage[| \\
 %   |  type={CC},| \\
 %   |  modifier={by-sa},| \\
@@ -201,11 +212,15 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % You will note that there are by-nc.eu and by-nc which only differ in the money unit.
 % By default the by-nc image would be used but you can change this with:
 % \begin{quote}
-%   |\usepackage[imagemodifier={-eu}]{romanbarpagenumber}|
+%   |\usepackage[| \\
+%   |  imagemodifier={-eu},| \\
+%   |]{doclicense}|
 % \end{quote}
 %
-% Note that if German is set as language then \enquote{eu} will be used as
+% Note that if German is set as language then \enquote{-eu} will be used as
 % default for this option.
+%
+% Currently supported are \enquote{-eu} and \enquote{-us}.
 %
 % \section{Macros}
 % \DescribeMacro{\doclicenseType}
@@ -273,6 +288,17 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 %
 % The images are bundled with the \PackageName package.
 %
+% \DescribeMacro{\doclicenseImageFileName}
+% This macro expands to the file name of the image which the
+% \cmd{\doclicenseImage} typesets.  You can use this file name with
+% \cmd{\includegraphics} if you need more flexibility over how the image is
+% typeset.
+%
+% The current file name is: \enquote{\doclicenseImageFileName}
+%
+% You do not have to worry about the file path. Normally your \LaTeX{} environment
+% will find the image for you.
+%
 % \DescribeMacro{\doclicenseThis}
 % And last but not least there is the \cmd{\doclicenseThis} macro which will
 % typeset the \cmd{\doclicenseText} next to the \cmd{\doclicenseImage} in a
@@ -286,14 +312,20 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 %
 % \makeatletter
 % \begin{eqlist}
+%   \item[zero@1.0] \@nameuse{doclicense@lang@lic@CC@zero@1.0}
+%   \item[pd@1.0] \@nameuse{doclicense@lang@lic@CC@pd@1.0}
 %   \item[by@3.0] \@nameuse{doclicense@lang@lic@CC@by@3.0}
 %   \item[by-sa@3.0] \@nameuse{doclicense@lang@lic@CC@by-sa@3.0}
 %   \item[by-nd@3.0] \@nameuse{doclicense@lang@lic@CC@by-nd@3.0}
 %   \item[by-nc@3.0] \@nameuse{doclicense@lang@lic@CC@by-nc@3.0}
 %   \item[by-nc-sa@3.0] \@nameuse{doclicense@lang@lic@CC@by-nc-sa@3.0}
 %   \item[by-nc-nc@3.0] \@nameuse{doclicense@lang@lic@CC@by-nc-nd@3.0}
-%   \item[zero@1.0] \@nameuse{doclicense@lang@lic@CC@zero@1.0}
-%   \item[pd@1.0] \@nameuse{doclicense@lang@lic@CC@pd@1.0}
+%   \item[by@4.0] \@nameuse{doclicense@lang@lic@CC@by@4.0}
+%   \item[by-sa@4.0] \@nameuse{doclicense@lang@lic@CC@by-sa@4.0}
+%   \item[by-nd@4.0] \@nameuse{doclicense@lang@lic@CC@by-nd@4.0}
+%   \item[by-nc@4.0] \@nameuse{doclicense@lang@lic@CC@by-nc@4.0}
+%   \item[by-nc-sa@4.0] \@nameuse{doclicense@lang@lic@CC@by-nc-sa@4.0}
+%   \item[by-nc-nc@4.0] \@nameuse{doclicense@lang@lic@CC@by-nc-nd@4.0}
 % \end{eqlist}
 % \makeatother
 %
@@ -327,6 +359,7 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
     %% For \doclicenseImage
   \@ifpackageloaded{hyperref}{}{\RequirePackage{hyperref}}
   \@ifpackageloaded{hyperxmp}{%
+    %% The following options are only defined when the hyperxmp package was loaded.
     \hypersetup{
       pdfcopyright  = {\doclicenseLongText},
       pdflicenseurl = {\doclicenseURL},
@@ -381,7 +414,7 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 \newcommand{\doclicenseModifier}{\MakeUppercase{\doclicense@modifier}\xspace}
 \newcommand{\doclicenseVersion}{\doclicense@versionUsed\xspace}
 \newcommand{\doclicenseName}{%
-  \doclicense@type~\doclicense@modifier~\doclicense@versionUsed\xspace%
+  \doclicense@type~\MakeUppercase{\doclicense@modifier}~\doclicense@versionUsed\xspace%
 }
 \newcommand{\doclicenseNameRef}{\href{\doclicenseURL}{\doclicenseName}\xspace}
 \newcommand{\doclicenseLongName}{\doclicenseLongType\space\doclicense@longName\xspace}
@@ -396,11 +429,13 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
   \doclicense@lang@word@license.\xspace%
 }
 \newcommand{\doclicenseIcon}{\doclicense@icon\xspace}
+\newcommand{\doclicenseImageFileName}{doclicense-\doclicense@type-\doclicense@modifier\doclicense@imagemodifier}
 \newcommand{\doclicenseImage}[1][]{%
   \setkeys{doclicense}{#1}
   \href{\doclicenseURL}{%
-    \includegraphics[width=\doclicense@imagewidth]%
-      {doclicense-\doclicense@type-\doclicense@modifier\doclicense@imagemodifier}%
+    \includegraphics[
+      width=\doclicense@imagewidth%
+    ]{\doclicenseImageFileName}%
   }
 }
 
@@ -442,6 +477,9 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
   \renewcommand{\doclicense@lang}{english}
   \input{doclicense-\doclicense@lang.ldf}
 }
+\ifthenelse{\equal{\doclicense@imagemodifier}{-us}}{%
+  \@namedef{doclicense@imagemodifier}{}
+}{}
 
 %% }}}
 
@@ -464,17 +502,33 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
   \ifthenelse{\equal{\doclicense@type}{CC}}{%
     \renewcommand{\doclicenseLongType}{Creative Commons\xspace}
 
-    \ifthenelse{\equal{\doclicense@lang@lic@CC@code}{}}{%
-      \edef\doclicense@UrlLangPart{}
-    }{%
-      \edef\doclicense@UrlLangPart{/\doclicense@lang@lic@CC@code}
-    }
     \doclicense@setVersion[3.0]
-    \edef\doclicenseURL{%
-      \doclicense@baseUrlCC/%
-      licenses/%
-      \doclicense@modifier/%
-      \doclicense@versionUsed\doclicense@UrlLangPart}
+
+    %% Allow to predefine the following macros in ldf files.
+    \ifcsdef{doclicense@UrlLangPart}{}{%
+      \ifthenelse{\equal{\doclicense@lang@lic@CC@code}{}}{%
+        \edef\doclicense@UrlLangPart{}
+      }{%
+        \ifthenelse{%
+          %% German only: Version 3.0 and version 4.0 use a different different URL schema.
+          \equal{\doclicense@lang@lic@CC@code}{de}%
+          \AND%
+          \equal{\doclicense@versionUsed}{4.0}%
+        }{%
+          \edef\doclicense@UrlLangPart{/\doclicense@lang@translation@lic@CC@code}
+        }{%
+          \edef\doclicense@UrlLangPart{/\doclicense@lang@lic@CC@code}
+        }
+      }
+    }
+    \ifcsdef{doclicenseURL}{}{%
+      \edef\doclicenseURL{%
+        \doclicense@baseUrlCC/%
+        licenses/%
+        \doclicense@modifier/%
+        \doclicense@versionUsed\doclicense@UrlLangPart%
+      }
+    }
     \ifthenelse{\equal{\doclicense@modifier}{by-sa}}{%
       \renewcommand{\doclicense@icon}{\ccbysa}
       \renewcommand{\doclicense@imagemodifier}{}

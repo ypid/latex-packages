@@ -1,7 +1,7 @@
 %% See file 'doclicense.dtx' for copyright and license.
 \NeedsTeXFormat{LaTeX2e}[1998/12/01]
 \ProvidesPackage{doclicense}
-    [2015/03/30 v1.0 Support for putting documents under a license]
+    [2015/04/06 v1.1 Support for putting documents under a license]
 
 %% Dependencies {{{
 \RequirePackage{kvoptions}
@@ -16,6 +16,7 @@
     %% For \doclicenseImage
   \@ifpackageloaded{hyperref}{}{\RequirePackage{hyperref}}
   \@ifpackageloaded{hyperxmp}{%
+    %% The following options are only defined when the hyperxmp package was loaded.
     \hypersetup{
       pdfcopyright  = {\doclicenseLongText},
       pdflicenseurl = {\doclicenseURL},
@@ -56,7 +57,7 @@
 \newcommand{\doclicenseModifier}{\MakeUppercase{\doclicense@modifier}\xspace}
 \newcommand{\doclicenseVersion}{\doclicense@versionUsed\xspace}
 \newcommand{\doclicenseName}{%
-  \doclicense@type~\doclicense@modifier~\doclicense@versionUsed\xspace%
+  \doclicense@type~\MakeUppercase{\doclicense@modifier}~\doclicense@versionUsed\xspace%
 }
 \newcommand{\doclicenseNameRef}{\href{\doclicenseURL}{\doclicenseName}\xspace}
 \newcommand{\doclicenseLongName}{\doclicenseLongType\space\doclicense@longName\xspace}
@@ -71,11 +72,13 @@
   \doclicense@lang@word@license.\xspace%
 }
 \newcommand{\doclicenseIcon}{\doclicense@icon\xspace}
+\newcommand{\doclicenseImageFileName}{doclicense-\doclicense@type-\doclicense@modifier\doclicense@imagemodifier}
 \newcommand{\doclicenseImage}[1][]{%
   \setkeys{doclicense}{#1}
   \href{\doclicenseURL}{%
-    \includegraphics[width=\doclicense@imagewidth]%
-      {doclicense-\doclicense@type-\doclicense@modifier\doclicense@imagemodifier}%
+    \includegraphics[
+      width=\doclicense@imagewidth%
+    ]{\doclicenseImageFileName}%
   }
 }
 
@@ -111,6 +114,9 @@
   \renewcommand{\doclicense@lang}{english}
   \input{doclicense-\doclicense@lang.ldf}
 }
+\ifthenelse{\equal{\doclicense@imagemodifier}{-us}}{%
+  \@namedef{doclicense@imagemodifier}{}
+}{}
 
 %% }}}
 
@@ -130,17 +136,33 @@
   \ifthenelse{\equal{\doclicense@type}{CC}}{%
     \renewcommand{\doclicenseLongType}{Creative Commons\xspace}
 
-    \ifthenelse{\equal{\doclicense@lang@lic@CC@code}{}}{%
-      \edef\doclicense@UrlLangPart{}
-    }{%
-      \edef\doclicense@UrlLangPart{/\doclicense@lang@lic@CC@code}
-    }
     \doclicense@setVersion[3.0]
-    \edef\doclicenseURL{%
-      \doclicense@baseUrlCC/%
-      licenses/%
-      \doclicense@modifier/%
-      \doclicense@versionUsed\doclicense@UrlLangPart}
+
+    %% Allow to predefine the following macros in ldf files.
+    \ifcsdef{doclicense@UrlLangPart}{}{%
+      \ifthenelse{\equal{\doclicense@lang@lic@CC@code}{}}{%
+        \edef\doclicense@UrlLangPart{}
+      }{%
+        \ifthenelse{%
+          %% German only: Version 3.0 and version 4.0 use a different different URL schema.
+          \equal{\doclicense@lang@lic@CC@code}{de}%
+          \AND%
+          \equal{\doclicense@versionUsed}{4.0}%
+        }{%
+          \edef\doclicense@UrlLangPart{/\doclicense@lang@translation@lic@CC@code}
+        }{%
+          \edef\doclicense@UrlLangPart{/\doclicense@lang@lic@CC@code}
+        }
+      }
+    }
+    \ifcsdef{doclicenseURL}{}{%
+      \edef\doclicenseURL{%
+        \doclicense@baseUrlCC/%
+        licenses/%
+        \doclicense@modifier/%
+        \doclicense@versionUsed\doclicense@UrlLangPart%
+      }
+    }
     \ifthenelse{\equal{\doclicense@modifier}{by-sa}}{%
       \renewcommand{\doclicense@icon}{\ccbysa}
       \renewcommand{\doclicense@imagemodifier}{}
