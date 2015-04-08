@@ -3,7 +3,7 @@
 \ProvidesPackage{doclicense}
     [2015/04/06 v1.1 Support for putting documents under a license]
 
-%% Dependencies {{{
+%% Dependencies (((
 \RequirePackage{kvoptions}
 \RequirePackage{xifthen}
 \RequirePackage{etoolbox} %% \ifcsdef
@@ -23,19 +23,19 @@
     }
   }{}
 }
-%% }}}
+%% )))
 
-%% Parameters {{{
+%% Parameters (((
 \DeclareStringOption[CC]{type}
 \DeclareStringOption[by-sa]{modifier}
 \DeclareStringOption{version}
 \DeclareStringOption{lang}
 \DeclareStringOption{imagemodifier}
 \DeclareStringOption[10em]{imagewidth}
-%% }}}
+%% )))
 
 \ProcessLocalKeyvalOptions*
-%% Declare variables {{{
+%% Declare variables (((
 \newcommand{\doclicense@baseUrlCC}{https://creativecommons.org}
 \newcommand{\doclicense@versionFallback}{}
 \newcommand{\doclicense@versionUsed}{}
@@ -49,9 +49,9 @@
   \PackageError{doclicense}{Icon not defined}
     {Please check the documentation of doclicense to see what you can do about it.}%
 }
-%% }}}
+%% )))
 
-%% User macros {{{
+%% User macros (((
 \newcommand{\doclicenseType}{\doclicense@type\xspace}
 \newcommand{\doclicenseLongType}{}
 \newcommand{\doclicense@modifier@uppercase}{\texorpdfstring{\MakeUppercase{\doclicense@modifier}}{\doclicense@modifier}}
@@ -101,9 +101,9 @@
     \end{minipage}
   \end{center}
 }
-%% }}}
+%% )))
 
-%% Language support {{{
+%% Language support (((
 \ifthenelse{\equal{\doclicense@lang}{}}{%
   \renewcommand{\doclicense@lang}{\languagename}}{}
 \IfFileExists{doclicense-\doclicense@lang.ldf}{%
@@ -119,9 +119,9 @@
   \@namedef{doclicense@imagemodifier}{}
 }{}
 
-%% }}}
+%% )))
 
-%% Set license {{{
+%% Set license (((
 \newcommand{\doclicense@setVersion}[1][]{%
   \ifthenelse{\equal{#1}{}}{}{%
     \renewcommand{\doclicense@versionFallback}{#1}
@@ -133,7 +133,7 @@
   }
 }
 \newcommand{\doclicense@set}{%
-  %% CC {{{
+  %% CC (((
   \ifthenelse{\equal{\doclicense@type}{CC}}{%
     \renewcommand{\doclicenseLongType}{Creative Commons\xspace}
 
@@ -208,13 +208,13 @@
     }
 
     \setboolean{doclicense@licenseKnown}{true}
-  }{}%% }}}
+  }{}%% )))
   \ifthenelse{\not\boolean{doclicense@licenseKnown}}{%
     \PackageError{doclicense}{License unknown}%
       {Please check the documentation of doclicense to see what you can do about it.}%
   }{}%
 }
-%% }}}
+%% )))
 
 \doclicense@set%
 \endinput
