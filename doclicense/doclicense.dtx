@@ -411,10 +411,11 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 %% User macros {{{
 \newcommand{\doclicenseType}{\doclicense@type\xspace}
 \newcommand{\doclicenseLongType}{}
-\newcommand{\doclicenseModifier}{\MakeUppercase{\doclicense@modifier}\xspace}
+\newcommand{\doclicense@modifier@uppercase}{\texorpdfstring{\MakeUppercase{\doclicense@modifier}}{\doclicense@modifier}}
+\newcommand{\doclicenseModifier}{\doclicense@modifier@uppercase\xspace}
 \newcommand{\doclicenseVersion}{\doclicense@versionUsed\xspace}
 \newcommand{\doclicenseName}{%
-  \doclicense@type~\MakeUppercase{\doclicense@modifier}~\doclicense@versionUsed\xspace%
+  \doclicense@type~\doclicense@modifier@uppercase~\doclicense@versionUsed\xspace%
 }
 \newcommand{\doclicenseNameRef}{\href{\doclicenseURL}{\doclicenseName}\xspace}
 \newcommand{\doclicenseLongName}{\doclicenseLongType\space\doclicense@longName\xspace}
