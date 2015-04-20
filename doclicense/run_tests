@@ -1,0 +1,58 @@
+#!/bin/bash
+
+grep '\\item.*@nameuse{doclicense@lang' ./doclicense.dtx | sed 's/.*\[\([^@]\+\)@\([^]]\+\)\].*/\1 \2/' | while read modifier version; do
+    for imagemodifier in '' '-us' '-eu'; do
+        for lang in 'english' 'ngerman'; do
+            if [ "$lang" == "ngerman" ] && [ "$modifier" == "pd" ]; then
+                continue # Does not exist in Germany.
+            fi
+            echo "
+                \documentclass[$lang]{article}
+                \usepackage{
+                    babel,
+                    hyperref,
+                    hyperxmp,
+                }
+                \usepackage[
+                    type={CC},
+                    modifier={$modifier},
+                    version={$version},
+                    imagemodifier={$imagemodifier},
+                ]{doclicense}
+                \begin{document}
+                \doclicenseType%
+
+                \doclicenseLongType%
+
+                \doclicenseModifier%
+
+                \doclicenseVersion%
+
+                \doclicenseURL%
+
+                \doclicenseName%
+
+                \doclicenseLongName%
+
+                \doclicenseNameRef%
+
+                \doclicenseLongNameRef%
+
+                \doclicenseText%
+
+                \doclicenseLongText%
+
+                \doclicenseIcon%
+
+                \doclicenseImage%
+
+                \doclicenseImageFileName%
+
+                \doclicenseThis%
+                \end{document}" > testing.tex
+            latexmk -c
+            # lualatex testing.tex
+            pdflatex testing.tex
+        done
+    done
+done

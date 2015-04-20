@@ -319,13 +319,13 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 %   \item[by-nd@3.0] \@nameuse{doclicense@lang@lic@CC@by-nd@3.0}
 %   \item[by-nc@3.0] \@nameuse{doclicense@lang@lic@CC@by-nc@3.0}
 %   \item[by-nc-sa@3.0] \@nameuse{doclicense@lang@lic@CC@by-nc-sa@3.0}
-%   \item[by-nc-nc@3.0] \@nameuse{doclicense@lang@lic@CC@by-nc-nd@3.0}
+%   \item[by-nc-nd@3.0] \@nameuse{doclicense@lang@lic@CC@by-nc-nd@3.0}
 %   \item[by@4.0] \@nameuse{doclicense@lang@lic@CC@by@4.0}
 %   \item[by-sa@4.0] \@nameuse{doclicense@lang@lic@CC@by-sa@4.0}
 %   \item[by-nd@4.0] \@nameuse{doclicense@lang@lic@CC@by-nd@4.0}
 %   \item[by-nc@4.0] \@nameuse{doclicense@lang@lic@CC@by-nc@4.0}
 %   \item[by-nc-sa@4.0] \@nameuse{doclicense@lang@lic@CC@by-nc-sa@4.0}
-%   \item[by-nc-nc@4.0] \@nameuse{doclicense@lang@lic@CC@by-nc-nd@4.0}
+%   \item[by-nc-nd@4.0] \@nameuse{doclicense@lang@lic@CC@by-nc-nd@4.0}
 % \end{eqlist}
 % \makeatother
 %
@@ -530,6 +530,10 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
         \doclicense@versionUsed\doclicense@UrlLangPart%
       }
     }
+    \ifthenelse{\equal{\doclicense@modifier}{by}}{%
+      \renewcommand{\doclicense@icon}{\ccby}
+      \renewcommand{\doclicense@imagemodifier}{}
+    }{}
     \ifthenelse{\equal{\doclicense@modifier}{by-sa}}{%
       \renewcommand{\doclicense@icon}{\ccbysa}
       \renewcommand{\doclicense@imagemodifier}{}
@@ -540,12 +544,32 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
     }{}
     \ifthenelse{\equal{\doclicense@modifier}{by-nc}}{%
       \renewcommand{\doclicense@icon}{\ccbync}
+      \ifthenelse{\equal{\doclicense@imagemodifier}{-eu}}{%
+        \renewcommand{\doclicense@icon}{\ccbynceu}
+      }{}
+      \ifthenelse{\equal{\doclicense@imagemodifier}{-jp}}{%
+        \renewcommand{\doclicense@icon}{\ccbyncjp}
+      }{}
       \renewcommand{\doclicense@imagemodifier}{}
     }{}
-    \ifthenelse{\equal{\doclicense@modifier}{by-nc-sa}}
-      {\renewcommand{\doclicense@icon}{\ccbync}}{}
-    \ifthenelse{\equal{\doclicense@modifier}{by-nc-nd}}
-      {\renewcommand{\doclicense@icon}{\ccbync}}{}
+    \ifthenelse{\equal{\doclicense@modifier}{by-nc-sa}}{
+      \renewcommand{\doclicense@icon}{\ccbyncsa}
+      \ifthenelse{\equal{\doclicense@imagemodifier}{-eu}}{%
+        \renewcommand{\doclicense@icon}{\ccbyncsaeu}
+      }{}
+      \ifthenelse{\equal{\doclicense@imagemodifier}{-jp}}{%
+        \renewcommand{\doclicense@icon}{\ccbyncsajp}
+      }{}
+    }{}
+    \ifthenelse{\equal{\doclicense@modifier}{by-nc-nd}}{
+      \renewcommand{\doclicense@icon}{\ccbyncnd}
+      \ifthenelse{\equal{\doclicense@imagemodifier}{-eu}}{%
+        \renewcommand{\doclicense@icon}{\ccbyncndeu}
+      }{}
+      \ifthenelse{\equal{\doclicense@imagemodifier}{-jp}}{%
+        \renewcommand{\doclicense@icon}{\ccbyncndjp}
+      }{}
+    }{}
     \ifthenelse{\equal{\doclicense@modifier}{zero}}{%
       \renewcommand{\doclicense@icon}{\cczero}
       \renewcommand{\doclicense@imagemodifier}{}

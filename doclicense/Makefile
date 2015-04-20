@@ -5,7 +5,7 @@ clean:
 	rm -rf *.sty *.pdf *.aux *.out
 
 %.sty: %.ins %.dtx
-	pdflatex "$<"
+	tex "$<"
 
 %.pdf: %.dtx
 	pdflatex "$<"
