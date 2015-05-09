@@ -335,6 +335,18 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % to modify the .sty file, make sure that you make your changes in the .dtx
 % file instead, as the .sty file is automatically generated.
 %
+% In case you want to add a translation for your language then just copy the
+% file \path{doclicense-english.ldf} and replace the \enquote{english} in
+% the filename with your language code (same as the language code used by
+% \PrintPackage{babel}) and translate the file.
+% If there are multiple language
+% codes which should map to same translation then have a look at the file
+% \path{doclicense-american.ldf}.
+%
+% When you are done and tested your translation then please send me the
+% translated file(s) either via Email or preferably by opening a pull request
+% on GitHub so that I can add them in the next release.
+%
 % \StopEventually{}
 %
 % \newpage
