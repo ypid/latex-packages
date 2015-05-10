@@ -1,7 +1,7 @@
 %% See file 'doclicense.dtx' for copyright and license.
 \NeedsTeXFormat{LaTeX2e}[1998/12/01]
 \ProvidesPackage{doclicense}
-    [2015/04/06 v1.1 Support for putting documents under a license]
+    [2015/05/10 v1.1a Support for putting documents under a license]
 
 %% Dependencies (((
 \RequirePackage{kvoptions}
@@ -144,16 +144,7 @@
       \ifthenelse{\equal{\doclicense@lang@lic@CC@code}{}}{%
         \edef\doclicense@UrlLangPart{}
       }{%
-        \ifthenelse{%
-          %% German only: Version 3.0 and version 4.0 use a different different URL schema.
-          \equal{\doclicense@lang@lic@CC@code}{de}%
-          \AND%
-          \equal{\doclicense@versionUsed}{4.0}%
-        }{%
-          \edef\doclicense@UrlLangPart{/\doclicense@lang@translation@lic@CC@code}
-        }{%
-          \edef\doclicense@UrlLangPart{/\doclicense@lang@lic@CC@code}
-        }
+        \edef\doclicense@UrlLangPart{/deed.\doclicense@lang@lic@CC@code}
       }
     }
     \ifcsdef{doclicenseURL}{}{%

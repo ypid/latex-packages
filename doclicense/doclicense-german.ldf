@@ -1,14 +1,13 @@
 \ProvidesFile{doclicense-german.ldf}
 
 \@namedef{doclicense@lang@thisDoc}{Dieses Werk ist lizenziert unter einer}%
-\@namedef{doclicense@lang@word@license}{Lizenz}%
-\@namedef{doclicense@lang@code}{de}%
+\@namedef{doclicense@lang@word@license}{ Lizenz}%
 \ifthenelse{\equal{\doclicense@imagemodifier}{}}{%
   \@namedef{doclicense@imagemodifier}{-eu}
 }{}
 
 \@namedef{doclicense@lang@lic@CC@code}{de}%
-\@namedef{doclicense@lang@translation@lic@CC@code}{deed.de}%
+%% Using: https://en.wikipedia.org/wiki/ISO_639-1
 
 \@namedef{doclicense@lang@lic@CC@zero@1.0}{CC0 1.0 Universell}%
 % \@namedef{doclicense@lang@lic@CC@pd@1.0}{Copyright-Only Dedication}% Based on US right. Use Zero in no-US countries.

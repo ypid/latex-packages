@@ -1,0 +1,24 @@
+\ProvidesFile{doclicense-spanish.ldf}
+
+\@namedef{doclicense@lang@thisDoc}{Este documento esta realizado bajo licencia}%
+\@namedef{doclicense@lang@word@license}{}%
+
+\@namedef{doclicense@lang@lic@CC@code}{es}%
+%% Using: https://en.wikipedia.org/wiki/ISO_639-1
+
+\@namedef{doclicense@lang@lic@CC@zero@1.0}{CC0 1.0 Universal}%
+\@namedef{doclicense@lang@lic@CC@pd@1.0}{Copyright-Only Dedication}%
+
+\@namedef{doclicense@lang@lic@CC@by@3.0}{Reconocimiento 3.0 España}%
+\@namedef{doclicense@lang@lic@CC@by-sa@3.0}{Reconocimiento-CompartirIgual 3.0 España}%
+\@namedef{doclicense@lang@lic@CC@by-nd@3.0}{Reconocimiento-SinObraDerivada 3.0 España}%
+\@namedef{doclicense@lang@lic@CC@by-nc@3.0}{Reconocimiento-NoCommercial 3.0 España}%
+\@namedef{doclicense@lang@lic@CC@by-nc-sa@3.0}{Reconocimiento-NoCommercial-CompartirIgual 3.0 España}%
+\@namedef{doclicense@lang@lic@CC@by-nc-nd@3.0}{Reconocimiento-NoCommercial-NoDerivs 3.0 España}%
+
+\@namedef{doclicense@lang@lic@CC@by@4.0}{Reconocimiento 4.0 Internacional}%
+\@namedef{doclicense@lang@lic@CC@by-sa@4.0}{Reconocimiento-CompartirIgual 4.0 Internacional}%
+\@namedef{doclicense@lang@lic@CC@by-nd@4.0}{Reconocimiento-SinObraDerivada 4.0 Internacional}%
+\@namedef{doclicense@lang@lic@CC@by-nc@4.0}{Reconocimiento-NoCommercial 4.0 Internacional}%
+\@namedef{doclicense@lang@lic@CC@by-nc-sa@4.0}{Reconocimiento-NoCommercial-CompartirIgual 4.0 Internacional}%
+\@namedef{doclicense@lang@lic@CC@by-nc-nd@4.0}{Reconocimiento-NoCommercial-SinObraDerivada 4.0 Internacional}%
