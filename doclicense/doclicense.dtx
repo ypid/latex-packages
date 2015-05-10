@@ -27,7 +27,7 @@
 %<package>\NeedsTeXFormat{LaTeX2e}[1998/12/01]
 %<package>\ProvidesPackage{doclicense}
 %<*package>
-    [2015/04/06 v1.1 Support for putting documents under a license]
+    [2015/05/10 v1.1a Support for putting documents under a license]
 %</package>
 %
 %<*driver>
@@ -114,6 +114,7 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % \changes{0.10}{2015/02/13}{Added support for hyperxmp}
 % \changes{1.0}{2015/03/30}{Removed space before quotes (Example: \enquote{CC } $\rightarrow$ \enquote{CC})}
 % \changes{1.1}{2015/04/06}{Added support for Creative Commons 4.0 and added \cmd{\doclicenseImageFileName}}
+% \changes{1.1a}{2015/04/06}{Allow \cmd{\doclicenseModifier} to be used with hyperref. Fixed \cmd{\doclicenseIcon} macro, added missing image and wrote test framework. Added notes about how to add translates. Added Spanish translation.}
 %
 % \DoNotIndex{\RequirePackage, \DeclareOption, \ProcessOptions}
 % \DoNotIndex{\PackageWarning, \MessageBreak}
@@ -200,7 +201,13 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % If this parameter is omitted, then this package will default to
 % \cmd{\languagename} which is normally set by packages like
 % \PrintPackage{babel} or \PrintPackage{polyglossia}.
-% Currently only English and German are supported.
+%
+% Supported languages:
+% \begin{eqlist}
+%   \item[English] Added by \href{https://github.com/ypid}{Robin Schneider}.
+%   \item[German] Added by \href{https://github.com/ypid}{Robin Schneider}.
+%   \item[Spanish] Added by \href{https://github.com/elsudano}{Carlos}.
+% \end{eqlist}
 %
 % Default image width for the license image.
 % \DescribePara{imagewidth}
@@ -343,9 +350,10 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % codes which should map to same translation then have a look at the file
 % \path{doclicense-american.ldf}.
 %
-% When you are done and tested your translation then please send me the
-% translated file(s) either via Email or preferably by opening a pull request
-% on GitHub so that I can add them in the next release.
+% When you are done and tested (modify and run the \path{run_tests} script) your
+% translation then please send me the translated file(s) either via Email or
+% preferably by opening a pull request on GitHub so that I can include them in
+% the next release.
 %
 % \StopEventually{}
 %
@@ -522,16 +530,7 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
       \ifthenelse{\equal{\doclicense@lang@lic@CC@code}{}}{%
         \edef\doclicense@UrlLangPart{}
       }{%
-        \ifthenelse{%
-          %% German only: Version 3.0 and version 4.0 use a different different URL schema.
-          \equal{\doclicense@lang@lic@CC@code}{de}%
-          \AND%
-          \equal{\doclicense@versionUsed}{4.0}%
-        }{%
-          \edef\doclicense@UrlLangPart{/\doclicense@lang@translation@lic@CC@code}
-        }{%
-          \edef\doclicense@UrlLangPart{/\doclicense@lang@lic@CC@code}
-        }
+        \edef\doclicense@UrlLangPart{/deed.\doclicense@lang@lic@CC@code}
       }
     }
     \ifcsdef{doclicenseURL}{}{%

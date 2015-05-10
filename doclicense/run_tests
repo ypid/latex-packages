@@ -1,18 +1,26 @@
 #!/bin/bash
 
 grep '\\item.*@nameuse{doclicense@lang' ./doclicense.dtx | sed 's/.*\[\([^@]\+\)@\([^]]\+\)\].*/\1 \2/' | while read modifier version; do
+# echo 'by 3.0' | while read modifier version; do
+# echo 'by-nc 3.0' | while read modifier version; do
+# echo 'by-nc 4.0' | while read modifier version; do
     for imagemodifier in '' '-us' '-eu'; do
-        for lang in 'english' 'ngerman'; do
+        for lang in 'spanish' 'english' 'ngerman'; do
+        # for lang in 'english'; do
+        # for lang in 'ngerman'; do
             if [ "$lang" == "ngerman" ] && [ "$modifier" == "pd" ]; then
                 continue # Does not exist in Germany.
             fi
             echo "
                 \documentclass[$lang]{article}
                 \usepackage{
-                    babel,
+                    baseRS, %% https://github.com/ypid/typesetting/blob/master/MyPackages/baseRS.sty
                     hyperref,
                     hyperxmp,
                 }
+                \ifLuaTeX%
+                  \setdefaultlanguage{$lang}
+                \fi
                 \usepackage[
                     type={CC},
                     modifier={$modifier},
@@ -20,39 +28,55 @@ grep '\\item.*@nameuse{doclicense@lang' ./doclicense.dtx | sed 's/.*\[\([^@]\+\)
                     imagemodifier={$imagemodifier},
                 ]{doclicense}
                 \begin{document}
+                doclicenseType
                 \doclicenseType%
 
+                doclicenseLongType
                 \doclicenseLongType%
 
+                doclicenseModifier
                 \doclicenseModifier%
 
+                doclicenseVersion
                 \doclicenseVersion%
 
+                doclicenseURL
                 \doclicenseURL%
 
+                doclicenseName
                 \doclicenseName%
 
+                doclicenseLongName
                 \doclicenseLongName%
 
+                doclicenseNameRef
                 \doclicenseNameRef%
 
+                doclicenseLongNameRef
                 \doclicenseLongNameRef%
 
+                doclicenseText
                 \doclicenseText%
 
+                doclicenseLongText
                 \doclicenseLongText%
 
+                doclicenseIcon
                 \doclicenseIcon%
 
+                doclicenseImage
                 \doclicenseImage%
 
+                doclicenseImageFileName
                 \doclicenseImageFileName%
 
+                doclicenseThis
                 \doclicenseThis%
                 \end{document}" > testing.tex
             latexmk -c
             # lualatex testing.tex
             pdflatex testing.tex
+            # break 23
         done
     done
 done
