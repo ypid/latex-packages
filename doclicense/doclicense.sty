@@ -1,7 +1,7 @@
 %% See file 'doclicense.dtx' for copyright and license.
 \NeedsTeXFormat{LaTeX2e}[1998/12/01]
 \ProvidesPackage{doclicense}
-    [2015/05/16 v1.2 Support for putting documents under a license]
+    [2015/05/25 v1.2b Support for putting documents under a license]
 
 %% Dependencies (((
 \RequirePackage{kvoptions}
@@ -73,6 +73,7 @@
   \doclicense@lang@word@license.\xspace%
 }
 \newcommand{\doclicenseIcon}{\doclicense@icon\xspace}
+\newcommand{\doclicenseTypeIcon}{\doclicenseType}
 \newcommand{\doclicenseImageFileName}{doclicense-\doclicense@type-\doclicense@modifier\doclicense@imagemodifier}
 \newcommand{\doclicenseImage}[1][]{%
   \setkeys{doclicense}{#1}
@@ -91,15 +92,14 @@
       \setlength{\doclicense@hsize}{\doclicense@hsize-10em}
     }{}
   }{}
-  \begin{center}
-    \begin{minipage}{\doclicense@hsize}
-      \doclicenseLongText%
-    \end{minipage}
-    \hfill
-    \begin{minipage}{\doclicense@imagewidth}
-      \doclicenseImage%
-    \end{minipage}
-  \end{center}
+  \centering
+  \begin{minipage}{\doclicense@hsize}
+    \doclicenseLongText%
+  \end{minipage}
+  \hfill
+  \begin{minipage}{\doclicense@imagewidth}
+    \doclicenseImage%
+  \end{minipage}
 }
 %% )))
 
@@ -136,6 +136,7 @@
   %% CC (((
   \ifthenelse{\equal{\doclicense@type}{CC}}{%
     \renewcommand{\doclicenseLongType}{Creative Commons\xspace}
+    \renewcommand{\doclicenseTypeIcon}{\ccLogo\xspace}
 
     \doclicense@setVersion[3.0]
 

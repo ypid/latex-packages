@@ -27,7 +27,7 @@
 %<package>\NeedsTeXFormat{LaTeX2e}[1998/12/01]
 %<package>\ProvidesPackage{doclicense}
 %<*package>
-    [2015/05/16 v1.2 Support for putting documents under a license]
+    [2015/05/25 v1.2b Support for putting documents under a license]
 %</package>
 %
 %<*driver>
@@ -115,6 +115,8 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % \changes{1.0}{2015/03/30}{Removed space before quotes (Example: \enquote{CC } $\rightarrow$ \enquote{CC})}
 % \changes{1.1}{2015/04/06}{Added support for Creative Commons 4.0 and added \cmd{\doclicenseImageFileName}}
 % \changes{1.2}{2015/04/06}{Allow \cmd{\doclicenseModifier} to be used with hyperref. Fixed \cmd{\doclicenseIcon} macro, added missing image and wrote test framework. Added notes about how to add translations. Added Spanish translation.}
+% \changes{1.2b}{2015/05/24}{Added \cmd{\doclicenseTypeIcon} macro. Don’t use the center environment.}
+% %% nag warned about the center environment and it really messes up spacing.
 %
 % \DoNotIndex{\RequirePackage, \DeclareOption, \ProcessOptions}
 % \DoNotIndex{\PackageWarning, \MessageBreak}
@@ -134,7 +136,7 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % \phantomsection
 % \addcontentsline{toc}{section}{\abstractname}
 % \begin{abstract}
-% Make it easy to set your documents under a certain license. \\
+% Support for putting documents under a license. \\
 % Information site on CTAN: \url{\PackageCTANURL} \\
 % Example on Stackexchange: \url{https://tex.stackexchange.com/a/226788/32320} \\
 % Fork me on GitHub: \url{\PackageURL} \end{abstract}
@@ -278,6 +280,11 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % \DescribeMacro{\doclicenseIcon}
 % Expands to a icon of the license. Example:
 % \enquote{\doclicenseIcon{}}. This macro is based on the
+% \PrintPackage{ccicons} package.
+%
+% \DescribeMacro{\doclicenseTypeIcon}
+% Expands to a icon of the license type. Example:
+% \enquote{\doclicenseTypeIcon{}}. This macro is based on the
 % \PrintPackage{ccicons} package.
 %
 % \DescribeMacro{\doclicenseImage}
@@ -450,6 +457,8 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
   \doclicense@lang@word@license.\xspace%
 }
 \newcommand{\doclicenseIcon}{\doclicense@icon\xspace}
+\newcommand{\doclicenseTypeIcon}{\doclicenseType}
+% \newcommand{\doclicenseModifierIcon}{} %% Not directly provided by ccicons.
 \newcommand{\doclicenseImageFileName}{doclicense-\doclicense@type-\doclicense@modifier\doclicense@imagemodifier}
 \newcommand{\doclicenseImage}[1][]{%
   \setkeys{doclicense}{#1}
@@ -468,15 +477,14 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
       \setlength{\doclicense@hsize}{\doclicense@hsize-10em}
     }{}
   }{}
-  \begin{center}
-    \begin{minipage}{\doclicense@hsize}
-      \doclicenseLongText%
-    \end{minipage}
-    \hfill
-    \begin{minipage}{\doclicense@imagewidth}
-      \doclicenseImage%
-    \end{minipage}
-  \end{center}
+  \centering
+  \begin{minipage}{\doclicense@hsize}
+    \doclicenseLongText%
+  \end{minipage}
+  \hfill
+  \begin{minipage}{\doclicense@imagewidth}
+    \doclicenseImage%
+  \end{minipage}
 }
 %% )))
 
@@ -522,6 +530,7 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
   %% CC (((
   \ifthenelse{\equal{\doclicense@type}{CC}}{%
     \renewcommand{\doclicenseLongType}{Creative Commons\xspace}
+    \renewcommand{\doclicenseTypeIcon}{\ccLogo\xspace}
 
     \doclicense@setVersion[3.0]
 

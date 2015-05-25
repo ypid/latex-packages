@@ -67,6 +67,9 @@ grep '\\item.*@nameuse{doclicense@lang' ./doclicense.dtx | sed 's/.*\[\([^@]\+\)
                 doclicenseIcon
                 \doclicenseIcon%
 
+                doclicenseTypeIcon
+                \doclicenseTypeIcon%
+
                 doclicenseImage
                 \doclicenseImage%
 
