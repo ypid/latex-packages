@@ -85,14 +85,15 @@
 }
 
 \newcommand{\doclicenseLicense}{\doclicenseThis} %% legacy support
-\newcommand{\doclicenseThis}{
-  \setlength{\doclicense@hsize}{\textwidth-\doclicense@imagewidth-2em}
-  \ifthenelse{\isnamedefined{iflandscape}}{
-    \iflandscape{
-      \setlength{\doclicense@hsize}{\doclicense@hsize-10em}
-    }{}
-  }{}
-  \centering
+\newcommand{\doclicenseThis}{%
+  \setlength{\doclicense@hsize}{\textwidth-\doclicense@imagewidth-2em}%
+  \ifthenelse{\isnamedefined{iflandscape}}{%
+    \iflandscape{%
+      \setlength{\doclicense@hsize}{\doclicense@hsize-10em}%
+    }{}%
+  }{}%
+  % {%
+  % \centering%
   \begin{minipage}{\doclicense@hsize}
     \doclicenseLongText%
   \end{minipage}
@@ -100,6 +101,7 @@
   \begin{minipage}{\doclicense@imagewidth}
     \doclicenseImage%
   \end{minipage}
+  % }
 }
 %% )))
 
