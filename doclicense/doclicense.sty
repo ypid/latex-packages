@@ -89,18 +89,20 @@
   \setlength{\doclicense@hsize}{\textwidth-\doclicense@imagewidth-2em}%
   \ifthenelse{\isnamedefined{iflandscape}}{%
     \iflandscape{%
-      \setlength{\doclicense@hsize}{\doclicense@hsize-10em}%
+      % \setlength{\doclicense@hsize}{\doclicense@hsize-10em}%
     }{}%
   }{}%
   % {%
   % \centering%
-  \begin{minipage}{\doclicense@hsize}
-    \doclicenseLongText%
-  \end{minipage}
-  \hfill
-  \begin{minipage}{\doclicense@imagewidth}
-    \doclicenseImage%
-  \end{minipage}
+  \begin{center}
+    \begin{minipage}{\doclicense@hsize}
+      \doclicenseLongText%
+    \end{minipage}
+    \hfill
+    \begin{minipage}{\doclicense@imagewidth}
+      \doclicenseImage%
+    \end{minipage}
+  \end{center}
   % }
 }
 %% )))
