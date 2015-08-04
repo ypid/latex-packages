@@ -17,7 +17,7 @@ Question on Stackexchange: https://tex.stackexchange.com/a/226788/32320
 
 
 	DESCRIPTION
-Make it easy to set your documents under a certain license.
+Support for putting documents under a license.
 
 The doclicense package allows you to put your document under a license and include a link
 to read about the license or include an icon or image of the license.
