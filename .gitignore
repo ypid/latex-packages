@@ -1,4 +1,5 @@
 *.zip
+*.pdf
 *.idx
 make*
 SevenSeg/SevenSeg.pdf

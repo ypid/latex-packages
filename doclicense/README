@@ -34,3 +34,9 @@ makeindex -s gind doclicense
 pdflatex doclicense.dtx
 thumbpdf doclicense
 pdflatex doclicense.dtx
+
+  IMPORTANT NOTES FOR REGARDING TDS
+
+Please note that the images/ subdirectory must end up in the runtime tex/
+subtree (that is tex/latex/doclicense/) for the \doclicenseImage macro to work
+correctly.
