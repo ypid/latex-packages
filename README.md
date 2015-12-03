@@ -7,5 +7,5 @@
 * [doclicense](https://ctan.org/pkg/doclicense): Support for putting documents under a license.
 * [romanbarpagenumber](https://ctan.org/pkg/romanbarpagenumber): Use the package romanbar for roman page numbers.
 
-## Not (yet) CTAN
+## Not (yet) on CTAN
 * sourcefiletable: Can typeset a table which lists some source files
