@@ -35,6 +35,10 @@ pdflatex doclicense.dtx
 thumbpdf doclicense
 pdflatex doclicense.dtx
 
+Note that this will only work when this directory is below your
+$TEXMFHOME tree (unless the doclicense package is already installed
+for example by your TeX distribution). See also the next section.
+
   IMPORTANT NOTES REGARDING TDS
 
 Please note that the images/ subdirectory must end up in the runtime tex/
