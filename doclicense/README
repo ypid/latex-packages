@@ -42,7 +42,9 @@ for example by your TeX distribution). Example:
 
     mkdir --parents ~/texmf/tex/latex/ && cd ~/texmf/tex/latex/
     git clone https://github.com/ypid/latex-packages.git ypid-latex-packages
-    cd ypid-latex-packages/doclicense && make
+    cd ypid-latex-packages/doclicense && make build
+    ## Or
+    make all
 
 If you have not worked with $TEXMFHOME you might want to refer to the
 documentation of your TeX distribution for details. See also the next section.
