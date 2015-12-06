@@ -16,7 +16,7 @@ Code repository: https://github.com/ypid/latex-packages/tree/master/doclicense
 Question on Stackexchange: https://tex.stackexchange.com/a/226788/32320
 
 
-	DESCRIPTION
+  DESCRIPTION
 Support for putting documents under a license.
 
 The doclicense package allows you to put your document under a license and include a link
@@ -24,20 +24,28 @@ to read about the license or include an icon or image of the license.
 Currently, only Creative Commons is supported but this package is designed to
 handle all kinds of licenses.
 
-	GENERATING THE FILES
+  GENERATING THE FILES
 You can generate the doclicense.sty file with: tex doclicense.ins
 
 The documentation can be generated with:
-pdflatex doclicense.dtx
-makeindex -s gglo.ist -o doclicense.gls doclicense.glo
-makeindex -s gind doclicense
-pdflatex doclicense.dtx
-thumbpdf doclicense
-pdflatex doclicense.dtx
+
+    pdflatex doclicense.dtx
+    makeindex -s gglo.ist -o doclicense.gls doclicense.glo
+    makeindex -s gind doclicense
+    pdflatex doclicense.dtx
+    thumbpdf doclicense
+    pdflatex doclicense.dtx
 
 Note that this will only work when this directory is below your
 $TEXMFHOME tree (unless the doclicense package is already installed
-for example by your TeX distribution). See also the next section.
+for example by your TeX distribution). Example:
+
+    mkdir --parents ~/texmf/tex/latex/ && cd ~/texmf/tex/latex/
+    git clone https://github.com/ypid/latex-packages.git ypid-latex-packages
+    cd ypid-latex-packages/doclicense && make
+
+If you have not worked with $TEXMFHOME you might want to refer to the
+documentation of your TeX distribution for details. See also the next section.
 
   IMPORTANT NOTES REGARDING TDS
 
