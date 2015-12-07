@@ -1,0 +1,24 @@
+#!/bin/bash
+## @author Copyright (C) 2015 Robin Schneider <ypid@riseup.net>
+## @license AGPLv3 <https://www.gnu.org/licenses/agpl-3.0.html>
+
+get() {
+    modifier="$1"
+    version="$2"
+    wget --continue "https://creativecommons.org/licenses/$modifier/$version/legalcode.txt" --output-document "doclicense-CC-${modifier}-${version}.tex"
+}
+
+get 'zero' '1.0'
+# get 'pd' '1.0'
+get 'by' '3.0'
+get 'by-sa' '3.0'
+get 'by-nd' '3.0'
+get 'by-nc' '3.0'
+get 'by-nc-sa' '3.0'
+get 'by-nc-nd' '3.0'
+get 'by' '4.0'
+get 'by-sa' '4.0'
+get 'by-nd' '4.0'
+get 'by-nc' '4.0'
+get 'by-nc-sa' '4.0'
+get 'by-nc-nd' '4.0'
