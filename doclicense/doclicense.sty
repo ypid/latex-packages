@@ -84,8 +84,10 @@
     ]{\doclicenseImageFileName}%
   }
 }
-\newcommand{\doclicenseFullTextFileName}{doclicense-\doclicense@type-\doclicense@modifier-\doclicense@versionUsed}
-\newcommand{\doclicenseFullText}{\verbatiminput{\doclicenseFullTextFileName}}
+\newcommand{\doclicensePlainFullTextFileName}{doclicense-\doclicense@type-\doclicense@modifier-\doclicense@versionUsed-plaintext}
+\newcommand{\doclicensePlainFullText}{\verbatiminput{\doclicensePlainFullTextFileName}}
+\newcommand{\doclicenseFullTextFileName}{doclicense-\doclicense@type-\doclicense@modifier-\doclicense@versionUsed-latex}
+\newcommand{\doclicenseFullText}{\input{\doclicenseFullTextFileName}}
 
 \newcommand{\doclicenseLicense}{\doclicenseThis} %% legacy support
 \newcommand{\doclicenseThis}{%

@@ -6,7 +6,7 @@ get() {
     ## https://creativecommons.org/weblog/entry/27094
     modifier="$1"
     version="$2"
-    wget --continue "https://creativecommons.org/licenses/$modifier/$version/legalcode.txt" --output-document "doclicense-CC-${modifier}-${version}.tex"
+    wget --continue "https://creativecommons.org/licenses/$modifier/$version/legalcode.txt" --output-document "doclicense-CC-${modifier}-${version}-plaintext.tex"
 }
 
 get 'zero' '1.0'

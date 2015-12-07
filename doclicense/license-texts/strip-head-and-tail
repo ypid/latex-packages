@@ -1,0 +1,23 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+use autodie;
+use boolean;
+use feature qw(say signatures);
+use utf8;
+use open qw(:std :utf8);
+binmode STDOUT, ':encoding(UTF-8)';
+
+use version; our $VERSION = qv('0.7.0');
+
+my @arg = @ARGV;
+
+my $stage = 'before';
+while (<>) {
+    if (/Creative Commons Legal Code/) {
+        $stage = 'on';
+    }
+    last if (/Back to Commons Deed/);
+    print if ($stage eq 'on');
+}
+die "Stage on not reached: @arg"  if $stage ne 'on';

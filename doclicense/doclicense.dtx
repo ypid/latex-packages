@@ -57,6 +57,8 @@
   xspace,
   eqlist,
 }
+%% ^^A https://tex.stackexchange.com/a/95893/32320
+\setlength\IndexMin{100pt}
 \usepackage{doclicense}
 \GetFileInfo{doclicense.dtx}
 \hypersetup{
@@ -115,7 +117,7 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % \changes{1.0}{2015/03/30}{Removed space before quotes (Example: \enquote{CC } $\rightarrow$ \enquote{CC})}
 % \changes{1.1}{2015/04/06}{Added support for Creative Commons 4.0 and added \cmd{\doclicenseImageFileName}}
 % \changes{1.2}{2015/04/06}{Allow \cmd{\doclicenseModifier} to be used with hyperref. Fixed \cmd{\doclicenseIcon} macro, added missing image and wrote test framework. Added notes about how to add translations. Added Spanish translation.}
-% \changes{1.4.0-beta}{2015/12/07}{Added \cmd{\doclicenseFullText} macro.}
+% \changes{1.4.0-beta}{2015/12/07}{Added \cmd{\doclicensePlainFullText} and \cmd{\doclicenseFullText} macros.}
 %
 % ^^A nag warned about the center environment and it really messes up spacing.
 %
@@ -280,12 +282,19 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % Same as \cmd{\doclicenseText} except that it uses the long name of the license.
 % Example: \enquote{\doclicenseLongText{}}
 %
-% \DescribeMacro{\doclicenseFullText}
+% \DescribeMacro{\doclicensePlainFullText}
 % Verbatim prints the full license texts.
-% Such a license text will usually cover a few pages. An example can be found in the \nameref{sec:full_license_text} section.
+% Such a license text will usually cover a few pages. An example can be found in the \nameref{sec:plain_license_text} section.
+%
+% \DescribeMacro{\doclicensePlainFullTextFileName}
+% Expands to the file name which the \cmd{\doclicensePlainFullTextFileName} uses to \cmd{\input} the license text file.
+%
+% \DescribeMacro{\doclicenseFullText}
+% Nicely prints the full license texts.
+% An example can be found in the \nameref{sec:pretty_license_text} section.
 %
 % \DescribeMacro{\doclicenseFullTextFileName}
-% Expands to the file name which the \cmd{\doclicenseFullTextFileName} uses to \cmd{\input} the license text file.
+% Expands to the file name which the \cmd{\doclicenseFullText} uses to \cmd{\input} the license text file.
 %
 %
 % \DescribeMacro{\doclicenseIcon}
@@ -373,8 +382,15 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % via Email or preferably by opening a pull request on GitHub so that I can
 % include them in the next release.
 %
-% \section{Full license text}
-% \label{sec:full_license_text}
+% \section{Plaintext license text}
+% \label{sec:plain_license_text}
+%
+% The following is an example output of the \cmd{\doclicensePlainFullText} macro.
+%
+% \doclicensePlainFullText
+%
+% \section{Pretty license text}
+% \label{sec:pretty_license_text}
 %
 % The following is an example output of the \cmd{\doclicenseFullText} macro.
 %
@@ -487,8 +503,10 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
     ]{\doclicenseImageFileName}%
   }
 }
-\newcommand{\doclicenseFullTextFileName}{doclicense-\doclicense@type-\doclicense@modifier-\doclicense@versionUsed}
-\newcommand{\doclicenseFullText}{\verbatiminput{\doclicenseFullTextFileName}}
+\newcommand{\doclicensePlainFullTextFileName}{doclicense-\doclicense@type-\doclicense@modifier-\doclicense@versionUsed-plaintext}
+\newcommand{\doclicensePlainFullText}{\verbatiminput{\doclicensePlainFullTextFileName}}
+\newcommand{\doclicenseFullTextFileName}{doclicense-\doclicense@type-\doclicense@modifier-\doclicense@versionUsed-latex}
+\newcommand{\doclicenseFullText}{\input{\doclicenseFullTextFileName}}
 
 \newcommand{\doclicenseLicense}{\doclicenseThis} %% legacy support
 \newcommand{\doclicenseThis}{%
