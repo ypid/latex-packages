@@ -3,6 +3,7 @@
 ## @license AGPLv3 <https://www.gnu.org/licenses/agpl-3.0.html>
 
 get() {
+    ## https://creativecommons.org/weblog/entry/27094
     modifier="$1"
     version="$2"
     wget --continue "https://creativecommons.org/licenses/$modifier/$version/legalcode.txt" --output-document "doclicense-CC-${modifier}-${version}.tex"

@@ -1,13 +1,14 @@
 %% See file 'doclicense.dtx' for copyright and license.
 \NeedsTeXFormat{LaTeX2e}[1998/12/01]
 \ProvidesPackage{doclicense}
-    [2015/08/04 v1.3 Support for putting documents under a license]
+    [2015/12/07 v1.4.0-beta Support for putting documents under a license]
 
 %% Dependencies (((
 \RequirePackage{kvoptions}
 \RequirePackage{xifthen}
 \RequirePackage{etoolbox} %% \ifcsdef
 \RequirePackage{xspace}
+\RequirePackage{verbatim}
 \AtEndPreamble{%
   \@ifpackageloaded{csquotes}{}{\RequirePackage{csquotes}}
   \@ifpackageloaded{ccicons}{}{\RequirePackage{ccicons}}
@@ -83,6 +84,8 @@
     ]{\doclicenseImageFileName}%
   }
 }
+\newcommand{\doclicenseFullTextFileName}{doclicense-\doclicense@type-\doclicense@modifier-\doclicense@versionUsed}
+\newcommand{\doclicenseFullText}{\verbatiminput{\doclicenseFullTextFileName}}
 
 \newcommand{\doclicenseLicense}{\doclicenseThis} %% legacy support
 \newcommand{\doclicenseThis}{%
