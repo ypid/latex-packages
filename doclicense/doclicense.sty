@@ -1,7 +1,8 @@
 %% See file 'doclicense.dtx' for copyright and license.
 \NeedsTeXFormat{LaTeX2e}[1998/12/01]
 \ProvidesPackage{doclicense}
-    [2015/12/07 v1.4.0-beta Support for putting documents under a license]
+    [2015/12/08 v1.4.0 Support for putting documents under a license]
+%% ^^A nag warned about the center environment and it really messes up spacing.
 
 %% Dependencies (((
 \RequirePackage{kvoptions}
@@ -50,7 +51,11 @@
   \PackageError{doclicense}{Icon not defined}
     {Please check the documentation of doclicense to see what you can do about it.}%
 }
-\newcommand{\doclicense@modifier@uppercase}{\texorpdfstring{\MakeUppercase{\doclicense@modifier}}{\doclicense@modifier}}
+\newcommand{\doclicense@modifier@uppercase}{\texorpdfstring{%
+    \MakeUppercase{\doclicense@modifier}%
+  }{%
+    \doclicense@modifier}%
+}
 %% )))
 
 %% User macros (((
@@ -59,14 +64,17 @@
 \newcommand{\doclicenseModifier}{\doclicense@modifier@uppercase\xspace}
 \newcommand{\doclicenseVersion}{\doclicense@versionUsed\xspace}
 \newcommand{\doclicenseName}{%
-  \doclicense@type~\doclicense@modifier@uppercase~\doclicense@versionUsed\xspace%
+  \doclicense@type~\doclicense@modifier@uppercase~%
+  \doclicense@versionUsed\xspace%
 }
 \newcommand{\doclicenseNameRef}{\href{\doclicenseURL}{\doclicenseName}\xspace}
-\newcommand{\doclicenseLongName}{\doclicenseLongType\space\doclicense@longName\xspace}
+\newcommand{\doclicenseLongName}{\doclicenseLongType\space%
+  \doclicense@longName\xspace}
 \newcommand{\doclicenseLongNameRef}{\href{\doclicenseURL}{\doclicenseLongName}}
 \newcommand{\doclicenseText}{%
   \doclicense@lang@thisDoc\space
-  \href{\doclicenseURL}{\enquote{\doclicenseName{}}} \doclicense@lang@word@license.\xspace%
+  \href{\doclicenseURL}{\enquote{\doclicenseName{}}}
+  \doclicense@lang@word@license.\xspace%
 }
 \newcommand{\doclicenseLongText}{%
   \doclicense@lang@thisDoc\space
@@ -75,7 +83,8 @@
 }
 \newcommand{\doclicenseIcon}{\doclicense@icon\xspace}
 \newcommand{\doclicenseTypeIcon}{\doclicenseType}
-\newcommand{\doclicenseImageFileName}{doclicense-\doclicense@type-\doclicense@modifier\doclicense@imagemodifier}
+\newcommand{\doclicenseImageFileName}{%
+  doclicense-\doclicense@type-\doclicense@modifier\doclicense@imagemodifier}
 \newcommand{\doclicenseImage}[1][]{%
   \setkeys{doclicense}{#1}
   \href{\doclicenseURL}{%
@@ -84,9 +93,11 @@
     ]{\doclicenseImageFileName}%
   }
 }
-\newcommand{\doclicensePlainFullTextFileName}{doclicense-\doclicense@type-\doclicense@modifier-\doclicense@versionUsed-plaintext}
+\newcommand{\doclicensePlainFullTextFileName}{%
+  doclicense-\doclicense@type-\doclicense@modifier-\doclicense@versionUsed-plaintext}
 \newcommand{\doclicensePlainFullText}{\verbatiminput{\doclicensePlainFullTextFileName}}
-\newcommand{\doclicenseFullTextFileName}{doclicense-\doclicense@type-\doclicense@modifier-\doclicense@versionUsed-latex}
+\newcommand{\doclicenseFullTextFileName}{%
+  doclicense-\doclicense@type-\doclicense@modifier-\doclicense@versionUsed-latex}
 \newcommand{\doclicenseFullText}{\input{\doclicenseFullTextFileName}}
 
 \newcommand{\doclicenseLicense}{\doclicenseThis} %% legacy support
