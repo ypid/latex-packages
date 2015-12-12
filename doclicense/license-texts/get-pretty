@@ -6,15 +6,17 @@ get() {
     ## https://creativecommons.org/weblog/entry/27094
     modifier="$1"
     version="$2"
-    # wget --continue "https://creativecommons.org/licenses/${modifier}/${version}/legalcode" --output-document "doclicense-CC-${modifier}-${version}-latex.html"
+    wget --continue "https://creativecommons.org/licenses/${modifier}/${version}/legalcode" --output-document "doclicense-CC-${modifier}-${version}-latex.html"
     gnuhtml2latex -n "doclicense-CC-${modifier}-${version}-latex.html"
     ./strip-head-and-tail "doclicense-CC-${modifier}-${version}-latex.tex" | sed --regexp-extended '
         s@\<(https://creativecommons.org/compatiblelicenses|https://creativecommons.org/)@\\url{\1}@ig;
-    ' > "doclicense-CC-${modifier}-${version}-latex2.tex"
+    ' | perl -0pe "s/\"(([^\"])*)\"/\`\`\1''/g" > "doclicense-CC-${modifier}-${version}-latex2.tex"
     mv "doclicense-CC-${modifier}-${version}-latex2.tex" "doclicense-CC-${modifier}-${version}-latex.tex"
 }
 
+## Needs different URL schema (again)?
 # get 'pd' '1.0'
+
 get 'zero' '1.0'
 get 'by' '3.0'
 get 'by-sa' '3.0'
@@ -28,3 +30,5 @@ get 'by-nd' '4.0'
 get 'by-nc' '4.0'
 get 'by-nc-sa' '4.0'
 get 'by-nc-nd' '4.0'
+
+./adjust_enumerate_depth.sh
