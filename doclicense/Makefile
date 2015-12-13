@@ -11,6 +11,9 @@ install:
 clean:
 	rm -rf *.sty *.pdf *.aux *.out
 
+doclicense.sty:
+doclicense.pdf:
+
 %.sty: %.ins %.dtx
 	tex "$<"
 

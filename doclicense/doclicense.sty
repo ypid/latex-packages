@@ -1,7 +1,7 @@
 %% See file 'doclicense.dtx' for copyright and license.
 \NeedsTeXFormat{LaTeX2e}[1998/12/01]
 \ProvidesPackage{doclicense}
-    [2015/12/08 v1.4.0 Support for putting documents under a license]
+    [2015/12/13 v1.4.0 Support for putting documents under a license]
 %% ^^A nag warned about the center environment and it really messes up spacing.
 
 %% Dependencies (((
@@ -94,8 +94,12 @@
   }
 }
 \newcommand{\doclicensePlainFullTextFileName}{%
-  doclicense-\doclicense@type-\doclicense@modifier-\doclicense@versionUsed-plaintext}
-\newcommand{\doclicensePlainFullText}{\verbatiminput{\doclicensePlainFullTextFileName}}
+  doclicense-\doclicense@type-\doclicense@modifier%
+  -\doclicense@versionUsed-plaintext
+}
+\newcommand{\doclicensePlainFullText}{%
+  \verbatiminput{\doclicensePlainFullTextFileName}
+}
 \newcommand{\doclicenseFullTextFileName}{%
   doclicense-\doclicense@type-\doclicense@modifier-\doclicense@versionUsed-latex}
 \newcommand{\doclicenseFullText}{\input{\doclicenseFullTextFileName}}
@@ -240,14 +244,20 @@
       @\doclicense@modifier @\doclicense@versionUsed}{}{%
 
       \PackageError{doclicense}{License long name not defined}%
-        {Please check the documentation of doclicense to see what you can do about it.}%
+        {%
+          Please check the documentation of doclicense
+          to see what you can do about it.%
+        }%
     }
 
     \setboolean{doclicense@licenseKnown}{true}
   }{}%% )))
   \ifthenelse{\not\boolean{doclicense@licenseKnown}}{%
     \PackageError{doclicense}{License unknown}%
-      {Please check the documentation of doclicense to see what you can do about it.}%
+      {%
+        Please check the documentation of doclicense
+        to see what you can do about it.%
+      }%
   }{}%
 }
 %% )))

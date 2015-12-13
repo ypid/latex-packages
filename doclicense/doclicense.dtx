@@ -27,7 +27,7 @@
 %<package>\NeedsTeXFormat{LaTeX2e}[1998/12/01]
 %<package>\ProvidesPackage{doclicense}
 %<*package>
-    [2015/12/08 v1.4.0 Support for putting documents under a license]
+    [2015/12/13 v1.4.0 Support for putting documents under a license]
 %</package>
 %
 %<*driver>
@@ -117,7 +117,7 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % \changes{1.0}{2015/03/30}{Removed space before quotes (Example: \enquote{CC } $\rightarrow$ \enquote{CC})}
 % \changes{1.1}{2015/04/06}{Added support for Creative Commons 4.0 and added \cmd{\doclicenseImageFileName}}
 % \changes{1.2}{2015/04/06}{Allow \cmd{\doclicenseModifier} to be used with hyperref. Fixed \cmd{\doclicenseIcon} macro, added missing image and wrote test framework. Added notes about how to add translations. Added Spanish translation.}
-% \changes{1.4.0}{2015/12/08}{Added \cmd{\doclicensePlainFullText} and \cmd{\doclicenseFullText} macros.}
+% \changes{1.4.0}{2015/12/13}{Added \cmd{\doclicensePlainFullText} and \cmd{\doclicenseFullText} macros Thanks to \href{https://github.com/siefkenj}{siefkenj} for the help.}
 %
 %% ^^A nag warned about the center environment and it really messes up spacing.
 %
@@ -284,6 +284,9 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 %
 % \DescribeMacro{\doclicensePlainFullText}
 % Verbatim prints the full license text.
+%
+% ^^A Don’t ask why I inserted that line break … (LaTeX made the \doclicensePlainFullText red)
+%
 % An example can be found in the \nameref{sec:plain_license_text} section.
 %
 % \DescribeMacro{\doclicensePlainFullTextFileName}
@@ -311,7 +314,7 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 % \PrintPackage{ccicons} package.
 %
 % \DescribeMacro{\doclicenseImage}
-% This is kind of similar with \cmd{\doclicenseIcon} but it will typeset an
+% This is kind of similar to \cmd{\doclicenseIcon} but it will typeset an
 % bigger pictogram of the license. Example:
 % \enquote{\doclicenseImage}
 %
@@ -323,7 +326,7 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 %   |\doclicenseImage[imagewidth=2em]|
 % \end{quote}
 %
-% The images are bundled with the \PackageName package.
+% The images are bundled with the \PackageName package as vector graphics.
 %
 % \DescribeMacro{\doclicenseImageFileName}
 % This macro expands to the file name of the image which the
@@ -515,8 +518,12 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
   }
 }
 \newcommand{\doclicensePlainFullTextFileName}{%
-  doclicense-\doclicense@type-\doclicense@modifier-\doclicense@versionUsed-plaintext}
-\newcommand{\doclicensePlainFullText}{\verbatiminput{\doclicensePlainFullTextFileName}}
+  doclicense-\doclicense@type-\doclicense@modifier%
+  -\doclicense@versionUsed-plaintext
+}
+\newcommand{\doclicensePlainFullText}{%
+  \verbatiminput{\doclicensePlainFullTextFileName}
+}
 \newcommand{\doclicenseFullTextFileName}{%
   doclicense-\doclicense@type-\doclicense@modifier-\doclicense@versionUsed-latex}
 \newcommand{\doclicenseFullText}{\input{\doclicenseFullTextFileName}}
@@ -670,14 +677,20 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
       @\doclicense@modifier @\doclicense@versionUsed}{}{%
 
       \PackageError{doclicense}{License long name not defined}%
-        {Please check the documentation of doclicense to see what you can do about it.}%
+        {%
+          Please check the documentation of doclicense
+          to see what you can do about it.%
+        }%
     }
 
     \setboolean{doclicense@licenseKnown}{true}
   }{}%% )))
   \ifthenelse{\not\boolean{doclicense@licenseKnown}}{%
     \PackageError{doclicense}{License unknown}%
-      {Please check the documentation of doclicense to see what you can do about it.}%
+      {%
+        Please check the documentation of doclicense
+        to see what you can do about it.%
+      }%
   }{}%
 }
 %% )))
