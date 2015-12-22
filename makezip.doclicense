@@ -15,3 +15,4 @@ zip "$archiv" "${name}/${name}.dtx" "${name}/${name}.ins" "${name}/${name}.pdf" 
     ${name}/images/doclicense-CC-by-sa.pdf \
     ${name}/images/doclicense-CC-pd.pdf \
     ${name}/images/doclicense-CC-zero.pdf \
+    ${name}/license-texts/doclicense-CC-*.tex
