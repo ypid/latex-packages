@@ -1,3 +1,4 @@
 \ProvidesFile{doclicense-british.ldf}
 
 \input{doclicense-english.ldf}
+\@namedef{doclicense@lang@word@license}{ licence}%
