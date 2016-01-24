@@ -37,7 +37,7 @@
 \newcommand{\PackageCTANURL}{https://www.ctan.org/pkg/doclicense}
 \newcommand{\PackageAuthor}{Robin Schneider}
 \newcommand{\PackageAuthorEmail}{ypid@riseup.net}
-\newcommand{\PackageName}{\PrintPackage{doclicense}\xspace}
+\newcommand{\PackageName}{\PrintPackage{doclicense}}
 \newcommand{\PrintPackage}[1]{\textsf{#1}}
 \newcommand{\PrintOptionF}[1]{\emph{#1}} %% ^^A This macro is used for
 %% ^^A explaining any parameter when they first come up in the documentation.
@@ -66,12 +66,12 @@
   pdfauthor={\PackageAuthor{} <\PackageAuthorEmail>},
   pdfsubject={\fileinfo},
   baseurl={\PackageURL},
-  pdfkeywords={This document corresponds to \PackageName~\fileversion,
+  pdfkeywords={This document corresponds to \PackageName\nobreakspace\fileversion,
     dated \filedate},
 }
 
 \title{The \PackageName{} package\thanks{This document
-corresponds to \PackageName~\fileversion, dated \filedate.}}
+corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 \author{\PackageAuthor\\
   \texttt{\href{mailto:\PackageAuthorEmail?subject=LaTeX package doclicense%
     \&body=Dear Robin Schneider,}%
@@ -487,7 +487,7 @@ corresponds to \PackageName~\fileversion, dated \filedate.}}
 \newcommand{\doclicenseModifier}{\doclicense@modifier@uppercase\xspace}
 \newcommand{\doclicenseVersion}{\doclicense@versionUsed\xspace}
 \newcommand{\doclicenseName}{%
-  \doclicense@type~\doclicense@modifier@uppercase~%
+  \doclicense@type\nobreakspace\doclicense@modifier@uppercase\nobreakspace%
   \doclicense@versionUsed\xspace%
 }
 \newcommand{\doclicenseNameRef}{\href{\doclicenseURL}{\doclicenseName}\xspace}
