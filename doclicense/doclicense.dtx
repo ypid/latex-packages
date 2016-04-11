@@ -27,7 +27,7 @@
 %<package>\NeedsTeXFormat{LaTeX2e}[1998/12/01]
 %<package>\ProvidesPackage{doclicense}
 %<*package>
-    [2015/12/13 v1.4.0 Support for putting documents under a license]
+    [2016/04/13 v1.5.0 Support for putting documents under a license]
 %</package>
 %
 %<*driver>
@@ -118,7 +118,8 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 % \changes{1.1}{2015/04/06}{Added support for Creative Commons 4.0 and added \cmd{\doclicenseImageFileName}}
 % \changes{1.2}{2015/04/06}{Allow \cmd{\doclicenseModifier} to be used with hyperref. Fixed \cmd{\doclicenseIcon} macro, added missing image and wrote test framework. Added notes about how to add translations. Added Spanish translation.}
 % \changes{1.4.0}{2015/12/13}{Added \cmd{\doclicensePlainFullText} and \cmd{\doclicenseFullText} macros Thanks to \href{https://github.com/siefkenj}{siefkenj} for the help.}
-% \changes{1.4.1}{2015/12/13}{Translation fixes for: fr, en-gb. Included missing CC-by-nc-nd icon (US dollar).}
+% \changes{1.4.1}{2016/04/10}{Translation fixes for: fr, en-gb. Included missing CC-by-nc-nd icon (US dollar).}
+% \changes{1.5.0}{2016/04/13}{Typeset \cmd{\doclicenseThis} using \cmd{\RaggedRight} by default to limit hyphenations.}
 %
 %% ^^A nag warned about the center environment and it really messes up spacing.
 %
@@ -236,6 +237,41 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 % default for this option.
 %
 % Currently supported are \enquote{-eu} and \enquote{-us}.
+%
+% This \DescribePara{hyphenation} option allows you to specify a macro name which is going to be expanded
+% in the minipage environment of \cmd{\doclicenseThis} which allows to change
+% the behaviour how \cmd{\doclicenseLongText} is typeset.
+%
+% By default, this option is set to the string \enquote{RaggedRight}
+% (corresponding to \cmd{\RaggedRight} provided by the \PrintPackage{ragged2e}
+% package) with the intention of limiting the number of hyphenations while
+% still allowing a hyphenation by typesetting \cmd{\doclicenseLongText} as
+% ragged text.
+%
+% The idea of using ragged text is that the \cmd{\doclicenseLongText} is
+% usually one or two full line and one half full line so avoiding hyphenations
+% is preferred over a maximum text width. \cmd{\RaggedRight} has shown to be a
+% good option for this use case because it limits hyphenations but still allows
+% them when a big empty space would otherwise remain.
+%
+% If you don't want to limit the number of hyphenations, you can set the option
+% to a empty string to achieves this:
+%
+% \begin{quote}
+%   |\usepackage[| \\
+%   |  hyphenation={},| \\
+%   |]{doclicense}|
+% \end{quote}
+%
+% Another option which can make sense is the \cmd{\raggedright} macro which
+% more drastically limits the number of hyphenations. This can be set as shown
+% below:
+%
+% \begin{quote}
+%   |\usepackage[| \\
+%   |  hyphenation={raggedright},| \\
+%   |]{doclicense}|
+% \end{quote}
 %
 % \section{Macros}
 % \DescribeMacro{\doclicenseType}
@@ -407,19 +443,47 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 %
 % \newpage
 % \section{Implementation}
-% \subsection{Dependencies}
 % \iffalse
 %<*package>
 % \fi
-% This package depends on these packages.
+% \subsection{Declaring the options}
 %    \begin{macrocode}
-
-%% Dependencies (((
+%% Parameters (((
 \RequirePackage{kvoptions}
+\DeclareStringOption[CC]{type}
+\DeclareStringOption[by-sa]{modifier}
+\DeclareStringOption{version}
+\DeclareStringOption{lang}
+\DeclareStringOption{imagemodifier}
+\DeclareStringOption[10em]{imagewidth}
+\DeclareStringOption[RaggedRight]{hyphenation}
+%% )))
+
+%    \end{macrocode}
+% To test if all parameters are valid the macro |\ProcessLocalKeyvalOptions*|
+% is expanded to ensure this before leaving the preamble. This is the only
+% purpose for the |\ProcessLocalKeyvalOptions*| macro in this case.
+%    \begin{macrocode}
+\ProcessLocalKeyvalOptions*
+
+%    \end{macrocode}
+% \subsection{Dependencies}
+%    \begin{macrocode}
+%% Dependencies (((
 \RequirePackage{xifthen}
 \RequirePackage{etoolbox} %% \ifcsdef
 \RequirePackage{xspace}
 \RequirePackage{verbatim}
+\ifthenelse{
+  \equal{\doclicense@hyphenation}{}
+}{}{%
+  \RequirePackage{ragged2e}
+
+  \ifthenelse{\isnamedefined{\doclicense@hyphenation}}{}{%
+    \PackageError{doclicense}{Hyphenation macro not defined}
+      {The macro name given via the hyphenation option is not defined.}%
+  }
+}
 \AtEndPreamble{%
   \@ifpackageloaded{csquotes}{}{\RequirePackage{csquotes}}
   \@ifpackageloaded{ccicons}{}{\RequirePackage{ccicons}}
@@ -437,24 +501,6 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 }
 %% )))
 
-%    \end{macrocode}
-% \subsection{Declaring the options}
-%    \begin{macrocode}
-%% Parameters (((
-\DeclareStringOption[CC]{type}
-\DeclareStringOption[by-sa]{modifier}
-\DeclareStringOption{version}
-\DeclareStringOption{lang}
-\DeclareStringOption{imagemodifier}
-\DeclareStringOption[10em]{imagewidth}
-%% )))
-
-%    \end{macrocode}
-% To test if all parameters are valid the macro |\ProcessLocalKeyvalOptions*|
-% is expanded to ensure this before leaving the preamble. This is the only
-% purpose for the |\ProcessLocalKeyvalOptions*| macro in this case.
-%    \begin{macrocode}
-\ProcessLocalKeyvalOptions*
 %    \end{macrocode}
 % \subsection{Declare variables and macros}
 %    \begin{macrocode}
@@ -532,15 +578,17 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 \newcommand{\doclicenseLicense}{\doclicenseThis} %% legacy support
 \newcommand{\doclicenseThis}{%
   \setlength{\doclicense@hsize}{\textwidth-\doclicense@imagewidth-2em}%
-  \ifthenelse{\isnamedefined{iflandscape}}{%
-    \iflandscape{%
-      % \setlength{\doclicense@hsize}{\doclicense@hsize-10em}%
-    }{}%
-  }{}%
+  % \ifthenelse{\isnamedefined{iflandscape}}{%
+  %   \iflandscape{%
+  %     \setlength{\doclicense@hsize}{\doclicense@hsize-10em}%
+  %   }{}%
+  % }{}%
   % {%
-  % \centering%
   \begin{center}
     \begin{minipage}{\doclicense@hsize}
+      \ifthenelse{\isempty{\doclicense@hyphenation}}{}{%
+        \@nameuse{\doclicense@hyphenation}%
+      }%
       \doclicenseLongText%
     \end{minipage}
     \hfill
@@ -555,7 +603,7 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 %    \end{macrocode}
 % \subsection{Language selection}
 % The following lines include the ldf file. All language dependent things
-% should be stored there or can be changed there. Note that one could redefine
+% should be stored and changed there. Note that one could also redefine
 % macros like \cmd{\doclicenseLongText} if necessary.
 %    \begin{macrocode}
 %% Language support (((
