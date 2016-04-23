@@ -27,7 +27,7 @@
 %<package>\NeedsTeXFormat{LaTeX2e}[1998/12/01]
 %<package>\ProvidesPackage{doclicense}
 %<*package>
-    [2016/04/13 v1.5.0 Support for putting documents under a license]
+    [2016/04/24 v1.5.0 Support for putting documents under a license]
 %</package>
 %
 %<*driver>
@@ -59,7 +59,9 @@
 }
 %% ^^A https://tex.stackexchange.com/a/95893/32320
 \setlength\IndexMin{100pt}
-\usepackage{doclicense}
+\usepackage[
+  hyphenation={RaggedRight},
+]{doclicense}
 \GetFileInfo{doclicense.dtx}
 \hypersetup{
   pdftitle={A manual for \PackageName},
@@ -119,7 +121,7 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 % \changes{1.2}{2015/04/06}{Allow \cmd{\doclicenseModifier} to be used with hyperref. Fixed \cmd{\doclicenseIcon} macro, added missing image and wrote test framework. Added notes about how to add translations. Added Spanish translation.}
 % \changes{1.4.0}{2015/12/13}{Added \cmd{\doclicensePlainFullText} and \cmd{\doclicenseFullText} macros Thanks to \href{https://github.com/siefkenj}{siefkenj} for the help.}
 % \changes{1.4.1}{2016/04/10}{Translation fixes for: fr, en-gb. Included missing CC-by-nc-nd icon (US dollar).}
-% \changes{1.5.0}{2016/04/13}{Typeset \cmd{\doclicenseThis} using \cmd{\RaggedRight} by default to limit hyphenations.}
+% \changes{1.5.0}{2016/04/24}{Allow to change the way text is typeset by \cmd{\doclicenseThis}.}
 %
 %% ^^A nag warned about the center environment and it really messes up spacing.
 %
@@ -238,28 +240,32 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 %
 % Currently supported are \enquote{-eu} and \enquote{-us}.
 %
-% This \DescribePara{hyphenation} option allows you to specify a macro name which is going to be expanded
-% in the minipage environment of \cmd{\doclicenseThis} which allows to change
-% the behaviour how \cmd{\doclicenseLongText} is typeset.
+% This option allows you to specify
+% \DescribePara{hyphenation}
+% a macro name which is going to be expanded
+% in the minipage environment of \cmd{\doclicenseThis}.
+% That allows you to change the behaviour how \cmd{\doclicenseLongText} is
+% typeset. By default, this option is not enabled.
 %
-% By default, this option is set to the string \enquote{RaggedRight}
-% (corresponding to \cmd{\RaggedRight} provided by the \PrintPackage{ragged2e}
-% package) with the intention of limiting the number of hyphenations while
-% still allowing a hyphenation by typesetting \cmd{\doclicenseLongText} as
-% ragged text.
+% One possible use case is to set the option to \enquote{RaggedRight}.
+% This will use the \cmd{\RaggedRight} macro provided by the
+% \PrintPackage{ragged2e} package\footnote{The \PrintPackage{ragged2e} package will be loaded when it is required.}) with the intention of limiting the number of
+% hyphenations while still allowing a hyphenation by typesetting
+% \cmd{\doclicenseLongText} as ragged text.
 %
 % The idea of using ragged text is that the \cmd{\doclicenseLongText} is
 % usually one or two full line and one half full line so avoiding hyphenations
-% is preferred over a maximum text width. \cmd{\RaggedRight} has shown to be a
-% good option for this use case because it limits hyphenations but still allows
-% them when a big empty space would otherwise remain.
+% might look better compared to justified text.
 %
-% If you don't want to limit the number of hyphenations, you can set the option
-% to a empty string to achieves this:
+% \enquote{RaggedRight} is also the setting used for this documentation.
+% \cmd{\doclicenseThis} would not produce a hyphenation in this case but \TeX{}
+% did fill up the first text line to it’s full width by adding additional space
+% between words. This has been be avoided by setting the following option for
+% this document:
 %
 % \begin{quote}
 %   |\usepackage[| \\
-%   |  hyphenation={},| \\
+%   |  hyphenation={RaggedRight},| \\
 %   |]{doclicense}|
 % \end{quote}
 %
@@ -456,7 +462,7 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 \DeclareStringOption{lang}
 \DeclareStringOption{imagemodifier}
 \DeclareStringOption[10em]{imagewidth}
-\DeclareStringOption[RaggedRight]{hyphenation}
+\DeclareStringOption{hyphenation}
 %% )))
 
 %    \end{macrocode}
