@@ -190,7 +190,7 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 % by \PrintPackage{doclicense} to the corresponding values
 % (\enquote{\url{\doclicenseURL}} and \enquote{\doclicenseLongText{}}).
 %
-% \bigskip
+% \section{Package options}
 %
 % The first parameter is \enquote{\PrintOptionF{type}}. \DescribePara{type}
 % This sets the license type. Like in this example, the type can be
@@ -258,10 +258,10 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 % might look better compared to justified text.
 %
 % \enquote{RaggedRight} is also the setting used for this documentation.
-% \cmd{\doclicenseThis} would not produce a hyphenation in this case but \TeX{}
-% did fill up the first text line to it’s full width by adding additional space
-% between words. This has been be avoided by setting the following option for
-% this document:
+% \cmd{\doclicenseThis} did not produce a hyphenation in case of this
+% documentation but \TeX{} did fill up the first text line to it’s full width
+% by adding additional space between words. This has been be avoided by setting
+% the following option for this document:
 %
 % \begin{quote}
 %   |\usepackage[| \\
