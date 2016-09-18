@@ -2,7 +2,7 @@
 
 ## On CTAN
 
-Name          | CTAN          | Contribution
+Name          | CTAN          | Description
 ------------- | ------------- | ------------
 [![Ansible Galaxy](https://img.shields.io/badge/name-counttexruns-blue.svg)](https://github.com/ypid/latex-packages/tree/master/counttexruns) | [![CTAN](https://img.shields.io/ctan/v/counttexruns.svg)](https://ctan.org/pkg/counttexruns) | Can count how often a LaTeX document is compiled.
 [![Ansible Galaxy](https://img.shields.io/badge/name-fnumprint-blue.svg)](https://github.com/ypid/latex-packages/tree/master/fnumprint) | [![CTAN](https://img.shields.io/ctan/v/fnumprint.svg)](https://ctan.org/pkg/fnumprint) | Can decide to typeset a number either as number or as word name.
