@@ -122,7 +122,7 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 % \changes{1.4.0}{2015/12/13}{Added \cmd{\doclicensePlainFullText} and \cmd{\doclicenseFullText} macros Thanks to \href{https://github.com/siefkenj}{siefkenj} for the help.}
 % \changes{1.4.1}{2016/04/10}{Translation fixes for: fr, en-gb. Included missing CC-by-nc-nd icon (US dollar).}
 % \changes{1.5.0}{2016/04/24}{Allow to change the way text is typeset by \cmd{\doclicenseThis}.}
-%% ^^A \changes{1.6.0}{2017/XX/XX}{Added Russian and Italian translation.}
+%% ^^A \changes{1.6.0}{2017/XX/XX}{Added Russian and Italian translation. Added `imageposition` parameter.}
 %
 %% ^^A nag warned about the center environment and it really messes up spacing.
 %
@@ -220,6 +220,9 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 %   \item[German]  Added by \href{https://github.com/ypid}{Robin Schneider}.
 %   \item[Spanish] Added by \href{https://github.com/elsudano}{Carlos}.
 % \end{eqlist}
+%
+% Image position for \cmd{\doclicenseThis}: right (default) or left.
+% \DescribePara{imageposition}
 %
 % Default image width for the license image.
 % \DescribePara{imagewidth}
@@ -462,6 +465,7 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 \DeclareStringOption{version}
 \DeclareStringOption{lang}
 \DeclareStringOption{imagemodifier}
+\DeclareStringOption[right]{imageposition}
 \DeclareStringOption[10em]{imagewidth}
 \DeclareStringOption{hyphenation}
 %% )))
@@ -585,25 +589,40 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 \newcommand{\doclicenseLicense}{\doclicenseThis} %% legacy support
 \newcommand{\doclicenseThis}{%
   \setlength{\doclicense@hsize}{\textwidth-\doclicense@imagewidth-2em}%
+  \ifthenelse{\equal{\doclicense@imageposition}{left}}{%
+    \begin{center}
+      \begin{minipage}{\doclicense@imagewidth}
+        \doclicenseImage%
+      \end{minipage}
+      \hfill
+      \begin{minipage}{\doclicense@hsize}
+        \ifthenelse{\isempty{\doclicense@hyphenation}}{}{%
+          \@nameuse{\doclicense@hyphenation}%
+        }%
+        \doclicenseLongText%
+      \end{minipage}
+    \end{center}
+  }{%
   % \ifthenelse{\isnamedefined{iflandscape}}{%
   %   \iflandscape{%
   %     \setlength{\doclicense@hsize}{\doclicense@hsize-10em}%
   %   }{}%
   % }{}%
   % {%
-  \begin{center}
-    \begin{minipage}{\doclicense@hsize}
-      \ifthenelse{\isempty{\doclicense@hyphenation}}{}{%
-        \@nameuse{\doclicense@hyphenation}%
-      }%
-      \doclicenseLongText%
-    \end{minipage}
-    \hfill
-    \begin{minipage}{\doclicense@imagewidth}
-      \doclicenseImage%
-    \end{minipage}
-  \end{center}
+    \begin{center}
+      \begin{minipage}{\doclicense@hsize}
+        \ifthenelse{\isempty{\doclicense@hyphenation}}{}{%
+          \@nameuse{\doclicense@hyphenation}%
+        }%
+        \doclicenseLongText%
+      \end{minipage}
+      \hfill
+      \begin{minipage}{\doclicense@imagewidth}
+        \doclicenseImage%
+      \end{minipage}
+    \end{center}
   % }
+  }
 }
 %% )))
 
