@@ -227,6 +227,9 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 % Default image width for the license image.
 % \DescribePara{imagewidth}
 %
+% Distance between text and image in \cmd{\doclicenseThis}.
+% \DescribePara{imagedistance}
+
 % This options was added to support variations in the license images.
 % \DescribePara{imagemodifier}
 % For example, Creative Commons provides sometimes more than one image for one version.
@@ -467,6 +470,7 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 \DeclareStringOption{imagemodifier}
 \DeclareStringOption[right]{imageposition}
 \DeclareStringOption[10em]{imagewidth}
+\DeclareStringOption[2em]{imagedistance}
 \DeclareStringOption{hyphenation}
 %% )))
 
@@ -588,7 +592,7 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 
 \newcommand{\doclicenseLicense}{\doclicenseThis} %% legacy support
 \newcommand{\doclicenseThis}{%
-  \setlength{\doclicense@hsize}{\textwidth-\doclicense@imagewidth-2em}%
+  \setlength{\doclicense@hsize}{\textwidth-\doclicense@imagewidth-\doclicense@imagedistance}%
   \ifthenelse{\equal{\doclicense@imageposition}{left}}{%
     \begin{center}
       \begin{minipage}{\doclicense@imagewidth}
