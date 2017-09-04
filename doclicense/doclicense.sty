@@ -4,6 +4,7 @@
     [2016/04/24 v1.5.0 Support for putting documents under a license]
 %% ^^A \changes{1.6.0}{2017/XX/XX}{Added Russian and Italian translation. Added `imageposition` parameter.}
 %% ^^A nag warned about the center environment and it really messes up spacing.
+
 %% Parameters (((
 \RequirePackage{kvoptions}
 \DeclareStringOption[CC]{type}
@@ -13,6 +14,7 @@
 \DeclareStringOption{imagemodifier}
 \DeclareStringOption[right]{imageposition}
 \DeclareStringOption[10em]{imagewidth}
+\DeclareStringOption[2em]{imagedistance}
 \DeclareStringOption{hyphenation}
 %% )))
 
@@ -119,7 +121,7 @@
 
 \newcommand{\doclicenseLicense}{\doclicenseThis} %% legacy support
 \newcommand{\doclicenseThis}{%
-  \setlength{\doclicense@hsize}{\textwidth-\doclicense@imagewidth-2em}%
+  \setlength{\doclicense@hsize}{\textwidth-\doclicense@imagewidth-\doclicense@imagedistance}%
   \ifthenelse{\equal{\doclicense@imageposition}{left}}{%
     \begin{center}
       \begin{minipage}{\doclicense@imagewidth}
