@@ -193,13 +193,13 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 %
 % \section{Package options}
 %
-% The first parameter is \enquote{\PrintOptionF{type}}. \DescribePara{type}
-% This sets the license type. Like in this example, the type can be
+% Sets the license type. \DescribePara{type}
+% Like in the previous example, the type can be
 % \enquote{CC} to cover all the \doclicenseLongType licenses.
 % Please make sure that the type is all uppercase. See the \nameref{sec:supported-licenses} section for a complete list.
 %
-% The \DescribePara{modifier} next parameter is \enquote{\PrintOptionF{modifier}} which allows to
-% select different subclasses of a license. In this
+% Allows to
+% select different subclasses of a license. In the
 % example it is \enquote{by-sa}.
 % Please make sure that the type is all lowercase. See the \nameref{sec:supported-licenses} section for a complete list.
 %
@@ -218,6 +218,8 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 %   \item[English] Added by \href{https://github.com/ypid}{Robin Schneider}.
 %   \item[French]  Added by \href{https://github.com/ericguirbal}{\'Eric Guirbal}.
 %   \item[German]  Added by \href{https://github.com/ypid}{Robin Schneider}.
+%   \item[Italian] Added by \href{https://github.com/rig8f}{Filippo Rigotto}.
+%   \item[Russian] Added by \href{https://github.com/bergentroll}{Anton Karmanov}.
 %   \item[Spanish] Added by \href{https://github.com/elsudano}{Carlos}.
 % \end{eqlist}
 %
@@ -230,7 +232,7 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 % Distance between text and image in \cmd{\doclicenseThis}.
 % \DescribePara{imagedistance}
 
-% This options was added to support variations in the license images.
+% Select different variations of license images.
 % \DescribePara{imagemodifier}
 % For example, Creative Commons provides sometimes more than one image for one version.
 % See the \href{https://creativecommons.org/about/downloads}{donwload page}.
@@ -376,7 +378,7 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 %   |\doclicenseImage[imagewidth=2em]|
 % \end{quote}
 %
-% The images are bundled with the \PackageName package as vector graphics.
+% The images are bundled with the \PackageName{} package as vector graphics.
 %
 % \DescribeMacro{\doclicenseImageFileName}
 % This macro expands to the file name of the image which the
@@ -541,7 +543,7 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 %% )))
 
 %    \end{macrocode}
-% \subsection{Macro user macros}
+% \subsection{User macros}
 %    \begin{macrocode}
 %% User macros (((
 \newcommand{\doclicenseType}{\doclicense@type\xspace}
