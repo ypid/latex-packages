@@ -1,6 +1,6 @@
 \ProvidesFile{doclicense-spanish.ldf}
 
-\@namedef{doclicense@lang@thisDoc}{Este documento esta realizado bajo licencia}%
+\@namedef{doclicense@lang@thisDoc}{Esta obra está bajo una licencia}%
 \@namedef{doclicense@lang@word@license}{}%
 
 \@namedef{doclicense@lang@lic@CC@code}{es}%
