@@ -1,6 +1,6 @@
 \ProvidesFile{doclicense-italian.ldf}
 
-\@namedef{doclicense@lang@thisDoc}{Quest'opera è distribuita con Licenza}%
+\@namedef{doclicense@lang@thisDoc}{Quest'opera è distribuita con licenza}%
 \@namedef{doclicense@lang@word@license}{}%
 \ifthenelse{\equal{\doclicense@imagemodifier}{}}{%
   \@namedef{doclicense@imagemodifier}{-eu}
