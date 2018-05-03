@@ -1,0 +1,40 @@
+\ProvidesFile{doclicense-polish.ldf}
+
+\@namedef{doclicense@lang@thisDoc}{Na ten utwór udzielona jest licencja}%
+\@namedef{doclicense@lang@word@license}{}%
+
+% In Polish the word "licencja" should precede the license name
+
+\@namedef{doclicense@lang@lic@CC@code}{pl}%
+%% Using: https://en.wikipedia.org/wiki/ISO_639-1
+
+\@namedef{doclicense@lang@lic@CC@zero@1.0}{Przekazanie do Domeny Publicznej (CC0 1.0)}%
+% https://creativecommons.org/publicdomain/zero/1.0/deed.pl
+\@namedef{doclicense@lang@lic@CC@pd@1.0}{Zaświadczenie Domeny Publicznej}%
+% https://creativecommons.org/choose/publicdomain-2?lang=pl
+
+\@namedef{doclicense@lang@lic@CC@by@3.0}{Uznanie autorstwa 3.0 Polska(CC BY 3.0 PL)}%
+% https://creativecommons.org/licenses/by/3.0/pl/
+\@namedef{doclicense@lang@lic@CC@by-sa@3.0}{Uznanie autorstwa-Na tych samych warunkach 3.0 Polska (CC BY-SA 3.0 PL)}%
+% https://creativecommons.org/licenses/by-sa/3.0/deed.pl
+\@namedef{doclicense@lang@lic@CC@by-nd@3.0}{Uznanie autorstwa-Bez utworów zależnych 3.0 Polska (CC BY-ND 3.0 PL)}%
+% https://creativecommons.org/licenses/by-nd/3.0/pl/
+\@namedef{doclicense@lang@lic@CC@by-nc@3.0}{Uznanie autorstwa-Użycie niekomercyjne 3.0 Polska (CC BY-NC 3.0 PL)}%
+% https://creativecommons.org/licenses/by-nc/3.0/pl/
+\@namedef{doclicense@lang@lic@CC@by-nc-sa@3.0}{Uznanie autorstwa-Użycie niekomercyjne-Na tych samych warunkach 3.0 Polska (CC BY-NC-SA 3.0 PL)}%
+% https://creativecommons.org/licenses/by-nc-sa/3.0/pl/
+\@namedef{doclicense@lang@lic@CC@by-nc-nd@3.0}{Uznanie autorstwa-Użycie niekomercyjne-Bez utworów zależnych 3.0 Polska (CC BY-NC-ND 3.0 PL)}%
+%https://creativecommons.org/licenses/by-nc-nd/3.0/pl/
+
+\@namedef{doclicense@lang@lic@CC@by@4.0}{Uznanie autorstwa 4.0 Międzynarodowe (CC BY 4.0)}%
+% https://creativecommons.org/licenses/by/4.0/deed.pl
+\@namedef{doclicense@lang@lic@CC@by-sa@4.0}{Uznanie autorstwa 4.0 Międzynarodowe-Na tych samych warunkach 4.0 Międzynarodowe (CC BY-SA 4.0)}%
+% https://creativecommons.org/licenses/by-sa/4.0/deed.pl
+\@namedef{doclicense@lang@lic@CC@by-nd@4.0}{Uznanie autorstwa - Bez utworów zależnych 4.0 Międzynarodowe (CC BY-ND 4.0)}%
+% https://creativecommons.org/licenses/by-nd/4.0/deed.pl
+\@namedef{doclicense@lang@lic@CC@by-nc@4.0}{Uznanie autorstwa-Użycie niekomercyjne 4.0 Międzynarodowe (CC BY-NC 4.0)}%
+% https://creativecommons.org/licenses/by-nc/4.0/deed.pl
+\@namedef{doclicense@lang@lic@CC@by-nc-sa@4.0}{Uznanie autorstwa - Użycie niekomercyjne - Na tych samych warunkach 4.0 Międzynarodowa(CC BY-NC-SA 4.0) }%
+% https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.pl
+\@namedef{doclicense@lang@lic@CC@by-nc-nd@4.0}{Uznanie autorstwa - Użycie niekomercyjne - Bez utworów zależnych 4.0 Międzynarodowe (CC BY-NC-ND 4.0)}%
+% https://creativecommons.org/licenses/by-nc-nd/4.0/deed.pl
