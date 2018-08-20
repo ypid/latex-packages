@@ -1,0 +1,24 @@
+\ProvidesFile{doclicense-dutch.ldf}
+
+\@namedef{doclicense@lang@thisDoc}{Dit werk is gelicenseerd onder de}%
+\@namedef{doclicense@lang@word@license}{ licentie}%
+
+\@namedef{doclicense@lang@lic@CC@code}{nl}%
+%% Using: https://en.wikipedia.org/wiki/ISO_639-1
+
+\@namedef{doclicense@lang@lic@CC@zero@1.0}{CC0 1.0 Universal}%
+\@namedef{doclicense@lang@lic@CC@pd@1.0}{Copyright-Only Dedication}%
+
+\@namedef{doclicense@lang@lic@CC@by@3.0}{Naamsvermelding 3.0 Unported}%
+\@namedef{doclicense@lang@lic@CC@by-sa@3.0}{Naamsvermelding-GelijkDelen 3.0 Unported}%
+\@namedef{doclicense@lang@lic@CC@by-nd@3.0}{Naamsvermelding-GeenAfgeleideWerken 3.0 Unported}%
+\@namedef{doclicense@lang@lic@CC@by-nc@3.0}{Naamsvermelding-NietCommercieel 3.0 Unported}%
+\@namedef{doclicense@lang@lic@CC@by-nc-sa@3.0}{Naamsvermelding-NietCommercieel-GelijkDelen 3.0 Unported}%
+\@namedef{doclicense@lang@lic@CC@by-nc-nd@3.0}{Naamsvermelding-NietCommercieel-GeenAfgeleideWerken 3.0 Unported}%
+
+\@namedef{doclicense@lang@lic@CC@by@4.0}{Naamsvermelding 4.0 Internationaal}%
+\@namedef{doclicense@lang@lic@CC@by-sa@4.0}{Naamsvermelding-GelijkDelen 4.0 Internationaal}%
+\@namedef{doclicense@lang@lic@CC@by-nd@4.0}{Naamsvermelding-GeenAfgeleideWerken 4.0 Internationaal}%
+\@namedef{doclicense@lang@lic@CC@by-nc@4.0}{Naamsvermelding-NietCommercieel 4.0 Internationaal}%
+\@namedef{doclicense@lang@lic@CC@by-nc-sa@4.0}{Naamsvermelding-NietCommercieel-GelijkDelen 4.0 Internationaal}%
+\@namedef{doclicense@lang@lic@CC@by-nc-nd@4.0}{Naamsvermelding-NietCommercieel-GeenAfgeleideWerken 4.0 Internationaal}%
