@@ -126,7 +126,7 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 % \changes{1.7.0}{2018/02/17}{Update Russian and Spanish translation. Fix issue with unescaped newline causing two spaces between license name and 'license' word.}
 % \changes{1.7.1}{2018/04/24}{Include .eps versions of the images to allow using `latex` with dvi output. Thanks to robertpetry for reporting.}
 % \changes{1.8.0}{2018/06/10}{Added Polish and Portuguese translation.}
-% \changes{1.9.0}{2018/12/20}{Added Catalan translation.}
+% \changes{1.9.0}{2018/12/20}{Added Catalan translation. Detect and give hint when enquote macro is already defined.}
 %
 %% ^^A nag warned about the center environment and it really messes up spacing.
 %
@@ -511,7 +511,27 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
   }
 }
 \AtEndPreamble{%
-  \@ifpackageloaded{csquotes}{}{\RequirePackage{csquotes}}
+  \@ifpackageloaded{csquotes}{
+    %% csquotes has already been loaded so we are fine.
+  }{
+    \ifcsdef{enquote}{
+      %% \enquote is defined but not by csquotes.
+      \@ifpackageloaded{biblatex}{
+        \PackageError{doclicense}{The enquote macro is defined by biblatex}
+          {This package assumes that the enquote macro is defined by the
+            csquotes package. Please load csquotes before you load biblatex so
+            that biblatex does not define enquote instead.}%
+      }{
+        \PackageError{doclicense}{The enquote macro is defined by unknown package}
+          {This package assumes that the enquote macro is defined by the
+            csquotes package. Please check why enquote is defined without
+            csquotes being loaded. Maybe try loading csquotes early so that it
+            can define the enquote macro instead.}%
+      }
+    }{
+      \RequirePackage{csquotes}
+    }
+  }
   \@ifpackageloaded{ccicons}{}{\RequirePackage{ccicons}}
     %% For \doclicenseIcon
   \@ifpackageloaded{graphicx}{}{\RequirePackage{graphicx}}
