@@ -22,5 +22,5 @@ doclicense.pdf:
 	makeindex -s gglo.ist -o doclicense.gls doclicense.glo
 	makeindex -s gind doclicense
 	pdflatex "$<"
-	thumbpdf doclicense
-	pdflatex "$<"
+	# thumbpdf doclicense
+	# pdflatex "$<"
