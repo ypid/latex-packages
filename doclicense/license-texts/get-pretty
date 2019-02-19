@@ -10,6 +10,7 @@ get() {
     gnuhtml2latex -n "doclicense-CC-${modifier}-${version}-latex.html"
     ./strip-head-and-tail "doclicense-CC-${modifier}-${version}-latex.tex" | sed --regexp-extended '
         s@\<(https://creativecommons.org/compatiblelicenses|https://creativecommons.org/)@\\url{\1}@ig;
+        s/enumerate/doclicense@enumerate/;
     ' | perl -0pe "s/\"(([^\"])*)\"/\`\`\1''/g" > "doclicense-CC-${modifier}-${version}-latex2.tex"
     mv "doclicense-CC-${modifier}-${version}-latex2.tex" "doclicense-CC-${modifier}-${version}-latex.tex"
 }
@@ -30,5 +31,3 @@ get 'by-nd' '4.0'
 get 'by-nc' '4.0'
 get 'by-nc-sa' '4.0'
 get 'by-nc-nd' '4.0'
-
-./adjust_enumerate_depth.sh
