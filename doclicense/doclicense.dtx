@@ -525,8 +525,13 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 \setlist[doclicense@enumerate,3]{label = (\Alph*)}
 \setlist[doclicense@enumerate,4]{label = (\roman*)}
 \else
-\let\doclicense@enumerate\enumerate
-\let\enddoclicense@enumerate\endenumerate
+\newenvironment{doclicense@enumerate}{%
+\begin{enumerate}
+\renewcommand{\labelenumi}{(\alph{enumi})}%
+\renewcommand{\labelenumii}{(\arabic{enumii})}%
+\renewcommand{\labelenumiii}{(\Alph{enumiii})}%
+\renewcommand{\labelenumiv}{(\roman{enumiv})}%
+}{\end{enumerate}}
 \fi
 
 \ifthenelse{
