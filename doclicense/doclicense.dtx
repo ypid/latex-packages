@@ -269,12 +269,6 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 % That allows you to change the behaviour how \cmd{\doclicenseLongText} is
 % typeset. By default, this option is not enabled.
 %
-% This option allows you to decide whether or not the \PrintPackage{enumitem} package is loaded.
-% \DescribePara{enumitem}
-% The package is loaded by default in order to prevent nesting issues. It is not
-% loaded, though, with the \PrintPackage{beamer} class, since \PrintPackage{enumitem} and \PrintPackage{beamer} are incompatible.
-% If you use \PrintOptionF{enumitem=false}, the package won't be loaded in any case.
-%
 % One possible use case is to set the option to \enquote{RaggedRight}.
 % This will use the \cmd{\RaggedRight} macro provided by the
 % \PrintPackage{ragged2e} package\footnote{The \PrintPackage{ragged2e} package will be loaded when it is required.}) with the intention of limiting the number of
@@ -306,6 +300,13 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 %   |  hyphenation={raggedright},| \\
 %   |]{doclicense}|
 % \end{quote}
+%
+% This option allows you to decide whether or
+% \DescribePara{enumitem}
+% not the \PrintPackage{enumitem} package is loaded.
+% The package is loaded by default in order to prevent nesting issues. It is not
+% loaded, though, with the \PrintPackage{beamer} class, since \PrintPackage{enumitem} and \PrintPackage{beamer} are incompatible.
+% If you use \PrintOptionF{enumitem=false}, the package won't be loaded in any case.
 %
 % \section{Macros}
 % \DescribeMacro{\doclicenseType}
