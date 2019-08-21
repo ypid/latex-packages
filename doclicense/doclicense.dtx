@@ -128,7 +128,7 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 % \changes{1.8.0}{2018/06/10}{Added Polish translation.}
 % \changes{1.9.0}{2019/04/07}{Added Catalan, Galician, Chinese and Portuguese translation. Detect and give hint when enquote macro is already defined. Fix LaTeX Error: Too deeply nested.}
 % \changes{1.10.0}{2019/06/05}{Added Brazilian translation. Update Chinese and Portuguese translation. Do not use enumitem for list label customization (beamer compatibility).}
-% \changes{1.10.1}{2019/08/XX}{Fix image for by-nc EU.}
+% \changes{1.10.1}{2019/08/XX}{Fix image for CC-BY-NC EU. Fix URL for CC-PDDC.}
 %
 %% ^^A nag warned about the center environment and it really messes up spacing.
 %
@@ -428,7 +428,7 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 % \makeatletter
 % \begin{eqlist}
 %   \item[zero@1.0] \@nameuse{doclicense@lang@lic@CC@zero@1.0}
-%   \item[pd@1.0] \@nameuse{doclicense@lang@lic@CC@pd@1.0}
+%   \item[pd@1.0] \@nameuse{doclicense@lang@lic@CC@pd@null}
 %   \item[by@3.0] \@nameuse{doclicense@lang@lic@CC@by@3.0}
 %   \item[by-sa@3.0] \@nameuse{doclicense@lang@lic@CC@by-sa@3.0}
 %   \item[by-nd@3.0] \@nameuse{doclicense@lang@lic@CC@by-nd@3.0}
@@ -801,11 +801,11 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
     \ifthenelse{\equal{\doclicense@modifier}{pd}}{
       \renewcommand{\doclicense@icon}{\ccpd}
       \renewcommand{\doclicense@imagemodifier}{}
-      \doclicense@setVersion[1.0]
+      \doclicense@setVersion[null]
       \edef\doclicenseURL{%
         \doclicense@baseUrlCC/%
-        licenses/publicdomain/%
-        \doclicense@versionUsed\doclicense@UrlLangPart}
+        licenses/publicdomain%
+        \doclicense@UrlLangPart}
     }{}
 
     \ifcsdef{doclicense@lang@lic@\doclicense@type%

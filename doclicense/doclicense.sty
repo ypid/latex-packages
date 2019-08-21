@@ -295,11 +295,11 @@
     \ifthenelse{\equal{\doclicense@modifier}{pd}}{
       \renewcommand{\doclicense@icon}{\ccpd}
       \renewcommand{\doclicense@imagemodifier}{}
-      \doclicense@setVersion[1.0]
+      \doclicense@setVersion[null]
       \edef\doclicenseURL{%
         \doclicense@baseUrlCC/%
-        licenses/publicdomain/%
-        \doclicense@versionUsed\doclicense@UrlLangPart}
+        licenses/publicdomain%
+        \doclicense@UrlLangPart}
     }{}
 
     \ifcsdef{doclicense@lang@lic@\doclicense@type%

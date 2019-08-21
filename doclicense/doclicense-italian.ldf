@@ -10,7 +10,7 @@
 %% Using: https://en.wikipedia.org/wiki/ISO_639-1
 
 \@namedef{doclicense@lang@lic@CC@zero@1.0}{CC0 1.0 Universale}%
-\@namedef{doclicense@lang@lic@CC@pd@1.0}{Copyright-Only Dedication}% Based on US right. Use Zero in no-US countries.
+\@namedef{doclicense@lang@lic@CC@pd@null}{Copyright-Only Dedication}% Based on US right. Use Zero in no-US countries.
 
 \@namedef{doclicense@lang@lic@CC@by@3.0}{Attribuzione 3.0 Italia}%
 \@namedef{doclicense@lang@lic@CC@by-sa@3.0}{Attribuzione -- Condividi allo stesso modo 3.0 Italia}%
