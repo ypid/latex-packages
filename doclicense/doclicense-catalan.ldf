@@ -1,6 +1,6 @@
 \ProvidesFile{doclicense-catalan.ldf}
 
-\@namedef{doclicense@lang@thisDoc}{Aquesta obra està sota una llicència}%
+\@namedef{doclicense@lang@thisDoc}{Aquesta obra està subjecta a una llicència de}%
 \@namedef{doclicense@lang@word@license}{}%
 
 \@namedef{doclicense@lang@lic@CC@code}{ca}%
