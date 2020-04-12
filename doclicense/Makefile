@@ -9,7 +9,7 @@ install:
 	test -L "$(TEXMFHOME)/tex/latex/doclicense" || ln --no-target-directory --symbolic "$$PWD" "$(TEXMFHOME)/tex/latex/doclicense"
 
 clean:
-	rm -rf *.sty *.pdf *.aux *.out
+	rm -rf *.sty *.pdf *.aux *.out *.glo *.gls *.hd *.idx *.ilg *.ind *.log *.toc
 
 doclicense.sty:
 doclicense.pdf:
@@ -17,7 +17,7 @@ doclicense.pdf:
 %.sty: %.ins %.dtx
 	tex "$<"
 
-%.pdf: %.dtx
+%.pdf: %.dtx doclicense.sty
 	pdflatex "$<"
 	makeindex -s gglo.ist -o doclicense.gls doclicense.glo
 	makeindex -s gind doclicense
