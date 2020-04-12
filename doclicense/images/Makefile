@@ -34,6 +34,7 @@ endef
 doclicense-CC-%.svg:
 	$(download-creativecommons)
 
+## For reproducibility, the following version was used to generated the files: Inkscape 0.92.4 (5da689c313, 2019-01-14)
 
 %.pdf: %.svg
 	inkscape "$<" --export-pdf "$@"
