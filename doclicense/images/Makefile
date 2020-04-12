@@ -28,8 +28,8 @@ endef
 #     $(download-creativecommons)
 
 ## png is not a vector format.
-# doclicense-CC-%.png:
-	# $(download-creativecommons)
+doclicense-CC-%.png:
+	$(download-creativecommons)
 
 doclicense-CC-%.svg:
 	$(download-creativecommons)
