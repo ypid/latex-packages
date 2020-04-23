@@ -152,7 +152,7 @@
 
 \newcommand{\doclicenseLicense}{\doclicenseThis} %% legacy support
 \newcommand{\doclicenseThis}{%
-  \setlength{\doclicense@hsize}{\textwidth-\doclicense@imagewidth-\doclicense@imagedistance}%
+  \setlength{\doclicense@hsize}{\linewidth-\doclicense@imagewidth-\doclicense@imagedistance}%
   \ifthenelse{\equal{\doclicense@imageposition}{left}}{%
     \begin{center}
       \begin{minipage}{\doclicense@imagewidth}

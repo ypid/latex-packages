@@ -132,7 +132,7 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 % \changes{1.9.0}{2019/04/07}{Added Catalan, Galician, Chinese and Portuguese translation. Detect and give hint when enquote macro is already defined. Fix LaTeX Error: Too deeply nested.}
 % \changes{1.10.0}{2019/06/05}{Added Brazilian translation. Update Chinese and Portuguese translation. Do not use enumitem for list label customization (beamer compatibility).}
 % \changes{1.10.1}{2020/04/12}{Fix image for CC-BY-NC EU. Fix URL for CC-PDDC. Improve wording for catalan language.}
-% \changes{1.10.2}{2020/05/XX}{Fix slight color offset for all CC images caused by bad image conversion. Thanks very much to rodrigoalcarazdelaosa!}
+% \changes{1.10.2}{2020/05/XX}{Fix slight color offset for all CC images caused by bad image conversion. Thanks to rodrigoalcarazdelaosa for reporting. Fix \cmd{\doclicenseThis} support for twocolumn layouts. Thanks to Nao Pross.}
 %
 %% ^^A nag warned about the center environment and it really messes up spacing.
 %
@@ -653,7 +653,7 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 
 \newcommand{\doclicenseLicense}{\doclicenseThis} %% legacy support
 \newcommand{\doclicenseThis}{%
-  \setlength{\doclicense@hsize}{\textwidth-\doclicense@imagewidth-\doclicense@imagedistance}%
+  \setlength{\doclicense@hsize}{\linewidth-\doclicense@imagewidth-\doclicense@imagedistance}%
   \ifthenelse{\equal{\doclicense@imageposition}{left}}{%
     \begin{center}
       \begin{minipage}{\doclicense@imagewidth}
