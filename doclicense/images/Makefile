@@ -1,3 +1,10 @@
+## Keep secondary targets.
+.SECONDARY:
+
+## But still delete secondary targets if the actual generating fails.
+.DELETE_ON_ERROR:
+
+
 WGET_OPTIONS ?= --no-verbose
 
 REQUIRED_FILE_SUFFIXES ?= pdf eps
@@ -12,49 +19,36 @@ default: all
 all: $(REQUIRED_FILES)
 
 
-## Not available as eps.
-doclicense-CC-zero.eps: doclicense-CC-cc-zero.svg
-	$(eps-from-svg)
-doclicense-CC-zero.pdf: doclicense-CC-cc-zero.svg
-	$(pdf-from-svg)
-
-
 define download-creativecommons =
-wget $(WGET_OPTIONS) "https://mirrors.creativecommons.org/presskit/buttons/88x31/$(patsubst .%,%,$(suffix $@))/$(subst -eu.,.eu.,$(@:doclicense-CC-%=%))" -O "$@"
+wget $(WGET_OPTIONS) "https://mirrors.creativecommons.org/presskit/buttons/88x31/$(patsubst .%,%,$(suffix $@))/$(subst zero,cc-zero,$(subst -eu.,.eu.,$(@:doclicense-CC-%=%)))" -O "$@"
 endef
 
-doclicense-CC-%.eps:
-	$(download-creativecommons)
+## cc-zero file missing.
+# doclicense-CC-%.eps:
+#     $(download-creativecommons)
 
+## png is not a vector format.
 doclicense-CC-%.png:
 	$(download-creativecommons)
 
 doclicense-CC-%.svg:
 	$(download-creativecommons)
 
+## For reproducibility, the following version was used to generated the files: Inkscape 0.92.4 (5da689c313, 2019-01-14)
 
-## Make epstopdf behave. Version 2.22 writes an output file even if it fails.
-.DELETE_ON_ERROR:
+%.pdf: %.svg
+	inkscape "$<" --export-pdf "$@"
 
-## Not deterministic.
-define pdf-from-eps =
-epstopdf --outfile="$@" "$<"
-endef
+	@# Make output deterministic:
+	sed --regexp-extended --in-place "s#^(.*/CreationDate \()D:[0-9+')]+\)#\1D:20200412232323+02'00)#;" "$@"
+	@# The proper way to do it would be but that changes other parts of the file too which is not wanted.
+	@# exiftool -CreateDate='2020-04-12 23:23:23' "$@"
 
-%.pdf: %.eps
-	$(pdf-from-eps)
+%.eps: %.svg
+	inkscape "$<" --export-eps "$@"
 
-define pdf-from-svg =
-rsvg-convert -f pdf -o "$@" "$<"
-endef
-
-define eps-from-svg =
-inkscape "$<" --export-eps "$@"
-endef
-
-## Alternative build pipeline. Prefer eps -> pdf
-# %.pdf: %.svg
-#     $(pdf-from-svg)
+	@# Make output deterministic:
+	sed --regexp-extended --in-place 's#^(%%CreationDate:).*#\1 Sun Apr 12 23:23:23 2020#;' "$@"
 
 
 .PHONY: clean distclean
