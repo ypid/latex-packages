@@ -2,11 +2,14 @@ TEXMFHOME ?= $(shell kpsewhich -var-value TEXMFHOME)
 
 all: install build
 
-build: doclicense.sty doclicense.pdf
+build: check-quick doclicense.sty doclicense.pdf
 
 install:
 	mkdir --parents "$(TEXMFHOME)/tex/latex/"
 	test -L "$(TEXMFHOME)/tex/latex/doclicense" || ln --no-target-directory --symbolic "$$PWD" "$(TEXMFHOME)/tex/latex/doclicense"
+
+check-quick: doclicense.dtx
+	chktex "$<"
 
 check: run_tests doclicense.sty
 	./"$<"

@@ -133,7 +133,7 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 % \changes{1.9.0}{2019/04/07}{Added Catalan, Galician, Chinese and Portuguese translation. Detect and give hint when enquote macro is already defined. Fix LaTeX Error: Too deeply nested.}
 % \changes{1.10.0}{2019/06/05}{Added Brazilian translation. Update Chinese and Portuguese translation. Do not use enumitem for list label customization (beamer compatibility).}
 % \changes{1.10.1}{2020/04/12}{Fix image for CC-BY-NC EU. Fix URL for CC-PDDC. Improve wording for catalan language.}
-% \changes{1.11.0}{2020/05/XX}{Add 80x15 version of CC images which can be used with the imagemodifier option. Fix slight color offset for all CC images caused by bad image conversion. Thanks to rodrigoalcarazdelaosa for reporting. Fix \cmd{\doclicenseThis} support for twocolumn layouts. Thanks to Nao Pross.}
+% \changes{1.11.0}{2020/05/XX}{Add 80x15 version of CC images which can be used with the imagemodifier option. Fix slight color offset for all CC images caused by bad image conversion. Thanks to rodrigoalcarazdelaosa for reporting. Fix \cmd{\doclicenseThis} support for twocolumn layouts. Thanks to Nao Pross. Soft require package options "type", "modifier" and "version" now. Defaults are deprecated. This will become a package error in an upcoming major version of the package, with the earliest release in 2021-07 to give people time to migrate.}
 %
 %% ^^A nag warned about the center environment and it really messes up spacing.
 %
@@ -169,19 +169,7 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 % package is designed to handle all kinds of licenses. See \nameref{sec:contributing}.
 %
 % \section{Usage}
-% Just load the package(s) placing
-% \begin{quote}
-%   |\usepackage{| \\
-%   |%  babel,| \\
-%   |%  hyperref,| \\
-%   |%  hyperxmp,| \\
-%   |  doclicense,| \\
-%   |}|
-% \end{quote}
-% in the preamble of your \LaTeXe{} source file. This will select the default
-% license which is \doclicenseNameRef, currently. Please always set your
-% license explicitly as package options like so:
-%
+% Just load the package
 % \begin{quote}
 %   |\usepackage{| \\
 %   |%  babel,| \\
@@ -194,8 +182,10 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 %   |  version={3.0},| \\
 %   |]{doclicense}|
 % \end{quote}
+% in the preamble of your \LaTeXe{} source file and change the package options
+% to the license you want to put the document under.
 %
-% This will explicitly set the license to \doclicenseNameRef.
+% This will explicitly set the license to \doclicenseNameRef under which this documentation is provided.
 %
 % If the \PrintPackage{hyperxmp} package is loaded, then the options
 % \PrintOptionF{pdflicenseurl} and \PrintOptionF{pdfcopyright} will be set
@@ -435,21 +425,22 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 % \subsection{CC (Creative Commons)}
 %
 % \makeatletter
+% ^^A Reverse sorted.
 % \begin{eqlist}
 %   \item[zero@1.0] \@nameuse{doclicense@lang@lic@CC@zero@1.0}
-%   \item[pd@1.0] \@nameuse{doclicense@lang@lic@CC@pd@null}
-%   \item[by@3.0] \@nameuse{doclicense@lang@lic@CC@by@3.0}
-%   \item[by-sa@3.0] \@nameuse{doclicense@lang@lic@CC@by-sa@3.0}
-%   \item[by-nd@3.0] \@nameuse{doclicense@lang@lic@CC@by-nd@3.0}
-%   \item[by-nc@3.0] \@nameuse{doclicense@lang@lic@CC@by-nc@3.0}
-%   \item[by-nc-sa@3.0] \@nameuse{doclicense@lang@lic@CC@by-nc-sa@3.0}
-%   \item[by-nc-nd@3.0] \@nameuse{doclicense@lang@lic@CC@by-nc-nd@3.0}
+%   \item[pd@null] \@nameuse{doclicense@lang@lic@CC@pd@null}
 %   \item[by@4.0] \@nameuse{doclicense@lang@lic@CC@by@4.0}
+%   \item[by@3.0] \@nameuse{doclicense@lang@lic@CC@by@3.0}
 %   \item[by-sa@4.0] \@nameuse{doclicense@lang@lic@CC@by-sa@4.0}
+%   \item[by-sa@3.0] \@nameuse{doclicense@lang@lic@CC@by-sa@3.0}
 %   \item[by-nd@4.0] \@nameuse{doclicense@lang@lic@CC@by-nd@4.0}
+%   \item[by-nd@3.0] \@nameuse{doclicense@lang@lic@CC@by-nd@3.0}
 %   \item[by-nc@4.0] \@nameuse{doclicense@lang@lic@CC@by-nc@4.0}
+%   \item[by-nc@3.0] \@nameuse{doclicense@lang@lic@CC@by-nc@3.0}
 %   \item[by-nc-sa@4.0] \@nameuse{doclicense@lang@lic@CC@by-nc-sa@4.0}
+%   \item[by-nc-sa@3.0] \@nameuse{doclicense@lang@lic@CC@by-nc-sa@3.0}
 %   \item[by-nc-nd@4.0] \@nameuse{doclicense@lang@lic@CC@by-nc-nd@4.0}
+%   \item[by-nc-nd@3.0] \@nameuse{doclicense@lang@lic@CC@by-nc-nd@3.0}
 % \end{eqlist}
 % \makeatother
 %
@@ -497,8 +488,8 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 %    \begin{macrocode}
 %% Parameters (((
 \RequirePackage{kvoptions}
-\DeclareStringOption[CC]{type}
-\DeclareStringOption[by-sa]{modifier}
+\DeclareStringOption{type}
+\DeclareStringOption{modifier}
 \DeclareStringOption{version}
 \DeclareStringOption{lang}
 \DeclareStringOption[-88x31]{imagemodifier}% chktex 29
@@ -526,8 +517,39 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 \RequirePackage{verbatim}
 %% )))
 
+%    \end{macrocode}
+% \subsection{Deprecation handling}
+%    \begin{macrocode}
+%% Deprecation handling (((
+\ifthenelse{
+  \equal{\doclicense@type}{}
+}{
+  \PackageWarning{doclicense}{%
+    "type" package option missing. % chktex 18
+    This option is now required and the fallback to "CC" is deprecated. In an upcoming major version of doclicense, this will be a package error. Please explicitly pick a license of your choosing.}% chktex 18
+  \renewcommand{\doclicense@type}{CC}
+}{}
+
+\ifthenelse{
+  \equal{\doclicense@modifier}{}
+}{
+  \PackageWarning{doclicense}{%
+    "modifier" package option missing. % chktex 18
+    This option is now required and the fallback to "by-sa" is deprecated. In an upcoming major version of doclicense, this will be a package error. Please explicitly pick a license of your choosing.}% chktex 18
+  \renewcommand{\doclicense@modifier}{by-sa}
+}{}
+
+\ifthenelse{
+  \equal{\doclicense@version}{}
+}{
+  \PackageWarning{doclicense}{%
+    "version" package option missing. % chktex 18
+    This option is now required and the fallback is deprecated. In an upcoming major version of doclicense, this will be a package error. Please explicitly pick a license of your choosing.}% chktex 18
+}{}
+%% )))
+
 %% Custom enumerate list with adjusted labels
-%% that match the license text convetions
+%% that match the license text conventions
 \newenvironment{doclicense@enumerate}{%
   \begin{enumerate}
     \renewcommand{\labelenumi}{(\alph{enumi})}%
