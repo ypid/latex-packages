@@ -10,7 +10,7 @@
 \DeclareStringOption[by-sa]{modifier}
 \DeclareStringOption{version}
 \DeclareStringOption{lang}
-\DeclareStringOption{imagemodifier}
+\DeclareStringOption[-88x31]{imagemodifier}% chktex 29
 \DeclareStringOption[right]{imageposition}
 \DeclareStringOption[10em]{imagewidth}
 \DeclareStringOption[2em]{imagedistance}
@@ -21,6 +21,7 @@
 
 %% Dependencies (((
 \RequirePackage{xifthen}
+\RequirePackage{xstring}
 \RequirePackage{etoolbox} %% \ifcsdef
 \RequirePackage{xspace}
 \RequirePackage{verbatim}
@@ -148,7 +149,7 @@
 }
 \newcommand{\doclicenseFullTextFileName}{%
   doclicense-\doclicense@type-\doclicense@modifier-\doclicense@versionUsed-latex}
-\newcommand{\doclicenseFullText}{\input{\doclicenseFullTextFileName}}
+\newcommand{\doclicenseFullText}{\input{\doclicenseFullTextFileName}}% chktex 27
 
 \newcommand{\doclicenseLicense}{\doclicenseThis} %% legacy support
 \newcommand{\doclicenseThis}{%
@@ -194,13 +195,13 @@
 \ifthenelse{\equal{\doclicense@lang}{}}{%
   \renewcommand{\doclicense@lang}{\languagename}}{}
 \IfFileExists{doclicense-\doclicense@lang.ldf}{%
-  \input{doclicense-\doclicense@lang.ldf}
+  \input{doclicense-\doclicense@lang.ldf}% chktex 27
 }{%
   \PackageWarning{doclicense}{%
     No language definition for \doclicense@lang found.
     Please add one and submit a patch. Using English as fallback.}
   \renewcommand{\doclicense@lang}{english}
-  \input{doclicense-\doclicense@lang.ldf}
+  \input{doclicense-\doclicense@lang.ldf}% chktex 27
 }
 \ifthenelse{\equal{\doclicense@imagemodifier}{-us}}{%
   \@namedef{doclicense@imagemodifier}{}
@@ -245,46 +246,39 @@
     }
     \ifthenelse{\equal{\doclicense@modifier}{by}}{%
       \renewcommand{\doclicense@icon}{\ccby}
-      \renewcommand{\doclicense@imagemodifier}{}
     }{}
     \ifthenelse{\equal{\doclicense@modifier}{by-sa}}{%
       \renewcommand{\doclicense@icon}{\ccbysa}
-      \renewcommand{\doclicense@imagemodifier}{}
     }{}
     \ifthenelse{\equal{\doclicense@modifier}{by-nd}}{%
       \renewcommand{\doclicense@icon}{\ccbynd}
-      \renewcommand{\doclicense@imagemodifier}{}
     }{}
     \ifthenelse{\equal{\doclicense@modifier}{by-nc}}{%
       \renewcommand{\doclicense@icon}{\ccbync}
-      \ifthenelse{\equal{\doclicense@imagemodifier}{-eu}}{%
+      \IfBeginWith{\doclicense@imagemodifier}{-eu}{%
         \renewcommand{\doclicense@icon}{\ccbynceu}
       }{}
-      \ifthenelse{\equal{\doclicense@imagemodifier}{-jp}}{%
+      \IfBeginWith{\doclicense@imagemodifier}{-jp}{%
         \renewcommand{\doclicense@icon}{\ccbyncjp}
       }{}
     }{}
     \ifthenelse{\equal{\doclicense@modifier}{by-nc-sa}}{
       \renewcommand{\doclicense@icon}{\ccbyncsa}
-      \ifthenelse{\equal{\doclicense@imagemodifier}{-eu}}{%
+      \IfBeginWith{\doclicense@imagemodifier}{-eu}{%
         \renewcommand{\doclicense@icon}{\ccbyncsaeu}
       }{}
-      \ifthenelse{\equal{\doclicense@imagemodifier}{-jp}}{%
+      \IfBeginWith{\doclicense@imagemodifier}{-jp}{%
         \renewcommand{\doclicense@icon}{\ccbyncsajp}
       }{}
     }{}
     \ifthenelse{\equal{\doclicense@modifier}{by-nc-nd}}{
       \renewcommand{\doclicense@icon}{\ccbyncnd}
-      \ifthenelse{\equal{\doclicense@imagemodifier}{-eu}}{%
-        \renewcommand{\doclicense@icon}{\ccbyncndeu}
-      }{}
-      \ifthenelse{\equal{\doclicense@imagemodifier}{-jp}}{%
+      \IfBeginWith{\doclicense@imagemodifier}{-jp}{%
         \renewcommand{\doclicense@icon}{\ccbyncndjp}
       }{}
     }{}
     \ifthenelse{\equal{\doclicense@modifier}{zero}}{%
       \renewcommand{\doclicense@icon}{\cczero}
-      \renewcommand{\doclicense@imagemodifier}{}
       \doclicense@setVersion[1.0]
       \edef\doclicenseURL{%
         \doclicense@baseUrlCC/%
@@ -294,13 +288,18 @@
     }{}
     \ifthenelse{\equal{\doclicense@modifier}{pd}}{
       \renewcommand{\doclicense@icon}{\ccpd}
-      \renewcommand{\doclicense@imagemodifier}{}
       \doclicense@setVersion[null]
       \edef\doclicenseURL{%
         \doclicense@baseUrlCC/%
         licenses/publicdomain%
         \doclicense@UrlLangPart}
     }{}
+    \IfSubStr{\doclicense@modifier}{nc}{}{
+      %% eu (Euro) does only exist for nc (non commercial) so if not nc then reset -eu.
+      \ifthenelse{\equal{\doclicense@imagemodifier}{-eu}}{%
+        \renewcommand{\doclicense@imagemodifier}{}
+      }{}
+    }
 
     \ifcsdef{doclicense@lang@lic@\doclicense@type%
       @\doclicense@modifier @\doclicense@versionUsed}{}{%

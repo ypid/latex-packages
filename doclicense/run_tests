@@ -1,4 +1,5 @@
 #!/bin/bash
+set -o nounset -o pipefail -o errexit
 
 grep '\\item.*@nameuse{doclicense@lang' ./doclicense.dtx | sed 's/.*\[\([^@]\+\)@\([^]]\+\)\].*/\1 \2/' | while read -r modifier version; do
 # echo 'by 3.0' | while read modifier version; do
@@ -6,10 +7,10 @@ grep '\\item.*@nameuse{doclicense@lang' ./doclicense.dtx | sed 's/.*\[\([^@]\+\)
 # echo 'pd 1.0' | while read modifier version; do
 # echo 'by-nc 3.0' | while read modifier version; do
 # echo 'by-nc 4.0' | while read modifier version; do
-    for imagemodifier in "" "-us" "-eu"; do
-        for lang in "spanish" "english" "ngerman" "french" "russian" "italian" "polish" "portuguese" "catalan" "galician"; do
+    for imagemodifier in "" "-eu" "-80x15"; do
+        # for lang in "spanish" "english" "ngerman" "french" "russian" "italian" "polish" "portuguese" "catalan" "galician"; do
         # for lang in "spanish"; do
-        # for lang in "english"; do
+        for lang in "english" "ngerman"; do ## Fully tested.
         # for lang in "ngerman"; do
         # for lang in "polish"; do
         # for lang in "portuguese"; do
@@ -18,6 +19,9 @@ grep '\\item.*@nameuse{doclicense@lang' ./doclicense.dtx | sed 's/.*\[\([^@]\+\)
         # for lang in "brazilian"; do
             if [ "$lang" == "ngerman" ] && [ "$modifier" == "pd" ]; then
                 continue # Does not exist in Germany.
+            fi
+            if [ "$imagemodifier" == "-eu" ] && [[ "$modifier" != *-nc-* ]]; then
+                continue # eu (Euro) does only exist for nc (non commercial).
             fi
             echo "
                 \documentclass[$lang]{article}
@@ -84,6 +88,8 @@ grep '\\item.*@nameuse{doclicense@lang' ./doclicense.dtx | sed 's/.*\[\([^@]\+\)
                 doclicenseThis
                 \doclicenseThis%
                 \end{document}" > testing.tex
+
+            echo "Testing variant: $lang CC $modifier $version $imagemodifier"
             latexmk -c
             # lualatex testing.tex
             pdflatex testing.tex

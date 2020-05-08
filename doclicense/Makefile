@@ -8,6 +8,9 @@ install:
 	mkdir --parents "$(TEXMFHOME)/tex/latex/"
 	test -L "$(TEXMFHOME)/tex/latex/doclicense" || ln --no-target-directory --symbolic "$$PWD" "$(TEXMFHOME)/tex/latex/doclicense"
 
+check: run_tests doclicense.sty
+	./"$<"
+
 clean:
 	rm -rf *.sty *.pdf *.aux *.out *.glo *.gls *.hd *.idx *.ilg *.ind *.log *.toc
 

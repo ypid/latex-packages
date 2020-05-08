@@ -4,11 +4,31 @@
 ## But still delete secondary targets if the actual generating fails.
 .DELETE_ON_ERROR:
 
+SHELL   := /bin/bash -o nounset -o pipefail -o errexit
 
 WGET_OPTIONS ?= --no-verbose
 
 REQUIRED_FILE_SUFFIXES ?= pdf eps
-REQUIRED_BASE_FILES ?= doclicense-CC-by doclicense-CC-by-sa doclicense-CC-by-nd doclicense-CC-by-nc doclicense-CC-by-nc-eu doclicense-CC-by-nc-sa doclicense-CC-by-nc-sa-eu doclicense-CC-by-nc-nd doclicense-CC-by-nc-nd-eu doclicense-CC-pd doclicense-CC-zero
+REQUIRED_BASE_FILES ?= \
+	doclicense-CC-by-80x15 \
+	doclicense-CC-by-88x31 \
+	doclicense-CC-by-sa-80x15 \
+	doclicense-CC-by-sa-88x31 \
+	doclicense-CC-by-nd-80x15 \
+	doclicense-CC-by-nd-88x31 \
+	doclicense-CC-by-nc-80x15 \
+	doclicense-CC-by-nc-88x31 \
+	doclicense-CC-by-nc-eu-88x31 \
+	doclicense-CC-by-nc-sa-80x15 \
+	doclicense-CC-by-nc-sa-88x31 \
+	doclicense-CC-by-nc-sa-eu-88x31 \
+	doclicense-CC-by-nc-nd-80x15 \
+	doclicense-CC-by-nc-nd-88x31 \
+	doclicense-CC-by-nc-nd-eu-88x31 \
+	doclicense-CC-pd-80x15 \
+	doclicense-CC-pd-88x31 \
+	doclicense-CC-zero-80x15 \
+	doclicense-CC-zero-88x31
 
 REQUIRED_FILES = $(foreach prefix,$(REQUIRED_BASE_FILES),$(foreach suffix,$(REQUIRED_FILE_SUFFIXES),$(prefix).$(suffix)))
 
@@ -20,7 +40,15 @@ all: $(REQUIRED_FILES)
 
 
 define download-creativecommons =
-wget $(WGET_OPTIONS) "https://mirrors.creativecommons.org/presskit/buttons/88x31/$(patsubst .%,%,$(suffix $@))/$(subst zero,cc-zero,$(subst -eu.,.eu.,$(@:doclicense-CC-%=%)))" -O "$@"
+modifier="$(subst zero,cc-zero,$(@:doclicense-CC-%=%))"; \
+image_type="$${modifier##*.}"; \
+image_variant="$${modifier##*-}"; \
+image_variant="$${image_variant%%.*}"; \
+modifier="$${modifier/pd-80x15/publicdomain-80x15}"; \
+modifier="$${modifier%%-80x15*}"; \
+modifier="$${modifier%%-88x31*}"; \
+modifier="$${modifier/-eu/.eu}"; \
+wget $(WGET_OPTIONS) "https://mirrors.creativecommons.org/presskit/buttons/$${image_variant}/$${image_type}/$${modifier}.$${image_type}" -O "$@"
 endef
 
 ## cc-zero file missing.
