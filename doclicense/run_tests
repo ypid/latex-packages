@@ -1,7 +1,7 @@
 #!/bin/bash
 set -o nounset -o pipefail -o errexit
 
-grep '\\item.*@nameuse{doclicense@lang' ./doclicense.dtx | sed 's/.*\[\([^@]\+\)@\([^]]\+\)\].*/\1 \2/' | while read -r modifier version; do
+grep '\\item.*@nameuse{doclicense@lang' ./doclicense.dtx | sed 's/.*doclicense@lang@lic@\([^@]\+\)@\([^@]\+\)@\([^]]\+\)}.*/\1 \2 \3/' | sort -u | while read -r type modifier version; do
 # echo 'by 3.0' | while read modifier version; do
 # echo 'zero 1.0' | while read modifier version; do
 # echo 'by-nc 3.0' | while read modifier version; do
@@ -33,7 +33,7 @@ grep '\\item.*@nameuse{doclicense@lang' ./doclicense.dtx | sed 's/.*\[\([^@]\+\)
                   \setdefaultlanguage{$lang}
                 \fi
                 \usepackage[
-                    type={CC},
+                    type={$type},
                     modifier={$modifier},
                     version={$version},
                     imagemodifier={$imagemodifier},
@@ -88,7 +88,7 @@ grep '\\item.*@nameuse{doclicense@lang' ./doclicense.dtx | sed 's/.*\[\([^@]\+\)
                 \doclicenseThis%
                 \end{document}" > testing.tex
 
-            echo "Testing variant: $lang CC $modifier $version $imagemodifier"
+            echo "Testing variant: $lang $type $modifier $version $imagemodifier"
             latexmk -c
             # lualatex testing.tex
             pdflatex testing.tex
