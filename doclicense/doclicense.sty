@@ -25,38 +25,6 @@
 \RequirePackage{etoolbox} %% \ifcsdef
 \RequirePackage{xspace}
 \RequirePackage{verbatim}
-%% )))
-
-%% Deprecation handling (((
-\ifthenelse{
-  \equal{\doclicense@type}{}
-}{
-  \PackageWarning{doclicense}{%
-    "type" package option missing. % chktex 18
-    This option is now required and the fallback to "CC" is deprecated. In an upcoming major version of doclicense, this will be a package error. Please explicitly pick a license of your choosing.% chktex 18
-  }
-  \renewcommand{\doclicense@type}{CC}
-}{}
-
-\ifthenelse{
-  \equal{\doclicense@modifier}{}
-}{
-  \PackageWarning{doclicense}{%
-    "modifier" package option missing. % chktex 18
-    This option is now required and the fallback to "by-sa" is deprecated. In an upcoming major version of doclicense, this will be a package error. Please explicitly pick a license of your choosing.% chktex 18
-  }
-  \renewcommand{\doclicense@modifier}{by-sa}
-}{}
-
-\ifthenelse{
-  \equal{\doclicense@version}{}
-}{
-  \PackageWarning{doclicense}{%
-    "version" package option missing. % chktex 18
-    This option is now required and the fallback is deprecated. In an upcoming major version of doclicense, this will be a package error. Please explicitly pick a license of your choosing.% chktex 18
-  }
-}{}
-%% )))
 
 %% Custom enumerate list with adjusted labels
 %% that match the license text conventions
@@ -113,6 +81,43 @@
     }
   }{}
 }
+%% )))
+
+%% Deprecation handling (((
+\ifthenelse{
+  \equal{\doclicense@type}{}
+}{
+  \PackageWarning{doclicense}{%
+    "type" package option missing. % chktex 18
+    This option is now required and the fallback to "CC" is deprecated. % chktex 18
+    In an upcoming major version of doclicense, this will be a package error.
+    Please explicitly pick a license of your choosing.
+  }
+  \renewcommand{\doclicense@type}{CC}
+}{}
+
+\ifthenelse{
+  \equal{\doclicense@modifier}{}
+}{
+  \PackageWarning{doclicense}{%
+    "modifier" package option missing. % chktex 18
+    This option is now required and the fallback to "by-sa" is deprecated. % chktex 18
+    In an upcoming major version of doclicense, this will be a package error.
+    Please explicitly pick a license of your choosing.
+  }
+  \renewcommand{\doclicense@modifier}{by-sa}
+}{}
+
+\ifthenelse{
+  \equal{\doclicense@version}{}
+}{
+  \PackageWarning{doclicense}{%
+    "version" package option missing. % chktex 18
+    This option is now required and the fallback is deprecated. % chktex 18
+    In an upcoming major version of doclicense, this will be a package error.
+    Please explicitly pick a license of your choosing.
+  }
+}{}
 %% )))
 
 %% Declare variables (((
