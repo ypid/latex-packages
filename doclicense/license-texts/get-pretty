@@ -8,12 +8,12 @@ get() {
     ## https://creativecommons.org/weblog/entry/27094
     modifier="$1"
     version="$2"
-    wget --continue "https://creativecommons.org/licenses/${modifier}/${version}/legalcode" --output-document "doclicense-CC-${modifier}-${version}-latex.html"
+    # wget --continue "https://creativecommons.org/licenses/${modifier}/${version}/legalcode" --output-document "doclicense-CC-${modifier}-${version}-latex.html"
     gnuhtml2latex -n "doclicense-CC-${modifier}-${version}-latex.html"
     ./strip-head-and-tail "doclicense-CC-${modifier}-${version}-latex.tex" | sed --regexp-extended '
         s@\<(https://creativecommons.org/compatiblelicenses|https://creativecommons.org/)@\\url{\1}@ig;
         s/enumerate/doclicense@enumerate/;
-    ' | perl -0pe "s/\"(([^\"])*)\"/\`\`\1''/g" > "doclicense-CC-${modifier}-${version}-latex2.tex"
+    ' | perl -0pe "s/\"(([^\"])*)\"/\`\`\1''/g;s/(Additional languages available):[^.]+/\1/;" > "doclicense-CC-${modifier}-${version}-latex2.tex"
     mv "doclicense-CC-${modifier}-${version}-latex2.tex" "doclicense-CC-${modifier}-${version}-latex.tex"
 }
 
