@@ -40,7 +40,7 @@
 \newcommand{\PackageName}{\PrintPackage{doclicense}}
 \newcommand{\PrintPackage}[1]{\textsf{#1}}
 \newcommand{\PrintOptionF}[1]{\emph{#1}} %% ^^A This macro is used for
-%% ^^A explaining any parameter when they first come up in the documentation.
+%% ^^A explaining any parameter when they first come up in the manual.
 \newcommand{\DescribePara}[1]{\marginpar{\raggedleft\strut\MacroFont\string#1}}
 \usepackage[
   hyphens,
@@ -283,9 +283,9 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 % usually one or two full line and one half full line so avoiding hyphenations
 % might look better compared to justified text.
 %
-% \enquote{RaggedRight} is also the setting used for this documentation.
+% \enquote{RaggedRight} is also the setting used for this manual.
 % \cmd{\doclicenseThis} did not produce a hyphenation in case of this
-% documentation but \TeX{} did fill up the first text line to it’s full width
+% manual but \TeX{} did fill up the first text line to it’s full width
 % by adding additional space between words. This has been be avoided by setting
 % the following option for this document:
 %
@@ -659,7 +659,7 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 }
 \newcommand{\doclicense@icon}{%
   \PackageError{doclicense}{Icon not defined}
-    {Please check the documentation of doclicense to see what you can do about it.}%
+    {Please check the manual of doclicense to see what you can do about it.}%
 }
 \newcommand{\doclicense@modifier@uppercase}{\texorpdfstring{%
     \MakeUppercase{\doclicense@modifier}%
@@ -880,7 +880,7 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
       @\doclicense@modifier @\doclicense@versionUsed}{}{%
 
       \PackageError{doclicense}{License long name not defined}{%
-        Please check the documentation of doclicense
+        Please check the manual of doclicense
         to see what you can do about it.%
       }%
     }
@@ -889,7 +889,7 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
   }{}%% )))
   \ifthenelse{\not\boolean{doclicense@licenseKnown}}{%
     \PackageError{doclicense}{License unknown}{%
-      Please check the documentation of doclicense
+      Please check the manual of doclicense
       to see what you can do about it.%
     }%
   }{}%

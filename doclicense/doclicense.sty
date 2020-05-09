@@ -2,6 +2,7 @@
 \NeedsTeXFormat{LaTeX2e}[1998/12/01]
 \ProvidesPackage{doclicense}
     [2020/04/12 v1.10.1 Support for putting documents under a license]
+
 %% ^^A nag warned about the center environment and it really messes up spacing.
 
 %% Parameters (((
@@ -132,7 +133,7 @@
 }
 \newcommand{\doclicense@icon}{%
   \PackageError{doclicense}{Icon not defined}
-    {Please check the documentation of doclicense to see what you can do about it.}%
+    {Please check the manual of doclicense to see what you can do about it.}%
 }
 \newcommand{\doclicense@modifier@uppercase}{\texorpdfstring{%
     \MakeUppercase{\doclicense@modifier}%
@@ -340,7 +341,7 @@
       @\doclicense@modifier @\doclicense@versionUsed}{}{%
 
       \PackageError{doclicense}{License long name not defined}{%
-        Please check the documentation of doclicense
+        Please check the manual of doclicense
         to see what you can do about it.%
       }%
     }
@@ -349,7 +350,7 @@
   }{}%% )))
   \ifthenelse{\not\boolean{doclicense@licenseKnown}}{%
     \PackageError{doclicense}{License unknown}{%
-      Please check the documentation of doclicense
+      Please check the manual of doclicense
       to see what you can do about it.%
     }%
   }{}%
