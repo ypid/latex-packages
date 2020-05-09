@@ -86,6 +86,12 @@ grep '\\item.*@nameuse{doclicense@lang' ./doclicense.dtx | sed 's/.*doclicense@l
 
                 doclicenseThis
                 \doclicenseThis%
+
+                doclicensePlainFullText
+                \doclicensePlainFullText%
+
+                doclicenseFullText
+                \doclicenseFullText%
                 \end{document}" > testing.tex
 
             echo "Testing variant: $lang $type $modifier $version $imagemodifier"
