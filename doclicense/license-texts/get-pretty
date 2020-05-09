@@ -1,6 +1,8 @@
 #!/bin/bash
-## @author Copyright (C) 2015 Robin Schneider <ypid@riseup.net>
-## @license AGPLv3 <https://www.gnu.org/licenses/agpl-3.0.html>
+## Copyright (C) 2015 Robin Schneider <ypid@riseup.net>
+## SPDX-License-Identifier AGPL-3.0-only
+
+set -o nounset -o pipefail -o errexit
 
 get() {
     ## https://creativecommons.org/weblog/entry/27094
@@ -14,9 +16,6 @@ get() {
     ' | perl -0pe "s/\"(([^\"])*)\"/\`\`\1''/g" > "doclicense-CC-${modifier}-${version}-latex2.tex"
     mv "doclicense-CC-${modifier}-${version}-latex2.tex" "doclicense-CC-${modifier}-${version}-latex.tex"
 }
-
-## Needs different URL schema (again)?
-# get 'pd' '1.0'
 
 get 'zero' '1.0'
 get 'by' '3.0'
