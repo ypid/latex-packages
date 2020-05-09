@@ -11,7 +11,6 @@
 %% Using: https://en.wikipedia.org/wiki/ISO_639-1
 
 \@namedef{doclicense@lang@lic@CC@zero@1.0}{CC0 1.0 Universel}%
-\@namedef{doclicense@lang@lic@CC@pd@null}{Copyright-Only Dedication}%
 
 \@namedef{doclicense@lang@lic@CC@by@3.0}{Attribution 3.0 non transpos\'e}%
 \@namedef{doclicense@lang@lic@CC@by-sa@3.0}{Attribution - Partage dans les m\^emes conditions 3.0 non transpos\'e}%

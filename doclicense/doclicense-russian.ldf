@@ -7,7 +7,6 @@
 %% Using: https://en.wikipedia.org/wiki/ISO_639-1
 
 \@namedef{doclicense@lang@lic@CC@zero@1.0}{CC0 1.0 Универсальная}%
-\@namedef{doclicense@lang@lic@CC@pd@null}{Отказ от своих прав в пользу общества с сохранением лишь неотъемлемых авторских прав (основано на законодательстве США)}% Инструмент списан, следует использовать CC0.
 
 \@namedef{doclicense@lang@lic@CC@by@3.0}{Attribution (Атрибуция) 3.0 Непортированная}%
 \@namedef{doclicense@lang@lic@CC@by-sa@3.0}{Attribution-ShareAlike (Атрибуция — На тех же условиях) 3.0 Непортированная}%

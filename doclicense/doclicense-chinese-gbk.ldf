@@ -7,7 +7,6 @@
 %% Using:https://en.wikipedia.org/wiki/ISO_639-1
 
 \@namedef{doclicense@lang@lic@CC@zero@1.0}{CC0 1.0 通用}%
-\@namedef{doclicense@lang@lic@CC@pd@null}{仅限于版权贡献}%
 
 \@namedef{doclicense@lang@lic@CC@by@3.0}{署名 3.0 中国大陆}%
 \@namedef{doclicense@lang@lic@CC@by-sa@3.0}{署名-相同方式共享 3.0 中国大陆}%

@@ -33,7 +33,8 @@
 }{
   \PackageWarning{doclicense}{%
     "type" package option missing. % chktex 18
-    This option is now required and the fallback to "CC" is deprecated. In an upcoming major version of doclicense, this will be a package error. Please explicitly pick a license of your choosing.}% chktex 18
+    This option is now required and the fallback to "CC" is deprecated. In an upcoming major version of doclicense, this will be a package error. Please explicitly pick a license of your choosing.% chktex 18
+  }
   \renewcommand{\doclicense@type}{CC}
 }{}
 
@@ -42,7 +43,8 @@
 }{
   \PackageWarning{doclicense}{%
     "modifier" package option missing. % chktex 18
-    This option is now required and the fallback to "by-sa" is deprecated. In an upcoming major version of doclicense, this will be a package error. Please explicitly pick a license of your choosing.}% chktex 18
+    This option is now required and the fallback to "by-sa" is deprecated. In an upcoming major version of doclicense, this will be a package error. Please explicitly pick a license of your choosing.% chktex 18
+  }
   \renewcommand{\doclicense@modifier}{by-sa}
 }{}
 
@@ -51,7 +53,8 @@
 }{
   \PackageWarning{doclicense}{%
     "version" package option missing. % chktex 18
-    This option is now required and the fallback is deprecated. In an upcoming major version of doclicense, this will be a package error. Please explicitly pick a license of your choosing.}% chktex 18
+    This option is now required and the fallback is deprecated. In an upcoming major version of doclicense, this will be a package error. Please explicitly pick a license of your choosing.% chktex 18
+  }
 }{}
 %% )))
 
@@ -227,7 +230,8 @@
 }{%
   \PackageWarning{doclicense}{%
     No language definition for \doclicense@lang found.
-    Please add one and submit a patch. Using English as fallback.}
+    Please add one and submit a patch. Using English as fallback.
+  }
   \renewcommand{\doclicense@lang}{english}
   \input{doclicense-\doclicense@lang.ldf}% chktex 27
 }
@@ -315,12 +319,10 @@
         \doclicense@versionUsed\doclicense@UrlLangPart}
     }{}
     \ifthenelse{\equal{\doclicense@modifier}{pd}}{
-      \renewcommand{\doclicense@icon}{\ccpd}
-      \doclicense@setVersion[null]
-      \edef\doclicenseURL{%
-        \doclicense@baseUrlCC/%
-        licenses/publicdomain%
-        \doclicense@UrlLangPart}
+      \PackageError{doclicense}{CC PD license removed as of version 2.0.0}{
+        Creative Commons PD has been replaced by CC-zero.
+        Please update your license choice.
+      }%
     }{}
     \IfSubStr{\doclicense@modifier}{nc}{}{
       %% eu (Euro) does only exist for nc (non commercial) so if not nc then reset -eu.
@@ -332,21 +334,19 @@
     \ifcsdef{doclicense@lang@lic@\doclicense@type%
       @\doclicense@modifier @\doclicense@versionUsed}{}{%
 
-      \PackageError{doclicense}{License long name not defined}%
-        {%
-          Please check the documentation of doclicense
-          to see what you can do about it.%
-        }%
+      \PackageError{doclicense}{License long name not defined}{%
+        Please check the documentation of doclicense
+        to see what you can do about it.%
+      }%
     }
 
     \setboolean{doclicense@licenseKnown}{true}
   }{}%% )))
   \ifthenelse{\not\boolean{doclicense@licenseKnown}}{%
-    \PackageError{doclicense}{License unknown}%
-      {%
-        Please check the documentation of doclicense
-        to see what you can do about it.%
-      }%
+    \PackageError{doclicense}{License unknown}{%
+      Please check the documentation of doclicense
+      to see what you can do about it.%
+    }%
   }{}%
 }
 %% )))

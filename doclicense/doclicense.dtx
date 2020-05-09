@@ -133,7 +133,7 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 % \changes{1.9.0}{2019/04/07}{Added Catalan, Galician, Chinese and Portuguese translation. Detect and give hint when enquote macro is already defined. Fix LaTeX Error: Too deeply nested.}
 % \changes{1.10.0}{2019/06/05}{Added Brazilian translation. Update Chinese and Portuguese translation. Do not use enumitem for list label customization (beamer compatibility).}
 % \changes{1.10.1}{2020/04/12}{Fix image for CC-BY-NC EU. Fix URL for CC-PDDC. Improve wording for catalan language.}
-% \changes{1.11.0}{2020/05/XX}{Add 80x15 version of CC images which can be used with the imagemodifier option. Fix slight color offset for all CC images caused by bad image conversion. Thanks to rodrigoalcarazdelaosa for reporting. Fix \cmd{\doclicenseThis} support for twocolumn layouts. Thanks to Nao Pross. Soft require package options "type", "modifier" and "version" now. Defaults are deprecated. This will become a package error in an upcoming major version of the package, with the earliest release in 2021-07 to give people time to migrate.}
+% \changes{2.0.0}{2020/05/XX}{Add 80x15 version of CC images which can be used with the imagemodifier option. Fix slight color offset for all CC images caused by bad image conversion. Thanks to rodrigoalcarazdelaosa for reporting. Fix \cmd{\doclicenseThis} support for twocolumn layouts. Thanks to Nao Pross. Soft require package options "type", "modifier" and "version" now. Defaults are deprecated. This will become a package error in an upcoming major version of the package, with the earliest release in 2021-07 to give people time to migrate. Remove Creative Commons PD which has been replaced by CC-zero as of 2010-10-11.}
 %
 %% ^^A nag warned about the center environment and it really messes up spacing.
 %
@@ -163,7 +163,7 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 % \tableofcontents
 %
 % \section{Introduction}
-% The \PrintPackage{doclicense} package allows you to put your document under a
+% The \PackageName{} package allows you to put your document under a
 % license and include a link to read about the license or include an icon or
 % image of the license.  Currently, only \doclicenseLongType is supported but this
 % package is designed to handle all kinds of licenses. See \nameref{sec:contributing}.
@@ -189,7 +189,7 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 %
 % If the \PrintPackage{hyperxmp} package is loaded, then the options
 % \PrintOptionF{pdflicenseurl} and \PrintOptionF{pdfcopyright} will be set
-% by \PrintPackage{doclicense} to the corresponding values
+% by \PackageName{} to the corresponding values
 % (\enquote{\url{\doclicenseURL}} and \enquote{\doclicenseLongText{}}).
 %
 % \section{Package options}
@@ -428,7 +428,6 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 % ^^A Reverse sorted.
 % \begin{eqlist}
 %   \item[zero@1.0] \@nameuse{doclicense@lang@lic@CC@zero@1.0}
-%   \item[pd@null] \@nameuse{doclicense@lang@lic@CC@pd@null}
 %   \item[by@4.0] \@nameuse{doclicense@lang@lic@CC@by@4.0}
 %   \item[by@3.0] \@nameuse{doclicense@lang@lic@CC@by@3.0}
 %   \item[by-sa@4.0] \@nameuse{doclicense@lang@lic@CC@by-sa@4.0}
@@ -441,6 +440,28 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 %   \item[by-nc-sa@3.0] \@nameuse{doclicense@lang@lic@CC@by-nc-sa@3.0}
 %   \item[by-nc-nd@4.0] \@nameuse{doclicense@lang@lic@CC@by-nc-nd@4.0}
 %   \item[by-nc-nd@3.0] \@nameuse{doclicense@lang@lic@CC@by-nc-nd@3.0}
+% \end{eqlist}
+% \makeatother
+%
+% \section{Retired licenses}
+%
+% Licenses get updated and sometimes fully replaced.
+% This section clarifies how \PackageName{} handles this.
+%
+% If there is consensus that the old license has no valid use case anymore and
+% it is possible and allowed for everyone compiling a document to update the
+% license, then the old license will be removed from \PackageName{} in the next
+% major version.
+%
+% Otherwise, \PackageName{} will keep supporting it to ensure that documents
+% using those licenses can still be compiled in the future.
+%
+% List of retired licenses:
+%
+% \makeatletter
+% ^^A Reverse sorted.
+% \begin{eqlist}
+%   \item[pd@null] Copyright-Only Dedication
 % \end{eqlist}
 % \makeatother
 %
@@ -526,7 +547,8 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 }{
   \PackageWarning{doclicense}{%
     "type" package option missing. % chktex 18
-    This option is now required and the fallback to "CC" is deprecated. In an upcoming major version of doclicense, this will be a package error. Please explicitly pick a license of your choosing.}% chktex 18
+    This option is now required and the fallback to "CC" is deprecated. In an upcoming major version of doclicense, this will be a package error. Please explicitly pick a license of your choosing.% chktex 18
+  }
   \renewcommand{\doclicense@type}{CC}
 }{}
 
@@ -535,7 +557,8 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 }{
   \PackageWarning{doclicense}{%
     "modifier" package option missing. % chktex 18
-    This option is now required and the fallback to "by-sa" is deprecated. In an upcoming major version of doclicense, this will be a package error. Please explicitly pick a license of your choosing.}% chktex 18
+    This option is now required and the fallback to "by-sa" is deprecated. In an upcoming major version of doclicense, this will be a package error. Please explicitly pick a license of your choosing.% chktex 18
+  }
   \renewcommand{\doclicense@modifier}{by-sa}
 }{}
 
@@ -544,7 +567,8 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 }{
   \PackageWarning{doclicense}{%
     "version" package option missing. % chktex 18
-    This option is now required and the fallback is deprecated. In an upcoming major version of doclicense, this will be a package error. Please explicitly pick a license of your choosing.}% chktex 18
+    This option is now required and the fallback is deprecated. In an upcoming major version of doclicense, this will be a package error. Please explicitly pick a license of your choosing.% chktex 18
+  }
 }{}
 %% )))
 
@@ -733,7 +757,8 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 }{%
   \PackageWarning{doclicense}{%
     No language definition for \doclicense@lang found.
-    Please add one and submit a patch. Using English as fallback.}
+    Please add one and submit a patch. Using English as fallback.
+  }
   \renewcommand{\doclicense@lang}{english}
   \input{doclicense-\doclicense@lang.ldf}% chktex 27
 }
@@ -824,12 +849,10 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
         \doclicense@versionUsed\doclicense@UrlLangPart}
     }{}
     \ifthenelse{\equal{\doclicense@modifier}{pd}}{
-      \renewcommand{\doclicense@icon}{\ccpd}
-      \doclicense@setVersion[null]
-      \edef\doclicenseURL{%
-        \doclicense@baseUrlCC/%
-        licenses/publicdomain%
-        \doclicense@UrlLangPart}
+      \PackageError{doclicense}{CC PD license removed as of version 2.0.0}{
+        Creative Commons PD has been replaced by CC-zero.
+        Please update your license choice.
+      }%
     }{}
     \IfSubStr{\doclicense@modifier}{nc}{}{
       %% eu (Euro) does only exist for nc (non commercial) so if not nc then reset -eu.
@@ -841,21 +864,19 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
     \ifcsdef{doclicense@lang@lic@\doclicense@type%
       @\doclicense@modifier @\doclicense@versionUsed}{}{%
 
-      \PackageError{doclicense}{License long name not defined}%
-        {%
-          Please check the documentation of doclicense
-          to see what you can do about it.%
-        }%
+      \PackageError{doclicense}{License long name not defined}{%
+        Please check the documentation of doclicense
+        to see what you can do about it.%
+      }%
     }
 
     \setboolean{doclicense@licenseKnown}{true}
   }{}%% )))
   \ifthenelse{\not\boolean{doclicense@licenseKnown}}{%
-    \PackageError{doclicense}{License unknown}%
-      {%
-        Please check the documentation of doclicense
-        to see what you can do about it.%
-      }%
+    \PackageError{doclicense}{License unknown}{%
+      Please check the documentation of doclicense
+      to see what you can do about it.%
+    }%
   }{}%
 }
 %% )))

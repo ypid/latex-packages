@@ -7,7 +7,6 @@
 %% Using: https://en.wikipedia.org/wiki/ISO_639-1
 
 \@namedef{doclicense@lang@lic@CC@zero@1.0}{CC0 1.0 Universal}%
-\@namedef{doclicense@lang@lic@CC@pd@null}{Copyright-Only Dedication}%
 
 \@namedef{doclicense@lang@lic@CC@by@3.0}{Reconocimiento 3.0 España}%
 \@namedef{doclicense@lang@lic@CC@by-sa@3.0}{Reconocimiento-CompartirIgual 3.0 España}%
