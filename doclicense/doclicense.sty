@@ -1,7 +1,7 @@
 %% See file 'doclicense.dtx' for copyright and license.
 \NeedsTeXFormat{LaTeX2e}[1998/12/01]
 \ProvidesPackage{doclicense}
-    [2020/05/27 v2.0.0 Support for putting documents under a license]
+    [2020/05/27 v2.0.0dev Support for putting documents under a license]
 
 %% ^^A nag warned about the center environment and it really messes up spacing.
 
@@ -298,6 +298,7 @@
       }{}
       \IfBeginWith{\doclicense@imagemodifier}{-jp}{%
         \renewcommand{\doclicense@icon}{\ccbyncjp}
+        \renewcommand{\doclicense@imagemodifier}{-88x31}
       }{}
     }{}
     \ifthenelse{\equal{\doclicense@modifier}{by-nc-sa}}{
@@ -307,12 +308,14 @@
       }{}
       \IfBeginWith{\doclicense@imagemodifier}{-jp}{%
         \renewcommand{\doclicense@icon}{\ccbyncsajp}
+        \renewcommand{\doclicense@imagemodifier}{-88x31}
       }{}
     }{}
     \ifthenelse{\equal{\doclicense@modifier}{by-nc-nd}}{
       \renewcommand{\doclicense@icon}{\ccbyncnd}
       \IfBeginWith{\doclicense@imagemodifier}{-jp}{%
         \renewcommand{\doclicense@icon}{\ccbyncndjp}
+        \renewcommand{\doclicense@imagemodifier}{-88x31}
       }{}
     }{}
     \ifthenelse{\equal{\doclicense@modifier}{zero}}{%
@@ -336,6 +339,9 @@
         \renewcommand{\doclicense@imagemodifier}{}
       }{}
     }
+    \ifthenelse{\equal{\doclicense@imagemodifier}{-eu}}{%
+      \renewcommand{\doclicense@imagemodifier}{-eu-88x31}% chktex 29
+    }{}
 
     \ifcsdef{doclicense@lang@lic@\doclicense@type%
       @\doclicense@modifier @\doclicense@versionUsed}{}{%

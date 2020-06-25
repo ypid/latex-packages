@@ -27,7 +27,7 @@
 %<package>\NeedsTeXFormat{LaTeX2e}[1998/12/01]
 %<package>\ProvidesPackage{doclicense}
 %<*package>
-    [2020/05/27 v2.0.0 Support for putting documents under a license]
+    [2020/05/27 v2.0.0dev Support for putting documents under a license]
 %</package>
 %
 %<*driver>
@@ -134,6 +134,8 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 % \changes{1.10.0}{2019/06/05}{Added Brazilian translation. Update Chinese and Portuguese translation. Do not use enumitem for list label customization (beamer compatibility).}
 % \changes{1.10.1}{2020/04/12}{Fix image for CC-BY-NC EU. Fix URL for CC-PDDC. Improve wording for catalan language.}
 % \changes{2.0.0}{2020/05/27}{Add 80x15 version of CC images which can be used with the imagemodifier option. Fix slight color offset for all CC images caused by bad image conversion. Thanks to rodrigoalcarazdelaosa for reporting. Fix \cmd{\doclicenseThis} support for twocolumn layouts. Thanks to Nao Pross. Soft require package options "type", "modifier" and "version" now. Defaults are deprecated. This will become a package error in an upcoming major version of the package, with the earliest release in 2021-07 to give people time to migrate. Remove Creative Commons PD which has been replaced by CC-zero as of 2010-10-11. Update example license used for examples in manual to CC-BY-SA-4.0.}
+% \changes{2.0.1}{2020/06/XX}{Fix backwards compatibility with by accepting still imagemodifier={-eu}. Fix ability to modify money unit of \cmd{\doclicenseIcon} macro using imagemodifier to Japan currency JP without breaking \cmd{\doclicenseImage}.}
+%
 %
 
 %
@@ -253,18 +255,30 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
 % Based on the loaded language, the money unit is set to a suitable default. You can change this with:
 % \begin{quote}
 %   |\usepackage[| \\
-%   |  imagemodifier={-eu},| \\
+%   |  type={CC},| \\
+%   |  modifier={by-nc},| \\
+%   |  version={4.0},| \\
+%   |  imagemodifier={-eu-88x31},| \\
 %   |]{doclicense}|
 % \end{quote}
 %
 % Also, there is 80x15 which uses letters instead of icons for the modifiers in the image.
 % \begin{quote}
 %   |\usepackage[| \\
-%   |  imagemodifier={-80x15},| \\
+%   |  type={CC},| \\
+%   |  modifier={by-nc},| \\
+%   |  version={4.0},| \\
+%   |  imagemodifier={-eu-80x15},| \\
 %   |]{doclicense}|
 % \end{quote}
 %
 % If this is not given, we default to 88x31.
+%
+% Note that imagemodifier needs to assemble into a valid filename. Check
+% what files the package ships with to understand what combinations can be
+% used.
+%
+% For backwards compatibility, \enquote{-eu} is interpreted as \enquote{-eu-88x31}.
 %
 % This option allows you to specify
 % \DescribePara{hyphenation}
@@ -837,6 +851,7 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
       }{}
       \IfBeginWith{\doclicense@imagemodifier}{-jp}{%
         \renewcommand{\doclicense@icon}{\ccbyncjp}
+        \renewcommand{\doclicense@imagemodifier}{-88x31}
       }{}
     }{}
     \ifthenelse{\equal{\doclicense@modifier}{by-nc-sa}}{
@@ -846,12 +861,14 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
       }{}
       \IfBeginWith{\doclicense@imagemodifier}{-jp}{%
         \renewcommand{\doclicense@icon}{\ccbyncsajp}
+        \renewcommand{\doclicense@imagemodifier}{-88x31}
       }{}
     }{}
     \ifthenelse{\equal{\doclicense@modifier}{by-nc-nd}}{
       \renewcommand{\doclicense@icon}{\ccbyncnd}
       \IfBeginWith{\doclicense@imagemodifier}{-jp}{%
         \renewcommand{\doclicense@icon}{\ccbyncndjp}
+        \renewcommand{\doclicense@imagemodifier}{-88x31}
       }{}
     }{}
     \ifthenelse{\equal{\doclicense@modifier}{zero}}{%
@@ -875,6 +892,9 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
         \renewcommand{\doclicense@imagemodifier}{}
       }{}
     }
+    \ifthenelse{\equal{\doclicense@imagemodifier}{-eu}}{%
+      \renewcommand{\doclicense@imagemodifier}{-eu-88x31}% chktex 29
+    }{}
 
     \ifcsdef{doclicense@lang@lic@\doclicense@type%
       @\doclicense@modifier @\doclicense@versionUsed}{}{%
