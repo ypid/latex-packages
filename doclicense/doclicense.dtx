@@ -57,6 +57,7 @@
   xspace,
   eqlist,
 }
+\usepackage[iso]{isodate}
 %% ^^A https://tex.stackexchange.com/a/95893/32320
 \setlength\IndexMin{100pt}
 \usepackage[
@@ -77,7 +78,8 @@
 }
 
 \title{The \PackageName{} package\thanks{This document
-corresponds to \PackageName\nobreakspace\fileversion, dated \filedate.}}
+corresponds to \PackageName\nobreakspace\fileversion, dated \printdateTeX{\filedate}.}}
+
 \author{\PackageAuthor\\
   \texttt{\href{mailto:\PackageAuthorEmail?subject=LaTeX package doclicense%
     \&body=Dear Robin Schneider,}%
