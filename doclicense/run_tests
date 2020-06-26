@@ -22,6 +22,9 @@ grep '\\item.*@nameuse{doclicense@lang' ./doclicense.dtx | sed 's/.*doclicense@l
             if [ "$imagemodifier" == "-eu" ] && [[ "$modifier" != *-nc-* ]]; then
                 continue # eu (Euro) does only exist for nc (non commercial).
             fi
+
+            (
+
             echo "
                 \documentclass[$lang]{article}
                 \usepackage{
@@ -35,9 +38,11 @@ grep '\\item.*@nameuse{doclicense@lang' ./doclicense.dtx | sed 's/.*doclicense@l
                 \usepackage[
                     type={$type},
                     modifier={$modifier},
-                    version={$version},
-                    imagemodifier={$imagemodifier},
-                ]{doclicense}
+                    version={$version},"
+            if [ "$imagemodifier" != "" ]; then
+                echo "                    imagemodifier={$imagemodifier},"
+            fi
+            echo "                ]{doclicense}
                 \begin{document}
                 doclicenseType
                 \doclicenseType%
@@ -92,7 +97,9 @@ grep '\\item.*@nameuse{doclicense@lang' ./doclicense.dtx | sed 's/.*doclicense@l
 
                 doclicenseFullText
                 \doclicenseFullText%
-                \end{document}" > testing.tex
+                \end{document}"
+
+            ) > testing.tex
 
             echo "*** Testing variant: $lang $type $modifier $version $imagemodifier"
 
@@ -100,6 +107,7 @@ grep '\\item.*@nameuse{doclicense@lang' ./doclicense.dtx | sed 's/.*doclicense@l
             rm -f testing.aux testing.log testing.out testing.pdf
 
             # lualatex testing.tex
+            # pdflatex -no-shell-escape testing.tex
             pdflatex -no-shell-escape -halt-on-error -interaction=batchmode testing.tex
 
             # break 23
