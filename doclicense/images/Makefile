@@ -25,8 +25,6 @@ REQUIRED_BASE_FILES ?= \
 	doclicense-CC-by-nc-nd-80x15 \
 	doclicense-CC-by-nc-nd-88x31 \
 	doclicense-CC-by-nc-nd-eu-88x31 \
-	doclicense-CC-pd-80x15 \
-	doclicense-CC-pd-88x31 \
 	doclicense-CC-zero-80x15 \
 	doclicense-CC-zero-88x31
 
