@@ -53,7 +53,7 @@ endef
 # doclicense-CC-%.eps:
 #     $(download-creativecommons)
 
-## png is not a vector format.
+## png is not a vector file format.
 doclicense-CC-%.png:
 	$(download-creativecommons)
 
