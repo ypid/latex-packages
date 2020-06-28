@@ -63,7 +63,8 @@ doclicense-CC-%.svg:
 ## For reproducibility, the following version was used to generated the files: Inkscape 0.92.4 (5da689c313, 2019-01-14)
 
 %.pdf: %.svg
-	inkscape "$<" --export-pdf "$@"
+	@# For Inkscape 0.x: inkscape "$<" --export-pdf "$@"
+	inkscape "$<" --export-type=pdf --export-filename "$@"
 
 	@# Make output deterministic:
 	sed --regexp-extended --in-place "s#^(.*/CreationDate \()D:[0-9+')]+\)#\1D:20200412232323+02'00)#;" "$@"
@@ -71,7 +72,8 @@ doclicense-CC-%.svg:
 	@# exiftool -CreateDate='2020-04-12 23:23:23' "$@"
 
 %.eps: %.svg
-	inkscape "$<" --export-eps "$@"
+	@# For Inkscape 0.x: inkscape "$<" --export-eps "$@"
+	inkscape "$<" --export-type=eps --export-filename "$@"
 
 	@# Make output deterministic:
 	sed --regexp-extended --in-place 's#^(%%CreationDate:).*#\1 Sun Apr 12 23:23:23 2020#;' "$@"
