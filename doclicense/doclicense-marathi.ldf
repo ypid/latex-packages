@@ -6,6 +6,8 @@
   \@namedef{doclicense@imagemodifier}{-eu}
 }{}
 
+\@namedef{doclicense@lang@lic@CC}{क्रिएटिव्ह कॉमन्सच्या}%
+
 \@namedef{doclicense@lang@lic@CC@code}{mr}%
 %% Using: https://en.wikipedia.org/wiki/ISO_639-1
 
@@ -24,6 +26,3 @@
 \@namedef{doclicense@lang@lic@CC@by-nc@4.0}{श्रेयनिर्देश-अव्यावसायिक ४.० आंतरराष्ट्रीय}%
 \@namedef{doclicense@lang@lic@CC@by-nc-sa@4.0}{श्रेयनिर्देश-अव्यावसायिक-समवितरण ४.० आंतरराष्ट्रीय}%
 \@namedef{doclicense@lang@lic@CC@by-nc-nd@4.0}{श्रेयनिर्देश-अव्यावसायिक-स्थायी ४.० आंतरराष्ट्रीय}%
-
-\AtBeginDocument{\ifthenelse{\equal{\doclicense@type}{CC}}{%
-    \renewcommand*{\doclicenseLongType}{क्रिएटिव्ह कॉमन्सच्या\xspace}}{}}

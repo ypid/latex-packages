@@ -122,6 +122,7 @@
 %% )))
 
 %% Declare variables (((
+\@namedef{doclicense@lang@lic@CC}{Creative Commons}%
 \newcommand{\doclicense@baseUrlCC}{https://creativecommons.org}
 \newcommand{\doclicense@versionFallback}{}
 \newcommand{\doclicense@versionUsed}{}
@@ -261,7 +262,7 @@
 \newcommand{\doclicense@set}{%
   %% CC (((
   \ifthenelse{\equal{\doclicense@type}{CC}}{%
-    \renewcommand{\doclicenseLongType}{Creative Commons\xspace}
+    \renewcommand{\doclicenseLongType}{\doclicense@lang@lic@CC\xspace}
     \renewcommand{\doclicenseTypeIcon}{\ccLogo\xspace}
 
     \doclicense@setVersion[3.0]
