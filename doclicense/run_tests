@@ -16,6 +16,7 @@ grep '\\item.*@nameuse{doclicense@lang' ./doclicense.dtx | sed 's/.*doclicense@l
         # for lang in "catalan"; do
         # for lang in "galician"; do
         # for lang in "brazilian"; do
+        # for lang in "marathi"; do  ## Has external/new dependencies. Tested manually for now.
             if [ "$lang" == "ngerman" ] && [ "$modifier" == "pd" ]; then
                 continue # Does not exist in Germany.
             fi
