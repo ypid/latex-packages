@@ -3,27 +3,26 @@
 \@namedef{doclicense@lang@thisDoc}{हे काम}%
 \@namedef{doclicense@lang@word@license}{ ह्या परवान्यांतर्गत वितरित केले जात आहे}%
 \ifthenelse{\equal{\doclicense@imagemodifier}{}}{%
-  \@namedef{doclicense@imagemodifier}{-eu}
+  \@namedef{doclicense@imagemodifier}{-mr}
 }{}
 
+\@namedef{doclicense@lang@lic@CC}{क्रिएटिव्ह कॉमन्सच्या}%
+
 \@namedef{doclicense@lang@lic@CC@code}{mr}%
-%% Using: https://en.wikipedia.org/wiki/ISO_639-1
+% Reference - https://en.wikipedia.org/wiki/List_of_ISO_639-2_codes
 
-\@namedef{doclicense@lang@lic@CC@zero@1.0}{क्रि.कॉ० १.० सार्वत्रिक}%
+\@namedef{doclicense@lang@lic@CC@zero@1.0}{क्रि.कॉ० १.० सार्वजनिक}%
 
-\@namedef{doclicense@lang@lic@CC@by@3.0}{श्रेयनिर्देश ३.० प्रदेशनिरपेक्ष}%
-\@namedef{doclicense@lang@lic@CC@by-sa@3.0}{श्रेयनिर्देश-समवितरण ३.० प्रदेशनिरपेक्ष}%
-\@namedef{doclicense@lang@lic@CC@by-nd@3.0}{श्रेयनिर्देश-स्थायी ३.० प्रदेशनिरपेक्ष}%
-\@namedef{doclicense@lang@lic@CC@by-nc@3.0}{श्रेयनिर्देश-अव्यावसायिक ३.० प्रदेशनिरपेक्ष}%
-\@namedef{doclicense@lang@lic@CC@by-nc-sa@3.0}{श्रेयनिर्देश-अव्यावसायिक-समवितरण ३.० प्रदेशनिरपेक्ष}%
-\@namedef{doclicense@lang@lic@CC@by-nc-nd@3.0}{श्रेयनिर्देश-अव्यावसायिक-स्थायी ३.० प्रदेशनिरपेक्ष}%
+\@namedef{doclicense@lang@lic@CC@by@3.0}{श्रेयनिर्देशन ३.० स्थलनिरपेक्ष}%
+\@namedef{doclicense@lang@lic@CC@by-sa@3.0}{श्रेयनिर्देशन-समवितरण ३.० स्थलनिरपेक्ष}%
+\@namedef{doclicense@lang@lic@CC@by-nd@3.0}{श्रेयनिर्देशन-स्थायी ३.० स्थलनिरपेक्ष}%
+\@namedef{doclicense@lang@lic@CC@by-nc@3.0}{श्रेयनिर्देशन-अव्यावसायिक ३.० स्थलनिरपेक्ष}%
+\@namedef{doclicense@lang@lic@CC@by-nc-sa@3.0}{श्रेयनिर्देशन-अव्यावसायिक-समवितरण ३.० स्थलनिरपेक्ष}%
+\@namedef{doclicense@lang@lic@CC@by-nc-nd@3.0}{श्रेयनिर्देशन-अव्यावसायिक-स्थायी ३.० स्थलनिरपेक्ष}%
 
-\@namedef{doclicense@lang@lic@CC@by@4.0}{श्रेयनिर्देश ४.० आंतरराष्ट्रीय}%
-\@namedef{doclicense@lang@lic@CC@by-sa@4.0}{श्रेयनिर्देश-समवितरण ४.० आंतरराष्ट्रीय}%
-\@namedef{doclicense@lang@lic@CC@by-nd@4.0}{श्रेयनिर्देश-स्थायी ४.० आंतरराष्ट्रीय}%
-\@namedef{doclicense@lang@lic@CC@by-nc@4.0}{श्रेयनिर्देश-अव्यावसायिक ४.० आंतरराष्ट्रीय}%
-\@namedef{doclicense@lang@lic@CC@by-nc-sa@4.0}{श्रेयनिर्देश-अव्यावसायिक-समवितरण ४.० आंतरराष्ट्रीय}%
-\@namedef{doclicense@lang@lic@CC@by-nc-nd@4.0}{श्रेयनिर्देश-अव्यावसायिक-स्थायी ४.० आंतरराष्ट्रीय}%
-
-\AtBeginDocument{\ifthenelse{\equal{\doclicense@type}{CC}}{%
-    \renewcommand*{\doclicenseLongType}{क्रिएटिव्ह कॉमन्सच्या\xspace}}{}}
+\@namedef{doclicense@lang@lic@CC@by@4.0}{श्रेयनिर्देशन ४.० आंतरराष्ट्रीय}%
+\@namedef{doclicense@lang@lic@CC@by-sa@4.0}{श्रेयनिर्देशन-समवितरण ४.० आंतरराष्ट्रीय}%
+\@namedef{doclicense@lang@lic@CC@by-nd@4.0}{श्रेयनिर्देशन-स्थायी ४.० आंतरराष्ट्रीय}%
+\@namedef{doclicense@lang@lic@CC@by-nc@4.0}{श्रेयनिर्देशन-अव्यावसायिक ४.० आंतरराष्ट्रीय}%
+\@namedef{doclicense@lang@lic@CC@by-nc-sa@4.0}{श्रेयनिर्देशन-अव्यावसायिक-समवितरण ४.० आंतरराष्ट्रीय}%
+\@namedef{doclicense@lang@lic@CC@by-nc-nd@4.0}{श्रेयनिर्देशन-अव्यावसायिक-स्थायी ४.० आंतरराष्ट्रीय}%
