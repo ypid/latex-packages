@@ -11,8 +11,11 @@ install:
 check-quick: doclicense.dtx
 	chktex "$<"
 
-check: run_tests doclicense.sty
+check: run_tests doclicense.sty lint
 	./"$<"
+
+lint:
+	find -regextype posix-egrep -iregex '.*\.(tex|ldf)' -and -not -iname '*-plaintext.tex' -print0 | xargs --null chktex
 
 clean:
 	rm -rf *.sty *.pdf *.aux *.out *.glo *.gls *.hd *.idx *.ilg *.ind *.log *.toc
