@@ -2,8 +2,8 @@
 
 \@namedef{doclicense@lang@thisDoc}{हे काम}%
 \@namedef{doclicense@lang@word@license}{ ह्या परवान्यांतर्गत वितरित केले जात आहे}%
-\ifthenelse{\equal{\doclicense@imagemodifier}{}}{%
-  \@namedef{doclicense@imagemodifier}{-unofficial-mr}
+\ifthenelse{\equal{\doclicense@imagemodifier}{-88x31}}{% chktex 29
+  \@namedef{doclicense@imagemodifier}{-unofficial-mr-88x31}% chktex 29
 }{}
 
 \@namedef{doclicense@lang@lic@CC}{क्रिएटिव्ह कॉमन्सच्या}%

@@ -1,7 +1,7 @@
 \ProvidesFile{doclicense-french.ldf}
 
-\ifthenelse{\equal{\doclicense@lang}{french} \AND \equal{\doclicense@imagemodifier}{}}{%
-  \@namedef{doclicense@imagemodifier}{-eu}
+\ifthenelse{\equal{\doclicense@imagemodifier}{-88x31}}{% chktex 29
+  \@namedef{doclicense@imagemodifier}{-eu-88x31}% chktex 29
 }{}
 
 \@namedef{doclicense@lang@thisDoc}{Ce document est mis \`a disposition selon les termes de la licence}%
@@ -13,15 +13,15 @@
 \@namedef{doclicense@lang@lic@CC@zero@1.0}{CC0 1.0 Universel}%
 
 \@namedef{doclicense@lang@lic@CC@by@3.0}{Attribution 3.0 non transpos\'e}%
-\@namedef{doclicense@lang@lic@CC@by-sa@3.0}{Attribution - Partage dans les m\^emes conditions 3.0 non transpos\'e}%
-\@namedef{doclicense@lang@lic@CC@by-nd@3.0}{Attribution - Pas de modification 3.0 non transpos\'e}%
-\@namedef{doclicense@lang@lic@CC@by-nc@3.0}{Attribution - Pas d'utilisation commerciale 3.0 non transpos\'e}%
-\@namedef{doclicense@lang@lic@CC@by-nc-sa@3.0}{Attribution - Pas d'utilisation commerciale - Partage dans les m\^emes conditions 3.0 non transpos\'e}%
-\@namedef{doclicense@lang@lic@CC@by-nc-nd@3.0}{Attribution - Pas d'utilisation commerciale - Pas de modification 3.0 non transpos\'e}%
+\@namedef{doclicense@lang@lic@CC@by-sa@3.0}{Attribution - Partage dans les m\^emes conditions 3.0 non transpos\'e}% chktex 8
+\@namedef{doclicense@lang@lic@CC@by-nd@3.0}{Attribution - Pas de modification 3.0 non transpos\'e}% chktex 8
+\@namedef{doclicense@lang@lic@CC@by-nc@3.0}{Attribution - Pas d'utilisation commerciale 3.0 non transpos\'e}% chktex 8
+\@namedef{doclicense@lang@lic@CC@by-nc-sa@3.0}{Attribution - Pas d'utilisation commerciale - Partage dans les m\^emes conditions 3.0 non transpos\'e}% chktex 8
+\@namedef{doclicense@lang@lic@CC@by-nc-nd@3.0}{Attribution - Pas d'utilisation commerciale - Pas de modification 3.0 non transpos\'e}% chktex 8
 
 \@namedef{doclicense@lang@lic@CC@by@4.0}{Attribution 4.0 International}%
-\@namedef{doclicense@lang@lic@CC@by-sa@4.0}{Attribution - Partage dans les m\^emes conditions 4.0 International}%
-\@namedef{doclicense@lang@lic@CC@by-nd@4.0}{Attribution - Pas de modification 4.0 International}%
-\@namedef{doclicense@lang@lic@CC@by-nc@4.0}{Attribution - Pas d'utilisation commerciale 4.0 International}%
-\@namedef{doclicense@lang@lic@CC@by-nc-sa@4.0}{Attribution - Pas d'utilisation commerciale - Partage dans les m\^emes conditions 4.0 International}%
-\@namedef{doclicense@lang@lic@CC@by-nc-nd@4.0}{Attribution - Pas d'utilisation commerciale - Pas de modification 4.0 International}%
+\@namedef{doclicense@lang@lic@CC@by-sa@4.0}{Attribution - Partage dans les m\^emes conditions 4.0 International}% chktex 8
+\@namedef{doclicense@lang@lic@CC@by-nd@4.0}{Attribution - Pas de modification 4.0 International}% chktex 8
+\@namedef{doclicense@lang@lic@CC@by-nc@4.0}{Attribution - Pas d'utilisation commerciale 4.0 International}% chktex 8
+\@namedef{doclicense@lang@lic@CC@by-nc-sa@4.0}{Attribution - Pas d'utilisation commerciale - Partage dans les m\^emes conditions 4.0 International}% chktex 8
+\@namedef{doclicense@lang@lic@CC@by-nc-nd@4.0}{Attribution - Pas d'utilisation commerciale - Pas de modification 4.0 International}% chktex 8
