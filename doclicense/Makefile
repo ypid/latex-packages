@@ -24,9 +24,9 @@ doclicense.pdf:
 	tex "$<"
 
 %.pdf: %.dtx doclicense.sty
-	pdflatex "$<"
+	lualatex "$<"
 	makeindex -s gglo.ist -o doclicense.gls doclicense.glo
 	makeindex -s gind doclicense
-	pdflatex "$<"
+	lualatex "$<"
 	# thumbpdf doclicense
-	# pdflatex "$<"
+	# lualatex "$<"
