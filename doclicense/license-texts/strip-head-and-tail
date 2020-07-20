@@ -20,4 +20,4 @@ while (<>) {
     last if (/Back to Commons Deed/);
     print if ($stage eq 'on');
 }
-die "Stage on not reached: @arg"  if $stage ne 'on';
+die "Stage on not reached: @arg" if $stage ne 'on';
