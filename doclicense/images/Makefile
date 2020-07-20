@@ -26,7 +26,8 @@ REQUIRED_BASE_FILES ?= \
 	doclicense-CC-by-nc-nd-88x31 \
 	doclicense-CC-by-nc-nd-eu-88x31 \
 	doclicense-CC-zero-80x15 \
-	doclicense-CC-zero-88x31
+	doclicense-CC-zero-88x31 \
+	$(patsubst %.svg,%,$(wildcard doclicense-*-unofficial-*.svg))
 
 REQUIRED_FILES = $(foreach prefix,$(REQUIRED_BASE_FILES),$(foreach suffix,$(REQUIRED_FILE_SUFFIXES),$(prefix).$(suffix)))
 
