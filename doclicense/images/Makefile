@@ -64,7 +64,8 @@ doclicense-CC-%.svg:
 ## For reproducibility, the following version was used to generated the files: Inkscape 1.0 (4035a4fb49, 2020-05-01) Pango version: 1.42.3
 
 %.pdf: %.svg
-	inkscape "$<" --export-pdf "$@"
+	@# For Inkscape 0.x: inkscape "$<" --export-pdf "$@"
+	inkscape "$<" --export-type=pdf --export-filename "$@"
 
 	@# Make output deterministic:
 	sed --regexp-extended --in-place "s#^(.*/CreationDate \()D:[0-9+')]+\)#\1D:20200523232323+02'00)#;" "$@"
@@ -72,7 +73,8 @@ doclicense-CC-%.svg:
 	@# exiftool -CreateDate='2020-05-23 23:23:23' "$@"
 
 %.eps: %.svg
-	inkscape "$<" --export-eps "$@"
+	@# For Inkscape 0.x: inkscape "$<" --export-eps "$@"
+	inkscape "$<" --export-type=eps --export-filename "$@"
 
 	@# Make output deterministic:
 	sed --regexp-extended --in-place "s#^(%%CreationDate:).*#\1 Sat May 23 23:23:23 2020#;" "$@"
