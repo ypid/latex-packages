@@ -27,7 +27,7 @@
 %<package>\NeedsTeXFormat{LaTeX2e}[1998/12/01]
 %<package>\ProvidesPackage{doclicense}
 %<*package>
-    [2020/06/26 v2.0.1 Support for putting documents under a license]
+    [2020/06/26 v2.1.0.dev Support for putting documents under a license]
 %</package>
 %
 %<*driver>
@@ -137,6 +137,7 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \printdateTeX{\filed
 % \changes{1.10.1}{2020/04/12}{Fix image for CC-BY-NC EU. Fix URL for CC-PDDC. Improve wording for catalan language.}
 % \changes{2.0.0}{2020/05/27}{Add 80x15 version of CC images which can be used with the imagemodifier option. Fix slight color offset for all CC images caused by bad image conversion. Thanks to rodrigoalcarazdelaosa for reporting. Fix \cmd{\doclicenseThis} support for twocolumn layouts. Thanks to Nao Pross. Soft require package options "type", "modifier" and "version" now. Defaults are deprecated. This will become a package error in an upcoming major version of the package, with the earliest release in 2021-07 to give people time to migrate. Remove Creative Commons PD which has been replaced by CC-zero as of 2010-10-11. Update example license used for examples in manual to CC-BY-SA-4.0.}
 % \changes{2.0.1}{2020/06/26}{Fix backwards compatibility by still accepting imagemodifier={-eu} and imagemodifier={-us}. Thanks to Jürgen Spitzmüller for reporting. Fix ability to modify money unit of \cmd{\doclicenseIcon} macro using imagemodifier to Japan currency JP without breaking \cmd{\doclicenseImage}.}
+% \changes{2.1.0.dev}{2020/07/XX}{Fix regression: Proper language default image variants (Euro variants for example) was broken and the US variant was always used. This bug was introduced in v2.0.0. Added Marathi translation.}
 %
 %
 
@@ -230,6 +231,7 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \printdateTeX{\filed
 %   \item[Galician]   Submitted by Email.
 %   \item[German]     Added by \href{https://github.com/ypid}{Robin Schneider}.
 %   \item[Italian]    Added by \href{https://github.com/rig8f}{Filippo Rigotto}.
+%   \item[Marathi]    Added by \href{https://github.com/NiranjanTambe}{Niranjan}. Note that Niranjan also translated the images which are considered unofficial by the package. Creative Commons did not respond to the question if they could include them officially.
 %   \item[Polish]     Added by \href{https://github.com/jsbien}{jsbien}.
 %   \item[Portuguese] Added by \href{https://github.com/alexandre1985}{Daniel Alexandre Cerqueira Santos}.
 %   \item[Russian]    Added by \href{https://github.com/bergentroll}{Anton Karmanov}.
@@ -664,6 +666,7 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \printdateTeX{\filed
 % \subsection{Declare variables and macros}
 %    \begin{macrocode}
 %% Declare variables (((
+\@namedef{doclicense@lang@lic@CC}{Creative Commons}%
 \newcommand{\doclicense@baseUrlCC}{https://creativecommons.org}
 \newcommand{\doclicense@versionFallback}{}
 \newcommand{\doclicense@versionUsed}{}
@@ -816,7 +819,7 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \printdateTeX{\filed
 \newcommand{\doclicense@set}{%
   %% CC (((
   \ifthenelse{\equal{\doclicense@type}{CC}}{%
-    \renewcommand{\doclicenseLongType}{Creative Commons\xspace}
+    \renewcommand{\doclicenseLongType}{\doclicense@lang@lic@CC\xspace}
     \renewcommand{\doclicenseTypeIcon}{\ccLogo\xspace}
 
     \doclicense@setVersion[3.0]

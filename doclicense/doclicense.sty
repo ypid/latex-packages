@@ -1,7 +1,7 @@
 %% See file 'doclicense.dtx' for copyright and license.
 \NeedsTeXFormat{LaTeX2e}[1998/12/01]
 \ProvidesPackage{doclicense}
-    [2020/06/26 v2.0.1 Support for putting documents under a license]
+    [2020/06/26 v2.1.0.dev Support for putting documents under a license]
 
 %% ^^A nag warned about the center environment and it really messes up spacing.
 
@@ -122,6 +122,7 @@
 %% )))
 
 %% Declare variables (((
+\@namedef{doclicense@lang@lic@CC}{Creative Commons}%
 \newcommand{\doclicense@baseUrlCC}{https://creativecommons.org}
 \newcommand{\doclicense@versionFallback}{}
 \newcommand{\doclicense@versionUsed}{}
@@ -261,7 +262,7 @@
 \newcommand{\doclicense@set}{%
   %% CC (((
   \ifthenelse{\equal{\doclicense@type}{CC}}{%
-    \renewcommand{\doclicenseLongType}{Creative Commons\xspace}
+    \renewcommand{\doclicenseLongType}{\doclicense@lang@lic@CC\xspace}
     \renewcommand{\doclicenseTypeIcon}{\ccLogo\xspace}
 
     \doclicense@setVersion[3.0]
