@@ -336,8 +336,8 @@
     }{}
     \IfSubStr{\doclicense@modifier}{nc}{}{
       %% eu (Euro) does only exist for nc (non commercial) so if not nc then reset -eu.
-      \ifthenelse{\equal{\doclicense@imagemodifier}{-eu}}{%
-        \renewcommand{\doclicense@imagemodifier}{}
+      \IfBeginWith{\doclicense@imagemodifier}{-eu}{%
+        \renewcommand{\doclicense@imagemodifier}{-88x31}% chktex 29
       }{}
     }
     \ifthenelse{\equal{\doclicense@imagemodifier}{-eu}}{%
