@@ -374,6 +374,7 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \printdateTeX{\filed
 %
 % \DescribeMacro{\doclicensePlainFullTextFileName}
 % \hspace{2.5em}Expands to the file name which the \cmd{\doclicensePlainFullTextFileName} macro uses to \cmd{\input} the license text file.
+% Example: \enquote{\doclicensePlainFullTextFileName{}}
 %
 % \DescribeMacro{\doclicenseFullText}
 % Nicely prints the full license text.
@@ -384,7 +385,7 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \printdateTeX{\filed
 %
 % \DescribeMacro{\doclicenseFullTextFileName}
 % Expands to the file name which the \cmd{\doclicenseFullText} macro uses to \cmd{\input} the license text file.
-%
+% Example: \enquote{\doclicenseFullTextFileName}
 %
 % \DescribeMacro{\doclicenseIcon}
 % Expands to a icon of the license. Example:
@@ -727,7 +728,7 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \printdateTeX{\filed
 }
 \newcommand{\doclicensePlainFullTextFileName}{%
   doclicense-\doclicense@type-\doclicense@modifier%
-  -\doclicense@versionUsed-plaintext
+  -\doclicense@versionUsed-plaintext%
 }
 \newcommand{\doclicensePlainFullText}{%
   \verbatiminput{\doclicensePlainFullTextFileName}
