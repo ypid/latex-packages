@@ -136,8 +136,8 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \printdateTeX{\filed
 % \changes{1.10.0}{2019/06/05}{Added Brazilian translation. Update Chinese and Portuguese translation. Do not use enumitem for list label customization (beamer compatibility).}
 % \changes{1.10.1}{2020/04/12}{Fix image for CC-BY-NC EU. Fix URL for CC-PDDC. Improve wording for catalan language.}
 % \changes{2.0.0}{2020/05/27}{Add 80x15 version of CC images which can be used with the imagemodifier option. Fix slight color offset for all CC images caused by bad image conversion. Thanks to rodrigoalcarazdelaosa for reporting. Fix \cmd{\doclicenseThis} support for twocolumn layouts. Thanks to Nao Pross. Soft require package options "type", "modifier" and "version" now. Defaults are deprecated. This will become a package error in an upcoming major version of the package, with the earliest release in 2021-07 to give people time to migrate. Remove Creative Commons PD which has been replaced by CC-zero as of 2010-10-11. Update example license used for examples in manual to CC-BY-SA-4.0.}
-% \changes{2.0.1}{2020/06/26}{Fix backwards compatibility by still accepting imagemodifier={-eu} and imagemodifier={-us}. Thanks to Jürgen Spitzmüller for reporting. Fix ability to modify money unit of \cmd{\doclicenseIcon} macro using imagemodifier to Japan currency JP without breaking \cmd{\doclicenseImage}.}
-% \changes{2.1.0.dev}{2020/07/XX}{Fix regression: Proper language default image variants (Euro variants for example) was broken and the US variant was always used. This bug was introduced in v2.0.0. Added Marathi translation.}
+% \changes{2.0.1}{2020/06/26}{Fix backwards compatibility by still accepting imagemodifier={-eu} and imagemodifier={-us}. Thanks to Jürgen Spitzmüller for reporting. Fix ability to modify currency of \cmd{\doclicenseIcon} macro using imagemodifier to Japan currency JP without breaking \cmd{\doclicenseImage}.}
+% \changes{2.1.0.dev}{2020/07/XX}{Fix regression: Proper language default image variants (Euro variants for example) was broken and the US variant was always used. This bug was introduced in v2.0.0. Documentation fixes. Added Marathi translation.}
 %
 %
 
@@ -211,7 +211,7 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \printdateTeX{\filed
 % example it is \enquote{by-sa}.
 % Please make sure that the type is all lowercase. See the \nameref{sec:supported-licenses} section for a complete list.
 %
-% As \DescribePara{version} there can be more than one version of a license, the version can also be set.
+% As \DescribePara{version} there can be more than one version of a license, the version also needs to be set.
 %
 % This package can output some texts like the long license name.
 % \DescribePara{lang}
@@ -243,16 +243,18 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \printdateTeX{\filed
 %
 % Default image width for the license image.
 % \DescribePara{imagewidth}
+% Defaults to 10em.
 %
 % Distance between text and image in \cmd{\doclicenseThis}.
 % \DescribePara{imagedistance}
+% Defaults to 2em.
 
 % Select different variations of license images.
 % \DescribePara{imagemodifier}
 % For example, Creative Commons provides more than one image for one version.
 % See the \href{https://creativecommons.org/about/downloads}{download page}.
-% You will note that there are by-nc.eu and by-nc which only differ in the money unit.
-% Based on the loaded language, the money unit is set to a suitable default. You can change this with:
+% You will note that there are by-nc.eu and by-nc which only differ in the currency.
+% Based on the loaded language, the currency is set to a suitable default. You can change this with:
 % \begin{quote}
 %   |\usepackage[| \\
 %   |  type={CC},| \\
@@ -373,11 +375,11 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \printdateTeX{\filed
 % An example can be found in the \nameref{sec:plain_license_text} section.
 %
 % \DescribeMacro{\doclicensePlainFullTextFileName}
-% \hspace{2.5em}Expands to the file name which the \cmd{\doclicensePlainFullTextFileName} macro uses to \cmd{\input} the license text file.
+% \hspace{2.5em}Expands to the file name which the \cmd{\doclicensePlainFullTextFileName} macro uses to \cmd{\verbatiminput} the license text file.
 % Example: \enquote{\doclicensePlainFullTextFileName{}}
 %
 % \DescribeMacro{\doclicenseFullText}
-% Nicely prints the full license text.
+% Pretty prints the full license text.
 %
 % ^^A Don’t ask why I inserted that line break … (LaTeX made the \doclicenseFullText red).
 %
@@ -387,14 +389,14 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \printdateTeX{\filed
 % Expands to the file name which the \cmd{\doclicenseFullText} macro uses to \cmd{\input} the license text file.
 % Example: \enquote{\doclicenseFullTextFileName}
 %
-% \DescribeMacro{\doclicenseIcon}
-% Expands to a icon of the license. Example:
-% \enquote{\doclicenseIcon{}}. This macro is based on the
+% \DescribeMacro{\doclicenseTypeIcon}
+% Expands to an icon of the license type. Example:
+% \enquote{\doclicenseTypeIcon{}}. This macro is based on the
 % \PrintPackage{ccicons} package.
 %
-% \DescribeMacro{\doclicenseTypeIcon}
-% Expands to a icon of the license type. Example:
-% \enquote{\doclicenseTypeIcon{}}. This macro is based on the
+% \DescribeMacro{\doclicenseIcon}
+% Expands to an icon of the license. Example:
+% \enquote{\doclicenseIcon{}}. This macro is based on the
 % \PrintPackage{ccicons} package.
 %
 % \DescribeMacro{\doclicenseImage}
@@ -429,7 +431,8 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \printdateTeX{\filed
 % \DescribeMacro{\doclicenseThis}
 % And last but not least there is the \cmd{\doclicenseThis} macro which will
 % typeset the \cmd{\doclicenseText} next to the \cmd{\doclicenseImage} in a
-% \enquote{minipage} environment. This will look like the following:
+% \enquote{minipage} environment.
+% This will look like the following:
 %
 % \doclicenseThis
 %
