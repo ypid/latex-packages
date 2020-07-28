@@ -1,0 +1,22 @@
+\ProvidesFile{doclicense-japanese.ldf}
+
+\@namedef{doclicense@lang@thisDoc}{本作品が採用しているのは}%
+\@namedef{doclicense@lang@word@license}{利用許諾です}%
+
+\@namedef{doclicense@lang@lic@CC@code}{ja}%
+
+\@namedef{doclicense@lang@lic@CC@zero@1.0}{CC0 1.0全世界}%
+
+\@namedef{doclicense@lang@lic@CC@by@3.0}{表示3.0非移植}%
+\@namedef{doclicense@lang@lic@CC@by-sa@3.0}{表示-継承3.0非移植}%
+\@namedef{doclicense@lang@lic@CC@by-nd@3.0}{表示-改変禁止3.0非移植}%
+\@namedef{doclicense@lang@lic@CC@by-nc@3.0}{表示-非営利3.0非移植}%
+\@namedef{doclicense@lang@lic@CC@by-nc-sa@3.0}{表示-非営利-継承3.0非移植}%
+\@namedef{doclicense@lang@lic@CC@by-nc-nd@3.0}{表示-非営利-改変禁止3.0非移植}%
+
+\@namedef{doclicense@lang@lic@CC@by@4.0}{表示4.0国際}%
+\@namedef{doclicense@lang@lic@CC@by-sa@4.0}{表示-継承4.0国際}%
+\@namedef{doclicense@lang@lic@CC@by-nd@4.0}{表示-改変禁止4.0国際}%
+\@namedef{doclicense@lang@lic@CC@by-nc@4.0}{表示-非営利4.0国際}%
+\@namedef{doclicense@lang@lic@CC@by-nc-sa@4.0}{表示-非営利-継承4.0国際}%
+\@namedef{doclicense@lang@lic@CC@by-nc-nd@4.0}{表示-非営利-改変禁止4.0国際}%
