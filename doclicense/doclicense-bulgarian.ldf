@@ -21,3 +21,6 @@
 \@namedef{doclicense@lang@lic@CC@by-nc@4.0}{Признание-Некомерсиално 4.0 Международен}%
 \@namedef{doclicense@lang@lic@CC@by-nc-sa@4.0}{Признание-Некомерсиално-Споделяне на споделеното 4.0 Международен}%
 \@namedef{doclicense@lang@lic@CC@by-nc-nd@4.0}{Признание-Некомерсиално-Без производни 4.0 Международен}%
+
+AtBeginDocument{\ifthenelse{\equal{\doclicense@type}{CC}}{%
+    \renewcommand*{\doclicenseLongType}{Криейтив Комънс\xspace}}{}}
