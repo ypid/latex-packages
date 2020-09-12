@@ -138,7 +138,7 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \printdateTeX{\filed
 % \changes{2.0.0}{2020/05/27}{Add 80x15 version of CC images which can be used with the imagemodifier option. Fix slight color offset for all CC images caused by bad image conversion. Thanks to rodrigoalcarazdelaosa for reporting. Fix \cmd{\doclicenseThis} support for twocolumn layouts. Thanks to Nao Pross. Soft require package options "type", "modifier" and "version" now. Defaults are deprecated. This will become a package error in an upcoming major version of the package, with the earliest release in 2021-07 to give people time to migrate. Remove Creative Commons PD which has been replaced by CC-zero as of 2010-10-11. Update example license used for examples in manual to CC-BY-SA-4.0.}
 % \changes{2.0.1}{2020/06/26}{Fix backwards compatibility by still accepting imagemodifier={-eu} and imagemodifier={-us}. Thanks to Jürgen Spitzmüller for reporting. Fix ability to modify currency of \cmd{\doclicenseIcon} macro using imagemodifier to Japan currency JP without breaking \cmd{\doclicenseImage}.}
 % \changes{2.1.0}{2020/07/26}{Fix regression: Proper language default image variants (Euro variants for example) was broken and the US variant was always used. This bug was introduced in v2.0.0. Documentation fixes. Added Marathi translation.}
-% \changes{2.2.0.dev}{2020/08/XX}{Add Japanese and Bulgarian translation. Add hint how to use Chinese to docs.}
+% \changes{2.2.0.dev}{2020/08/XX}{Add Japanese and Bulgarian translation. Add hint how to use Chinese to docs. Load hyperxmp by default when it is installed. Before, doclicense just suggested to load it and made use of the package when the user did.}
 %
 %
 
@@ -182,7 +182,6 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \printdateTeX{\filed
 % \begin{quote}
 %   |\usepackage{| \\
 %   |  babel,| \\
-%   |  hyperxmp,| \\
 %   |}| \\
 %   |\usepackage[| \\
 %   |  type={CC},| \\
@@ -195,10 +194,16 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \printdateTeX{\filed
 %
 % This will explicitly set the license to \doclicenseNameRef.
 %
-% If the \PrintPackage{hyperxmp} package is loaded, then the options
+% If the \PrintPackage{hyperxmp} package is installed, it will be loaded and the options
 % \PrintOptionF{pdflicenseurl} and \PrintOptionF{pdfcopyright} will be set
 % by \PackageName{} to the corresponding values
 % (\enquote{\url{\doclicenseURL}} and \enquote{\doclicenseLongText{}}).
+% This embeds license metadata into the PDF which proper PDF readers can show.
+% For example Evince shows it in the \enquote{Document License} tab under
+% \enquote{Properties}. You may check this manual for how your PDF reader
+% handles such metadata.
+% If the package is not installed, a warning will be emitted to allow you to
+% install the package as needed.
 %
 % \section{Package options}
 %
@@ -618,13 +623,19 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \printdateTeX{\filed
   \@ifpackageloaded{graphicx}{}{\RequirePackage{graphicx}}
     %% For \doclicenseImage
   \@ifpackageloaded{hyperref}{}{\RequirePackage{hyperref}}
-  \@ifpackageloaded{hyperxmp}{%
+  \IfFileExists{hyperxmp.sty}{
+    \@ifpackageloaded{hyperxmp}{}{\RequirePackage{hyperxmp}}
     %% The following options are only defined when the hyperxmp package was loaded.
     \hypersetup{
       pdfcopyright  = {\doclicenseLongText},
       pdflicenseurl = {\doclicenseURL},
     }
-  }{}
+  }{
+    \PackageWarning{doclicense}{%
+      The hyperxmp package is missing so no license metadata can be embedded
+      into the PDF. Consider installing hyperxmp.% chktex 13
+    }
+  }
 }
 %% )))
 
