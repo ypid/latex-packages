@@ -74,18 +74,20 @@
   \@ifpackageloaded{graphicx}{}{\RequirePackage{graphicx}}
     %% For \doclicenseImage
   \@ifpackageloaded{hyperref}{}{\RequirePackage{hyperref}}
-  \IfFileExists{hyperxmp.sty}{
-    \@ifpackageloaded{hyperxmp}{}{\RequirePackage{hyperxmp}}
+  \@ifpackageloaded{hyperxmp}{
     %% The following options are only defined when the hyperxmp package was loaded.
     \hypersetup{
       pdfcopyright  = {\doclicenseLongText},
       pdflicenseurl = {\doclicenseURL},
     }
-  }{
-    \PackageWarning{doclicense}{%
-      The hyperxmp package is missing so no license metadata can be embedded
-      into the PDF. Consider installing hyperxmp.% chktex 13
-    }
+  }{}
+}
+\IfFileExists{hyperxmp.sty}{
+  \@ifpackageloaded{hyperxmp}{}{\RequirePackage{hyperxmp}}
+}{
+  \PackageWarning{doclicense}{%
+    The hyperxmp package is missing so no license metadata can be embedded
+    into the PDF. Consider installing hyperxmp.% chktex 13
   }
 }
 %% )))
