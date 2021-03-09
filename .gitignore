@@ -4,7 +4,7 @@
 make*
 SevenSeg/SevenSeg.pdf
 SevenSeg/SevenSeg.tex
-SevenSeg/SevenSeg.sty
+*.sty
 
 *.hd
 *.tpt
