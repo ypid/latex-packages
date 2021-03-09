@@ -16,6 +16,7 @@
 \DeclareStringOption[10em]{imagewidth}
 \DeclareStringOption[2em]{imagedistance}
 \DeclareStringOption{hyphenation}
+\DeclareBoolOption[true]{hyperxmp}
 %% )))
 
 \ProcessLocalKeyvalOptions*
@@ -82,14 +83,24 @@
     }
   }{}
 }
-\IfFileExists{hyperxmp.sty}{
-  \@ifpackageloaded{hyperxmp}{}{\RequirePackage{hyperxmp}}
-}{
-  \PackageWarning{doclicense}{%
-    The hyperxmp package is missing so no license metadata can be embedded
-    into the PDF. Consider installing hyperxmp.% chktex 13
-  }
+\ifdoclicense@hyperxmp
+  \@ifpackageloaded{pdfx}{%
+    \PackageWarning{doclicense}{%
+The pdfx package was detected. Therefore my mechanism to add license
+metadata won't work. Ensure to setup \string\Copyright\space and
+corresponding settingsto your xmpdata-File.
 }
+  }{
+    \IfFileExists{hyperxmp.sty}{
+      \@ifpackageloaded{hyperxmp}{}{\RequirePackage{hyperxmp}}
+    }{
+      \PackageWarning{doclicense}{%
+        The hyperxmp package is missing so no license metadata can be embedded
+        into the PDF. Consider installing hyperxmp.% chktex 13
+      }
+    }
+  }
+\fi
 %% )))
 
 %% Deprecation handling (((

@@ -138,6 +138,7 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \printdateTeX{\filed
 % \changes{2.1.0}{2020/07/26}{Fix regression: Proper language default image variants (Euro variants for example) was broken and the US variant was always used. This bug was introduced in v2.0.0. Documentation fixes. Added Marathi translation.}
 % \changes{2.2.0}{2020/09/18}{Add Japanese and Bulgarian translation. Add hint how to use Chinese to docs. Load hyperxmp by default when it is installed. Before, doclicense just suggested to load it and made use of the package when the user did.}
 % \changes{2.2.1}{2020/09/25}{Fix compatibility issue with newer versions of hyperxmp (bug confirmed with Tex Live 2020) resulting in an compile error by loading hyperxmp and hyperref in the order the packages expect it.}
+% \changes{2.2.2}{2021/03/xx}{Add option to disable the use of of hyperxmp + add compatibilty for pdfx.}
 %
 %
 
@@ -193,16 +194,22 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \printdateTeX{\filed
 %
 % This will explicitly set the license to \doclicenseNameRef.
 %
-% If the \PrintPackage{hyperxmp} package is installed, it will be loaded and the options
-% \PrintOptionF{pdflicenseurl} and \PrintOptionF{pdfcopyright} will be set
-% by \PackageName{} to the corresponding values
-% (\enquote{\url{\doclicenseURL}} and \enquote{\doclicenseLongText{}}).
-% This embeds license metadata into the PDF which proper PDF readers can show.
-% For example Evince shows it in the \enquote{Document License} tab under
-% \enquote{Properties}. You may check this manual for how your PDF reader
-% handles such metadata.
-% If the package is not installed, a warning will be emitted to allow you to
-% install the package as needed.
+% With the default settings and if the \PrintPackage{hyperxmp} package is
+% installed, it will be loaded and the options \PrintOptionF{pdflicenseurl}
+% and \PrintOptionF{pdfcopyright} will be set by \PackageName{} to the
+% corresponding values (\enquote{\url{\doclicenseURL}} and
+% \enquote{\doclicenseLongText{}}). This embeds license metadata into the PDF
+% which proper PDF readers can show. For example Evince shows it in the
+% \enquote{Document License} tab under \enquote{Properties}. You may check
+% this manual for how your PDF reader handles such metadata.
+%
+% In case you are using other package to manipulate the metadata which is
+% incompatible to the use of hyperxmp, e.\,g. \PrintPackage{pdfx} you can use
+% the \PrintOptionF{hyperxmp=false} to disable this automatism. If
+% \PrintPackage{pdfx} is loaded before \PrintPackage{doclicense} or if
+% \PrintPackage{hyperxmp} is not installed this automatism is disabled.
+% In these cases a warning is emitted to inform you about the reasons.
+% The warning will not show up if \PrintOptionF{hyperxmp} is set to false.
 %
 % \section{Package options}
 %
@@ -327,6 +334,12 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \printdateTeX{\filed
 %   |  hyphenation={raggedright},| \\
 %   |]{doclicense}|
 % \end{quote}
+%
+% This option allows to disable the automatic loading of \PrintPackage{hyperxmp}
+% \DescribePara{hyperxmp}
+% it's initialized to true. This might also be used to suppress the warning if
+% \PrintPackage{hyperxmp} is not available or \PrintPackage{pdfx} was loaded before
+% \PrintPackage{doclicense}.
 %
 % \section{Macros}
 % \DescribeMacro{\doclicenseType}
@@ -556,6 +569,7 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \printdateTeX{\filed
 \DeclareStringOption[10em]{imagewidth}
 \DeclareStringOption[2em]{imagedistance}
 \DeclareStringOption{hyphenation}
+\DeclareBoolOption[true]{hyperxmp}
 %% )))
 
 %    \end{macrocode}
@@ -630,14 +644,24 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \printdateTeX{\filed
     }
   }{}
 }
-\IfFileExists{hyperxmp.sty}{
-  \@ifpackageloaded{hyperxmp}{}{\RequirePackage{hyperxmp}}
-}{
-  \PackageWarning{doclicense}{%
-    The hyperxmp package is missing so no license metadata can be embedded
-    into the PDF. Consider installing hyperxmp.% chktex 13
+\ifdoclicense@hyperxmp
+  \@ifpackageloaded{pdfx}{%
+    \PackageWarning{doclicense}{%
+		The pdfx package was detected. Therefore my mechanism to add license
+		metadata won't work. Ensure to setup \string\Copyright\space and
+		corresponding settingsto your xmpdata-File.
+	}
+  }{
+    \IfFileExists{hyperxmp.sty}{
+      \@ifpackageloaded{hyperxmp}{}{\RequirePackage{hyperxmp}}
+    }{
+      \PackageWarning{doclicense}{%
+        The hyperxmp package is missing so no license metadata can be embedded
+        into the PDF. Consider installing hyperxmp.% chktex 13
+      }
+    }
   }
-}
+\fi
 %% )))
 
 %    \end{macrocode}
