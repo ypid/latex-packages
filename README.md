@@ -1,5 +1,7 @@
 # My LaTeX packages
 
+This is a [monorepo](https://en.wikipedia.org/wiki/Monorepo) containing multiple independent LaTeX packages.
+
 ## On CTAN
 
 Name                                                                                        | CTAN                                                                                                     | Description
@@ -11,4 +13,5 @@ Name                                                                            
 [romanbarpagenumber](https://github.com/ypid/latex-packages/tree/master/romanbarpagenumber) | [![CTAN](https://img.shields.io/ctan/v/romanbarpagenumber.svg)](https://ctan.org/pkg/romanbarpagenumber) | Use the package romanbar for roman page numbers.
 
 ## Not (yet) on CTAN
+
 * sourcefiletable: Can typeset a table which lists some source files
