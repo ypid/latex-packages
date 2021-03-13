@@ -1,10 +1,17 @@
+% SPDX-FileCopyrightText: 2019 sd44 <sd44sd44@yeah.net>
+%
+% SPDX-License-Identifier: LPPL-1.3c
+%
+% This work consists of all files listed in manifest.txt.
+% For more details about the licensing, refer to the README.md file.
+
 \ProvidesFile{doclicense-chinese.ldf}
 
 \@namedef{doclicense@lang@thisDoc}{本作品采用}%
 \@namedef{doclicense@lang@word@license}{许可协议进行许可}%
 
 \@namedef{doclicense@lang@lic@CC@code}{zh}%
-%% Using:https://en.wikipedia.org/wiki/ISO_639-1
+% Using:https://en.wikipedia.org/wiki/ISO_639-1
 
 \@namedef{doclicense@lang@lic@CC@zero@1.0}{CC0 1.0 通用}%
 

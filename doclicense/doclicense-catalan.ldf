@@ -1,10 +1,17 @@
+% SPDX-FileCopyrightText: 2018 Ernesto Lanchares <e.lancha98@gmail.com>
+%
+% SPDX-License-Identifier: LPPL-1.3c
+%
+% This work consists of all files listed in manifest.txt.
+% For more details about the licensing, refer to the README.md file.
+
 \ProvidesFile{doclicense-catalan.ldf}
 
 \@namedef{doclicense@lang@thisDoc}{Aquesta obra està subjecta a una llicència de}%
 \@namedef{doclicense@lang@word@license}{}%
 
 \@namedef{doclicense@lang@lic@CC@code}{ca}%
-%% Using: https://en.wikipedia.org/wiki/ISO_639-1
+% Using: https://en.wikipedia.org/wiki/ISO_639-1
 
 \@namedef{doclicense@lang@lic@CC@zero@1.0}{CC0 1.0 Universal}%
 

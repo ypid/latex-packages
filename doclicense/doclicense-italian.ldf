@@ -1,3 +1,10 @@
+% SPDX-FileCopyrightText: 2017 Filippo Rigotto <rigottofilippo@altervista.org>
+%
+% SPDX-License-Identifier: LPPL-1.3c
+%
+% This work consists of all files listed in manifest.txt.
+% For more details about the licensing, refer to the README.md file.
+
 \ProvidesFile{doclicense-italian.ldf}
 
 \@namedef{doclicense@lang@thisDoc}{Quest'opera è distribuita con licenza}%
@@ -7,7 +14,7 @@
 }{}
 
 \@namedef{doclicense@lang@lic@CC@code}{it}%
-%% Using: https://en.wikipedia.org/wiki/ISO_639-1
+% Using: https://en.wikipedia.org/wiki/ISO_639-1
 
 \@namedef{doclicense@lang@lic@CC@zero@1.0}{CC0 1.0 Universale}%
 

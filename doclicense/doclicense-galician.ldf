@@ -1,10 +1,17 @@
+% SPDX-FileCopyrightText: 2019 Entity who prefers to remain anonymous
+%
+% SPDX-License-Identifier: LPPL-1.3c
+%
+% This work consists of all files listed in manifest.txt.
+% For more details about the licensing, refer to the README.md file.
+
 \ProvidesFile{doclicense-galician.ldf}
 
 \@namedef{doclicense@lang@thisDoc}{Esta obra está baixo unha licenza}%
 \@namedef{doclicense@lang@word@license}{}%
 
 \@namedef{doclicense@lang@lic@CC@code}{gl}%
-%% Using: https://en.wikipedia.org/wiki/ISO_639-1
+% Using: https://en.wikipedia.org/wiki/ISO_639-1
 
 \@namedef{doclicense@lang@lic@CC@zero@1.0}{CC0 1.0 Universal}%
 

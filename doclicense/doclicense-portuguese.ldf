@@ -1,10 +1,17 @@
+% SPDX-FileCopyrightText: 2018 Daniel Santos <danisantos@protonmail.com>
+%
+% SPDX-License-Identifier: LPPL-1.3c
+%
+% This work consists of all files listed in manifest.txt.
+% For more details about the licensing, refer to the README.md file.
+
 \ProvidesFile{doclicense-portuguese.ldf}
 
 \@namedef{doclicense@lang@thisDoc}{Esta obra tem a licença}%
 \@namedef{doclicense@lang@word@license}{}%
 
 \@namedef{doclicense@lang@lic@CC@code}{pt}%
-%% Using: https://en.wikipedia.org/wiki/ISO_639-1
+% Using: https://en.wikipedia.org/wiki/ISO_639-1
 
 \@namedef{doclicense@lang@lic@CC@zero@1.0}{CC0 1.0 Universal}%
 

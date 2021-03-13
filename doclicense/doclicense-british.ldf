@@ -1,3 +1,11 @@
+% SPDX-FileCopyrightText: 2015 by Robin Schneider <ypid@riseup.net>
+% SPDX-FileCopyrightText: 2016 Alex Ball <a.j.ball@bath.ac.uk>
+%
+% SPDX-License-Identifier: LPPL-1.3c
+%
+% This work consists of all files listed in manifest.txt.
+% For more details about the licensing, refer to the README.md file.
+
 \ProvidesFile{doclicense-british.ldf}
 
 \input{doclicense-english.ldf}

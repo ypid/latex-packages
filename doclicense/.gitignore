@@ -1,3 +1,13 @@
+# SPDX-FileCopyrightText: 2015-2021 Robin Schneider <ypid@riseup.net>
+#
+# SPDX-License-Identifier: CC0-1.0
+
+images/*.svg
+images/*.png
+images/!*.eps
+images/!*-unofficial-*
+images/!*.pdf
+
 testing.tex
 # license-texts/*.html
 Hello_World.tex

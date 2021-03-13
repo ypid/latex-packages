@@ -1,7 +1,14 @@
-## Keep secondary targets.
+# SPDX-FileCopyrightText: 2015,2020-2021 Robin Schneider <ypid@riseup.net>
+#
+# SPDX-License-Identifier: LPPL-1.3c
+#
+# This work consists of all files listed in manifest.txt.
+# For more details about the licensing, refer to the README.md file.
+
+# Keep secondary targets.
 .SECONDARY:
 
-## But still delete secondary targets if the actual generating fails.
+# But still delete secondary targets if the actual generating fails.
 .DELETE_ON_ERROR:
 
 SHELL   := /bin/bash -o nounset -o pipefail -o errexit
