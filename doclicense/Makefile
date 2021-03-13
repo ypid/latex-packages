@@ -42,12 +42,11 @@ doclicense.pdf:
 	# thumbpdf doclicense
 	# lualatex "$<"
 
+# The `cd .. && git archive` trick was needed with 2.29.2 so that evaluation of
+# the `.gitattributes` file worked correctly.
 manifest.txt: manifest_header.txt Makefile
 	cat "$<" > "$@"
 	echo "% This work consists of the files:" >> "$@"
-	echo manifest.txt doclicense.dtx doclicense.ins README.md Makefile doclicense-*.ldf \
-		images/doclicense-*.pdf \
-		images/doclicense-*.eps \
-		license-texts/doclicense-*.tex | tr ' ' '\n' >> "$@"
+	cd .. && git archive --worktree-attributes HEAD doclicense | tar -t -f - | grep -v '/$$' | sort >> "$(PWD)/$@"
 	echo "% and the derived files:" >> "$@"
 	echo doclicense.sty doclicense.pdf | tr ' ' '\n' >> "$@"
