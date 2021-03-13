@@ -6,7 +6,7 @@
 % In Polish the word "licencja" should precede the license name
 
 \@namedef{doclicense@lang@lic@CC@code}{pl}%
-%% Using: https://en.wikipedia.org/wiki/ISO_639-1
+% Using: https://en.wikipedia.org/wiki/ISO_639-1
 
 \@namedef{doclicense@lang@lic@CC@zero@1.0}{Przekazanie do Domeny Publicznej (CC0 1.0)}%
 % https://creativecommons.org/publicdomain/zero/1.0/deed.pl
