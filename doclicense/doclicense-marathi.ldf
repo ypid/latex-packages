@@ -1,3 +1,11 @@
+% SPDX-FileCopyrightText: 2020 Niranjan <niranjanvikastambe@gmail.com>
+% SPDX-FileCopyrightText: 2020 Robin Schneider <ypid@riseup.net>
+%
+% SPDX-License-Identifier: LPPL-1.3c
+%
+% This work consists of all files listed in manifest.txt.
+% For more details about the licensing, refer to the README.md file.
+
 \ProvidesFile{doclicense-marathi.ldf}
 
 \@namedef{doclicense@lang@thisDoc}{हे काम}%

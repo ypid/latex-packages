@@ -1,4 +1,9 @@
 #!/bin/bash
+
+# SPDX-FileCopyrightText: 2015-2021 Robin Schneider <ypid@riseup.net>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 set -o nounset -o pipefail -o errexit
 
 grep '\\item.*@nameuse{doclicense@lang' ./doclicense.dtx | sed 's/.*doclicense@lang@lic@\([^@]\+\)@\([^@]\+\)@\([^]]\+\)}.*/\1 \2 \3/' | sort -u | while read -r type modifier version; do

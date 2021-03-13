@@ -1,0 +1,10 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: doclicense
+Upstream-Contact: Robin Schneider <ypid@riseup.net>
+Source: https://ctan.org/pkg/doclicense
+
+# https://creativecommons.org/policies#licensing%20statement
+# https://github.com/creativecommons/cc-licenses-data#license
+Files: images/*.pdf images/*.eps license-texts/*.tex license-texts/*.html
+Copyright: https://creativecommons.org
+License: CC0-1.0

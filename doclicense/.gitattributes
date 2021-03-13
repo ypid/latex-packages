@@ -1,0 +1,10 @@
+# SPDX-FileCopyrightText: 2021 Robin Schneider <ypid@riseup.net>
+#
+# SPDX-License-Identifier: CC0-1.0
+
+manifest_header.txt                export-ignore
+run_tests                          export-ignore
+images/Makefile                    export-ignore
+license-texts/get-plaintext        export-ignore
+license-texts/get-pretty           export-ignore
+license-texts/strip-head-and-tail  export-ignore

@@ -1,4 +1,9 @@
 #!/usr/bin/env perl
+
+# SPDX-FileCopyrightText: 2015 Robin Schneider <ypid@riseup.net>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 use strict;
 use warnings;
 use autodie;

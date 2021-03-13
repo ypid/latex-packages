@@ -1,0 +1,7 @@
+% SPDX-FileCopyrightText: 2021 Robin Schneider <ypid@riseup.net>
+%
+% SPDX-License-Identifier: LPPL-1.3c
+%
+% This work consists of all files listed in this file (manifest.txt).
+% For more details about the licensing, refer to the README.md file.
+

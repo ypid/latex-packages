@@ -1,3 +1,10 @@
+% SPDX-FileCopyrightText: 2017 Anton Karmanov <bergertroll@openmailbox.org>
+%
+% SPDX-License-Identifier: LPPL-1.3c
+%
+% This work consists of all files listed in manifest.txt.
+% For more details about the licensing, refer to the README.md file.
+
 \ProvidesFile{doclicense-russian.ldf}
 
 \@namedef{doclicense@lang@thisDoc}{Это произведение доступно по лицензии}%

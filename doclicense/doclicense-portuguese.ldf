@@ -1,3 +1,10 @@
+% SPDX-FileCopyrightText: 2018 Daniel Santos <danisantos@protonmail.com>
+%
+% SPDX-License-Identifier: LPPL-1.3c
+%
+% This work consists of all files listed in manifest.txt.
+% For more details about the licensing, refer to the README.md file.
+
 \ProvidesFile{doclicense-portuguese.ldf}
 
 \@namedef{doclicense@lang@thisDoc}{Esta obra tem a licença}%
