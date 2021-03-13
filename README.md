@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2021 Robin Schneider <ypid@riseup.net>
+
+SPDX-License-Identifier: CC-BY-SA-4.0
+-->
+
 # My LaTeX packages
 
 This is a [monorepo](https://en.wikipedia.org/wiki/Monorepo) containing multiple independent LaTeX packages.
