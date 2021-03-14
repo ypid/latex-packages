@@ -63,6 +63,8 @@ in the runtime `tex/` subtree (that is `tex/latex/doclicense/`) for the
 
 SPDX-License-Identifier: LPPL-1.3c
 
+Except the files `images/*.pdf`, `images/*.eps`, `license-texts/*.tex` and `license-texts/*.html` which are under CC0-1.0.
+
 This work may be distributed and/or modified under the
 conditions of the LaTeX Project Public License, either version 1.3
 of this license or (at your option) any later version.
