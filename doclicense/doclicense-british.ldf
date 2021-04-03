@@ -9,4 +9,5 @@
 \ProvidesFile{doclicense-british.ldf}
 
 \input{doclicense-english.ldf}
+\@namedef{doclicense@lang@thisDoc}{This work is licenced under a}%
 \@namedef{doclicense@lang@word@license}{ licence}%
