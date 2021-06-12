@@ -12,7 +12,7 @@ grep '\\item.*@nameuse{doclicense@lang' ./doclicense.dtx | sed 's/.*doclicense@l
 # echo 'by-nc 3.0' | while read modifier version; do
 # echo 'by-nc 4.0' | while read modifier version; do
     for imagemodifier in "" "-eu" "-80x15"; do
-        for lang in "spanish" "english" "ngerman" "french" "russian" "italian" "polish" "portuguese" "catalan" "galician"; do
+        for lang in "spanish" "english" "ngerman" "french" "russian" "italian" "polish" "portuguese" "catalan" "galician" "croatian"; do
         # for lang in "spanish"; do
         # for lang in "english" "ngerman"; do
         # for lang in "ngerman"; do
@@ -22,6 +22,7 @@ grep '\\item.*@nameuse{doclicense@lang' ./doclicense.dtx | sed 's/.*doclicense@l
         # for lang in "galician"; do
         # for lang in "brazilian"; do
         # for lang in "marathi"; do  ## Has external/new dependencies. Tested manually for now.
+        # for lang in "croatian"; do
             if [ "$lang" == "ngerman" ] && [ "$modifier" == "pd" ]; then
                 continue # Does not exist in Germany.
             fi
