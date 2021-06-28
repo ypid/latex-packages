@@ -175,20 +175,19 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \printdateTeX{\filed
 % package is designed to handle all kinds of licenses. See \nameref{sec:contributing}.
 %
 % \section{Usage}
-% Just load the package by placing something like this:
+% The package can be used like in this mini working example:
 %
 % \begin{quote}
-%   |\usepackage{| \\
-%   |  babel,| \\
-%   |}| \\
+%   |\documentclass[english]{article}| \\
 %   |\usepackage[| \\
 %   |  type={CC},| \\
 %   |  modifier={by-sa},| \\
 %   |  version={4.0},| \\
-%   |]{doclicense}|
+%   |]{doclicense}| \\
+%   |\begin{document}| \\
+%   |\doclicenseThis%| \\
+%   |\end{document}|
 % \end{quote}
-% in the preamble of your \LaTeXe{} source file and change the package options
-% to the license you want to put the document under.
 %
 % This will explicitly set the license to \doclicenseNameRef.
 %
