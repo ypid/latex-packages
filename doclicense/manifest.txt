@@ -6,10 +6,6 @@
 % For more details about the licensing, refer to the README.md file.
 
 % This work consists of the files:
-doclicense/Makefile
-doclicense/README.md
-doclicense/doclicense-UKenglish.ldf
-doclicense/doclicense-USenglish.ldf
 doclicense/doclicense-acadian.ldf
 doclicense/doclicense-american.ldf
 doclicense/doclicense-australian.ldf
@@ -21,10 +17,13 @@ doclicense/doclicense-canadien.ldf
 doclicense/doclicense-catalan.ldf
 doclicense/doclicense-chinese-gbk.ldf
 doclicense/doclicense-chinese-utf8.ldf
+doclicense/doclicense-croatian.ldf
+doclicense/doclicense.dtx
 doclicense/doclicense-english.ldf
 doclicense/doclicense-french.ldf
 doclicense/doclicense-galician.ldf
 doclicense/doclicense-german.ldf
+doclicense/doclicense.ins
 doclicense/doclicense-italian.ldf
 doclicense/doclicense-japanese.ldf
 doclicense/doclicense-marathi.ldf
@@ -34,8 +33,8 @@ doclicense/doclicense-polish.ldf
 doclicense/doclicense-portuguese.ldf
 doclicense/doclicense-russian.ldf
 doclicense/doclicense-spanish.ldf
-doclicense/doclicense.dtx
-doclicense/doclicense.ins
+doclicense/doclicense-UKenglish.ldf
+doclicense/doclicense-USenglish.ldf
 doclicense/images/doclicense-CC-by-80x15.eps
 doclicense/images/doclicense-CC-by-80x15.pdf
 doclicense/images/doclicense-CC-by-88x31.eps
@@ -137,7 +136,9 @@ doclicense/license-texts/doclicense-CC-by-sa-4.0-plaintext.tex
 doclicense/license-texts/doclicense-CC-zero-1.0-latex.html
 doclicense/license-texts/doclicense-CC-zero-1.0-latex.tex
 doclicense/license-texts/doclicense-CC-zero-1.0-plaintext.tex
+doclicense/Makefile
 doclicense/manifest.txt
+doclicense/README.md
 % and the derived files:
 doclicense.sty
 doclicense.pdf
