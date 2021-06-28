@@ -6,6 +6,7 @@
 # For more details about the licensing, refer to the README.md file.
 
 TEXMFHOME ?= $(shell kpsewhich -var-value TEXMFHOME)
+SHELL := /bin/bash -o nounset -o pipefail -o errexit
 
 all: install build manifest.txt
 
@@ -23,6 +24,7 @@ check: run_tests doclicense.sty lint
 
 lint:
 	find -regextype posix-egrep -iregex '.*\.(tex|ldf)' -and -not -iname '*-plaintext.tex' -print0 | xargs --null chktex
+	[[ -z "$(shell lacheck doclicense.dtx *.ldf | grep 'possible unwanted space')" ]]
 	reuse lint
 
 clean:

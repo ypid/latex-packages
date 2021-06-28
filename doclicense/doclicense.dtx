@@ -44,7 +44,7 @@
   obeyspaces,
   spaces,
 ]{url}
-\usepackage{
+\usepackage{%
   babel,
   csquotes,
   xcolor,
@@ -63,7 +63,7 @@
   hyphenation={RaggedRight},
 ]{doclicense}
 \GetFileInfo{doclicense.dtx}
-\hypersetup{
+\hypersetup{%
   pdftitle={A manual for \PackageName},
   pdfauthor={\PackageAuthor{} <\PackageAuthorEmail>},
   pdfsubject={\fileinfo},
@@ -624,7 +624,7 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \printdateTeX{\filed
     \renewcommand{\labelenumiv}{(\roman{enumiv})}%
 }{\end{enumerate}}
 
-\ifthenelse{
+\ifthenelse{%
   \equal{\doclicense@hyphenation}{}
 }{}{%
   \RequirePackage{ragged2e}
@@ -635,24 +635,24 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \printdateTeX{\filed
   }
 }
 \AtEndPreamble{%
-  \@ifpackageloaded{csquotes}{
+  \@ifpackageloaded{csquotes}{%
     % csquotes has already been loaded so we are fine.
-  }{
-    \ifcsdef{enquote}{
+  }{%
+    \ifcsdef{enquote}{%
       % \enquote is defined but not by csquotes.
-      \@ifpackageloaded{biblatex}{
+      \@ifpackageloaded{biblatex}{%
         \PackageError{doclicense}{The enquote macro is defined by biblatex}
           {This package assumes that the enquote macro is defined by the
             csquotes package. Please load csquotes before you load biblatex so
             that biblatex does not define enquote instead.}%
-      }{
+      }{%
         \PackageError{doclicense}{The enquote macro is defined by unknown package}
           {This package assumes that the enquote macro is defined by the
             csquotes package. Please check why enquote is defined without
             csquotes being loaded. Maybe try loading csquotes early so that it
             can define the enquote macro instead.}%
       }
-    }{
+    }{%
       \RequirePackage{csquotes}
     }
   }
@@ -661,9 +661,9 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \printdateTeX{\filed
   \@ifpackageloaded{graphicx}{}{\RequirePackage{graphicx}}
     % For \doclicenseImage
   \@ifpackageloaded{hyperref}{}{\RequirePackage{hyperref}}
-  \@ifpackageloaded{hyperxmp}{
+  \@ifpackageloaded{hyperxmp}{%
     % The following options are only defined when the hyperxmp package was loaded.
-    \hypersetup{
+    \hypersetup{%
       pdfcopyright  = {\doclicenseLongText},
       pdflicenseurl = {\doclicenseURL},
     }
@@ -673,13 +673,13 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \printdateTeX{\filed
   \@ifpackageloaded{pdfx}{%
     \PackageWarning{doclicense}{%
     The pdfx package was detected. Therefore the mechanism to add license
-    metadata won't work. Ensure to setup \string\Copyright\space and
-    corresponding settings to your xmpdata-file.
+    metadata won't work. Ensure to setup \string\Copyright\space%
+    and corresponding settings to your xmpdata-file.
   }
-  }{
-    \IfFileExists{hyperxmp.sty}{
+  }{%
+    \IfFileExists{hyperxmp.sty}{%
       \@ifpackageloaded{hyperxmp}{}{\RequirePackage{hyperxmp}}
-    }{
+    }{%
       \PackageWarning{doclicense}{%
         The hyperxmp package is missing so no license metadata can be embedded
         into the PDF. Consider installing hyperxmp.% chktex 13
@@ -693,9 +693,9 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \printdateTeX{\filed
 % \subsection{Deprecation handling}
 %    \begin{macrocode}
 % Deprecation handling (((
-\ifthenelse{
+\ifthenelse{%
   \equal{\doclicense@type}{}
-}{
+}{%
   \PackageWarning{doclicense}{%
     "type" package option missing. % chktex 18
     This option is now required and the fallback to "CC" is deprecated. % chktex 18
@@ -705,9 +705,9 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \printdateTeX{\filed
   \renewcommand{\doclicense@type}{CC}
 }{}
 
-\ifthenelse{
+\ifthenelse{%
   \equal{\doclicense@modifier}{}
-}{
+}{%
   \PackageWarning{doclicense}{%
     "modifier" package option missing. % chktex 18
     This option is now required and the fallback to "by-sa" is deprecated. % chktex 18
@@ -717,9 +717,9 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \printdateTeX{\filed
   \renewcommand{\doclicense@modifier}{by-sa}
 }{}
 
-\ifthenelse{
+\ifthenelse{%
   \equal{\doclicense@version}{}
-}{
+}{%
   \PackageWarning{doclicense}{%
     "version" package option missing. % chktex 18
     This option is now required and the fallback is deprecated. % chktex 18
@@ -926,7 +926,7 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \printdateTeX{\filed
         \renewcommand{\doclicense@imagemodifier}{-88x31}% chktex 29
       }{}
     }{}
-    \ifthenelse{\equal{\doclicense@modifier}{by-nc-sa}}{
+    \ifthenelse{\equal{\doclicense@modifier}{by-nc-sa}}{%
       \renewcommand{\doclicense@icon}{\ccbyncsa}
       \IfBeginWith{\doclicense@imagemodifier}{-eu}{%
         \renewcommand{\doclicense@icon}{\ccbyncsaeu}
@@ -936,7 +936,7 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \printdateTeX{\filed
         \renewcommand{\doclicense@imagemodifier}{-88x31}% chktex 29
       }{}
     }{}
-    \ifthenelse{\equal{\doclicense@modifier}{by-nc-nd}}{
+    \ifthenelse{\equal{\doclicense@modifier}{by-nc-nd}}{%
       \renewcommand{\doclicense@icon}{\ccbyncnd}
       \IfBeginWith{\doclicense@imagemodifier}{-jp}{%
         \renewcommand{\doclicense@icon}{\ccbyncndjp}
@@ -952,13 +952,13 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \printdateTeX{\filed
         \doclicense@modifier/%
         \doclicense@versionUsed\doclicense@UrlLangPart}
     }{}
-    \ifthenelse{\equal{\doclicense@modifier}{pd}}{
-      \PackageError{doclicense}{CC PD license removed as of version 2.0.0}{
+    \ifthenelse{\equal{\doclicense@modifier}{pd}}{%
+      \PackageError{doclicense}{CC PD license removed as of version 2.0.0}{%
         Creative Commons PD has been replaced by CC-zero.
         Please update your license choice.
       }%
     }{}
-    \IfSubStr{\doclicense@modifier}{nc}{}{
+    \IfSubStr{\doclicense@modifier}{nc}{}{%
       % eu (Euro) does only exist for nc (non commercial) so if not nc then reset -eu.
       \IfBeginWith{\doclicense@imagemodifier}{-eu}{%
         \renewcommand{\doclicense@imagemodifier}{-88x31}% chktex 29
