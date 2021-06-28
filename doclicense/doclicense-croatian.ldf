@@ -1,3 +1,10 @@
+% SPDX-FileCopyrightText: 2021 Paula <paulavidas@gmail.com>
+%
+% SPDX-License-Identifier: LPPL-1.3c
+%
+% This work consists of all files listed in manifest.txt.
+% For more details about the licensing, refer to the README.md file.
+
 \ProvidesFile{doclicense-croatian.ldf}
 
 \@namedef{doclicense@lang@thisDoc}{Ovo djelo je dano na korištenje pod licencom}%
