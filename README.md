@@ -8,6 +8,8 @@ SPDX-License-Identifier: CC-BY-SA-4.0
 
 This is a [monorepo](https://en.wikipedia.org/wiki/Monorepo) containing multiple independent LaTeX packages.
 
+![GitHub CI](https://github.com/ypid/latex-packages/actions/workflows/ci.yml/badge.svg)
+
 ## On CTAN
 
 Name                                                                                        | CTAN                                                                                                     | Description
