@@ -8,25 +8,33 @@
 TEXMFHOME ?= $(shell kpsewhich -var-value TEXMFHOME)
 SHELL := /bin/bash -o nounset -o pipefail -o errexit
 
-all: install build manifest.txt
+.PHONY: all
+all: install build
 
-build: check-quick doclicense.sty doclicense.pdf
+.PHONY: build
+build: manifest.txt doclicense.sty doclicense.pdf
 
+.PHONY: ci
+ci: lint build
+
+.PHONY: install
 install:
 	mkdir --parents "$(TEXMFHOME)/tex/latex/"
 	test -L "$(TEXMFHOME)/tex/latex/doclicense" || ln --no-target-directory --symbolic "$$PWD" "$(TEXMFHOME)/tex/latex/doclicense"
 
-check-quick: doclicense.dtx
-	chktex "$<"
-
+# Run before release.
+.PHONY: check
 check: run_tests doclicense.sty lint
 	./"$<"
 
-lint:
+.PHONY: lint
+lint: doclicense.dtx
+	chktex "$<"
 	find -regextype posix-egrep -iregex '.*\.(tex|ldf)' -and -not -iname '*-plaintext.tex' -print0 | xargs --null chktex
-	[[ -z "$(shell lacheck doclicense.dtx *.ldf | grep 'possible unwanted space')" ]]
+	[[ -z "$(shell lacheck "$<" *.ldf | grep 'possible unwanted space')" ]]
 	reuse lint
 
+.PHONY: clean
 clean:
 	rm -rf *.sty *.pdf *.aux *.out *.glo *.gls *.hd *.idx *.ilg *.ind *.log *.toc
 
