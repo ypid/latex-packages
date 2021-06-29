@@ -674,7 +674,7 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \printdateTeX{\filed
       The pdfx package was detected. Therefore the mechanism to add license
       metadata won't work. Ensure to setup \string\Copyright\space%
       and corresponding settings to your xmpdata-file.
-  }
+    }
   }{%
     \@ifpackageloaded{silence}{%
       \PackageWarning{doclicense}{%
@@ -685,6 +685,11 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \printdateTeX{\filed
         without silence so that you can benefit from hyperxmp while still being
         able to filter log messages for your draft versions.
       }
+      \@ifpackageloaded{hyperxmp}{%
+        \PackageError{doclicense}{silence and hyperxmp were manually loaded together}{%
+          Error out because those packages together result in an endless loop.
+        }%
+      }{}
     }{%
       \IfFileExists{hyperxmp.sty}{%
         \@ifpackageloaded{hyperxmp}{}{\RequirePackage{hyperxmp}}
