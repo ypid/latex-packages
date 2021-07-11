@@ -47,7 +47,7 @@ grep '\\item.*@nameuse{doclicense@lang' ./doclicense.dtx | sed 's/.*doclicense@l
                     modifier={$modifier},
                     version={$version},"
             if [ "$imagemodifier" != "" ]; then
-                echo "                    imagemodifier={$imagemodifier},"
+                echo "                    imagemodifier={$imagemodifier},% chktex 29"
             fi
             echo "                ]{doclicense}
                 \begin{document}
