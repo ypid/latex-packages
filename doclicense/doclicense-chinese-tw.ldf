@@ -1,0 +1,30 @@
+% SPDX-FileCopyrightText: 2019 sd44 <sd44sd44@yeah.net>
+%
+% SPDX-License-Identifier: LPPL-1.3c
+%
+% This work consists of all files listed in manifest.txt.
+% For more details about the licensing, refer to the README.md file.
+
+\ProvidesFile{doclicense-chinese.ldf}
+
+\@namedef{doclicense@lang@thisDoc}{本作品以}%
+\@namedef{doclicense@lang@word@license}{公眾授權條款釋出}%
+
+\@namedef{doclicense@lang@lic@CC@code}{zh}%
+% Using:https://en.wikipedia.org/wiki/ISO_639-1
+
+\@namedef{doclicense@lang@lic@CC@zero@1.0}{CC0 1.0 通用}%
+
+\@namedef{doclicense@lang@lic@CC@by@3.0}{姓名標示 3.0 台灣}%
+\@namedef{doclicense@lang@lic@CC@by-sa@3.0}{姓名標示—相同方式分享 3.0 台灣}%
+\@namedef{doclicense@lang@lic@CC@by-nd@3.0}{姓名標示—禁止改作 3.0 台灣}%
+\@namedef{doclicense@lang@lic@CC@by-nc@3.0}{姓名標示—非商業性 3.0 台灣}%
+\@namedef{doclicense@lang@lic@CC@by-nc-sa@3.0}{姓名標示—非商業性—相同方式分享 3.0 台灣}%
+\@namedef{doclicense@lang@lic@CC@by-nc-nd@3.0}{姓名標示—非商業性—禁止改作 3.0 台灣}%
+
+\@namedef{doclicense@lang@lic@CC@by@4.0}{姓名標示 4.0 國際}%
+\@namedef{doclicense@lang@lic@CC@by-sa@4.0}{姓名標示—相同方式分享 4.0 國際}%
+\@namedef{doclicense@lang@lic@CC@by-nd@4.0}{姓名標示—禁止改作 4.0 國際}%
+\@namedef{doclicense@lang@lic@CC@by-nc@4.0}{姓名標示—非商業性 4.0 國際}%
+\@namedef{doclicense@lang@lic@CC@by-nc-sa@4.0}{姓名標示—非商業性—相同方式分享 4.0 國際}%
+\@namedef{doclicense@lang@lic@CC@by-nc-nd@4.0}{姓名標示—非商業性—禁止改作 4.0 國際}%

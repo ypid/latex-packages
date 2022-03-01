@@ -16,6 +16,7 @@ doclicense/doclicense-canadian.ldf
 doclicense/doclicense-canadien.ldf
 doclicense/doclicense-catalan.ldf
 doclicense/doclicense-chinese-gbk.ldf
+doclicense/doclicense-chinese-tw.ldf
 doclicense/doclicense-chinese-utf8.ldf
 doclicense/doclicense-croatian.ldf
 doclicense/doclicense.dtx
