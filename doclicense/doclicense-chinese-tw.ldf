@@ -5,7 +5,7 @@
 % This work consists of all files listed in manifest.txt.
 % For more details about the licensing, refer to the README.md file.
 
-\ProvidesFile{doclicense-chinese.ldf}
+\ProvidesFile{doclicense-chinese-tw.ldf}
 
 \@namedef{doclicense@lang@thisDoc}{本作品以}%
 \@namedef{doclicense@lang@word@license}{公眾授權條款釋出}%
