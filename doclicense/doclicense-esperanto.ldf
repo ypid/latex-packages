@@ -1,0 +1,45 @@
+% SPDX-FileCopyrightText: 2022 Ingemar Berg <73386284+ingemarberg@users.noreply.github.com>
+%
+% SPDX-License-Identifier: LPPL-1.3c
+%
+% This work consists of all files listed in manifest.txt.
+% For more details about the licensing, refer to the README.md file.
+
+\ProvidesFile{doclicense-esperanto.ldf}
+
+\@namedef{doclicense@lang@thisDoc}{Ĉi tiu verko estas disponebla laŭ la permesilo}%
+\@namedef{doclicense@lang@word@license}{}%
+
+\@namedef{doclicense@lang@lic@CC}{Krea Komunaĵo}
+
+\@namedef{doclicense@lang@lic@CC@code}{eo}%
+% Using: https://en.wikipedia.org/wiki/ISO_639-1
+
+\@namedef{doclicense@lang@lic@CC@zero@1.0}{CC0 1.0 Universala}%
+% https://creativecommons.org/publicdomain/zero/1.0/deed.eo
+
+\@namedef{doclicense@lang@lic@CC@by@3.0}{Atribuite 3.0 Neadaptita}%
+% https://creativecommons.org/licenses/by/3.0/deed.eo
+\@namedef{doclicense@lang@lic@CC@by-sa@3.0}{Atribuite-Samkondiĉe 3.0 Neadaptita}%
+% https://creativecommons.org/licenses/by-sa/3.0/deed.eo
+\@namedef{doclicense@lang@lic@CC@by-nd@3.0}{Atribuite-Nemodifite 3.0 Neadaptita}%
+% https://creativecommons.org/licenses/by-nd/3.0/deed.eo
+\@namedef{doclicense@lang@lic@CC@by-nc@3.0}{Atribuite-Nekomerce 3.0 Neadaptita}%
+% https://creativecommons.org/licenses/by-nc/3.0/deed.eo
+\@namedef{doclicense@lang@lic@CC@by-nc-sa@3.0}{Atribuite-Nekomerce-Samkondiĉe 3.0 Neadaptita}%
+% https://creativecommons.org/licenses/by-nc-sa/3.0/deed.eo
+\@namedef{doclicense@lang@lic@CC@by-nc-nd@3.0}{Atribuite-Nekomerce-Nemodifite 3.0 Neadaptita}%
+% https://creativecommons.org/licenses/by-nc-nd/3.0/deed.eo
+
+\@namedef{doclicense@lang@lic@CC@by@4.0}{Atribuite 4.0 Tutmonda}%
+% https://creativecommons.org/licenses/by/4.0/deed.eo
+\@namedef{doclicense@lang@lic@CC@by-sa@4.0}{Atribuite-Samkondiĉe 4.0 Tutmonda}%
+% https://creativecommons.org/licenses/by-sa/4.0/deed.eo
+\@namedef{doclicense@lang@lic@CC@by-nd@4.0}{Atribuite-Nemodifite 4.0 Tutmonda}%
+% https://creativecommons.org/licenses/by-nd/4.0/deed.eo
+\@namedef{doclicense@lang@lic@CC@by-nc@4.0}{Atribuite-Nekomerce 4.0 Tutmonda}%
+% https://creativecommons.org/licenses/by-nc/4.0/deed.eo
+\@namedef{doclicense@lang@lic@CC@by-nc-sa@4.0}{Atribuite-Nekomerce-Samkondiĉe 4.0 Tutmonda}%
+% https://creativecommons.org/licenses/by-nc-sa/4.0/deed.eo
+\@namedef{doclicense@lang@lic@CC@by-nc-nd@4.0}{Atribuite-Nekomerce-Nemodifite 4.0 Tutmonda}%
+% https://creativecommons.org/licenses/by-nc-nd/4.0/deed.eo
