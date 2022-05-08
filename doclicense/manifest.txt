@@ -1,4 +1,4 @@
-% SPDX-FileCopyrightText: 2021 Robin Schneider <ypid@riseup.net>
+% SPDX-FileCopyrightText: 2021-2022 Robin Schneider <ypid@riseup.net>
 %
 % SPDX-License-Identifier: LPPL-1.3c
 %
@@ -35,6 +35,7 @@ doclicense/doclicense-portuguese.ldf
 doclicense/doclicense-russian.ldf
 doclicense/doclicense-spanish.ldf
 doclicense/doclicense-UKenglish.ldf
+doclicense/doclicense-ukrainian.ldf
 doclicense/doclicense-USenglish.ldf
 doclicense/images/doclicense-CC-by-80x15.eps
 doclicense/images/doclicense-CC-by-80x15.pdf
