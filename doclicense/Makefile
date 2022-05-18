@@ -22,10 +22,13 @@ install:
 	mkdir --parents "$(TEXMFHOME)/tex/latex/"
 	test -L "$(TEXMFHOME)/tex/latex/doclicense" || ln --no-target-directory --symbolic "$$PWD" "$(TEXMFHOME)/tex/latex/doclicense"
 
-# Run before release.
 .PHONY: check
-check: check-copyright-date run_tests manifest.txt doclicense.sty lint
-	./"$<"
+check: check-copyright-date manifest.txt doclicense.sty lint
+
+# Run before release.
+.PHONY: check-full
+check-full: check run_tests
+	./run_tests
 
 # CTAN people want this when uploading a release.
 .PHONY: check-copyright-date
