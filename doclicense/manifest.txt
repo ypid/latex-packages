@@ -21,6 +21,7 @@ doclicense/doclicense-chinese-utf8.ldf
 doclicense/doclicense-croatian.ldf
 doclicense/doclicense.dtx
 doclicense/doclicense-english.ldf
+doclicense/doclicense-esperanto.ldf
 doclicense/doclicense-french.ldf
 doclicense/doclicense-galician.ldf
 doclicense/doclicense-german.ldf
@@ -34,7 +35,9 @@ doclicense/doclicense-polish.ldf
 doclicense/doclicense-portuguese.ldf
 doclicense/doclicense-russian.ldf
 doclicense/doclicense-spanish.ldf
+doclicense/doclicense-swedish.ldf
 doclicense/doclicense-UKenglish.ldf
+doclicense/doclicense-ukrainian.ldf
 doclicense/doclicense-USenglish.ldf
 doclicense/images/doclicense-CC-by-80x15.eps
 doclicense/images/doclicense-CC-by-80x15.pdf

@@ -1,0 +1,30 @@
+% SPDX-FileCopyrightText: 2022 Boris Veytsman <borisv@lk.net>
+%
+% SPDX-License-Identifier: LPPL-1.3c
+%
+% This work consists of all files listed in manifest.txt.
+% For more details about the licensing, refer to the README.md file.
+
+\ProvidesFile{doclicense-ukrainian.ldf}
+
+\@namedef{doclicense@lang@thisDoc}{Цей матеріал доступний на умовах ліцензії}%
+\@namedef{doclicense@lang@word@license}{}%
+
+\@namedef{doclicense@lang@lic@CC@code}{uk}%
+% Using: https://en.wikipedia.org/wiki/ISO_639-1
+
+\@namedef{doclicense@lang@lic@CC@zero@1.0}{CC0 1.0 Універсальна}%
+
+\@namedef{doclicense@lang@lic@CC@by@3.0}{Attribution (Із Зазначенням Авторства) 3.0 Непортована Публічна Ліцензія}%
+\@namedef{doclicense@lang@lic@CC@by-sa@3.0}{Attribution-ShareAlike (Із Зазначенням Авторства---Поширення На Тих Самих Умовах) 3.0 Непортована Публічна Ліцензія}%
+\@namedef{doclicense@lang@lic@CC@by-nd@3.0}{Attribution-NoDerivs (Із Зазначенням Авторства---Без Похідних) 3.0 Непортована Публічна Ліцензія}%
+\@namedef{doclicense@lang@lic@CC@by-nc@3.0}{Attribution-NonCommercial (Із Зазначенням Авторства---Некомерційна) 3.0 Непортована Публічна Ліцензія}%
+\@namedef{doclicense@lang@lic@CC@by-nc-sa@3.0}{Attribution-NonCommercial-ShareAlike (Із Зазначенням Авторства---Некомерційна---Поширення На Тих Самих Умовах) 3.0 Непортована Публічна Ліцензія}%
+\@namedef{doclicense@lang@lic@CC@by-nc-nd@3.0}{Attribution-NonCommercial-NoDerivs (Із Зазначенням Авторства---Некомерційна---Без Похідних) 3.0 Непортована Публічна Ліцензія}%
+
+\@namedef{doclicense@lang@lic@CC@by@4.0}{Attribution (Із Зазначенням Авторства) 4.0 Міжнародна Публічна Ліцензія}%
+\@namedef{doclicense@lang@lic@CC@by-sa@4.0}{Attribution-ShareAlike (Із Зазначенням Авторства---Поширення На Тих Самих Умовах) 4.0 Міжнародна Публічна Ліцензія}%
+\@namedef{doclicense@lang@lic@CC@by-nd@4.0}{Attribution-NoDerivs (Із Зазначенням Авторства---Без Похідних) 4.0 Міжнародна Публічна Ліцензія}%
+\@namedef{doclicense@lang@lic@CC@by-nc@4.0}{Attribution-NonCommercial (Із Зазначенням Авторства---Некомерційна) 4.0 Міжнародна Публічна Ліцензія}%
+\@namedef{doclicense@lang@lic@CC@by-nc-sa@4.0}{Attribution-NonCommercial-ShareAlike (Із Зазначенням Авторства---Некомерційна---Поширення На Тих Самих Умовах) 4.0 Міжнародна Публічна Ліцензія}%
+\@namedef{doclicense@lang@lic@CC@by-nc-nd@4.0}{Attribution-NonCommercial-NoDerivs (Із Зазначенням Авторства---Некомерційна---Без Похідних) 4.0 Міжнародна Публічна Ліцензія}%

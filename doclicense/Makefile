@@ -24,7 +24,7 @@ install:
 
 # Run before release.
 .PHONY: check
-check: check-copyright-date run_tests doclicense.sty lint
+check: check-copyright-date run_tests manifest.txt doclicense.sty lint
 	./"$<"
 
 # CTAN people want this when uploading a release.
