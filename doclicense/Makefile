@@ -24,8 +24,13 @@ install:
 
 # Run before release.
 .PHONY: check
-check: run_tests doclicense.sty lint
+check: check-copyright-date run_tests doclicense.sty lint
 	./"$<"
+
+# CTAN people want this when uploading a release.
+.PHONY: check-copyright-date
+check-copyright-date: README.md
+	grep --quiet 'SPDX-FileCopyrightText:.*$(shell date +%Y)\s' "$<"
 
 .PHONY: lint
 lint: doclicense.dtx
