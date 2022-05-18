@@ -24,7 +24,7 @@ install:
 
 # Run before release.
 .PHONY: check
-check: run_tests doclicense.sty lint
+check: run_tests manifest.txt doclicense.sty lint
 	./"$<"
 
 .PHONY: lint
