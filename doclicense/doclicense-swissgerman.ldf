@@ -1,0 +1,33 @@
+% SPDX-FileCopyrightText: 2015,2020 Robin Schneider <ypid@riseup.net>
+%
+% SPDX-License-Identifier: LPPL-1.3c
+%
+% This work consists of all files listed in manifest.txt.
+% For more details about the licensing, refer to the README.md file.
+
+\ProvidesFile{doclicense-swissgerman.ldf}
+
+\@namedef{doclicense@lang@thisDoc}{Dieses Werk ist lizenziert unter einer}%
+\@namedef{doclicense@lang@word@license}{ Lizenz}%
+\ifthenelse{\equal{\doclicense@imagemodifier}{-88x31}}{% chktex 29
+  \@namedef{doclicense@imagemodifier}{-eu-88x31}% chktex 29
+}{}
+
+\@namedef{doclicense@lang@lic@CC@code}{de}%
+% Using: https://en.wikipedia.org/wiki/ISO_639-1
+
+\@namedef{doclicense@lang@lic@CC@zero@1.0}{CC0 1.0 Universell}%
+
+\@namedef{doclicense@lang@lic@CC@by@3.0}{Namensnennung 3.0 Schweiz}%
+\@namedef{doclicense@lang@lic@CC@by-sa@3.0}{Namensnennung -- Weitergabe unter gleichen Bedingungen 3.0 Schweiz}% chktex 8
+\@namedef{doclicense@lang@lic@CC@by-nd@3.0}{Namensnennung-Keine Bearbeitung 3.0 Schweiz}%
+\@namedef{doclicense@lang@lic@CC@by-nc@3.0}{Namensnennung-Nicht kommerziell 3.0 Schweiz}%
+\@namedef{doclicense@lang@lic@CC@by-nc-sa@3.0}{Namensnennung -- Nicht-kommerziell -- Weitergabe unter gleichen Bedingungen 3.0 Schweiz}% chktex 8
+\@namedef{doclicense@lang@lic@CC@by-nc-nd@3.0}{Namensnennung -- Nicht-kommerziell -- Keine Bearbeitung 3.0 Schweiz}% chktex 8
+
+\@namedef{doclicense@lang@lic@CC@by@4.0}{Namensnennung 4.0 International}%
+\@namedef{doclicense@lang@lic@CC@by-sa@4.0}{Namensnennung -- Weitergabe unter gleichen Bedingungen 4.0 International}% chktex 8
+\@namedef{doclicense@lang@lic@CC@by-nd@4.0}{Namensnennung -- Keine Bearbeitungen 4.0 International}% chktex 8
+\@namedef{doclicense@lang@lic@CC@by-nc@4.0}{Namensnennung-Nicht kommerziell 4.0 International}%
+\@namedef{doclicense@lang@lic@CC@by-nc-sa@4.0}{Namensnennung -- Nicht-kommerziell -- Weitergabe unter gleichen Bedingungen 4.0 International}% chktex 8
+\@namedef{doclicense@lang@lic@CC@by-nc-nd@4.0}{Namensnennung -- Nicht kommerziell -- Keine Bearbeitungen 4.0 International}% chktex 8
