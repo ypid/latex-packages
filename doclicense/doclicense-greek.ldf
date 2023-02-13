@@ -1,0 +1,30 @@
+% SPDX-FileCopyrightText: 2023 Alexandros Korkos <alexkork@csd.auth.gr>
+%
+% SPDX-License-Identifier: LPPL-1.3c
+%
+% This work consists of all files listed in manifest.txt.
+% For more details about the licensing, refer to the README.md file.
+
+\ProvidesFile{doclicense-greek.ldf}
+
+\@namedef{doclicense@lang@thisDoc}{Το παρόν έργο αδειοδοτείται υπό τους όρους της}%
+\@namedef{doclicense@lang@word@license}{ άδειας}%
+
+\@namedef{doclicense@lang@lic@CC@code}{el}%
+% Using: https://en.wikipedia.org/wiki/ISO_639-1
+
+\@namedef{doclicense@lang@lic@CC@zero@1.0}{CC0 1.0 Παγκόσμια}%
+
+\@namedef{doclicense@lang@lic@CC@by@3.0}{Αναφορά Δημιουργού 3.0 Μη εισαγόμενο}%
+\@namedef{doclicense@lang@lic@CC@by-sa@3.0}{Αναφορά Δημιουργού-Παρόμοια Διανομή3.0 Μη εισαγόμενο}%
+\@namedef{doclicense@lang@lic@CC@by-nd@3.0}{Αναφορά Δημιουργού-Όχι Παράγωγα Έργα 3.0 Μη εισαγόμενο}%
+\@namedef{doclicense@lang@lic@CC@by-nc@3.0}{Αναφορά Δημιουργού-Μη Εμπορική Χρήση 3.0 Μη εισαγόμενο}%
+\@namedef{doclicense@lang@lic@CC@by-nc-sa@3.0}{Αναφορά Δημιουργού-Μη Εμπορική Χρήση-Παρόμοια Διανομή 3.0 Μη εισαγόμενο}%
+\@namedef{doclicense@lang@lic@CC@by-nc-nd@3.0}{Αναφορά Δημιουργού-Μη Εμπορική Χρήση-Όχι Παράγωγα Έργα  3.0 Μη εισαγόμενο}%
+
+\@namedef{doclicense@lang@lic@CC@by@4.0}{Αναφορά Δημιουργού 4.0 Διεθνές}%
+\@namedef{doclicense@lang@lic@CC@by-sa@4.0}{Αναφορά Δημιουργού-Παρόμοια Διανομή 4.0 Διεθνές}%
+\@namedef{doclicense@lang@lic@CC@by-nd@4.0}{Αναφορά Δημιουργού-Όχι Παράγωγα Έργα 4.0 Διεθνές}%
+\@namedef{doclicense@lang@lic@CC@by-nc@4.0}{Αναφορά Δημιουργού-Μη Εμπορική Χρήση 4.0 Διεθνές}%
+\@namedef{doclicense@lang@lic@CC@by-nc-sa@4.0}{Αναφορά Δημιουργού-Μη Εμπορική Χρήση-Παρόμοια Διανομή 4.0 Διεθνές}%
+\@namedef{doclicense@lang@lic@CC@by-nc-nd@4.0}{Αναφορά Δημιουργού-Μη Εμπορική Χρήση-Όχι Παράγωγα Έργα 4.0 Διεθνές}%
