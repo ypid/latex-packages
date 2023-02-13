@@ -10,9 +10,6 @@ trap 'echo Encountered an unexpected error. Exiting with exit code $? in ${BASH_
 set -o nounset -o pipefail -o errexit -o errtrace
 
 
-apt-get update
-apt-get -y install make chktex lacheck python3
-pip3 install git+https://github.com/ypid/reuse-tool.git@add/monorepo-support
-
+apk add make reuse
 
 make -C doclicense ci

@@ -18,6 +18,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Run CI Makefile target of doclicense package
-        uses: dante-ev/latex-action@latest
+        uses: xu-cheng/texlive-action/small@v1
         with:
-          entrypoint: ./ci_entrypoint
+          run: |-
+            ./ci_entrypoint
