@@ -5,5 +5,6 @@ doclicense.tar.gz:
 %.tar.gz: %
 	rm -f "$@"
 	git archive --verbose --output "$<.tar" HEAD -- "$<"
+	tar --append -f "$<.tar" "$</manifest.txt"
 	tar --append -f "$<.tar" "$</$<.pdf"
 	gzip "$<.tar"

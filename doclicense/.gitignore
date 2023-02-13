@@ -11,3 +11,5 @@ images/!*.pdf
 testing.tex
 # license-texts/*.html
 Hello_World.tex
+
+manifest.txt
