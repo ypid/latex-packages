@@ -18,6 +18,9 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Run CI Makefile target of doclicense package
-        uses: dante-ev/latex-action@latest
+        uses: xu-cheng/texlive-action/full@v1
         with:
-          entrypoint: ./ci_entrypoint
+          run: |-
+            apk add coreutils findutils make reuse git
+            git config --global --add safe.directory /github/workspace
+            ./ci_entrypoint
