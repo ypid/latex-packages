@@ -40,7 +40,7 @@ lint: doclicense.dtx
 	chktex "$<"
 	find -regextype posix-egrep -iregex '.*\.(tex|ldf)' -and -not -iname '*-plaintext.tex' -print0 | xargs --null chktex
 	[[ -z "$(shell lacheck "$<" *.ldf | grep 'possible unwanted space')" ]]
-	reuse lint
+	reuse --root . lint
 
 .PHONY: clean
 clean:
