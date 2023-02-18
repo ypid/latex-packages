@@ -1,23 +1,25 @@
 ---
-# SPDX-FileCopyrightText: 2021 Robin Schneider <ypid@riseup.net>
+# SPDX-FileCopyrightText: 2021,2023 Robin Schneider <ypid@riseup.net>
 #
 # SPDX-License-Identifier: CC0-1.0
 
 name: Continuous Integration
-"on":
-  - "push"
-  - "pull_request"
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
 
 jobs:
   build:
-    runs-on: "ubuntu-latest"
+    runs-on: ubuntu-latest
 
     steps:
-
       - name: Set up Git repository
         uses: actions/checkout@v2
-
-      - name: Run CI Makefile target of doclicense package
-        uses: dante-ev/latex-action@latest
-        with:
-          entrypoint: ./ci_entrypoint
+      - name: Build docker image
+        run: make docker-image
+      - name: Run tests
+        run: make run-tests-in-docker

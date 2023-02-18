@@ -20,7 +20,7 @@ ci: lint build
 .PHONY: install
 install:
 	mkdir --parents "$(TEXMFHOME)/tex/latex/"
-	test -L "$(TEXMFHOME)/tex/latex/doclicense" || ln --no-target-directory --symbolic "$$PWD" "$(TEXMFHOME)/tex/latex/doclicense"
+	test -L "$(TEXMFHOME)/tex/latex/doclicense" || ln --no-target-directory --symbolic "$(shell pwd)" "$(TEXMFHOME)/tex/latex/doclicense"
 
 .PHONY: check
 check: check-copyright-date manifest.txt doclicense.sty lint
@@ -66,6 +66,6 @@ doclicense.pdf:
 manifest.txt: manifest_header.txt Makefile .FORCE
 	cat "$<" > "$@"
 	echo "% This work consists of the files:" >> "$@"
-	cd .. && git archive --worktree-attributes HEAD doclicense | tar -t -f - | grep -v '/$$' | sort >> "$(PWD)/$@"
+	cd .. && git archive --worktree-attributes HEAD doclicense | tar -t -f - | grep -v '/$$' | sort >> "$(shell pwd)/$@"
 	echo "% and the derived files:" >> "$@"
 	echo doclicense.sty doclicense.pdf | tr ' ' '\n' >> "$@"
