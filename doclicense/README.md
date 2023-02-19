@@ -42,12 +42,11 @@ make doclicense.pdf
 
 Note that this will only work when this directory is below your
 `$TEXMFHOME` tree (unless the doclicense package is already installed
-for example by your TeX distribution). Example for doing this manually:
+for example by your TeX distribution). Example for doing this:
 
 ```Shell
-mkdir --parents ~/texmf/tex/latex/ && cd ~/texmf/tex/latex/
 git clone https://github.com/ypid/latex-packages.git ypid-latex-packages
-cd ypid-latex-packages/doclicense && make build
+cd ypid-latex-packages/doclicense && make install-symlink build
 ```
 
 If you have not worked with `$TEXMFHOME` you might want to refer to the
