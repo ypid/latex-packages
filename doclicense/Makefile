@@ -9,16 +9,18 @@ TEXMFHOME ?= $(shell kpsewhich -var-value TEXMFHOME)
 SHELL := /bin/bash -o nounset -o pipefail -o errexit
 
 .PHONY: all
-all: install build
+all: build
 
 .PHONY: build
 build: manifest.txt doclicense.sty doclicense.pdf
 
+# Duplicated in ../.github/workflows/ci.yml to have separate sections in the CI
+# output for each step.
 .PHONY: ci
-ci: lint build
+ci: lint install-symlink build test-package-option-matrix-only-english
 
-.PHONY: install
-install:
+.PHONY: install-symlink
+install-symlink: doclicense.sty
 	mkdir --parents "$(TEXMFHOME)/tex/latex/"
 	test -L "$(TEXMFHOME)/tex/latex/doclicense" || ln --no-target-directory --symbolic "$(shell pwd)" "$(TEXMFHOME)/tex/latex/doclicense"
 
@@ -27,8 +29,15 @@ check: check-copyright-date manifest.txt doclicense.sty lint
 
 # Run before release.
 .PHONY: check-full
-check-full: check run_tests
-	./run_tests
+check-full: check test-package-option-matrix
+
+.PHONY: test-package-option-matrix
+test-package-option-matrix:
+	./test-package-option-matrix
+
+.PHONY: test-package-option-matrix-only-english
+test-package-option-matrix-only-english:
+	./test-package-option-matrix "english"
 
 # CTAN people want this when uploading a release.
 .PHONY: check-copyright-date
