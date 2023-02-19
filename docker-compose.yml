@@ -1,0 +1,22 @@
+# SPDX-FileCopyrightText: 2023 Robin Schneider <ypid@riseup.net>
+#
+# SPDX-License-Identifier: CC0-1.0
+
+version: '3.8'
+
+x-service-defaults: &service-defaults
+  # Build is more complex and is thus done by ./Makefile.
+  image: ypid/latex-packages
+  # https://docs.github.com/en/actions/creating-actions/dockerfile-support-for-github-actions#workdir
+  working_dir: '/home/user/latex-packages'
+  network_mode: 'none'
+
+services:
+  readwrite:
+    <<: *service-defaults
+    volumes:
+      - .:/home/user/latex-packages:z
+  readonly:
+    <<: *service-defaults
+    volumes:
+      - .:/home/user/latex-packages:z,ro
