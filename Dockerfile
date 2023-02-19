@@ -6,7 +6,9 @@
 FROM registry.gitlab.com/islandoftex/images/texlive:TL2022-2023-02-05-full
 
 RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get -qq install sudo make chktex lacheck git python3 pipx reuse
+    DEBIAN_FRONTEND=noninteractive apt-get -qq -o=Dpkg::Use-Pty=0 install sudo make chktex lacheck git python3 pipx reuse
+
+RUN tlmgr remove --force doclicense calcage counttexruns fnumprint
 
 ARG USER_UID
 ARG USER_GID
