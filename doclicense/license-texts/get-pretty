@@ -18,7 +18,7 @@ get() {
         ## something and just includes the comment in the document.
         ## The comment environment prevents this.
         echo '\begin{comment}'
-        echo '% chktex-file 13 chktex-file 36 chktex-file 38'
+        echo '% chktex-file 13 chktex-file 13 chktex-file 36 chktex-file 38'
         echo '\end{comment}'
         echo
     ) > "doclicense-CC-${modifier}-${version}-latex2.tex"
