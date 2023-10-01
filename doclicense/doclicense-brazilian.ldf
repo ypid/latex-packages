@@ -7,7 +7,7 @@
 
 \ProvidesFile{doclicense-brazilian.ldf}
 
-\@namedef{doclicense@lang@thisDoc}{Essa obra tem a licença}%
+\@namedef{doclicense@lang@thisDoc}{Esta obra tem a licença}%
 \@namedef{doclicense@lang@word@license}{}%
 
 \@namedef{doclicense@lang@lic@CC@code}{pt}%
