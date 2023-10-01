@@ -8,6 +8,9 @@
 TEXMFHOME ?= $(shell kpsewhich -var-value TEXMFHOME)
 SHELL := /bin/bash -o nounset -o pipefail -o errexit
 
+RELEASE_OPENPGP_FINGERPRINT ?= C505B5C93B0DB3D338A1B6005FE92C12EE88E1F0
+DOCLICENSE_VERSION ?= $(shell sed --quiet --regexp-extended 's/.* v([0-9.]+) Support for putting documents under a license\]/\1/p;' doclicense.dtx)
+
 .PHONY: all
 all: build
 
@@ -44,6 +47,14 @@ test-package-option-matrix-only-english:
 check-copyright-date: README.md doclicense.dtx
 	grep --quiet 'SPDX-FileCopyrightText:.*$(shell date +%Y)\s' README.md
 	grep --quiet 'SPDX-FileCopyrightText:.*$(shell date +%Y)\s' doclicense.dtx
+
+.PHONY: release-local
+release-local: check-copyright-date
+	git tag --sign --local-user "$(RELEASE_OPENPGP_FINGERPRINT)" --message "Released version $(DOCLICENSE_VERSION) of doclicense" "doclicense/v$(DOCLICENSE_VERSION)"
+
+.PHONY: release-publish
+release-publish:
+	git push --follow-tags
 
 .PHONY: lint
 lint: doclicense.dtx
