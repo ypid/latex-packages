@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: CC0-1.0
 
 # https://gitlab.com/islandoftex/images/texlive/container_registry/573747?orderBy=NAME&sort=asc&search[]=TL2022-2023-02&search[]=
-FROM registry.gitlab.com/islandoftex/images/texlive:TL2022-2023-02-05-full
+FROM registry.gitlab.com/islandoftex/images/texlive:TL2023-2023-09-24-full
 
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get -qq -o=Dpkg::Use-Pty=0 install sudo make chktex lacheck git python3 pipx reuse

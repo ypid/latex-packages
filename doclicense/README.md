@@ -1,5 +1,5 @@
 <!--
-SPDX-FileCopyrightText: 2015,2017-2022 Robin Schneider <ypid@riseup.net>
+SPDX-FileCopyrightText: 2015,2017-2023 Robin Schneider <ypid@riseup.net>
 
 SPDX-License-Identifier: LPPL-1.3c
 
