@@ -15,7 +15,7 @@ function containsElement() {
 function main() {
     test_only_those_options=( "$@" )
 
-    supported_licenses="$(grep '\\item.*@nameuse{doclicense@lang' ./doclicense.dtx | sed 's/.*doclicense@lang@lic@\([^@]\+\)@\([^@]\+\)@\([^]]\+\)}.*/\1 \2 \3/' | sort -u)"
+    supported_licenses="$(grep '.*&.*&.*@nameuse{doclicense@lang' ./doclicense.dtx | sed 's/.*doclicense@lang@lic@\([^@]\+\)@\([^@]\+\)@\([^]]\+\)}.*/\1 \2 \3/' | sort -u)"
 
     echo "$supported_licenses" | \
         while read -r type modifier version; do
