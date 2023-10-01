@@ -52,7 +52,7 @@
   nameref,
   eqlist,
   tabu,
-  ltxtable,
+  tabularray,
 }
 \usepackage[iso]{isodate}
 % ^^A https://tex.stackexchange.com/a/95893/32320
@@ -527,13 +527,17 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \printdateTeX{\filed
 % \subsection{CC (Creative Commons)}
 %
 % \makeatletter
-%
-% \rowcolors{2}{black!02}{black!05}
-% ^^A TODO: Switch to tabularray package.
-% \begin{longtable}{llp{0.6\linewidth}}
-%     \rowcolor{LightSteelBlue}%
+% \begin{longtblr}[
+%   caption = {Supported Creative Commons licenses},
+%   label = {tblr:cc},
+% ]{
+%   colspec   = {lrX},
+%   rowhead   = 1,
+%   row{odd}  = {bg=azure8},
+%   row{1}    = {bg=azure3, fg=white, font=\sffamily},
+% }
 %     modifier & version & name\\
-%   \endhead%
+%
 %     ^^A Sorted alphabetically.
 %     by       & 3.0 & \@nameuse{doclicense@lang@lic@CC@by@3.0}\\
 %     by       & 4.0 & \@nameuse{doclicense@lang@lic@CC@by@4.0}\\
@@ -548,7 +552,7 @@ corresponds to \PackageName\nobreakspace\fileversion, dated \printdateTeX{\filed
 %     by-sa    & 3.0 & \@nameuse{doclicense@lang@lic@CC@by-sa@3.0}\\
 %     by-sa    & 4.0 & \@nameuse{doclicense@lang@lic@CC@by-sa@4.0}\\
 %     zero     & 1.0 & \@nameuse{doclicense@lang@lic@CC@zero@1.0}\\
-% \end{longtable}
+% \end{longtblr}
 % \makeatother
 %
 % \section{Retired licenses}
