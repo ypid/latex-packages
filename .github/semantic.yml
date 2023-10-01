@@ -1,0 +1,24 @@
+# Configuration for probot/semantic-pull-requests GitHub check bot
+#
+# Installation/configuration docs here
+# https://github.com/probot/semantic-pull-requests#configuration
+#
+# Always validate the PR title, and ignore the commits
+titleOnly: true
+
+types:
+  - chore               # An internal change this is not observable by users.
+  - enhancement         # Any user observable enhancement to an existing feature.
+  - feat                # Any user observable new feature.
+  - fix                 # Any user observable bug fix.
+  - docs                # A documentation change.
+  - revert              # A revert of a previous change.
+
+scopes:
+  - SevenSeg
+  - calcage
+  - counttexruns
+  - doclicense
+  - fnumprint
+  - romanbarpagenumber
+  - sourcefiletable
