@@ -41,8 +41,9 @@ test-package-option-matrix-only-english:
 
 # CTAN people want this when uploading a release.
 .PHONY: check-copyright-date
-check-copyright-date: README.md
-	grep --quiet 'SPDX-FileCopyrightText:.*$(shell date +%Y)\s' "$<"
+check-copyright-date: README.md doclicense.dtx
+	grep --quiet 'SPDX-FileCopyrightText:.*$(shell date +%Y)\s' README.md
+	grep --quiet 'SPDX-FileCopyrightText:.*$(shell date +%Y)\s' doclicense.dtx
 
 .PHONY: lint
 lint: doclicense.dtx
