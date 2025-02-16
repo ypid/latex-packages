@@ -1,0 +1,30 @@
+% SPDX-FileCopyrightText: 2025 Szilárd Pfeiffer <coroner@pfeifferszilard.hu>
+%
+% SPDX-License-Identifier: LPPL-1.3c
+%
+% This work consists of all files listed in manifest.txt.
+% For more details about the licensing, refer to the README.md file.
+
+\ProvidesFile{doclicense-hungarian.ldf}
+
+\@namedef{doclicense@lang@thisDoc}{Ez a mű a}%
+\@namedef{doclicense@lang@word@license}{ licenc alatt áll}%
+
+\@namedef{doclicense@lang@lic@CC@code}{hu}%
+% Using: https://en.wikipedia.org/wiki/ISO_639-1
+
+\@namedef{doclicense@lang@lic@CC@zero@1.0}{CC0 1.0 Univerzális}%
+
+\@namedef{doclicense@lang@lic@CC@by@3.0}{Nevezd meg! 3.0 Unported}%
+\@namedef{doclicense@lang@lic@CC@by-sa@3.0}{Nevezd meg! - Így add tovább! 3.0 Unported}%
+\@namedef{doclicense@lang@lic@CC@by-nd@3.0}{Nevezd meg! - Ne változtasd! 3.0 Unported}%
+\@namedef{doclicense@lang@lic@CC@by-nc@3.0}{Nevezd meg! - Ne add el! 3.0 Unported}%
+\@namedef{doclicense@lang@lic@CC@by-nc-sa@3.0}{Nevezd meg! - Ne add el! - Így add tovább! 3.0 Unported}%
+\@namedef{doclicense@lang@lic@CC@by-nc-nd@3.0}{Nevezd meg! - Ne add el! - Ne változtasd! 3.0 Unported}%
+
+\@namedef{doclicense@lang@lic@CC@by@4.0}{Nevezd meg! 4.0 Nemzetközi}%
+\@namedef{doclicense@lang@lic@CC@by-sa@4.0}{Nevezd meg! - Így add tovább! 4.0 Nemzetközi}%
+\@namedef{doclicense@lang@lic@CC@by-nd@4.0}{Nevezd meg! - Ne változtasd! 4.0 Nemzetközi}%
+\@namedef{doclicense@lang@lic@CC@by-nc@4.0}{Nevezd meg! - Ne add el! 4.0 Nemzetközi}%
+\@namedef{doclicense@lang@lic@CC@by-nc-sa@4.0}{Nevezd meg! - Ne add el! - Így add tovább! 4.0 Nemzetközi}%
+\@namedef{doclicense@lang@lic@CC@by-nc-nd@4.0}{Nevezd meg! - Ne add el! - Ne változtasd! 4.0 Nemzetközi}%
