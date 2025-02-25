@@ -26,7 +26,7 @@ jobs:
       - name: Build
         run: docker-compose run --rm readwrite make -C doclicense install-symlink build
       - name: Archive doclicense.pdf
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: doclicense
           path: doclicense/doclicense.pdf
