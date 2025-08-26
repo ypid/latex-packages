@@ -1,0 +1,32 @@
+% SPDX-FileCopyrightText: 2025 Luis R.J. Costa
+% SPDX-FileCopyrightText: 2025 Pekka Pietikäinen
+%
+% SPDX-License-Identifier: LPPL-1.3c OR CC-BY-SA-4.0
+%
+% This work consists of all files listed in manifest.txt.
+% For more details about the licensing, refer to the README.md file.
+
+\ProvidesFile{doclicense-finnish.ldf}
+
+\@namedef{doclicense@lang@thisDoc}{Tämä teos on lisensoitu}%
+\@namedef{doclicense@lang@word@license}{ -käyttöluvalla}%
+%
+\@namedef{doclicense@lang@lic@CC@code}{fi}%
+% Using: https://en.wikipedia.org/wiki/ISO_639-1
+%
+\@namedef{doclicense@lang@lic@CC@zero@1.0}{CC0 1.0 Yleismaailmallinen}%
+%
+\@namedef{doclicense@lang@lic@CC@by@3.0}{Nimeä 3.0 Ei sovitettu}%
+\@namedef{doclicense@lang@lic@CC@by-sa@3.0}{Nimeä-JaaSamoin 3.0 Ei sovitettu}%
+\@namedef{doclicense@lang@lic@CC@by-nd@3.0}{Nimeä-EiMuutoksia 3.0 Ei sovitettu}%
+\@namedef{doclicense@lang@lic@CC@by-nc@3.0}{Nimeä-EiKaupallinen 3.0 Ei sovitettu}%
+\@namedef{doclicense@lang@lic@CC@by-nc-sa@3.0}{Nimeä-EiKaupallinen-JaaSamoin 3.0 Ei sovitettu}%
+\@namedef{doclicense@lang@lic@CC@by-nc-nd@3.0}{Nimeä-EiKaupallinen-EiMuutoksia 3.0 Ei sovitettu}%
+%
+\@namedef{doclicense@lang@lic@CC@by@4.0}{Nimeä 4.0 Kansainvälinen}%
+\@namedef{doclicense@lang@lic@CC@by-sa@4.0}{Nimeä-JaaSamoin 4.0 Kansainvälinen}%
+\@namedef{doclicense@lang@lic@CC@by-nd@4.0}{Nimeä-EiMuutoksia 4.0 Kansainvälinen}%
+\@namedef{doclicense@lang@lic@CC@by-nc@4.0}{Nimeä-EiKaupallinen 4.0 Kansainvälinen}%
+\@namedef{doclicense@lang@lic@CC@by-nc-sa@4.0}{Nimeä-EiKaupallinen-JaaSamoin 4.0 Kansainvälinen}%
+\@namedef{doclicense@lang@lic@CC@by-nc-nd@4.0}{Nimeä-EiKaupallinen-EiMuutoksia 4.0 Kansainvälinen}%
+

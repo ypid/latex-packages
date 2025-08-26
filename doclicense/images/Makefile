@@ -72,7 +72,10 @@ doclicense-CC-%.svg:
 
 %.pdf: %.svg
 	@# For Inkscape 0.x: inkscape "$<" --export-pdf "$@"
-	inkscape "$<" --export-type=pdf --export-filename "$@"
+	inkscape "$<" --export-type=pdf --export-filename "$@.tmp.pdf"
+	@# Convert to PDF/A
+	gs -dPDFA -dBATCH -dNOPAUSE -sColorConversionStrategy=UseDeviceIndependentColor -sDEVICE=pdfwrite -dPDFACompatibilityPolicy=2 -sOutputFile="$@" "$@.tmp.pdf"
+	rm -f "$@.tmp.pdf"
 
 	@# Make output deterministic:
 	sed --regexp-extended --in-place "s#^(.*/CreationDate \()D:[0-9+')]+\)#\1D:20200523232323+02'00)#;" "$@"

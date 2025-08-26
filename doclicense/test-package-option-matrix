@@ -20,7 +20,7 @@ function main() {
     echo "$supported_licenses" | \
         while read -r type modifier version; do
         for imagemodifier in "" "-eu" "-80x15"; do
-            for lang in "ngerman" "english" "brazilian" "spanish" "french" "russian" "italian" "polish" "portuguese" "catalan" "galician" "croatian" "swedish" "esperanto" "ukrainian" "austrian" "naustrian" "swissgerman" "nswissgerman" "greek"; do
+            for lang in "ngerman" "english" "brazilian" "spanish" "french" "russian" "italian" "polish" "portuguese" "catalan" "galician" "croatian" "swedish" "esperanto" "ukrainian" "austrian" "naustrian" "swissgerman" "nswissgerman" "greek" "finnish"; do
                 if [ "$lang" == "ngerman" ] && [ "$modifier" == "pd" ]; then
                     continue # Does not exist in Germany.
                 fi
